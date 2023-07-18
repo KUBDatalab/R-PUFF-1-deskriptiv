@@ -1,7 +1,11 @@
 ---
 title: Setup
 ---
-FIXME
+Opsætning af R og Rstudio.
+
+Installation af pakker
+
+
 
 
 {% include links.md %}

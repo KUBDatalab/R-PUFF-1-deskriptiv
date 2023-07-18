@@ -1,0 +1,33 @@
+---
+title: "Deskriptiv statistik og statistiske deskriptorer"
+teaching: 10
+exercises: 5
+questions:
+- "FIXME"
+objectives:
+- "FIXME"
+keypoints:
+- "FIXME"
+source: Rmd
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("02-")
+source("../bin/download_data.R")
+```
+
+Hvad er statistik og hvad bruger vi det til?
+
+Mønstre - hvad ser vi i data?
+Forudsigelser - prædiktion hvis vi er fancy. Hvad forventer vi hvis vi foretager
+nye observationer
+Kausalitet - hvorfor ser mønstre ud som de gør?
+
+Den videnskabelige proces - en cirkel.
+
+En del af hvad der skal være her, er i 04.
+
+At dømme efter øvelserne 
+
+{% include links.md %}

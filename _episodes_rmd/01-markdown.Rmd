@@ -1,0 +1,91 @@
+---
+title: "Reproducerbar forskning med RMarkdown"
+teaching: 10
+exercises: 5
+questions:
+- "FIXME"
+objectives:
+- "FIXME"
+keypoints:
+- "FIXME"
+source: Rmd
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("01-")
+source("../bin/download_data.R")
+```
+
+Kernen i forskning er reproducerbarhed. Vi kan ikke her komme ind på hvordan
+man sikrer reproducerbarhed i selve forskningen. Men vi kan arbejde med reproducerbarhed
+i dataanalysen.
+
+R i sig selv lægger op til reproducerbarhed. Når vi skriver R-scripts, er kerneideen
+at vi har et script, som vi kan køre fra start til slut, på samme måde hver gang.
+Det først vi gør at indlæse vores data, og det lader vi scriptet gøre. Sker der
+ændringer i data, får scriptet automatisk de nye data - og vi behøver ikke at huske
+hvor vi skal klikke eller sætte krydser.
+
+Det forudsætter selvfølgelig at vi faktisk skriver kode, og ikke bruger musen for meget
+til at vælge ting.
+
+Det script, den kode (vi bruger de to ord som synonymer) er ikke nødvendigvis
+i sig selv specielt letforståelig. Derfor er det en god ide at skrive kommentarer,
+der forklarer hvad du gør og hvorfor.
+
+Endnu bedre end et script med kode og kommentarer, vil det være at kunne levere
+et word eller pdf-dokument, med resultaterne. Et dokument hvor vi blander output
+af vores analyser og visualiseringer i R, med prosa tekst der forklarer hvad 
+vi har gjort, hvad vi ser, og hvad det betyder.
+
+Det resultat kan vi få ved at bruge markdown dokumenter. Disse hjemmesider er
+faktisk skrevet i markdown.
+Varianten vi bruger hedder RMarkdown. Det kan integrere formatteret tekst med
+output fra R.
+
+Flowet består i at skrive et RMarkdown dokument, og ved hjælp af "Knit" funktionen
+at generere et dokument. Knit forvandler først RMarkdown til Markdown. Al kode 
+eksekveres, regnestykker regnes og plottene plottes. 
+
+Derefter konverteres markdown dokumentet til word, html, pdf, eller hvad vi nu 
+har brug for.
+
+RMarkdown har den store fordel, at det virkelig tvinger os til reproducerbar
+analyse. Normalt når vi skriver scripts, kan vi have ting liggende i hukommelse 
+(environment), som vi har tilgængelig, også selvom vi måske sidst kørte vores 
+script for en uge siden.
+
+Det kan være superpraktisk hvis vi har lavet noget der tager lang tid for R at køre.
+
+Men det kan også betyde, at vores resultater ikke kan reproduceres. Sender du
+scriptet og data til en anden, får de ikke det med der ligger i hukommelsen på
+din computer. Og i værste fald kan de slet ikke foretage analysen.
+
+Når vi producerer et html-dokument med RMarkdown, genstartes R. Alt hvad der er 
+brug for af variable, objekter og funktioner, skal produceres af RMarkdown dokumentet.
+Intet uden for er tilgængeligt. Det sikrer, at hvis du sender data og script til
+en anden - så kan de foretage nøjagtig samme analyse som du lige lavede.
+
+> ## Og så ikke altid helt alligevel
+> 
+> Nogle statistiske metoder indeholder et element af tilfældighed. 
+> Skal vi lave en model, skal R finde de optimale værdier af nogle parametre 
+> der beskriver den model. Det gør R normalt ved at foretage et gæt på hvad de
+> er, regner på modellen, og finder ud af om parametrene skal være lidt større
+> eller lidt mindre. Det gentages indtil modellen "konvergerer", når det punkt
+> hvor den ikke kan blive bedre ved at R ændrer lidt på parametrene.
+>
+> Det kan føre til at visse modeller og statistiske metoder vil give forskellige
+> resultater fra gang til gang. Hvis resultaterne er meget forskellige er modellen
+> nok ikke specielt god. Hvis resultaterne kun er lidt forskellige, er den formentlig
+> god nok. 
+>
+> Den variation i output af metoderne er helt forventelig. Matematikken bag 
+> forudsætter et vist element af tilfældighed, og det er ikke noget vi skal forsøge
+> at pille ved.
+{.callout}
+
+
+## Hvordan laver vi så et markdown dokument?
+{% include links.md %}
