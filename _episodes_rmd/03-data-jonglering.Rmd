@@ -1,0 +1,55 @@
+---
+title: "At jonglere med data"
+teaching: 10
+exercises: 5
+questions:
+- "FIXME"
+objectives:
+- "FIXME"
+keypoints:
+- "FIXME"
+source: Rmd
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("03-")
+source("../bin/download_data.R")
+```
+
+Meget af det vi skal - foretage statistiske test, bygge modeller, lave tabeller.
+Al den slags, er superlet. 
+Det svære er at finde ud af hvilken test vi vil foretage, eller hvilken model vi
+vil bygge. Det er også svært at tolke data. Men når først vi har fundet ud af hvad
+vi vil - så er det ret let. Vi skal "bare" finde den funktion der gør arbejdet for
+os. Og så skal vi have jongleret data til at have den form som funktionen tager imod.
+
+
+Det ser vi på i dette modul.
+
+Vi har noget data. Hvad kan vi forestille os at man kan gøre med det?
+
+Data kommer i rækker og kolonner.
+
+I rækkerne har vi observationer. I kolonnerne har vi variable.
+
+Nogen af variablene beskriver grupper af observationer. Det kan de i princippet
+alle gøre. Men nogen af dem giver mere mening end andre.
+
+Så. Vi kan have lyst til kun at se på bestemte observationer, baseret på hvilke
+værdier de har af bestemte variable.
+
+Vi kan have lyst til kun at se på bestemte kolonner (det gør vi som regel for at
+få noget der er mere overskueligt, stort set alt hvad vi laver er ligeglade med 
+hvor mange overflødige kolonner vi har).
+
+Vi kan have lyst til at lave en ny kolonne, baseret på hvad der er i de eksisterende
+kolonner. En variant er at den nye kolonne vi laver i virkeligheden erstatter en
+af de eksisterende.
+
+Og så kan vi have lyst til at opsummere værdierne i en kolonne, for eksempelvis at få
+gennemsnit eller standardafvigelse. Og vi kan have lyst til at gøre det for flere 
+grupper.
+
+
+{% include links.md %}

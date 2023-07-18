@@ -1,0 +1,27 @@
+---
+title: "Introduktion til R"
+teaching: 10
+exercises: 5
+questions:
+- "FIXME"
+objectives:
+- "FIXME"
+keypoints:
+- "FIXME"
+source: Rmd
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("00-")
+source("../bin/download_data.R")
+```
+
+
+Der er utroligt mange, utroligt gode, introduktioner til R. 
+http://r.sund.ku.dk/
+KUB datalabs introduktionskurser
+datacamp. Mange!
+
+
+{% include links.md %}
