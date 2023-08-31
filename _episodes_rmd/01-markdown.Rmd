@@ -17,6 +17,30 @@ knitr_fig_path("01-")
 source("../bin/download_data.R")
 ```
 
+## Reproducerbarhed
+
+Kernen i forskning er reproducerbarhed. Vi laver forsøg, det vil sige at vi 
+gør et eller andet, og så ser vi på resultatet. Og hvis vi gentager forsøget,
+så skal vi helst få ca. samme resultat som sidst.
+
+I jeres branche handler forsøget ofte om at man giver en patientgruppe en 
+behandling. Og en anden patientgruppe en anden behandling (det kunne være: ingen
+behandling). Og så ser vi hvilken af grupperne der klarer sig bedst.
+
+Reproducerbarhed handler om mange ting, og særligt i de videnskaber der handler
+om levende væsener kan det være ret svært at reproducere sine resultater. 
+Paradoxale reaktioner og nocebo eller placebo effekter er blot nogen af udfordringerne.
+
+Men selv i perfekt kontrollerede forsøg vil man som følge af tilfældigheder se
+effekter som ikke er der.
+
+I analysen af data, er der derfor to felter vi kan fokusere på.
+
+1. At vores dataanalyse er beskrevet så godt, at andre faktisk kan foretage samme  analyse på samme tal, og nå samme resultat.
+2. At vores dataanalyse kan afgøre om den effekt vi ser, faktisk er der, og ikke blot er tilfældig.
+
+
+
 Kernen i forskning er reproducerbarhed. Vi kan ikke her komme ind på hvordan
 man sikrer reproducerbarhed i selve forskningen. Men vi kan arbejde med reproducerbarhed
 i dataanalysen.
@@ -88,4 +112,9 @@ en anden - så kan de foretage nøjagtig samme analyse som du lige lavede.
 
 
 ## Hvordan laver vi så et markdown dokument?
+
+
+Markdown dokumenter er opbygget af tre dele. 
+
+
 {% include links.md %}
