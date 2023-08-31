@@ -17,6 +17,8 @@ knitr_fig_path("01-")
 source("../bin/download_data.R")
 ```
 
+# NB Denne bør deles op i to
+
 ## Reproducerbarhed
 
 Kernen i forskning er reproducerbarhed. Vi laver forsøg, det vil sige at vi 
@@ -39,57 +41,22 @@ I analysen af data, er der derfor to felter vi kan fokusere på.
 1. At vores dataanalyse er beskrevet så godt, at andre faktisk kan foretage samme  analyse på samme tal, og nå samme resultat.
 2. At vores dataanalyse kan afgøre om den effekt vi ser, faktisk er der, og ikke blot er tilfældig.
 
+## Reproducerbar dataanalyse
 
+Data har vi typisk i rektangulære tabeller hvor hver række indeholder en observation,
+det kunne være en patient, og hver kolonne indeholder variable. Det kunne være
+blodtryk, kaliumkoncentrationen i blodet, alder og meget andet.
 
-Kernen i forskning er reproducerbarhed. Vi kan ikke her komme ind på hvordan
-man sikrer reproducerbarhed i selve forskningen. Men vi kan arbejde med reproducerbarhed
-i dataanalysen.
+Når vi analyserer data, foretager vi os forskellige ting. Vi fjerner overflødig data,
+vi laver beregninger på variable, ændrer kolonneoverskrifter, anonymiserer data,
+eller sammenkæder en tabel med en anden.
 
-R i sig selv lægger op til reproducerbarhed. Når vi skriver R-scripts, er kerneideen
-at vi har et script, som vi kan køre fra start til slut, på samme måde hver gang.
-Det først vi gør at indlæse vores data, og det lader vi scriptet gøre. Sker der
-ændringer i data, får scriptet automatisk de nye data - og vi behøver ikke at huske
-hvor vi skal klikke eller sætte krydser.
+Og vores analyse fører så frem til en konklusion om at rygere har større sandsynlighed
+for forhøjet blodtryk end ikke-rygere.
 
-Det forudsætter selvfølgelig at vi faktisk skriver kode, og ikke bruger musen for meget
-til at vælge ting.
-
-Det script, den kode (vi bruger de to ord som synonymer) er ikke nødvendigvis
-i sig selv specielt letforståelig. Derfor er det en god ide at skrive kommentarer,
-der forklarer hvad du gør og hvorfor.
-
-Endnu bedre end et script med kode og kommentarer, vil det være at kunne levere
-et word eller pdf-dokument, med resultaterne. Et dokument hvor vi blander output
-af vores analyser og visualiseringer i R, med prosa tekst der forklarer hvad 
-vi har gjort, hvad vi ser, og hvad det betyder.
-
-Det resultat kan vi få ved at bruge markdown dokumenter. Disse hjemmesider er
-faktisk skrevet i markdown.
-Varianten vi bruger hedder RMarkdown. Det kan integrere formatteret tekst med
-output fra R.
-
-Flowet består i at skrive et RMarkdown dokument, og ved hjælp af "Knit" funktionen
-at generere et dokument. Knit forvandler først RMarkdown til Markdown. Al kode 
-eksekveres, regnestykker regnes og plottene plottes. 
-
-Derefter konverteres markdown dokumentet til word, html, pdf, eller hvad vi nu 
-har brug for.
-
-RMarkdown har den store fordel, at det virkelig tvinger os til reproducerbar
-analyse. Normalt når vi skriver scripts, kan vi have ting liggende i hukommelse 
-(environment), som vi har tilgængelig, også selvom vi måske sidst kørte vores 
-script for en uge siden.
-
-Det kan være superpraktisk hvis vi har lavet noget der tager lang tid for R at køre.
-
-Men det kan også betyde, at vores resultater ikke kan reproduceres. Sender du
-scriptet og data til en anden, får de ikke det med der ligger i hukommelsen på
-din computer. Og i værste fald kan de slet ikke foretage analysen.
-
-Når vi producerer et html-dokument med RMarkdown, genstartes R. Alt hvad der er 
-brug for af variable, objekter og funktioner, skal produceres af RMarkdown dokumentet.
-Intet uden for er tilgængeligt. Det sikrer, at hvis du sender data og script til
-en anden - så kan de foretage nøjagtig samme analyse som du lige lavede.
+Den analyse skal vi kunne reproducere. Hvis en anden forsker får de samme data
+som du har arbejdet med, skal han eller hun kunne foretage nøjagtig samme analyse,
+og nå frem til nøjagtig samme resultat.
 
 > ## Og så ikke altid helt alligevel
 > 
@@ -109,6 +76,143 @@ en anden - så kan de foretage nøjagtig samme analyse som du lige lavede.
 > forudsætter et vist element af tilfældighed, og det er ikke noget vi skal forsøge
 > at pille ved.
 {.callout}
+
+Det kræver at vi har beskrevet vores analyse detaljeret nok. Og det kan være 
+svært i eksempelvis Excel, hvor vi vil skulle nedskrive detaljer om at "efter 
+jeg klikkede på denne knap, så satte jeg et flueben i denne box".
+
+Løsningen på det er at foretage vores dataanalyse i et scriptet programmeringssprog.
+Industristandarden når der skal laves statistisk dataanalyse er R. Andre bruger
+Python.
+
+Når vi laver dataanalyse i R, gør vi det ved at skrive et "script". Den centrale
+ide er at vi har en tekstfil, der beskriver præcis hvad programmeringssproget R
+skal gøre. Dette script kan vi bede R om at køre fra start til slut - og R vil
+derefter gøre præcist det der står i scriptet, hverken mere eller mindre, og 
+på den måde kan vi være sikre på at vi behandler vores data på nøjagtig 
+samme måde hver gang.
+
+Det script, den kode (vi bruger de to ord som synonymer) er ikke nødvendigvis
+i sig selv specielt letforståelig. Derfor er det en god ide at skrive kommentarer,
+der forklarer hvad du gør og hvorfor.
+
+Endnu bedre end et script med kode og kommentarer, vil det være at kunne levere
+et word eller pdf-dokument, med resultaterne. Et dokument hvor vi blander output
+af vores analyser og visualiseringer i R, med prosa tekst der forklarer hvad 
+vi har gjort, hvad vi ser, og hvad det betyder.
+
+Det resultat kan vi få ved at bruge markdown dokumenter. Disse hjemmesider er
+faktisk skrevet i markdown.
+Varianten vi bruger hedder RMarkdown. Det kan integrere formatteret tekst med
+output fra R.
+
+En ekstra gevinst ved RMarkdown er, at når vi genererer outputtet, hvad enten
+det er et worddokument eller en pdf, så køres al kode i en helt frisk R-session.
+Intet andet end det der er beskrevet i filen gøres eller er tilgængelig.
+
+
+## Lad os så komme i gang!
+
+Challenge:
+
+Opret et projekt i Rstudio, og lav et R markdown dokument
+
+
+
+Et RMarkdown dokument består af tre dele:
+
+* En header - hvor vi definerer titlen på dokumentet, forfatter og dato. Der kan gemmes meget andet interessant i den. For avancerede funktioner her henviser vi
+til vores R-Markdown kursus (TBA)
+* Resten af dokumentet, der består af to forskellige elementer:
+  - Prosatekst, formatteret som markdown
+  - kode "chunks", i hvilke vi kan skrive R-kode.
+  
+Headeren redigerer vi ikke meget i, og så længe vi holder os til det der er der
+som default er det relativt intuitivt hvad der sker der.
+
+I prosateksten skriver vi forklaringer. Hvad gør vi med vores data? Hvorfor gør
+vi det? Hvad viser resultaterne? Vi har enkle formatterings muligheder:
+
+```{r eval  = F }
+# Niveau 1 overskrift
+## Niveau 2 overskrift
+### etc
+
+*fed skrift*
+  
+_kursiveret skrift_
+
+```
+
+I kode chunks har vi den R-kode der gør ting med vores data.
+
+Vi indsætter lettest en ny chunk ved tastatur-genvejen ctrl-alt-i
+
+Lad os starte med at få indlæst nogle biblioteker:
+
+Challenge
+Indlæs tidyverse og pakke med medicinske data (hvad hedder det)
+
+solution
+library()
+Nogle pakker overskriver hinanden. Det er normalt ikke et problem, men det er 
+en god ide at samle alle indlæsninger af pakker i starten af dokumentet. På den
+måde funger al efterfølgende kode ens. Indlæser vi en pakke der overskriver andre
+pakker senere, kan vi have funktioner i første halvdel af vores dokument, der
+fungerer anderledes end funktionerne i anden halvdel af dokumentet.
+challenge done
+
+Lad os derefter kigge på noget data:
+
+Challenge
+vis tabellen XXX - lav en ny kode chunk og skriv R-kode der viser tabellen.
+solution
+xxx
+
+Kodechunks kan køres, eller "eksekveres" hvis vi vil lyde som om vi har styr på
+tingene og er rutinerede R-brugere, ved at klikke på den lille grønne knap
+eller ved ctrl+enter.
+
+Lad os også skrive noget prosatekst, der forklarer hvad vi gør.
+Challenge
+Tilføj tekst før indlæsning af biblioteker der forklarer hvilke biblioteker 
+du indlæser. Og tekst før visningen af tabellen, der forklarer hvilken tabel vi
+arbejder med.
+solution
+
+challenge done
+
+Nu har vi et markdown dokument med indlejret R-kode. Lad os prøve at generere 
+et output.
+
+Processen behøver vi ikke tænke så meget over. Knit funktionen (indsæt billede),
+tager vores Rmarkdown dokument, kører al R-kode, og laver et Markdown dokument.
+Det sendes til en indbygget funktion baseret på Pandoc, der konverterer
+markdowndokumentet til html som default. Vi kan vælge Word. PDF kan være lidt mere
+bøvlet - det kræver en installation af LaTeX på din computer. Vi holder os til 
+html her, for det gør det hurtigere at se resultatet, rette lidt, køre knit 
+kommandoen igen, og se rettelserne.
+
+
+
+
+RMarkdown har den store fordel, at det virkelig tvinger os til reproducerbar
+analyse. Normalt når vi skriver scripts, kan vi have ting liggende i hukommelse 
+(environment), som vi har tilgængelig, også selvom vi måske sidst kørte vores 
+script for en uge siden.
+
+Det kan være superpraktisk hvis vi har lavet noget der tager lang tid for R at køre.
+
+Men det kan også betyde, at vores resultater ikke kan reproduceres. Sender du
+scriptet og data til en anden, får de ikke det med der ligger i hukommelsen på
+din computer. Og i værste fald kan de slet ikke foretage analysen.
+
+Når vi producerer et html-dokument med RMarkdown, genstartes R. Alt hvad der er 
+brug for af variable, objekter og funktioner, skal produceres af RMarkdown dokumentet.
+Intet uden for er tilgængeligt. Det sikrer, at hvis du sender data og script til
+en anden - så kan de foretage nøjagtig samme analyse som du lige lavede.
+
+
 
 
 ## Hvordan laver vi så et markdown dokument?
