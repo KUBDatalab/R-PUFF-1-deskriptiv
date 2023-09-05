@@ -51,5 +51,65 @@ Og så kan vi have lyst til at opsummere værdierne i en kolonne, for eksempelvi
 gennemsnit eller standardafvigelse. Og vi kan have lyst til at gøre det for flere 
 grupper.
 
+Hvordan gør vi det?
+
+### Pipen
+
+Når vi manipulerer data, skal vi ofte foretage mere end en handling.
+
+Først udvælger vi bestemte kolonner, så udvælger vi bestemte rækker osv
+
+```{r eval = F }
+mellemregning_1 <- select(data, )
+mellemregning_2 <- filter(mellemregning_1)
+```
+
+Skal vi foretage mere end et par behandlinger af datasæt, kan vi hurtigt få 
+mange mellemregninger. Og det er forvirrende.
+
+Hvis vi havde en måde at sende resultatet af den første manipulation videre til
+det næste trin, uden at skulle gemme resultatet undervejs, ville vi kunne spare
+en del kode, og minimere forvirringen.
+
+Og hvis vi har et antal funktioner, der alle skal bruge en dataframe som deres
+første argument. Og returnerer en dataframe. Så kan vi hægte disse funktioner
+sammen. Til det bruger vi pipen: %>% 
+
+Pipen, %>%, tager resultatet af hvad er er på venstre side, og sender det videre
+til den funktion der er på højre side. Det tillader os at lave kæder af 
+funktioner, der samlet manipulerer vores data.
+
+> ## Er der ikke en nyere pipe?
+> Pipen kommer oprindeligt fra pakken magrittr. Der er andre nyttige
+> udgaver af pipen i samme pakke, men den mest brugte er %>%. Den er så nyttig,
+> at base-R, R uden nogen pakker, har introduceret sin egen udgave: |>
+> I default installationen af RStudio, er %>% tilgængelig med genvejstasten
+> ctrl-shift-m. Indtil default indstillingerne i RStudio bliver ændre, arbejder
+> vi med Magrittr pipen, og ikke base-R pipen.
+{.callout}
+
+
+## Datamanipulation med Tidyverse
+
+Pakken Tidyverse indeholder en række andre pakker, der alle er karakteriseret
+ved at de arbejder godt med pipen. Alle funktioner har som deres første argument
+en dataframe, og returnerer selv en dataframe. Det betyder, at vi kan 
+hægte funktionerne sammen med pipen.
+
+Når vi manipulerer data, er det særligt den del af tidyverse der hedder dplyr vi
+bruger. 
+
+### Udvælge kolonner
+
+### Udvælge rækker
+
+### Lave nye kolonner baseret på eksisterende
+
+### Opsummering af data i kolonner
+
+### Grupper dataframes
+
+
+
 
 {% include links.md %}
