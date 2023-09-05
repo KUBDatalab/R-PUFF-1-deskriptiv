@@ -215,10 +215,50 @@ en anden - så kan de foretage nøjagtig samme analyse som du lige lavede.
 
 
 
-## Hvordan laver vi så et markdown dokument?
+## Lad os også genopfriske lidt R
 
+### Helt elementært
 
-Markdown dokumenter er opbygget af tre dele. 
+Meget af det vi gør med data sker i trin. Først indlæser vi data. Så gør 
+vi noget ved det. Så gør vi noget andet ved det. Og noget tredie. Og så har vi
+måske et resultat.
+
+Mellemregningerne kan vi gemme i `objekter`. Vi kalder dem også ofte for 
+variable, men det kan være lidt misvisende. Vi bruger den såkaldte "assignment"
+operator til det: <-
+
+På venstresiden skriver vi navnet på det objekt vi vil gemme noget i.
+
+callout
+hvad skal jeg kalde mine objekter? Noget der beskriver hvad der er gemt i den.
+Noget der er så kort at man kan holde ud at taste det ind mere end en gang.
+Og så må det ikke starte med tal, indeholde mellemrum, bindestreger, *, / eller
++. For det er matematiske operatorer.
+callout done
+
+Challenge
+Gem værdien yyy i objektet zzz
+solution
+zzz <- yyy
+challenge done
+
+Skal vi have mere end et tal, eller tekst, gemt i et objekt, bruger vi
+`c()` funktionen:
+```{r}
+noget <- c(1,2,3)
+```
+
+Funktioner virker også på objekter. Vi kan derfor tage gennemsnittet af [noget]:
+```{r}
+mean(noget)
+```
+
+En særlig type data er faktorer. Det er kategoriske variable, variable der kun
+kan tage bestemte værdier. Eksempler kan være køn. Man er enten af hankøn, eller
+af hunkøn. Enten er man gravid, eller også er man ikke.
+
+Datatyper - faktorer
+
 
 
 {% include links.md %}
