@@ -128,5 +128,70 @@ foluptm      61-64    Months of follow up Note: Some subjects provided no
 
 
 
+  Corneal.doc
+
+Variable   Column      Variable label
+  id        2-3        ID
+  tr         5         Treatment   1=M   2=G  3=P          
+  c1        8-9        Central  visit 1                    
+  s1       12-13       Superior visit 1                    
+  i1       16-17       Inferior Visit 1                    
+  t1       20-21       Temporal visit 1                    
+  n1       24-25       Nasal Visit 1                       
+  c2       28-29       Central Visit 2(day 7)              
+  s2       32-33       Superior Visit 2                    
+  i2       36-37       Inferior Visit 2                    
+  t2       40-42       Temporal Visit 2                    
+  n2       44-45       Nasal Visit 2                       
+  c3       48-49       Central Visit 3(day 14)  missing=99             
+  s3       52-53       Superior Visit 3  missing=99                  
+  i3       56-57       Inferior Visit 3  missing=99                  
+  t3       60-61       Temporal Visit 3  missing=99                  
+  n3       64-65       Nasal Visit 3     missing=99   
+
+
+DIABETES .DOC
+
+Variable                      Column                      Code
+ID                                 1-6
+mon_a1c 	  	 8-9			Month A1c
+day_a1c              	11-12                          Day A1c
+yr_a1c                         14-15                          Yr A1c 
+age_yrs                       17-20			Age in years	     
+gly_a1c                       22-28                           Hemoglobin A1c                                     
+ht_cm                          30-34                           Height in cm    missing=999.9        
+wt_kg			36-39 	   		Weight in kg
+
+
+EAR.DOC
+
+Variable      Column         Description               Format or Code
+-------------------------------------------------------------------------
+ Id             1-3          ID
+ Clear           5           Clearance by 14 days     1=yes/0=no
+ Antibo          7           Antibiotic               1=CEF/2=AMO
+ Age             9           Age                      1=<2 yrs/2=2-5 yrs/
+                                                      3=6+ yrs
+ Ear            11           Ear                      1=1st ear/2=2nd ear
+------------------------------------------------------------------------
+
+
+EFF.DOC
+
+Variable             Column         Description/Code
+---------------------------------------------------------------------------
+Name                   1-8          Study name
+Id                    10-11         Study Number 
+Endpnt                 13           Endpoint  1=efficacy   
+Antibio                15           Antibiotic                  
+                                    1=Amikacin/2=Gentamicin/3=Netilmicin/
+                                    4=Sisomycin/5=Tobramycin
+Samp_sz               17-19         Sample Size 
+Cured                 21-23         Number Cured 
+---------------------------------------------------------------------------
+
+
+
+
 {% include links.md %}
 
