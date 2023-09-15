@@ -14,7 +14,7 @@ source: Rmd
 ```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("03-")
-source("../bin/download_data.R")
+# source("../bin/download_data.R")
 ```
 
 Meget af det vi skal - foretage statistiske test, bygge modeller, lave tabeller.
