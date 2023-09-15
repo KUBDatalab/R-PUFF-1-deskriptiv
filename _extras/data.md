@@ -10,100 +10,113 @@ brug, men her er de.
 
 ### BETACAR
 
-|Variable    |   Column |       Description/Code
-|------------|----------|-----------------------------------------------
-|Prepar      |      1   |  Preparation 1=SOL/2=ROCHE/3=BASF-30/4=BASF-60
-|Id          |    3-4   |      Subject #
-|Base1lvl    |    6-8   |   1st Baseline Level 
-|Base2lvl    |  10-12   | 2nd Baseline Level 
-|Wk6lvl      |  14-16   |    Week 6 Level
-|Wk8lvl      |  18-20   |     Week 8 Level 
-|Wk10lvl     |  22-24   | Week 10 Level	
-|Wk12lvl     |  26-28   |      Week 12 Level 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/BETACAR.csv)
+
+
+|Variable    |          Description/Code
+|------------|---------------------------------------------------------
+|Prepar      |  Preparation 1=SOL/2=ROCHE/3=BASF-30/4=BASF-60
+|Id          |      Subject #
+|Base1lvl    |   1st Baseline Level 
+|Base2lvl    | 2nd Baseline Level 
+|Wk6lvl      |    Week 6 Level
+|Wk8lvl      |     Week 8 Level 
+|Wk10lvl     | Week 10 Level	
+|Wk12lvl     |      Week 12 Level 
 
 
 ### BLOOD
 
-|Variable        |         Column          |          Description
-|----------------|-------------------------|----------------------------
-|Id              |               1-6       |                       ID
-|matchid         |          8-13           |                 Matched ID
-|case            |              15         |                      Case/control  1=case/ 0=control
-|curpmh          |           17            |                   Current PMH use  1=yes / 0=no
-|ageblood        |         19-20           |                Age at blood draw
-|estradol        |           22-23         |                  Estradiol
-|estrone         |           25-27         |                  Estrone  missing=999
-|testost         |            29-31        |                   Testosterone  missing=999
-|prolactn        |          34-38          |                 Prolactin   xx.xx  missing=99.99
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/BLOOD.csv)
+
+|Variable                  |          Description
+|----------------|----------------------------
+|Id                     |                       ID
+|matchid         |                 Matched ID
+|case            |                      Case/control  1=case/ 0=control
+|curpmh          |                   Current PMH use  1=yes / 0=no
+|ageblood                   |                Age at blood draw
+|estradol                 |                  Estradiol
+|estrone                  |                  Estrone  missing=999
+|testost                 |                   Testosterone  missing=999
+|prolactn                  |                 Prolactin   xx.xx  missing=99.99
 
 
 ### BONEDEN
 
-Variable  |  Column   |      Code
----------------------------------------------------------------------
-ID        |   2-8     |
-Age       |   9-11    |    Age (yrs)
-zyg       |  12-14    |    1=mz 2=dz
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/BONEDEN.csv)
+
+
+|Variable  |  Column   |      Code
+|----------|------------|-----------------------------------------------
+|ID        |   2-8     |
+|Age       |   9-11    |    Age (yrs)
+|zyg       |  12-14    |    1=mz 2=dz
 
     Twin 1  Lighter Smoking Twin
----------------------------------------------------------------------
-
-ht1         15-19        Height (cm)
-wt1         20-24        Weight (kg)
-tea1        25-29        Tea  (cups/week)
-cof1        30-34        Coffee  (cups/week)
-alc1        35-39        Alcohol  (drinks/week)
-cur1        40-44        Current Smoking (cigarettes/day)
-men1        45-49        Menopause Status (0=pre/1=post/2=unknown hysterectomy)
-pyr1        50-55        Pack-years smoking
-ls1         56-61        Lumbar spine (g/cm**2)
-fn1         62-67        Femoral neck (g/cm**2)
-fs1         68-73        Femoral shaft (g/cm**2)
+|Variable |      Code
+|---------|-----------------------------------------------
+|ht1      |     Height (cm)
+|wt1      |     Weight (kg)
+|tea1     |     Tea  (cups/week)
+|cof1     |     Coffee  (cups/week)
+|alc1     |     Alcohol  (drinks/week)
+|cur1     |     Current Smoking (cigarettes/day)
+|men1     |     Menopause Status (0=pre/1=post/2=unknown hysterectomy)
+|pyr1     |     Pack-years smoking
+|ls1      |     Lumbar spine (g/cm**2)
+|fn1      |     Femoral neck (g/cm**2)
+|fs1      |     Femoral shaft (g/cm**2)
 
       Twin 2  Heavier Smoking Twin
----------------------------------------------------------------------
 
-ht2         74-78        Height (cm)
-wt2         79-83        Weight (kg)
-tea2        84-88        Tea  (cups/week)
-cof2        89-93        Coffee  (cups/week)
-alc2        94-98        Alcohol  (drinks/week)
-cur2        99-103       Current Smoking (cigarettes/day)
-men2       104-108       Menopause Status (0=pre/1=post/2=unknown hysterectomy)
-pyr2       109-114       Pack-years smoking
-ls2        115-120       Lumbar spine (g/cm**2)
-fn2        121-126       Femoral neck (g/cm**2)
-fs2        127-132       Femoral shaft (g/cm**2)
+|Variable  |      Code
+|----------|-----------------------------------------------------------
+|ht2       |         Height (cm)
+|wt2       |         Weight (kg)
+|tea2      |         Tea  (cups/week)
+|cof2      |         Coffee  (cups/week)
+|alc2      |         Alcohol  (drinks/week)
+|cur2      |         Current Smoking (cigarettes/day)
+|men2      |         Menopause Status (0=pre/1=post/2=unknown hysterectomy)
+|pyr2      |         Pack-years smoking
+|ls2       |         Lumbar spine (g/cm**2)
+|fn2       |         Femoral neck (g/cm**2)
+|fs2       |         Femoral shaft (g/cm**2)
 
 
 
 ### BOTOX
-Variable    Column       Code
----------------------------------------------------------------------
-ID           1-3
-group         5          1=TL/2=Placebo/3=Botox
-pain0        6-9         pain score month 0  missing=999
-pain05      10-13        pain score month 0.5  missing=999
-pain1       14-17        pain score month 1  missing=999
-pain2       18-21        pain score month 2  mising=999
-pain3       22-25        pain score month 3  missing=999
-pain4       26-29        pain score month 4  missing=999
-pain5       30-33        pain score month 5  missing=999
-pain6       34-37        pain score month 6  missing=999
-pain7       38-41        pain score month 7  missing=999
-pain8       42-45        pain score month 8  missing=999
-pain9       46-49        pain score month 9  missing=999
-pain10      50-53        pain score month 10  missing=999
-pain11      54-57        pain score month 11  missing=999
-pain12      58-61        pain score month 12  missing=999
-pain13      62-65        pain score month 13  missing=999
-pain14      66-69        pain score month 14  missing=999
-pain15      70-73        pain score month 15  missing=999
-pain16      74-77        pain score month 16  missing=999
-pain17      78-81        pain score month 17  missing=999
----------------------------------------------------------------------
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/BOTOX.csv)
+
+
+|Variable    |       Code
+|------------|---------------------------------------------------------
+|ID          |
+|group       |           1=TL/2=Placebo/3=Botox
+|pain0       |         pain score month 0  missing=999
+|pain05      |        pain score month 0.5  missing=999
+|pain1       |        pain score month 1  missing=999
+|pain2       |        pain score month 2  mising=999
+|pain3       |        pain score month 3  missing=999
+|pain4       |        pain score month 4  missing=999
+|pain5       |        pain score month 5  missing=999
+|pain6       |        pain score month 6  missing=999
+|pain7       |        pain score month 7  missing=999
+|pain8       |        pain score month 8  missing=999
+|pain9       |        pain score month 9  missing=999
+|pain10      |        pain score month 10  missing=999
+|pain11      |        pain score month 11  missing=999
+|pain12      |        pain score month 12  missing=999
+|pain13      |        pain score month 13  missing=999
+|pain14      |        pain score month 14  missing=999
+|pain15      |        pain score month 15  missing=999
+|pain16      |        pain score month 16  missing=999
+|pain17      |        pain score month 17  missing=999
 
 ### Breast
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Breast.csv)
 
 
 variable    column    Description
@@ -132,6 +145,9 @@ foluptm      61-64    Months of follow up Note: Some subjects provided no
 
 ###  Corneal
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Corneal.csv)
+
+
 Variable   Column      Variable label
   id        2-3        ID
   tr         5         Treatment   1=M   2=G  3=P          
@@ -154,6 +170,9 @@ Variable   Column      Variable label
 
 ### DIABETES
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/DIABETES.csv)
+
+
 Variable                      Column                      Code
 ID                                 1-6
 mon_a1c 	  	 8-9			Month A1c
@@ -166,6 +185,8 @@ wt_kg			36-39 	   		Weight in kg
 
 
 ### EAR
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/EAR.csv)
 
 
 Variable      Column         Description               Format or Code
@@ -180,6 +201,9 @@ Variable      Column         Description               Format or Code
 
 
 ### EFF
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/EFF.csv)
+
 
 Variable             Column         Description/Code
 ---------------------------------------------------------------------------
@@ -196,6 +220,9 @@ Cured                 21-23         Number Cured
 
 ###  ENDOCRIN
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/ENDOCRIN.csv)
+
+
  Variable      COLUMN       LABEL
   Subject        1          SUBJECT #
   Replicat       3          REPLICATE #
@@ -205,7 +232,9 @@ Cured                 21-23         Number Cured
   Testost      20-23        TESTOSTERONE
 
 
-Estradl.doc
+### Estradl
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Estradl.csv)
 
 
 Variable	Column		Code	
@@ -222,7 +251,10 @@ BMI		37-43			Body Mass Index
 WHR		46-49			waist-hip ratio
 
 
-### ESTROGEN DOC
+### ESTROGEN
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/ESTROGEN.csv)
+
 
 Variable    COLUMN                LABEL
 
@@ -263,97 +295,97 @@ sysd3r3     74-76                 SYSTOLIC BP DAY 3 READING 3
 diasd3r3    78-80                 DIASTOLIC BP DAY 3 READING 3
 
 
-FEV.DOC
+### FEV
 
-Variable      Column       Description           Format or Code
-----------------------------------------------------------
- Id            1-5         ID number
- Age           7-8         Age (yrs)
- FEV          10-15        FEV (liters)           X.XXXX
- Hgt          17-20        Height (inches)        XX.X
- Sex           22          Sex                    0=female/1=male
- Smoke         24          Smoking Status         0=non-current smoker/
-                                                  1=current smoker
-----------------------------------------------------------
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/FEV.csv)
+
+|Variable |     Description     |      Format or Code
+|---------|---------------------|----------------------------
+| Id      |    ID number        |
+| Age     |    Age (yrs)        |
+| FEV     |    FEV (liters)     |      X.XXXX
+| Hgt     |    Height (inches)  |      XX.X
+| Sex     |    Sex              |      0=female/1=male
+| Smoke   |    Smoking Status   |      0=non-current smoker/1=current smoker
 
 
-Field.doc
 
-Variable    Column	Description
+### Field
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Field.csv)
 
-id                 1-6            ID
-group            8              group (1=RHO/2=RPGR)
- age              11-14        age at visit  (XX.X in years)
- gender          16            gender (1=m/2=f)  Note: all RPGR individuals have to be male 
- dtvisit          18-27	  date of visit (month/day/year)
- folowup       29-34	  time from 1st visit in years
- totfldod       36-43	  total field area right eye (OD) in degrees²
- totfldos        45-52	  total field area left eye (OS) in degrees²
+|Variable   |	Description
+|-----------|--------------
+|id          |  ID
+|group        |              group (1=RHO/2=RPGR)
+|age           |        age at visit  (XX.X in years)
+|gender       |            gender (1=m/2=f)  Note: all RPGR individuals have to be male 
+|dtvisit      |	  date of visit (month/day/year)
+|folowup      |	  time from 1st visit in years
+|totfldod     |	  total field area right eye (OD) in degrees²
+|totfldos     |	  total field area left eye (OS) in degrees²
 
-Heart.doc  
-
-Variable	column		code
-_______________________________________________________________________________________
-Diagnosis	1-2		Y1=normal
+### Heart
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Heart.csv)
+|Variable	|code
+|---------|--------
+|Diagnosis	|		Y1=normal
 				Y2=atrial septal defect without pulmonary stenosis or pulmonary hypertension
 				Y3=ventricular septal defect with valvular pulmonary stenosis
 				Y4=isolated pulmonary hypertension
 				Y5=transposed great vessels
 				Y6=ventricular septal defect without pulmonary hypertension
 				Y7=ventricular septal defect with pulmonary hypertension
-Prevalence	5-9		Prevalence
-X1		12-15 		age 1-20 years old
-X2		18-21		age>20 years old
-X3		24-27		mild cyanosis
-X4		30-33		easy fatigue
-X5		36-39		chest pain
-X6		42-45		repeated respiratory infections
-X7		48-51		EKG axis more than 110
+|Prevalence |		Prevalence
+|X1		| 		age 1-20 years old
+|X2		|		age>20 years old
+|X3		|		mild cyanosis
+|X4		|		easy fatigue
+|X5		|		chest pain
+|X6		|		repeated respiratory infections
+|X7		|		EKG axis more than 110
 
 
 ### HORMONE
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/HORMONE.csv)
 
-Variable       Column      Description/Code
----------------------------------------------------------------------------
-ID               4-5       ID
-Bilsecpr         9-14      Biliary secretion-pre      
-Bilphpr         18-23      Biliary pH-pre             
-Pansecpr        26-32      Pancreatic secretion-pre   
-Panphpr         37-41      Pancreatic pH-pre          
-Dose            46-50      Dose 
-Bilsecpt        53-59      Biliary secretion-post     
-Bilphpt         64-68      Biliary pH-post            
-Pansecpt        70-75      Pancreatic secretion-post  
-Panphpt         79-84      Pancreatic pH-post 
-Hormone          90        Hormone 1=SAL/2=APP/3=CCK/4=SEC/5=VIP
---------------------------------------------------------------------------
+|Variable       |      Description/Code
+|---------------|------------------------------------------------------------
+|ID             |       ID
+|Bilsecpr       |      Biliary secretion-pre      
+|Bilphpr        |      Biliary pH-pre             
+|Pansecpr       |       Pancreatic secretion-pre   
+|Panphpr        |      Pancreatic pH-pre          
+|Dose           |      Dose 
+|Bilsecpt       |      Biliary secretion-post     
+|Bilphpt        |      Biliary pH-post            
+|Pansecpt       | Pancreatic secretion-post  
+|Panphpt        |       Pancreatic pH-post 
+|Hormone        |        Hormone 1=SAL/2=APP/3=CCK/4=SEC/5=VIP
 
 
-Hosiptal.doc
+### Hosiptal
 
-Variable       Column     Label
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Hospital.csv)
 
-   Id           1-2           id no.
 
-   Dur_stay     4-5           Duration of hospital stay
-
-   Age          7-8           Age
-
-   Sex          10            Sex  1=male/2=female
-
-   Temp        12-15          First temperature following admission
-
-   WBC         17-18          First WBC(x1000) following admission
-
-   Antibio      20            Received antibiotic 1=yes/2=no
-
-   Bact_cul     22            Received bacterial culture 1=yes/2=no
-
-   Service      24            Service 1=med/2=surg.
+|Variable   |            Label
+|------------| ---------------
+|   Id           |  id no.
+|   Dur_stay     |           Duration of hospital stay
+|   Age         |           Age
+|   Sex         |            Sex  1=male/2=female
+|   Temp        |          First temperature following admission
+|   WBC         |          First WBC(x1000) following admission
+|   Antibio      |            Received antibiotic 1=yes/2=no
+|   Bact_cul     |            Received bacterial culture 1=yes/2=no
+|   Service      |            Service 1=med/2=surg.
 
 
 
 ### INFANTBP
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/INFANTBP.csv)
+
 -------------------------------------------------------------------------
 Variable        Column         Format    Description
 -------------------------------------------------------------------------
@@ -384,7 +416,7 @@ Sugar Taste Variables
 * for MSB data 999.99 is a missing value; 0 indicates the baby did not suck.
 
 
-   LEAD.DOC
+### LEAD
 
 VARIABLE  COLUMN    DESCRIPTION
  id        1-3      IDENTIFICATION NUMBER
@@ -518,19 +550,19 @@ VARIABLE  COLUMN    DESCRIPTION
 
 ### MICE
 
-Variable   column      Description 
- Id         1-2         ID
- Group       4          GROUP 1=RP  2=NORMAL
- Trtgrp      6          TREATMENT GROUP
+|Variable   column      Description 
+| Id         1-2         ID
+| Group       4          GROUP 1=RP  2=NORMAL
+| Trtgrp      6          TREATMENT GROUP
                          A=LIGHT
                          B=DIM
                          C=DARK
- Age        8-9         AGE (days)
- B_amp     13-14        B AMP  9999=missing
- A_amp     16-19        A AMP  9999=missing  
+| Age        8-9         AGE (days)
+| B_amp     13-14        B AMP  9999=missing
+| A_amp     16-19        A AMP  9999=missing  
 
 
-NEPHRO.DOC
+### NEPHRO
 
 Variable         Column      Description/Code
 ---------------------------------------------------------------------------
@@ -544,7 +576,7 @@ Side_eff          21-23      Number with side effects
 ---------------------------------------------------------------------------
 
 
-NIFED.DOC
+### NIFED
 
 Variable    Column       Description            Code
 -----------------------------------------------------------------------------
@@ -725,7 +757,7 @@ os10p102		402-408			OS 10 sec 10min post 2
 os10p151		409-415			OS 10 sec 15min post 1
 os10p152		416-422			OS 10 sec 15min post 2
 
-TEMPERAT.DOC
+### TEMPERAT
 
 Variable    COLUMN       LABEL
 Date         1-6         DATE (MDY)
@@ -741,7 +773,7 @@ Typ_wea       22         TYPE OF WEATHER
                           5=FOGGY
                           9=MISSING
 
-TENNIS1.DOC
+### TENNIS1
 
 VARIABLE  Column       VARIABLE NAME
 -------------------------------------------------------
@@ -880,18 +912,17 @@ painov_4    51        4       OVERALL IMPRESSION OF DRUG EFFICACY VS BASELINE
 
 ### VALID
 
-Variable     Column        Description             Format or Code
------------------------------------------------------------
-Id            1-6          ID number
-sfat_dr       8-15         Saturated fat-DR           XXXXX.XX
-sfat_ffq     17-24         Saturated fat-FFQ          XXXXX.XX
-tfat_dr      26-33         Total fat-DR               XXXXX.XX
-tfat_ffq     35-42         Total fat-FFQ              XXXXX.XX
-alco_dr      44-51         Alcohol consumption-DR     XXXXX.XX
-alco_ffq     53-60         Alcohol consumption-FFQ    XXXXX.XX
-cal_dr       62-70         Total calories-DR         XXXXXX.XX
-cal_ffq      72-80         Total calories-FFQ        XXXXXX.XX
-----------------------------------------------------------
+|Variable     |        Description             |Format or Code
+|-------------|-----------------------------------|-----------
+|Id           |          ID number                |
+|sfat_dr       |         Saturated fat-DR        |   XXXXX.XX
+|sfat_ffq     |         Saturated fat-FFQ        |  XXXXX.XX
+|tfat_dr      |         Total fat-DR             |  XXXXX.XX
+|tfat_ffq     |         Total fat-FFQ            |  XXXXX.XX
+|alco_dr      |         Alcohol consumption-DR   |  XXXXX.XX
+|alco_ffq     |         Alcohol consumption-FFQ  |  XXXXX.XX
+|cal_dr       |         Total calories-DR        | XXXXXX.XX
+|cal_ffq      |         Total calories-FFQ       | XXXXXX.XX
 
 
 
