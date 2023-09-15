@@ -1,5 +1,5 @@
 current directory: /home/runner/work/R-PUFF-1-deskriptiv/R-PUFF-1-deskriptiv/.vendor/bundle/ruby/2.7.0/gems/commonmarker-0.23.10/ext/commonmarker
-/opt/hostedtoolcache/Ruby/2.7.8/x64/bin/ruby -I /opt/hostedtoolcache/Ruby/2.7.8/x64/lib/ruby/2.7.0 -r ./siteconf20230915-14331-1dpc8l0.rb extconf.rb
+/opt/hostedtoolcache/Ruby/2.7.8/x64/bin/ruby -I /opt/hostedtoolcache/Ruby/2.7.8/x64/lib/ruby/2.7.0 -r ./siteconf20230915-12449-awknyo.rb extconf.rb
 creating Makefile
 
 current directory: /home/runner/work/R-PUFF-1-deskriptiv/R-PUFF-1-deskriptiv/.vendor/bundle/ruby/2.7.0/gems/commonmarker-0.23.10/ext/commonmarker
@@ -225,5 +225,5 @@ make[1]: Entering directory '/home/runner/work/R-PUFF-1-deskriptiv/R-PUFF-1-desk
 Makefile:261: warning: overriding recipe for target 'commonmarker.so'
 make[1]: Entering directory '/home/runner/work/R-PUFF-1-deskriptiv/R-PUFF-1-deskriptiv/.vendor/bundle/ruby/2.7.0/gems/commonmarker-0.23.10/ext/commonmarker'
 :261: warning: ignoring old recipe for target 'commonmarker.so'
-/usr/bin/install -c -m 0755 commonmarker.so ./.gem.20230915-14331-1yaivtx/commonmarker
+/usr/bin/install -c -m 0755 commonmarker.so ./.gem.20230915-12449-1aobnc4/commonmarker
 make[1]: Leaving directory '/home/runner/work/R-PUFF-1-deskriptiv/R-PUFF-1-deskriptiv/.vendor/bundle/ruby/2.7.0/gems/commonmarker-0.23.10/ext/commonmarker'

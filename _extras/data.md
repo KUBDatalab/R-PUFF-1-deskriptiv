@@ -9,24 +9,22 @@ brug, men her er de.
 
 
 ### BETACAR
+Variable    |        Column |       Description/Code
 ---------------------------------------------------------------------
-Variable            Column        Description/Code
----------------------------------------------------------------------
-Prepar    		     1          Preparation 1=SOL/2=ROCHE/3=BASF-30/4=BASF-60
-Id                   3-4          Subject #
-Base1lvl    	   6-8          1st Baseline Level 
-Base2lvl 		  10-12         2nd Baseline Level 
-Wk6lvl 	        14-16         Week 6 Level
-Wk8lvl	        18-20         Week 8 Level 
-Wk10lvl		  22-24         Week 10 Level	
-Wk12lvl	        26-28         Week 12 Level 
----------------------------------------------------------------------
+Prepar    		  |   1        |  Preparation 1=SOL/2=ROCHE/3=BASF-30/4=BASF-60
+Id             |      3-4    |      Subject #
+Base1lvl    	|   6-8       |   1st Baseline Level 
+Base2lvl 		 | 10-12        | 2nd Baseline Level 
+Wk6lvl 	    |    14-16     |    Week 6 Level
+Wk8lvl	   |     18-20    |     Week 8 Level 
+Wk10lvl		|  22-24        | Week 10 Level	
+Wk12lvl	  |      26-28   |      Week 12 Level 
 
 
-### BLOOD.doc
+### BLOOD
 
 Variable                 Column                    Description
-__________________________________________________________________
+---------------------------------------------------------------------
 Id                             1-6                              ID
 matchid                   8-13                            Matched ID
 case                          15                               Case/control  1=case/ 0=control
@@ -38,8 +36,7 @@ testost                     29-31                           Testosterone  missin
 prolactn                  34-38                           Prolactin   xx.xx  missing=99.99
 
 
-### BONEDEN.DOC
----------------------------------------------------------------------
+### BONEDEN
 Variable    Column       Code
 ---------------------------------------------------------------------
 ID           2-8
@@ -513,6 +510,385 @@ VARIABLE  COLUMN    DESCRIPTION
 
  maxfwt     114-115      Finger-wrist tapping test in dominant hand(max of              
                          fwt_r,fwt_l)
+
+
+### MICE
+
+Variable   column      Description 
+ Id         1-2         ID
+ Group       4          GROUP 1=RP  2=NORMAL
+ Trtgrp      6          TREATMENT GROUP
+                         A=LIGHT
+                         B=DIM
+                         C=DARK
+ Age        8-9         AGE (days)
+ B_amp     13-14        B AMP  9999=missing
+ A_amp     16-19        A AMP  9999=missing  
+
+
+NEPHRO.DOC
+
+Variable         Column      Description/Code
+---------------------------------------------------------------------------
+name               1-8       Study name
+id                10-11      Study number
+Endpnt             13        Endpoint  2=nephrotoxicity
+Antibio            15        Antibiotic 1=Amikacin/2=Gentamicin/3=Netilmicin/
+                                   4=Sisomycin/5=Tobramycin
+Samp_sz           17-19      Sample size 
+Side_eff          21-23      Number with side effects 
+---------------------------------------------------------------------------
+
+
+NIFED.DOC
+
+Variable    Column       Description            Code
+-----------------------------------------------------------------------------
+Id           1-2         ID
+trtgrp        4          Treatment group        N=nifedipine/P=placebo
+bashrtrt     6-8         Baseline heart rate*   beats/min
+lv1hrtrt    10-12        Level 1 heart rate+    beats/min
+lv2hrtrt    14-16        Level 2 heart rate     beats/min
+lv3hrtrt    18-20        Level 3 heart rate     beats/min
+bassys      22-24        Baseline systolic bp*  mm Hg
+lv1sys      26-28        Level 1 systolic bp    mm Hg
+lv2sys      30-32        Level 2 systolic bp    mm Hg
+lv3sys      34-36        Level 3 systolic bp    mm Hg
+-----------------------------------------------------------------------------
+* Immediately prior to randomization.
++ Highest heart rate and systolic blood pressure at baseline and each level of
+  therapy respectively.
+Values of 999 indicates that either
+(a) the patient withdrew from the study prior to entering this level of therapy
+(b) the patient achieved pain relief prior to reaching this level or therapy,
+(c) the patient encountered this level of therapy, but this particular piece
+       of data was missing.
+
+### OTO
+
+Variable         Column       Description/Code
+---------------------------------------------------------------------------
+Name               1-8        Study Name
+Id                10-11       Study Number 
+Endpnt             13         Endpoint 1=efficacy/2=nephrotoxicity/3=ototoxicity
+Antibio            15         Antibiotic 1=Amikacin/2=Gentamicin/3=Netilmicin/
+                                   4=Sisomycin/5=Tobramycin
+Samp_sz           17-19       Sample Size
+Side_eff          21-23       Number with side effect 
+---------------------------------------------------------------------------
+
+### PIRIFORM
+
+Variable                      Column                                    Code
+
+ID                                1-6
+piriform                        8                                             Piriformis Syndrome  1=Negative,  2=Positive
+sex                              10                                            Sex  1=Male,  2=Female
+age                             12-14                                       Age
+maxchg                       16-21                                      Max change between tibia and peroneal
+
+
+### SEXRAT
+
+Variable          Column
+--------------------------------------
+nm_chld+            1         Number of children
+sx_1                3         Sex of 1st born
+sx_2                5         Sex of 2nd born
+sx_3                7         Sex of 3rd born
+sx_4                9         sex of 4th born
+sx_5                11        sex of 5th born 
+sexchldn*           13-17     Sex of all children  
+num_fam**           19-22     Number of families
+--------------------------------------
++ For families with 5+ children, the sex of the first 5 children are listed.
+The number of children is given as 5 for such families.
+* The sex of successive births is given. Thus, MMMF means that the first
+three children were males and the fourth child was a female. There were 484
+such families.
+** Number of families with specific gender contribution of children
+
+
+### SMOKE
+
+Variable      Columns         Code
+-----------------------------------------------------
+ID              1-3           ID number 
+Age             4-5           age 
+Gender           6            Gender        1=male/2=female
+Cig_day         7-8           Cigarettes/day      
+CO              9-11          Carbon monoxide (CO) (X 10) missing=999	   
+Min_last       12-15          Minutes elapsed since last cigarette missing=9999  
+LogCOadj       16-19          Log CO Adj * (X 1000)  missing=9999
+Day_abs        20-22          Days abstinent  Those abstinent less than 1 day
+                                    were given a value of zero.
+--------------------------------------------------------------------
+* This variable represents adjusted carbon monoxide (CO) values. CO values
+were adjusted for minutes elapsed since last cigarette smoked using the formula
+Log 10 CO (Adjusted) = Log 10 CO - (-0.000638) X (Min - 80), where Min is the
+number of minutes elapsed since the last cigarette smoked.  
+
+
+### SWISS
+
+Variable      Column       Codes
+-----------------------------------------------------------
+ ID             1-4         ID             
+
+ age (yrs)      6-7         age (yrs)      
+
+ group           9          Group    1=High NAPAP, 2=Low NAPAP, 3 = control
+
+ creat_68      12-15   x.xx Serum Creatinine 1968 (mg/dL) 9.99=missing 
+
+ creat_69      18-21   x.xx Serum Creatinine 1969 (mg/dL) 9.99=missing 
+
+ creat_70      24-27   x.xx Serum Creatinine 1970 (mg/dL) 9.99=missing 
+
+ creat_71      30-33   x.xx Serum Creatinine 1971 (mg/dL) 9.99=missing 
+
+ creat_72      36-39   x.xx Serum Creatinine 1972 (mg/dL) 9.99=missing 
+
+ creat_75      42-45   x.xx Serum Creatinine 1975 (mg/dL) 9.99=missing 
+
+ creat_78      48-51   x.xx Serum Creatinine 1978 (mg/dL) 9.99=missing
+---------------------------------------------------------------
+
+
+### TEAR
+
+Variable                      Column                                    Code
+
+ID                                1-2
+od3bas1                       3-9                                           OD 3sec baseline 1               
+od3bas2                       10-16                                       OD 3 sec baseline 2     
+od3im1                        17-23                                       OD 3 sec immediately post 1
+od3im2                        24-30                                       OD 3 sec immediately post 2         
+od3pst51		31-37				OD 3 sec 5min post 1
+od3pst52		38-44				OD 3 sec 5min post 2
+od3pt101		45-51				OD 3 sec 10min post 1
+od3pt102		52-58				OD 3 sec 10min post 2
+od3pt151		59-65				OD 3 sec 15min post 1
+od3pt152		66-72				OD 3 sec 15min post 2 
+os3bas1                        73-79                                      OS 3sec baseline 1               
+os3bas2                        80-86                                      OS 3 sec baseline 2     
+os3im1                         87-93                                      OS 3 sec immediately post 1
+os3im2                         94-100                                    OS 3 sec immediately post 2         
+os3pst51		101-107	 		OS 3 sec 5min post 1
+os3pst52		108-114			OS 3 sec 5min post 2
+os3pt101		115-121			OS 3 sec 10min post 1
+os3pt102		122-128			OS 3 sec 10min post 2
+os3pt151		129-135			OS 3 sec 15min post 1
+os3pt152		136-142			OS 3 sec 15min post 2
+od6bas1                       143-149                                  OD 6 sec baseline 1               
+od6bas2                       150-156                                  OD 6 sec baseline 2     
+od6im1                        157-163                                  OD 6 sec immediately post 1
+od6im2                        164-170                                  OD 6 sec immediately post 2         
+od6pst51		171-177			OD 6 sec 5min post 1
+od6pst52		178-184			OD 6 sec 5min post 2
+od6pt101		185-191			OD 6 sec 10min post 1
+od6pt102		192-198			OD 6 sec 10min post 2
+od6pt151		199-205			OD 6 sec 15min post 1
+od6pt152		206-212 			OD 6 sec 15min post 2 
+os6bas1                       213-219                                   OS 6 sec baseline 1               
+os6bas2                       220-226                                   OS 6 sec baseline 2     
+os6im1                        227-233                                   OS 6 sec immediately post 1
+os6im2                        234-240                                   OS 6 sec immediately post 2         
+os6pst51		241-247	 		OS 6 sec 5min post 1
+os6pst52		248-254			OS 6 sec 5min post 2
+os6pt101		255-261			OS 6 sec 10min post 1
+os6pt102		262-268			OS 6 sec 10min post 2
+os6pt151		269-275			OS 6 sec 15min post 1
+os6pt152		276-282			OS 6 sec 15min post 2
+od10bas1                     283-289                                  OD 10 sec baseline 1               
+od10bas2                     290-296                                  OD 10 sec baseline 2     
+od10im1                      297-303                                  OD 10 sec immediately post 1
+od10im2                      304-310                                  OD 10 sec immediately post 2         
+od10ps51		311-317			OD 10 sec 5min post 1
+od10ps52		318-324			OD 10 sec 5min post 2
+od10p101		325-331			OD 10 sec 10min post 1
+od10p102		332-338			OD 10 sec 10min post 2
+od10p151		339-345			OD 10 sec 15min post 1
+od10p152		346-352 			OD 10 sec 15min post 2 
+os10bas1                     353-359                                   OS 10 sec baseline 1               
+os10bas2                     360-366                                   OS 10 sec baseline 2     
+os10im1                      367-373                                   OS 10 sec immediately post 1
+os10im2                      374-380                                   OS 10 sec immediately post 2         
+os10ps51		381-387	 		OS 10 sec 5min post 1
+os10ps52		388-394			OS 10 sec 5min post 2
+os10p101		395-401			OS 10 sec 10min post 1
+os10p102		402-408			OS 10 sec 10min post 2
+os10p151		409-415			OS 10 sec 15min post 1
+os10p152		416-422			OS 10 sec 15min post 2
+
+TEMPERAT.DOC
+
+Variable    COLUMN       LABEL
+Date         1-6         DATE (MDY)
+Out_temp     8-10        OUTSIDE TEMERATURE  Degrees Fahrenheit
+Room        12-13        ROOM LOCATION
+In_temp     15-18        INSIDE TEMPERATURE  Degrees Fahrenheit
+Cor_fac       20         CORRECTION FACTOR ADDED (1=YES 0=NO)
+Typ_wea       22         TYPE OF WEATHER
+                          1=SUNNY
+                          2=PARTLY CLOUDY
+                          3=CLOUDY
+                          4=RAINY
+                          5=FOGGY
+                          9=MISSING
+
+TENNIS1.DOC
+
+VARIABLE  Column       VARIABLE NAME
+-------------------------------------------------------
+Id         3-5         ID
+
+Age        8-9         AGE    99=MISSING
+
+Sex         12         SEX   1=MALE / 2=FEMALE
+
+Num_epis    15         NUMBER OF EPISODES OF TENNIS ELBOW 9=MISSING	                      
+
+Typ_last    18         TYPE OF RACQUET USED DURING LAST EPISODE
+                        1=CONVENTIONAL SIZE
+                        2=MID-SIZE
+                        3=OVER-SIZE
+                        9=MISSING
+
+Wgt_last     21        WEIGHT OF RACQUET USED DURING LAST EPISODE
+                        1=HEAVY
+                        2=MEDIUM
+                        3=LIGHT
+                        4=DON'T KNOW
+                        9=MISSING
+
+Mat_last     24        MATERIAL OF RACQUET USED DURING LAST EPISODE
+                        1=WOOD
+                        2=ALUMINUM
+                        3=FIBERGLASS AND COMPOSITE
+                        4=GRAPHITE
+                        5=STEEL
+                        6=COMPOSITE
+                        7=OTHER
+                        9=MISSING
+ 
+ Str_last     27       STRING TYPE OF RACQUET USED DURING LAST EPISODE
+                        1=NYLON
+                        2=GUT
+                        3=DON'T KNOW
+                        9=MISSING
+
+Typ_curr       30      TYPE OF RACQUET USED CURRENTLY
+                         1=CONVENTIONAL SIZE
+                         2=MID-SIZE
+                         3=OVER-SIZE
+                         9=MISSING
+
+ Wgt_curr      33      WEIGHT OF RACQUET USED CURRENTLY   
+                        1=HEAVY
+                        2=MEDIUM
+                        3=LIGHT
+                        4=DON'T KNOW
+                        9=MISSING
+
+Mat_curr       36      MATERIAL OF RACQUET USED CURRENTLY
+                        1=WOOD
+                        2=ALUMINUM
+                        3=FIBERGLASS AND COMPOSITE
+                        4=GRAPHITE
+                        5=STEEL
+                        6=COMPOSITE
+                        7=OTHER
+                        9=MISSING
+ 
+Str_curr       39     STRING TYPE OF RACQUET USED CURRENTLY
+                       1=NYLON
+                       2=GUT
+                       3=DON'T KNOW
+                       9=MISSING
+
+### TENNIS2
+
+VARIABLE   Column  PERIOD*  VARIABLE NAME
+----------------------------------------------------------------------------------
+id         3-5                ID
+
+age        8-9                AGE
+
+sex         12                SEX
+                               1 = MALE
+                               2 = FEMALE
+                               9 = MISSING
+
+drg_ord     15                DRUG ORDER
+                               1 = MOTRIN-PLACEBO
+                               2 = PLACEBO-MOTRIN
+
+painmx_2    18        2       DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS
+                                BAESLINE
+                               1 = WORST
+                               2 = UNCHANGED
+                               3 = SLIGHTLY IMPROVED (25%)
+                               4 = MODERATELY IMPROVED (50%)
+                               5 = MOSTLY IMPROVED (75%)
+                               6 = COMPLETELY IMPROVED
+                               9 = MISSING
+
+pain12_2    21        2       WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO                               
+                              SAME PERIOD AT BASELINE  (SAME CODE AS painmx_2)
+
+painav_2    24        2       DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS. BASELINE
+                             (SAME CODE AS painmx_2)  
+
+painov_2    27        2       OVERALL IMPRESSION OF DRUG EFFICACY VS. BASELINE		                        (SAME CODE AS painmx_2)
+
+painmx_3    30        3       DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS  
+                               BASELINE   (SAME CODE AS painmx_2)
+
+pain12_3    33        3       WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO                    
+                              SAME PERIOD AT BASELINE   (SAME CODE AS painmx_2)
+
+painav_3    36        3       DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS BASELINE
+                              (SAME CODE AS painmx_2)
+
+painov_3    39        3       OVERALL IMPRESSION OF DRUG EFFICACY VS BASELINE
+                              (SAME CODE AS painmx_2)
+
+painmx_4    42        4       DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS  
+                               BASELINE   (SAME CODE AS painmx_2)
+
+pain12_4    45        4       WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO  
+                              SAME PERIOD AT BASELINE  (SAME CODE AS painmx_2)
+
+painav_4    48        4       DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS BASELINE
+                               (SAME CODE AS painmx_2)
+
+painov_4    51        4       OVERALL IMPRESSION OF DRUG EFFICACY VS BASELINE
+                              (SAME CODE AS painmx_2)
+----------------------------------------------------------------------------------
+* PERIOD 2 = PAIN SCORES AFTER THE FIRST ACTIVE DRUG PERIOD COMPARED WITH BASELINE
+  
+  PERIOD 3 = PAIN SCORES AFTER THE WASHOUT PERIOD COMPARED WITH BASELINE
+
+  PERIOD 4 = PAIN SCORES AFTER THE SECOND ACTIVE DRUG PERIOD COMPARED WITH BASELINE
+
+
+
+### VALID
+
+Variable     Column        Description             Format or Code
+-----------------------------------------------------------
+Id            1-6          ID number
+sfat_dr       8-15         Saturated fat-DR           XXXXX.XX
+sfat_ffq     17-24         Saturated fat-FFQ          XXXXX.XX
+tfat_dr      26-33         Total fat-DR               XXXXX.XX
+tfat_ffq     35-42         Total fat-FFQ              XXXXX.XX
+alco_dr      44-51         Alcohol consumption-DR     XXXXX.XX
+alco_ffq     53-60         Alcohol consumption-FFQ    XXXXX.XX
+cal_dr       62-70         Total calories-DR         XXXXXX.XX
+cal_ffq      72-80         Total calories-FFQ        XXXXXX.XX
+----------------------------------------------------------
+
 
 
 {% include links.md %}
