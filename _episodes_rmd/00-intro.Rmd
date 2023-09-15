@@ -14,7 +14,7 @@ source: Rmd
 ```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("00-")
-source("../bin/download_data.R")
+# source("../bin/download_data.R")
 ```
 
 
@@ -22,6 +22,10 @@ Der er utroligt mange, utroligt gode, introduktioner til R.
 http://r.sund.ku.dk/
 KUB datalabs introduktionskurser
 datacamp. Mange!
+
+
+datasæt:
+https://www.cengage.com/cgi-wadsworth/course_products_wp.pl?fid=M20b&product_isbn_issn=9780538733496&token
 
 
 {% include links.md %}

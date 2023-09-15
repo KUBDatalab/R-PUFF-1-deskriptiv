@@ -14,7 +14,6 @@ source: Rmd
 ```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("01-")
-source("../bin/download_data.R")
 ```
 
 # NB Denne bør deles op i to
