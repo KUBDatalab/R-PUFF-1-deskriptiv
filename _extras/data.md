@@ -8,7 +8,7 @@ I dette kursus bruger vi et udvalg af følgende datasæt. Ikke alle tages i
 brug, men her er de.
 
 
-BETACAR
+### BETACAR
 ---------------------------------------------------------------------
 Variable            Column        Description/Code
 ---------------------------------------------------------------------
@@ -23,7 +23,7 @@ Wk12lvl	        26-28         Week 12 Level
 ---------------------------------------------------------------------
 
 
-BLOOD.doc
+### BLOOD.doc
 
 Variable                 Column                    Description
 __________________________________________________________________
@@ -38,7 +38,7 @@ testost                     29-31                           Testosterone  missin
 prolactn                  34-38                           Prolactin   xx.xx  missing=99.99
 
 
-BONEDEN.DOC
+### BONEDEN.DOC
 ---------------------------------------------------------------------
 Variable    Column       Code
 ---------------------------------------------------------------------
@@ -75,7 +75,7 @@ fn2        121-126       Femoral neck (g/cm**2)
 fs2        127-132       Femoral shaft (g/cm**2)
 ---------------------------------------------------------------------
 
-BOTOX.DOC
+### BOTOX
 ---------------------------------------------------------------------
 Variable    Column       Code
 ---------------------------------------------------------------------
@@ -102,7 +102,8 @@ pain16      74-77        pain score month 16  missing=999
 pain17      78-81        pain score month 17  missing=999
 ---------------------------------------------------------------------
 
-Breast.doc
+### Breast
+
 
 variable    column    Description
 Id           1-6      ID
@@ -128,7 +129,7 @@ foluptm      61-64    Months of follow up Note: Some subjects provided no
 
 
 
-  Corneal.doc
+###  Corneal
 
 Variable   Column      Variable label
   id        2-3        ID
@@ -150,7 +151,7 @@ Variable   Column      Variable label
   n3       64-65       Nasal Visit 3     missing=99   
 
 
-DIABETES .DOC
+### DIABETES
 
 Variable                      Column                      Code
 ID                                 1-6
@@ -163,7 +164,8 @@ ht_cm                          30-34                           Height in cm    m
 wt_kg			36-39 	   		Weight in kg
 
 
-EAR.DOC
+### EAR
+
 
 Variable      Column         Description               Format or Code
 -------------------------------------------------------------------------
@@ -176,7 +178,7 @@ Variable      Column         Description               Format or Code
 ------------------------------------------------------------------------
 
 
-EFF.DOC
+### EFF
 
 Variable             Column         Description/Code
 ---------------------------------------------------------------------------
@@ -191,6 +193,326 @@ Cured                 21-23         Number Cured
 ---------------------------------------------------------------------------
 
 
+###  ENDOCRIN
+
+ Variable      COLUMN       LABEL
+  Subject        1          SUBJECT #
+  Replicat       3          REPLICATE #
+  Estrone       5-8         ESTRONE
+  Estradol     10-13        ESTRADIOL
+  Androste     15-18        ANDROSTENEDIONE
+  Testost      20-23        TESTOSTERONE
+
+
+Estradl.doc
+
+
+Variable	Column		Code	
+
+Id		5-8			Identification number
+Estradl		12-16			Estradiol
+Ethnic		18			Ethnicity 0=African-American;  1=Caucasian
+Entage		20-21			Age
+Numchild	24			Parity, number of children  9=missing
+Agefbo		26-27			Age at 1st birth (=0 if numchild=0)  99=missing
+Anykids	29			any children  1=yes;  0=no   9=missing
+Agemenar	32-35			age at menarche   99=missing
+BMI		37-43			Body Mass Index
+WHR		46-49			waist-hip ratio
+
+
+### ESTROGEN DOC
+
+Variable    COLUMN                LABEL
+
+Id           1-2                   ID
+std_typ       4                    STUDY TYPE
+                                     1=0.625MG VS PLACEBO
+                                     2=1.25MG VS PLACEBO
+                                     3=1.25MG VS 0.625MG
+period        6                    PERIOD
+trtgrp        8                    TREATMENT
+                                     1=PLACEBO
+                                     2=0.625MG
+                                     3=1.25MG
+sysd1r1     10-12                 SYSTOLIC BP DAY 1 READING 1
+                                     MISSING=999
+diasd1r1    14-16                 DIASTOLIC BP DAY 1 READING 1
+                                     MISSING=999
+sysd1r2     18-20                 SYSTOLIC BP DAY 1 READING 2
+                                     MISSING=999
+diasd1r2    22-24                 DIASTOLIC BP DAY 1 READING 2
+                                     MISSING=999
+sysd1r3     26-28                 SYSTOLIC BP  DAY 1 READING 3
+                                     MISSING=999
+diasd1r3    30-32                 DIASTOLIC BP DAY 1 READING 3
+                                     MISSING=999
+sysd2r1     34-36                 SYSTOLIC BP DAY 2 READING 1
+                                     MISSING=999
+diasd2r1    38-40                 DIASTOLIC BP DAY 2 READING 1
+sysd2r2     42-44                 SYSTOLIC BP DAY 2 READING 2
+diasd2r2    46-48                 DIASTOLIC BP DAY 2 READING 2
+sysd2r3     50-52                 SYSTOLIC BP DAY 2 READING 3
+diasd2r3    54-56                 DIASTOLIC BP DAY 2 READING 3
+sysd3r1     58-60                 SYSTOLIC BP DAY 3 READING 1
+diasd3r1    62-64                 DIASTOLIC BP DAY 3 READING 1
+sysd3r2     66-68                 SYSTOLIC BP DAY 3 READING 2
+diasd3r2    70-72                 DIASTOLIC BP DAY 3 READING 2
+sysd3r3     74-76                 SYSTOLIC BP DAY 3 READING 3
+diasd3r3    78-80                 DIASTOLIC BP DAY 3 READING 3
+
+
+FEV.DOC
+
+Variable      Column       Description           Format or Code
+----------------------------------------------------------
+ Id            1-5         ID number
+ Age           7-8         Age (yrs)
+ FEV          10-15        FEV (liters)           X.XXXX
+ Hgt          17-20        Height (inches)        XX.X
+ Sex           22          Sex                    0=female/1=male
+ Smoke         24          Smoking Status         0=non-current smoker/
+                                                  1=current smoker
+----------------------------------------------------------
+
+
+Field.doc
+
+Variable    Column	Description
+
+id                 1-6            ID
+group            8              group (1=RHO/2=RPGR)
+ age              11-14        age at visit  (XX.X in years)
+ gender          16            gender (1=m/2=f)  Note: all RPGR individuals have to be male 
+ dtvisit          18-27	  date of visit (month/day/year)
+ folowup       29-34	  time from 1st visit in years
+ totfldod       36-43	  total field area right eye (OD) in degrees²
+ totfldos        45-52	  total field area left eye (OS) in degrees²
+
+Heart.doc  
+
+Variable	column		code
+_______________________________________________________________________________________
+Diagnosis	1-2		Y1=normal
+				Y2=atrial septal defect without pulmonary stenosis or pulmonary hypertension
+				Y3=ventricular septal defect with valvular pulmonary stenosis
+				Y4=isolated pulmonary hypertension
+				Y5=transposed great vessels
+				Y6=ventricular septal defect without pulmonary hypertension
+				Y7=ventricular septal defect with pulmonary hypertension
+Prevalence	5-9		Prevalence
+X1		12-15 		age 1-20 years old
+X2		18-21		age>20 years old
+X3		24-27		mild cyanosis
+X4		30-33		easy fatigue
+X5		36-39		chest pain
+X6		42-45		repeated respiratory infections
+X7		48-51		EKG axis more than 110
+
+
+### HORMONE
+
+Variable       Column      Description/Code
+---------------------------------------------------------------------------
+ID               4-5       ID
+Bilsecpr         9-14      Biliary secretion-pre      
+Bilphpr         18-23      Biliary pH-pre             
+Pansecpr        26-32      Pancreatic secretion-pre   
+Panphpr         37-41      Pancreatic pH-pre          
+Dose            46-50      Dose 
+Bilsecpt        53-59      Biliary secretion-post     
+Bilphpt         64-68      Biliary pH-post            
+Pansecpt        70-75      Pancreatic secretion-post  
+Panphpt         79-84      Pancreatic pH-post 
+Hormone          90        Hormone 1=SAL/2=APP/3=CCK/4=SEC/5=VIP
+--------------------------------------------------------------------------
+
+
+Hosiptal.doc
+
+Variable       Column     Label
+
+   Id           1-2           id no.
+
+   Dur_stay     4-5           Duration of hospital stay
+
+   Age          7-8           Age
+
+   Sex          10            Sex  1=male/2=female
+
+   Temp        12-15          First temperature following admission
+
+   WBC         17-18          First WBC(x1000) following admission
+
+   Antibio      20            Received antibiotic 1=yes/2=no
+
+   Bact_cul     22            Received bacterial culture 1=yes/2=no
+
+   Service      24            Service 1=med/2=surg.
+
+
+
+### INFANTBP
+-------------------------------------------------------------------------
+Variable        Column         Format    Description
+-------------------------------------------------------------------------
+Salt Taste Variables
+-------------------------------------------------------------------------
+ ID              2-4
+ Mn_sbp          7-11            xx.xx   Mean SBP 99.99=missing
+ Mn_dbp         13-17            xx.xx   Mean DBP 99.99=missing
+ MSB1slt        19-24           xxx.xx   MSB-trial 1* water
+ MSB2slt        26-31           xxx.xx   MSB-trial 2 water
+ MSB3slt        33-38           xxx.xx   MSB-trial 3 0.1 molar salt + water
+ MSB4slt        40-45           xxx.xx   MSB-trial 4 0.1 molar salt + water
+ MSB5slt        47-52           xxx.xx   MSB-trial 5 water
+ MSB6slt        54-59           xxx.xx   MSB-trial 6 water
+ MSB7slt        61-66           xxx.xx   MSB-trial 7 0.3 molar salt + water
+ MSB8slt        68-73           xxx.xx   MSB-trial 8 0.3 molar salt + water
+ MSB9slt        75-80           xxx.xx   MSB-trial 9 water
+ MSB10slt       82-87           xxx.xx   MSB-trial 10 water
+
+Sugar Taste Variables
+--------------------------------------------------------------------------
+ MSB1sug        89-94           xxx.xx   MSB-trial 1 non-nutritive sucking
+ MSB2sug        96-101          xxx.xx   MSB-trial 2 water
+ MSB3sug       103-108          xxx.xx   MSB-trial 3 5% sucrose + water
+ MSB4sug       110-115          xxx.xx   MSB-trial 4 15% sucrose + water
+ MSB5sug       117-122          xxx.xx   MSB-trial 5 non-nutritive sucking
+--------------------------------------------------------------------------
+* for MSB data 999.99 is a missing value; 0 indicates the baby did not suck.
+
+
+   LEAD.DOC
+
+VARIABLE  COLUMN    DESCRIPTION
+ id        1-3      IDENTIFICATION NUMBER
+
+ area       5       AREA - RESIDENCE ON AUG'72
+                       1=0-1 MILES FROM SMELTER
+                       2=1-2.5 MILES
+                       3=2.5-4.1 MILES
+
+ ageyrs    7-11      AGE in years xx.xx 
+
+ sex        13       SEX  1=MALE  2=FEMALE
+
+       IQ TEST RESULTS
+
+ iqv_inf   15-16      INF - INFORMATION SUBTEST IN WISC AND WPPSI
+
+ iqv_comp  18-19      COMP - COMPREHENSION SUBTEST IN WISC AND WPPSI
+
+ iqv_ar    21-22      AR - ARITHMETIC SUBTEST IN WISC AND WPPSI
+
+ iqv_ds    24-25      DS - DIGIT SPAN SUBTEST(WISC) AND SENTENCE
+                           COMPLETION(WPPSI)
+
+ iqv_raw   27-28      V/RAW - RAW SCORE/VERBAL IQ 
+
+ iqp_pc    30-31      PC - PICTURE COMPLETION SUBTEST IN WISC AND WPPSI
+
+ iqp_bd    33-34      BD - BLOCK DESIGN SUBTEST IN WISC AND WPPSI
+
+ iqp_oa    36-37      OA - OBJECT ASSEMBLY SUBTEST(WISC), ANIMAL HOUSE
+                           SUBTEST(WPPSI)
+
+ iqp_cod   39-40      COD - CODING SUBTEST(WISC), GEOMETRIC DESIGN
+                            SUBTEST(WPPSI)
+
+ iqp_raw   42-43      P/RAW - RAW SCORE/PERFORMANCE IQ (TOTAL OF SCORES
+                              PC, BD, OA, & COD)
+
+ hh_index  45-46      HH/INDEX - HOLLINGSHEAD INDEX OF SOCIAL STATUS
+
+ iqv       48-50      IQV - VERBAL IQ
+
+ iqp       52-54      IQP - PERFORMANCE IQ
+
+ iqf       56-58      IQF - FULL SCALE IQ (NOT SUM OR AVERAGE OF IQV D IQP)
+
+ iq_type    60        TYPE OF IQ TEST   1=WISC  2=WPPSI
+                       (WISC USUALLY GIVEN TO CHILDREN GE 5 YRS 1 MONTH OF AGE               
+                        WPPSI USUALLY GIVEN TO CHILDREN LE 5YRS OF AGE)
+
+ lead_grp   62        GROUP - BLOOD LEAD LEVEL GROUP
+
+                         1=BLOOD LEAD LEVELS BELOW 40 MICROGRAMS/100ML IN
+                                BOTH 1972 & 1973 (control group)
+                           2=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO
+                                40 MICROGRAMS/100ML
+                                IN BOTH 72 & 73 OR A LEVEL GREATER THAN OR
+                                EQUAL TO 40
+                                IN 73 ALONE (3 CASES ONLY) (currently exposed 
+                                 Group)
+                           3=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO
+                                40 MICROGRAMS/100ML
+                                IN 72 AND LESS THAN 40 IN 73
+                                 (previously exposed group)
+
+ Group       64          1=control group; 2=exposed group
+ 
+ ld72      66-67      LD72 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN72
+                              MISSING=99
+
+ ld73      69-70      LD73 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN 73
+
+ fst2yrs    72        FST2YRS - DID CHILD LIVE FOR 1ST 2 YRS WITHIN
+                              1 MILE OF SMELTER  1=YES  2=NO
+
+ totyrs    74-75      TOTYRS - TOTAL NUMBER OF YEARS SPENT WITHIN
+                              4.1 MILES OF SMELTER
+
+
+       SYMPTOM DATA (AS REPORTED BY PARENTS)
+
+ pica       77         PICA   1=YES  2=NO
+
+ colic      79         COLIC  1=YES  2=NO
+
+ clumsi     81         CLUMSINESS  1=YES  2=NO
+
+ irrit      83         IRRITABILITY  1=YES  2=NO
+
+ convul     85         CONVULSIONS  1=YES  2=NO
+
+      CONTAIN NEUROLOGICAL TEST DATA
+       
+ _2plat_r  87-88       # OF TAPS FOR RIGHT HAND IN THE 2-PLATE TAPPING
+                              TEST  (#TAPS IN ONE 10 SECOND TRIAL)
+                              MISSING=99
+
+ _2plat_l  90-91       # OF TAPS FOR LEFT HAND IN THE 2-PLATE TAPPING TEST
+                                (#TAPS IN ONE 10 SECOND TRIAL)
+                              MISSING=99
+
+ visrea_r  93-94       VISUAL REACTION TIME RIGHT HAND (MILLISECONDS)
+                              MISSING=99
+
+ visrea_l  96-97       VISUAL REATION TIME LEFT HAND (MILLISECONDS)
+                              MISSING=99
+
+ audrea_r  99-100      AUDITORY REACTION TIME RIGHT HAND (MILLISECONDS)
+                              MISSING=99
+
+ audrea_l  102-103     AUDITORY REACTION TIME LEFT HAND (MILLISECONDS)
+                              MISSING=99
+
+ fwt_r    105-106      FINGER-WRIST TAPPING TEST RIGHT HAND
+                              (# TAPS IN ONE 10 SECOND TRIAL)
+                              MISSING=99
+
+ fwt_l    108-109      FINGER-WRIST TAPPING TEST LEFT HAND
+                              (#TAPS IN ONE 10 SECOND TRIAL)
+                              MISSING=99
+
+ hyperact  111-112    WWPS - WERRY-WEISS-PETERS SCALE FOR HYPERACTIVITY
+                              0=NO ACTIVITY . . . . 4=SEVERLY HYPERACTIVE
+                              (AS REPORTED BY PARENTS)
+                              MISSING=99
+
+ maxfwt     114-115      Finger-wrist tapping test in dominant hand(max of              
+                         fwt_r,fwt_l)
 
 
 {% include links.md %}
