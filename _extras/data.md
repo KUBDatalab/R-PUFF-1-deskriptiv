@@ -9,41 +9,44 @@ brug, men her er de.
 
 
 ### BETACAR
-Variable    |        Column |       Description/Code
----------------------------------------------------------------------
-Prepar    		  |   1        |  Preparation 1=SOL/2=ROCHE/3=BASF-30/4=BASF-60
-Id             |      3-4    |      Subject #
-Base1lvl    	|   6-8       |   1st Baseline Level 
-Base2lvl 		 | 10-12        | 2nd Baseline Level 
-Wk6lvl 	    |    14-16     |    Week 6 Level
-Wk8lvl	   |     18-20    |     Week 8 Level 
-Wk10lvl		|  22-24        | Week 10 Level	
-Wk12lvl	  |      26-28   |      Week 12 Level 
+
+|Variable    |   Column |       Description/Code
+|------------|----------|-----------------------------------------------
+|Prepar      |      1   |  Preparation 1=SOL/2=ROCHE/3=BASF-30/4=BASF-60
+|Id          |    3-4   |      Subject #
+|Base1lvl    |    6-8   |   1st Baseline Level 
+|Base2lvl    |  10-12   | 2nd Baseline Level 
+|Wk6lvl      |  14-16   |    Week 6 Level
+|Wk8lvl      |  18-20   |     Week 8 Level 
+|Wk10lvl     |  22-24   | Week 10 Level	
+|Wk12lvl     |  26-28   |      Week 12 Level 
 
 
 ### BLOOD
 
-Variable                 Column                    Description
----------------------------------------------------------------------
-Id                             1-6                              ID
-matchid                   8-13                            Matched ID
-case                          15                               Case/control  1=case/ 0=control
-curpmh                     17                               Current PMH use  1=yes / 0=no
-ageblood                 19-20                           Age at blood draw
-estradol                   22-23                           Estradiol
-estrone                    25-27                           Estrone  missing=999
-testost                     29-31                           Testosterone  missing=999
-prolactn                  34-38                           Prolactin   xx.xx  missing=99.99
+|Variable        |         Column          |          Description
+|----------------|-------------------------|----------------------------
+|Id              |               1-6       |                       ID
+|matchid         |          8-13           |                 Matched ID
+|case            |              15         |                      Case/control  1=case/ 0=control
+|curpmh          |           17            |                   Current PMH use  1=yes / 0=no
+|ageblood        |         19-20           |                Age at blood draw
+|estradol        |           22-23         |                  Estradiol
+|estrone         |           25-27         |                  Estrone  missing=999
+|testost         |            29-31        |                   Testosterone  missing=999
+|prolactn        |          34-38          |                 Prolactin   xx.xx  missing=99.99
 
 
 ### BONEDEN
-Variable    Column       Code
+
+Variable  |  Column   |      Code
 ---------------------------------------------------------------------
-ID           2-8
-Age          9-11        Age (yrs)
-zyg         12-14        1=mz 2=dz
+ID        |   2-8     |
+Age       |   9-11    |    Age (yrs)
+zyg       |  12-14    |    1=mz 2=dz
 
     Twin 1  Lighter Smoking Twin
+---------------------------------------------------------------------
 
 ht1         15-19        Height (cm)
 wt1         20-24        Weight (kg)
@@ -58,6 +61,7 @@ fn1         62-67        Femoral neck (g/cm**2)
 fs1         68-73        Femoral shaft (g/cm**2)
 
       Twin 2  Heavier Smoking Twin
+---------------------------------------------------------------------
 
 ht2         74-78        Height (cm)
 wt2         79-83        Weight (kg)
@@ -70,10 +74,10 @@ pyr2       109-114       Pack-years smoking
 ls2        115-120       Lumbar spine (g/cm**2)
 fn2        121-126       Femoral neck (g/cm**2)
 fs2        127-132       Femoral shaft (g/cm**2)
----------------------------------------------------------------------
+
+
 
 ### BOTOX
----------------------------------------------------------------------
 Variable    Column       Code
 ---------------------------------------------------------------------
 ID           1-3
