@@ -1,4 +1,4 @@
---
+---
 title: "Deskriptiv statistik og statistiske deskriptorer"
 teaching: 10
 exercises: 5
