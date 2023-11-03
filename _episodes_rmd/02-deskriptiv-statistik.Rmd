@@ -54,57 +54,74 @@ er kodet således:
 Datasættet kan bruges til at vise sammenhænge mellem rygning, og lungekapacitet
 for børn.
 
+De første 10 rækker ser således ud:
 ```{r}
-FEV %>% 
-  group_by(Sex, Smoke, Age) %>% 
-  summarise(avg_fev = mean(FEV))
+head(FEV)
 ```
 
 
-tal der beskriver fordelingen.
+## Summary statistik
 
-De data vi har - har en eller anden fordeling. 
+Summary statistik er statistiske mål der beskriver en fordeling. De opsummerer
+mange tal, til et enkelt (eller nogle få) tal, deraf navnet.
 
-middelværdi
+I de følgende eksempler har vi brug for at kunne trække en enkelt variabel
+ud af vores datasæt. Det kunne være FEV. 
+
+Der er som regel altid mere end en måde at gøre ting på i programmering. 
+Men en relativt let måde at trække værdierne for FEV ud af dette datasæt er at
+bruge $-notationen:
+```{r eval = F}
+FEV$FEV
+```
+```{r echo = F}
+head(FEV$FEV)
+```
+
+Her trækker vi de første seks observationer ud - der er 654 ialt. Resultatet 
+kaldes en `vektor`.
+
+### Middelværdi
+
+Middelværdien findes ved at give funktionen `mean()` en vektor med tallene:
+
 ```{r}
 mean(FEV$FEV)
 ```
-spredning:
+### Medianen
+
+Medianen, den midterste værdi findes på lignende måde:
+
+```{r}
+median(FEV$FEV)
+```
+### Standardafvigelser
+
+Nu kan vi genkende mønsteret. Vi skal finde funktionen der kan tage nogen tal
+i form af en vektor, og beregne standardafvigelsen. Funktionen hedder `sd`:
+
 ```{r}
 sd(FEV$FEV)
 ```
 
-varians
+### Varians
+
+Og nu er det ingen overraskelse:
 
 ```{r}
 var(FEV$FEV)
 ```
-Referenceinterval
-Det interval indenfor hvilket 95% af observationerne ligger:
-```{r}
-quantile(FEV$FEV, probs = c(0.025, 0.975))
-```
-```{r}
-hist(FEV$FEV)
-```
+Hvordan finder man den funktion man skal bruge? Først finder man ud af hvad 
+det man vil gøre hedder på engelsk. Så søger man efter det i hjælpefunktionen
+i RStudio. 
 
-scatterplot
-```{r}
+Eller også hiver man fat i ChatGPT eller Google.
 
-plot(FEV$Age, FEV$Hgt)
-```
+## Frekvenser
 
-# Boxplot
-```{r}
-boxplot(FEV~Sex, data= FEV)
-```
+Hvor mange drenge er der med i vores datasæt? Hvor mange piger?
 
-# antal og frekvens:
-```{r}
-antal <- table(FEV$Sex)
-prop.table(antal)
-```
-Bemærk - når vi tæller på denne måde, så er det typisk fordi vi har med 
+Når vi tæller den slags, er det typisk fordi vi har med 
 kategoriske variable at gøre, variable hvor der observationerne kun kan være 
 i én af flere kategorier. Her køn, hvor de undersøgte børn er af enten hunkøn eller
 hankøn.
@@ -120,5 +137,151 @@ pakke dem ind i funktionen `factor` der i dette tilfælde konverterer hvad der e
 factor(FEV$Sex)
 ```
 
+Det er ikke strengt nødvendigt i dette tilfælde, men det er et godt trick at 
+kende.
+
+Men hvordan tæller vi så? Vi bruger `table()` funktionen:
+
+```{r}
+table(FEV$Sex)
+```
+Ofte er vi også interesserede i at vide hvordan fordelingen er i procent. 
+
+Det kan funktionen `prop.table()` hjælpe os med. Men først skal vi have
+gemt antallet i et objekt:
+
+> ## Øvelse
+>
+> Gem resultatet af `table(FEV$Sex)` i et objekt. Kald det `antal` og
+> kør derefter funktione `prop.table()` på `antal`
+>
+> > ## Løsning
+> > antal <- table(FEV$Sex)
+> > 
+> > prop.table(antal)
+> {: .solution}
+{: .challenge}
+
+
+
+
+## Histogrammer
+
+Histogrammer viser fordelingen af observationer grafisk.R har en indbygget 
+funktion, `hist()` der gør netop det:
+
+```{r}
+hist(FEV$FEV)
+```
+
+### Hvad hvis vi vil vide hvordan de ser ud for rygende børn?
+
+Hvis vi vil lave et histogram for FEV for de børn der ryger, skal vi først
+have pillet de rygende børn ud af datasættet. 
+
+Vi ved, eller kan slå op, at de børn der ryger, er markeret med et 1-tal i 
+kolonnen `Smoke`:
+```{r eval = F}
+FEV$Smoke
+```
+
+```{r echo = F}
+head(FEV$Smoke)
+```
+Her ser vi kun de første seks observationer - de er alle 0.
+
+De tal kan vi sammenligne. Vi kan spørge: "Er værdien 0?". Hvis den er det,
+så er der tale om et ikke-ryger barn. 
+
+Den sammenligning kan vi lave på denne måde:
+
+```{r eval = F}
+FEV$Smoke == 0
+```
+
+```{r echo = F}
+head(FEV$Smoke == 0)
+```
+Vi ser igen kun på de første seks resultater. Svaret er "TRUE", altså at 
+værdien i "Smoke" kolonen  er 0. Havde den ikke været det, havde svaret været
+"FALSE".
+
+Resultatet af vores sammenligning er en "logisk vektor". Og den kan vi bruge til
+at "subsette" vores datasæt, så vi kun får de rækker, der matcher en "TRUE" 
+værdi. Funktionen `subset()` er vores ven:
+
+```{r}
+subset(FEV, Smoke == 0)
+```
+
+> ## Øvelse
+> Subset FEV datasættet, så du får de observationer i datasættet, der beskriver
+> børn der ryger. Gem resultatet i et nyt objekt, og plot histogrammet
+>
+> Bonus øvelse, lav samme øvelse, med de børn der _ikke_ ryger.
+> 
+> > ## Løsning
+> > rygere <- subset(FEV, Smoke == 1)
+> > 
+> > hist(rygere)
+> >
+> > Bonus:
+> > 
+> > ikkerygere <- subset(FEV, Smoke == 0)
+> > 
+> > hist(ikkerygere)
+> > 
+> {: .solution}
+{: .challenge}
+
+
+## Referenceinterval
+Det interval indenfor hvilket 95% af observationerne ligger. Eller - ved hvilken
+værdi er 2.5% af observationerne lavere, og ved hvilken værdi er 2.5% af 
+observationerne højere. Det fører til at 100% - 2.5% - 2.5% = 95% af observationerne
+ligger mellem de to værdier. Funktionen `quantile()` kan hjælpe:
+
+```{r}
+quantile(FEV$FEV, 0.025)
+```
+```{r}
+quantile(FEV$FEV, 0.975)
+```
+Det kan vi samle i en enkelt linie kode_
+```{r}
+quantile(FEV$FEV, c(0.025, 0.975))
+```
+
+## Scatterplot
+
+Vi så histogramemt - hvor vi tæller hvor mange observationer af en bestemt 
+variabel vi har i forskellige intervaller. Når vi vil plotte to værdier mod hinanden i et scatterplot, så skal vi angive hvad vi vil have på x-aksen og hvad der skal
+være på y-aksen. Og derfor skal den indbyggede `plot()` funktion have to
+vektorer med tal:
+
+```{r}
+plot(FEV$Age, FEV$Hgt)
+```
+
+# Boxplot
+
+Boxplots samler en række opsummerende statistiske værdier for en variabel i 
+ét plot. Vi kan angive det på lidt forskellige måder, men foretrækker denne:
+
+```{r}
+boxplot(FEV$FEV, data= FEV)
+```
+
+Og hvorfor det? Fordi det gør det lettere at forstå, at når vi vil have 
+to boxplots, et for drenge og et for piger, så kan vi let få det på denne måde:
+
+```{r}
+boxplot(FEV~Sex, data = FEV)
+```
+
+Som det fremgår, er de fleste af de statiske funktioner vi skal bruge ret 
+enkle. Hvis ellers man kan finde ud af hvilken af dem man skal bruge. Og hvis
+man kan få manipuleret sine data, så de har den rigtige form og indhold. Og det 
+er ikke helt så enkelt.
 
 {% include links.md %}
