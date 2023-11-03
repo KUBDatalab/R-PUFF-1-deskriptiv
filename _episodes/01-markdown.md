@@ -5,9 +5,9 @@ title: "Reproducerbar forskning med RMarkdown"
 teaching: 10
 exercises: 5
 questions:
-- "FIXME"
+- "Hvordan samler jeg min forklarende tekst med mine analyser?"
 objectives:
-- "FIXME"
+- "Lær at bruge RMarkdown til at analysere data"
 keypoints:
 - "FIXME"
 source: Rmd
@@ -73,7 +73,7 @@ og nå frem til nøjagtig samme resultat.
 > Den variation i output af metoderne er helt forventelig. Matematikken bag 
 > forudsætter et vist element af tilfældighed, og det er ikke noget vi skal forsøge
 > at pille ved.
-{.callout}
+{: .callout}
 
 Det kræver at vi har beskrevet vores analyse detaljeret nok. Og det kan være 
 svært i eksempelvis Excel, hvor vi vil skulle nedskrive detaljer om at "efter 
@@ -144,6 +144,19 @@ _kursiveret skrift_
 ~~~
 {: .language-r}
 
+I det færdige dokument ser det således ud:
+
+# Niveau 1 overskrift
+## Niveau 2 overskrift
+### etc
+
+*fed skrift*
+  
+_kursiveret skrift_
+
+
+## Code chunks
+
 I kode chunks har vi den R-kode der gør ting med vores data.
 
 Vi indsætter lettest en ny chunk ved tastatur-genvejen ctrl-alt-i
@@ -180,17 +193,17 @@ library(tidyverse)
 {: .language-r}
 
 
+> ## Øvelse
+>
+> Tilføj en codechunk til dit RMarkdown dokument, og indlæst tidyverse pakken
 
-
-Challenge
-Tilføj en "codechunk" og indlæs tidyverse pakken.
-Indlæs tidyverse og pakke med medicinske data (hvad hedder det)
-HINT; Koden i chunken køres ved at klikke på den lille grønne pil i øverste
-højre hjørne af chunken.
-
-solution
-library()
-
+>
+> > ## Løsning
+> > Chunk tilføjes med ctrl+alt+i
+> > 
+> > library(tidyverse)
+> {: .solution}
+{: .challenge}
 
 
 
@@ -207,7 +220,7 @@ Først downloader vi data til vores data-mappe:
 
 
 ~~~
-download.file(STI)
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/who.csv", "data/who.csv", mode = "wb")
 ~~~
 {: .language-r}
 
@@ -238,43 +251,62 @@ dbl (3): year, age_high, value
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ~~~
 {: .output}
-callout
+Vi bruger funktionen `read_csv2` til at indlæse data. Men den læser blot data, 
+og viser resultatet i Console. Hvis vi vil arbejde med data, gemmer vi det i et 
+`objekt` som så indeholder data. Det gør vi med `<-` operatoren, som tager hvad 
+der kommer ud af funktionen på højre side, og gemmer det i et objekt med, i dette
+tilfælde, navnet `data`. Operatoren kaldes en `assignment` operator.
 
-CSV betyder kommasepareret. Men hvad gør man når ens data
-bruger kommaet som decimalseparator? Man gemmer data som 
-semikolonsepareret data. Det er så hyppigt et problem, at 
-R har dublerede funktioner, hvor read_csv indlæser "ægte" 
-kommaseparerede data, mens read_csv2 indlæser semikolonseparerede
-data.
+Nu kan vi arbejde med vores data uden at skulle indlæse det hver gang. 
 
-
-
+> # Hvad betyder CSV?
+> CSV betyder kommasepareret. Men hvad gør man når ens data
+> bruger kommaet som decimalseparator? Man gemmer data som 
+> semikolonsepareret data. Det er så hyppigt et problem, at 
+> R har dublerede funktioner, hvor read_csv indlæser "ægte" 
+> kommaseparerede data, mens read_csv2 indlæser semikolonseparerede
+> data.
+{: .callout}
 
 Lad os også skrive noget prosatekst, der forklarer hvad vi gør.
-Challenge
-Tilføj tekst før indlæsning af biblioteker der forklarer hvilke biblioteker 
-du indlæser. Og tekst før indlæsning af data, der forklarer,
-at her indlæser du data.
-solution
 
-challenge done
+> ## Øvelse
+>
+> Tilføj tekst før indlæsning af biblioteker der forklarer hvilke biblioteker 
+> du indlæser. Og tekst før indlæsning af data, der forklarer,
+> at her indlæser du data.
+>
+> > ## Løsning
+> > Prosateksten om biblioteker placeres umiddelbart før den "code chunk" hvor 
+> du indlæser bibliotekerne. Tilsvarende med forklaringen om indlæsning af 
+> data.
+> {: .solution}
+{: .challenge}
+
+## Hvordan ser det data ud?
 
 Et godt sted at starte når vi skal arbejde med data, er at 
 tage et kig på de første få rækker.
-Det kan vi gøre med funktionen `head()`
+Det kan vi gøre med funktionen `head()`. Den skal have at vide hvilket objekt
+vi gerne vi se på, og det skriver du i parantesen:
 
-Challenge
-Indsæt en codechunk, der viser de første ti rækker af vores datasæt.
 
-solution
-head(data)
-challenge done
+> ## Øvelse
+>
+> Indsæt en code chunk hvor du kører `head()` på det data du indlæste
+>
+> > ## Løsning
+> > head(data)
+> {: .solution}
+{: .challenge}
+
+
 
 
 Nu har vi et markdown dokument med indlejret R-kode. Lad os prøve at generere 
 et output.
 
-Processen behøver vi ikke tænke så meget over. Knit funktionen (indsæt billede),
+Processen behøver vi ikke tænke så meget over. Knit funktionen,
 tager vores Rmarkdown dokument, kører al R-kode, og laver et Markdown dokument.
 Det sendes til en indbygget funktion baseret på Pandoc, der konverterer
 markdowndokumentet til html som default. Vi kan vælge Word. PDF kan være lidt mere
@@ -298,24 +330,13 @@ operator til det: <-
 
 På venstresiden skriver vi navnet på det objekt vi vil gemme noget i.
 
-callout
-hvad skal jeg kalde mine objekter? Noget der beskriver hvad der er gemt i den.
-Noget der er så kort at man kan holde ud at taste det ind mere end en gang.
-Og så må det ikke starte med tal, indeholde mellemrum, bindestreger, *, / eller
-+. For det er matematiske operatorer.
-callout done
+> ## callout
+> hvad skal jeg kalde mine objekter? Noget der beskriver hvad der er gemt i den.
+> Noget der er så kort at man kan holde ud at taste det ind mere end en gang.
+> Og så må det ikke starte med tal, indeholde mellemrum, bindestreger, *, / eller
+> +. For det er matematiske operatorer.
+{: .callout}
 
-Challenge
-Gem værdien yyy i objektet zzz
-solution
-zzz <- yyy
-challenge done
-
-
-
-Mange dataanalyser kører ret enkelt. Udfordringen er at få data på den rigtige
-form. Og en af de detaljer er at hvis noget er en kategorisk variabel, så skal
-R vide det. 
 
 
 

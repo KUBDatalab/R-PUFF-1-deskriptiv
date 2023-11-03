@@ -15,169 +15,6 @@ source: Rmd
 
 
 
-## Hvad er statistik
-
-Før 1980'erne var anbefalingen til folk med mavesår, at de skulle skære ned 
-på deres indtag af kaffe. Kaffe, sammen med stress, blev betragtet som en 
-hovedårsag til mavesår.
-
-I 1980'erne opdagede Barry Marshall og Robin Warren at de fleste mavesår udløses
-af Helicobacter Pylori. Kaffe blev herefter ikke betragtet som ansvarlig for
-mavesår, og anbefalingen om at holde sig fra kaffe når man havde mavesår 
-forsvandt.
-
-Og i dag er buddet at kaffe godt nok ikke forårsager mavesår, men at et stort
-indtag af kaffe kan forværre symptomerne, og forsinke heling af et eksisterende 
-mavesår. personer md mavesår anbefales derfor igen at skære ned på kaffen.
-
-Hvordan er man nået frem til det? Det er man ved statistiske undersøgelser.
-Man har indsamlet data på livsstilsfaktorer som eksempelvis indtag af kaffe,
-og konstateret at patienter med mavesår, indtog mere kaffe end patienter uden. 
-Og konkluderet at der nok var en sammenhæng. 
-
-Efter opdagelsen af Helicobacter, har man så fortsat studierne. Og konstateret,
-at patienter der er i antibiotika behandling for deres mavesår, opnår dårligere
-resultater hvis de drikker meget kaffe.
-
-Det er grundlæggende resultatet af statistiske undersøgelser. 
-
-## Hvad bruger vi statistik til?
-
-Tre ting:
-* Mønstre
-* Forudsigelser
-* Kausalitet
-
-Når vi arbejder med data er vi typisk interesserede i at finde mønstre. Er der 
-et mønster der viser at indtagelse af kaffe hænger sammen med mavesår? Gælder det
-kun for mænd, eller også for kvinder? Hvor stærk er sammenhængen? Er det kun
-10% af vores mavesårspatienter der oplever forværring af deres mors hvis de drikker
-kaffe? Eller er det 70%? Er der kun forværring hvis der drikkes mere end en 
-kande om dage? Er forværringen værre hvis der drikkes mere kaffe?
-
-Mennesker er gode til at se mønstre - statistik er en måde at få sat vores 
-mønstergenkendelse i system, så vi ikke snyder os selv, og ser mønstre hvor der
-ingen er. Eller overser dem, fordi mønstrene måske er for subtile til at kan få
-øje på dem.
-
-Vi vil også gerne forudsige. Hvis en patient har mavesår, og holder op med at 
-drikke kaffe, så skal der gerne ske en bedring - hvis altså der er en sammenhæng.
-Vi vil godt kunne forudsige, at hvis en patient lider af hypokaliæmi, så forværres
-tilstanden hvis vi ordinerer vanddrivende midler. Og forbedres hvis vi ordinerer
-kaliumtabletter. 
-
-Her bevæger vi os over i kausalitet. Det at vi kan forudsige at noget sker hvis
-vi foretager en bestemt handling, er ikke det samme som at resultatet skyldes
-vores handling. Det klassiske eksempel er salg af solbriller og isvafler. 
-Når salget af isvafler stiger, ser vi også et stigende salg af solbriller.
-Hvis vi driver en kiosk der sælger begge dele, kan vi, når vi bemærker at 
-salget af is stiger, forudsige at så vil salget af solbriller også stige.
-
-Det kunne få os til at tro, at hvis vi sænker prisen på isvafler, og derfor 
-sælger flere af dem, så vil vi også
-sælge flere solbriller. Men selvom der er en sammenhæng, korrellation, mellem
-salget af solbriller og is - så er der ikke en kausal sammenhæng. Den skjulte
-faktor der styrer begge dele er vejret. 
-
-Det bruger vi også statistik til. Når vi har fundet vores mønster, og bygget en
-model der kan forudsige ting, så kan vi ændre på de forklarende variable. Og se 
-om vores forudsigelse stadig holder. Hvis den gør, begynder vi at nærme os
-kausalitet.
-
-## Et eksempel
-Her har vi et eksempel på et mønster vi kan undre os over. Hvilke måneder er 
-amerikanske football (ikke at forveksle med fodbold) spillere født?
-<div class="figure" style="text-align: center">
-<img src="../fig/rmd-02-unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-2</p>
-</div>
-
-Det kan man undre sig over. Burde der ikke være lige mange i hver måned?
-
-Hvis vi tænker lidt efter - nej. Januar har 31 dage, februar normalt kun 28.
-Der skal være flere spillere der er født i januar end i februar. For der er 
-flere der er født i januar end februar.
-
-Vi kan undre os videre. Selvom der kun er 28 dage i februar - så er der flere
-spillere der er født i februar end i maj - hvor der er 31 dage. 
-
-Er der en sæson variation? Fødes der måske bare flere børn i februar end i 
-maj? Fordi der undfanges flere i maj end i august?
-
-Hvis vi får fat på tallene for hvor mange der i det hele taget fødes i de 
-forskellige måneder, kan vi regne ud hvor mange football spillere vi forventer
-der skal fødes i en given måned.
-
-Det ser sådan ud:
-<div class="figure" style="text-align: center">
-<img src="../fig/rmd-02-unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-3</p>
-</div>
-
-Der er stadig en forskel. Vi ser flere spillere der er født i januar end vi
-forventer. Og færre i juni. Er det et tilfælde? Eller er der en grund?
-
-Det første vi skal finde ud af er om det faktisk er et tilfælde. Kaster vi med 
-to terninger slår vi undertiden to seksere. Det sker ikke så ofte. Men det sker.
-Det kunne også være at den skæve fordeling af football-spillere er et tilfælde.
-
-Det har vi statistiske metoder til at undersøge. De tillader os at afgøre om
-fordelingen af football-spillere på de 12 måneder er forskellig fra hvad vi
-skulle forvente, og om forskellen er stor nok til at vi kan afvise at det 
-er tilfældigt.
-
-Spoiler alert - det er ikke et tilfælde:
-
-
-~~~
-chisq.test(x = am_foot$Observed, p = am_foot$Expected / sum(am_foot$Expected))
-~~~
-{: .language-r}
-
-
-
-~~~
-
-	Chi-squared test for given probabilities
-
-data:  am_foot$Observed
-X-squared = 66.164, df = 11, p-value = 6.505e-10
-~~~
-{: .output}
-
-
-
-
-~~~
-combined_matrix <- matrix(c(am_foot$Observed, am_foot$Expected), nrow=2)
-
-# Tilføj kolonnenavne og rækkenavne til matrixen
-colnames(combined_matrix) <- am_foot$Month
-rownames(combined_matrix) <- c("Observed", "Expected")
-
-# Udfør chi-kvadrat testen
-chisq.test(combined_matrix)
-~~~
-{: .language-r}
-
-
-
-~~~
-
-	Pearson's Chi-squared test
-
-data:  combined_matrix
-X-squared = 20.516, df = 11, p-value = 0.03874
-~~~
-{: .output}
-
-
-
-Den videnskabelige proces - en cirkel.
-
-En del af hvad der skal være her, er i 04.
-
-At dømme efter øvelserne 
 
 
 ## Beskrivende statistik
@@ -225,58 +62,392 @@ er kodet således:
 Datasættet kan bruges til at vise sammenhænge mellem rygning, og lungekapacitet
 for børn.
 
+De første 10 rækker ser således ud:
 
 ~~~
-FEV %>% 
-  group_by(Sex, Smoke, Age) %>% 
-  summarise(avg_fev = mean(FEV))
+head(FEV)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-`summarise()` has grouped output by 'Sex', 'Smoke'. You can override using the
-`.groups` argument.
+# A tibble: 6 × 6
+     Id   Age   FEV   Hgt   Sex Smoke
+  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+1   301     9  1.71  57       0     0
+2   451     8  1.72  67.5     0     0
+3   501     7  1.72  54.5     0     0
+4   642     9  1.56  53       1     0
+5   901     9  1.90  57       1     0
+6  1701     8  2.34  61       0     0
 ~~~
 {: .output}
 
 
+## Summary statistik
+
+Summary statistik er statistiske mål der beskriver en fordeling. De opsummerer
+mange tal, til et enkelt (eller nogle få) tal, deraf navnet.
+
+I de følgende eksempler har vi brug for at kunne trække en enkelt variabel
+ud af vores datasæt. Det kunne være FEV. 
+
+Der er som regel altid mere end en måde at gøre ting på i programmering. 
+Men en relativt let måde at trække værdierne for FEV ud af dette datasæt er at
+bruge $-notationen:
 
 ~~~
-# A tibble: 51 × 4
-# Groups:   Sex, Smoke [4]
-     Sex Smoke   Age avg_fev
-   <dbl> <dbl> <dbl>   <dbl>
- 1     0     0     3    1.07
- 2     0     0     4    1.32
- 3     0     0     5    1.36
- 4     0     0     6    1.65
- 5     0     0     7    1.83
- 6     0     0     8    2.15
- 7     0     0     9    2.38
- 8     0     0    10    2.65
- 9     0     0    11    2.81
-10     0     0    12    2.93
-# ℹ 41 more rows
+FEV$FEV
+~~~
+{: .language-r}
+
+~~~
+[1] 1.708 1.724 1.720 1.558 1.895 2.336
 ~~~
 {: .output}
 
+Her trækker vi de første seks observationer ud - der er 654 ialt. Resultatet 
+kaldes en `vektor`.
 
-tal der beskriver fordelingen.
+### Middelværdi
 
-De data vi har - har en eller anden fordeling. 
-
-Normalfordelingen
-
-Middelværdi
-Median
-Spredning
-Antal
-head
-summary
+Middelværdien findes ved at give funktionen `mean()` en vektor med tallene:
 
 
-data skal nok ikke ind allerede. Vi skal tale om hvad de her tal egentlig dækker over.
+~~~
+mean(FEV$FEV)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 2.63678
+~~~
+{: .output}
+### Medianen
+
+Medianen, den midterste værdi findes på lignende måde:
+
+
+~~~
+median(FEV$FEV)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 2.5475
+~~~
+{: .output}
+### Standardafvigelser
+
+Nu kan vi genkende mønsteret. Vi skal finde funktionen der kan tage nogen tal
+i form af en vektor, og beregne standardafvigelsen. Funktionen hedder `sd`:
+
+
+~~~
+sd(FEV$FEV)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.8670591
+~~~
+{: .output}
+
+### Varians
+
+Og nu er det ingen overraskelse:
+
+
+~~~
+var(FEV$FEV)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.7517915
+~~~
+{: .output}
+Hvordan finder man den funktion man skal bruge? Først finder man ud af hvad 
+det man vil gøre hedder på engelsk. Så søger man efter det i hjælpefunktionen
+i RStudio. 
+
+Eller også hiver man fat i ChatGPT eller Google.
+
+## Frekvenser
+
+Hvor mange drenge er der med i vores datasæt? Hvor mange piger?
+
+Når vi tæller den slags, er det typisk fordi vi har med 
+kategoriske variable at gøre, variable hvor der observationerne kun kan være 
+i én af flere kategorier. Her køn, hvor de undersøgte børn er af enten hunkøn eller
+hankøn.
+
+En del statistiske tests fungerer kun hvis værdierne er kodet som kategoriske
+værdier. Her er kønnet angivet som "0" eller "1", men det kunne lige så godt
+forstås som talværdier, der også kunne være 0.123 eller 0.946. 
+
+For at sikre at vores kategoriske data opfattes som kategoriske af R, kan vi
+pakke dem ind i funktionen `factor` der i dette tilfælde konverterer hvad der ellers kunne forstås som tal, til en kategoriskværdi:
+
+
+~~~
+factor(FEV$Sex)
+~~~
+{: .language-r}
+
+Det er ikke strengt nødvendigt i dette tilfælde, men det er et godt trick at 
+kende.
+
+Men hvordan tæller vi så? Vi bruger `table()` funktionen:
+
+
+~~~
+table(FEV$Sex)
+~~~
+{: .language-r}
+
+
+
+~~~
+
+  0   1 
+318 336 
+~~~
+{: .output}
+Ofte er vi også interesserede i at vide hvordan fordelingen er i procent. 
+
+Det kan funktionen `prop.table()` hjælpe os med. Men først skal vi have
+gemt antallet i et objekt:
+
+> ## Øvelse
+>
+> Gem resultatet af `table(FEV$Sex)` i et objekt. Kald det `antal` og
+> kør derefter funktione `prop.table()` på `antal`
+>
+> > ## Løsning
+> > antal <- table(FEV$Sex)
+> > 
+> > prop.table(antal)
+> {: .solution}
+{: .challenge}
+
+
+
+
+## Histogrammer
+
+Histogrammer viser fordelingen af observationer grafisk.R har en indbygget 
+funktion, `hist()` der gør netop det:
+
+
+~~~
+hist(FEV$FEV)
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-02-unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-14</p>
+</div>
+
+### Hvad hvis vi vil vide hvordan de ser ud for rygende børn?
+
+Hvis vi vil lave et histogram for FEV for de børn der ryger, skal vi først
+have pillet de rygende børn ud af datasættet. 
+
+Vi ved, eller kan slå op, at de børn der ryger, er markeret med et 1-tal i 
+kolonnen `Smoke`:
+
+~~~
+FEV$Smoke
+~~~
+{: .language-r}
+
+
+~~~
+[1] 0 0 0 0 0 0
+~~~
+{: .output}
+Her ser vi kun de første seks observationer - de er alle 0.
+
+De tal kan vi sammenligne. Vi kan spørge: "Er værdien 0?". Hvis den er det,
+så er der tale om et ikke-ryger barn. 
+
+Den sammenligning kan vi lave på denne måde:
+
+
+~~~
+FEV$Smoke == 0
+~~~
+{: .language-r}
+
+
+~~~
+[1] TRUE TRUE TRUE TRUE TRUE TRUE
+~~~
+{: .output}
+Vi ser igen kun på de første seks resultater. Svaret er "TRUE", altså at 
+værdien i "Smoke" kolonen  er 0. Havde den ikke været det, havde svaret været
+"FALSE".
+
+Resultatet af vores sammenligning er en "logisk vektor". Og den kan vi bruge til
+at "subsette" vores datasæt, så vi kun får de rækker, der matcher en "TRUE" 
+værdi. Funktionen `subset()` er vores ven:
+
+
+~~~
+subset(FEV, Smoke == 0)
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 589 × 6
+      Id   Age   FEV   Hgt   Sex Smoke
+   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1   301     9  1.71  57       0     0
+ 2   451     8  1.72  67.5     0     0
+ 3   501     7  1.72  54.5     0     0
+ 4   642     9  1.56  53       1     0
+ 5   901     9  1.90  57       1     0
+ 6  1701     8  2.34  61       0     0
+ 7  1752     6  1.92  58       0     0
+ 8  1753     6  1.42  56       0     0
+ 9  1901     8  1.99  58.5     0     0
+10  1951     9  1.94  60       0     0
+# ℹ 579 more rows
+~~~
+{: .output}
+
+> ## Øvelse
+> Subset FEV datasættet, så du får de observationer i datasættet, der beskriver
+> børn der ryger. Gem resultatet i et nyt objekt, og plot histogrammet
+>
+> Bonus øvelse, lav samme øvelse, med de børn der _ikke_ ryger.
+> 
+> > ## Løsning
+> > rygere <- subset(FEV, Smoke == 1)
+> > 
+> > hist(rygere)
+> >
+> > Bonus:
+> > 
+> > ikkerygere <- subset(FEV, Smoke == 0)
+> > 
+> > hist(ikkerygere)
+> > 
+> {: .solution}
+{: .challenge}
+
+
+## Referenceinterval
+Det interval indenfor hvilket 95% af observationerne ligger. Eller - ved hvilken
+værdi er 2.5% af observationerne lavere, og ved hvilken værdi er 2.5% af 
+observationerne højere. Det fører til at 100% - 2.5% - 2.5% = 95% af observationerne
+ligger mellem de to værdier. Funktionen `quantile()` kan hjælpe:
+
+
+~~~
+quantile(FEV$FEV, 0.025)
+~~~
+{: .language-r}
+
+
+
+~~~
+    2.5% 
+1.339625 
+~~~
+{: .output}
+
+~~~
+quantile(FEV$FEV, 0.975)
+~~~
+{: .language-r}
+
+
+
+~~~
+ 97.5% 
+4.6227 
+~~~
+{: .output}
+Det kan vi samle i en enkelt linie kode_
+
+~~~
+quantile(FEV$FEV, c(0.025, 0.975))
+~~~
+{: .language-r}
+
+
+
+~~~
+    2.5%    97.5% 
+1.339625 4.622700 
+~~~
+{: .output}
+
+## Scatterplot
+
+Vi så histogramemt - hvor vi tæller hvor mange observationer af en bestemt 
+variabel vi har i forskellige intervaller. Når vi vil plotte to værdier mod hinanden i et scatterplot, så skal vi angive hvad vi vil have på x-aksen og hvad der skal
+være på y-aksen. Og derfor skal den indbyggede `plot()` funktion have to
+vektorer med tal:
+
+
+~~~
+plot(FEV$Age, FEV$Hgt)
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-02-unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-23</p>
+</div>
+
+# Boxplot
+
+Boxplots samler en række opsummerende statistiske værdier for en variabel i 
+ét plot. Vi kan angive det på lidt forskellige måder, men foretrækker denne:
+
+
+~~~
+boxplot(FEV$FEV, data= FEV)
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-02-unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-24</p>
+</div>
+
+Og hvorfor det? Fordi det gør det lettere at forstå, at når vi vil have 
+to boxplots, et for drenge og et for piger, så kan vi let få det på denne måde:
+
+
+~~~
+boxplot(FEV~Sex, data = FEV)
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-02-unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-25</p>
+</div>
+
+Som det fremgår, er de fleste af de statiske funktioner vi skal bruge ret 
+enkle. Hvis ellers man kan finde ud af hvilken af dem man skal bruge. Og hvis
+man kan få manipuleret sine data, så de har den rigtige form og indhold. Og det 
+er ikke helt så enkelt.
 
 {% include links.md %}
