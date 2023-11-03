@@ -5,11 +5,13 @@ title: "At jonglere med data"
 teaching: 10
 exercises: 5
 questions:
-- "FIXME"
+- "Hvordan manipulerer jeg let mine data?"
 objectives:
-- "FIXME"
+- "Intruktion af tidyverse funktioner til manipulation af data"
+- "Intruktion af tidyverse funktioner til beregning af summary statistics"
+- "Intruktion af tidyverse funktioner til visualisering af data"
 keypoints:
-- "FIXME"
+- "Tidyverse pakkerne giver adgang til meget effektive værktøjer til arbejde med data"
 source: Rmd
 ---
 
@@ -55,9 +57,25 @@ who <- read_csv("data/who.csv")
 
 
 ~~~
-Error in read_csv("../data/who.csv"): could not find function "read_csv"
+Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat <- vroom(...)
+  problems(dat)
 ~~~
-{: .error}
+{: .warning}
+
+
+
+~~~
+Rows: 405440 Columns: 1
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): country;iso2;iso3;year;new;diag;sex;age_low;age_high;value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+~~~
+{: .output}
 
 
 
@@ -73,9 +91,17 @@ head(who)
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'who' not found
+# A tibble: 6 × 1
+  `country;iso2;iso3;year;new;diag;sex;age_low;age_high;value`
+  <chr>                                                       
+1 Afghanistan;AF;AFG;1980;new;sp;m;00;14;NA                   
+2 Afghanistan;AF;AFG;1980;new;sp;m;15;24;NA                   
+3 Afghanistan;AF;AFG;1980;new;sp;m;25;34;NA                   
+4 Afghanistan;AF;AFG;1980;new;sp;m;35;44;NA                   
+5 Afghanistan;AF;AFG;1980;new;sp;m;45;54;NA                   
+6 Afghanistan;AF;AFG;1980;new;sp;m;55;64;NA                   
 ~~~
-{: .error}
+{: .output}
 De første fire kolonner giver (næsten) sig selv. 
 
 new-kolonne er en artefakt fra skabelsen af datasættet. Alle værdier er "new".
@@ -148,9 +174,17 @@ head(who)
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'who' not found
+# A tibble: 6 × 1
+  `country;iso2;iso3;year;new;diag;sex;age_low;age_high;value`
+  <chr>                                                       
+1 Afghanistan;AF;AFG;1980;new;sp;m;00;14;NA                   
+2 Afghanistan;AF;AFG;1980;new;sp;m;15;24;NA                   
+3 Afghanistan;AF;AFG;1980;new;sp;m;25;34;NA                   
+4 Afghanistan;AF;AFG;1980;new;sp;m;35;44;NA                   
+5 Afghanistan;AF;AFG;1980;new;sp;m;45;54;NA                   
+6 Afghanistan;AF;AFG;1980;new;sp;m;55;64;NA                   
 ~~~
-{: .error}
+{: .output}
 
 Det kan være vældig nyttigt. Lad os tage et kig på hvordan det fungerer med 
 pipen:
@@ -164,9 +198,17 @@ who %>%
 
 
 ~~~
-Error in who %>% head(): could not find function "%>%"
+# A tibble: 6 × 1
+  `country;iso2;iso3;year;new;diag;sex;age_low;age_high;value`
+  <chr>                                                       
+1 Afghanistan;AF;AFG;1980;new;sp;m;00;14;NA                   
+2 Afghanistan;AF;AFG;1980;new;sp;m;15;24;NA                   
+3 Afghanistan;AF;AFG;1980;new;sp;m;25;34;NA                   
+4 Afghanistan;AF;AFG;1980;new;sp;m;35;44;NA                   
+5 Afghanistan;AF;AFG;1980;new;sp;m;45;54;NA                   
+6 Afghanistan;AF;AFG;1980;new;sp;m;55;64;NA                   
 ~~~
-{: .error}
+{: .output}
 
 Pipen tager hvad der står på venstre side, `who` og sender det til funktionen `head()`.
 head() funktionen skal have en dataframe, det får den fra pipen.
@@ -205,7 +247,9 @@ who %>%
 
 
 ~~~
-Error in who %>% select("country") %>% head(): could not find function "%>%"
+Error in `select()`:
+! Can't subset columns that don't exist.
+✖ Column `country` doesn't exist.
 ~~~
 {: .error}
 
@@ -224,7 +268,9 @@ who %>%
 
 
 ~~~
-Error in who %>% select(country, year) %>% head(): could not find function "%>%"
+Error in `select()`:
+! Can't subset columns that don't exist.
+✖ Column `country` doesn't exist.
 ~~~
 {: .error}
 Og vi kan angive at der er kolonner vi ikke vil se på:
@@ -239,14 +285,15 @@ who %>%
 
 
 ~~~
-Error in who %>% select(-iso2): could not find function "%>%"
+Error in `select()`:
+! Can't subset columns that don't exist.
+✖ Column `iso2` doesn't exist.
 ~~~
 {: .error}
 
 > ## Øvelse
 >
 > fjern både iso2, iso3 og new kolonnerne fra datasættet:
-
 >
 > > ## Løsning
 > > who %>% 
@@ -275,7 +322,9 @@ who %>%
 
 
 ~~~
-Error in who %>% select(-c(iso2, iso3, new)) %>% filter(country == "Afghanistan") %>% : could not find function "%>%"
+Error in `select()`:
+! Can't subset columns that don't exist.
+✖ Column `iso2` doesn't exist.
 ~~~
 {: .error}
 
@@ -322,7 +371,10 @@ who %>%
 
 
 ~~~
-Error in who %>% mutate(age_low = as.numeric(age_low)) %>% head(): could not find function "%>%"
+Error in `mutate()`:
+ℹ In argument: `age_low = as.numeric(age_low)`.
+Caused by error:
+! object 'age_low' not found
 ~~~
 {: .error}
 as.numeric() tager tekstinput, og konverterer det til et tal - hvis det kan gøres
@@ -343,7 +395,10 @@ who %>%
 
 
 ~~~
-Error in who %>% mutate(age_low = as.numeric(age_low)) %>% mutate(interval = age_high - : could not find function "%>%"
+Error in `mutate()`:
+ℹ In argument: `age_low = as.numeric(age_low)`.
+Caused by error:
+! object 'age_low' not found
 ~~~
 {: .error}
 
@@ -370,7 +425,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year == 1997) %>% summarise(total_tb = sum(value, : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 Der er manglende værdier. Og den slags skal kodes med `NA`. Inden vi kan lave 
@@ -393,7 +451,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year == 1997) %>% summarise(total_tb = sum(value, : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 
@@ -419,7 +480,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year) %>% : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 Vi har filtreret på årstal for at få en overskuelig tabel, men det er i `group_by` 
@@ -445,7 +509,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year) %>% : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 
@@ -466,7 +533,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year, : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 Det er ikke en specielt let-læselig tabel. Det ville være rart hvis vi 
@@ -489,7 +559,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year, : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 Vi laver en pivot_wider, fordi vi godt vil have en bredere, "wider" tabel.
@@ -525,7 +598,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year, : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 
@@ -546,7 +622,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year, : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 Det kunne være rart med mere meningsfyldte kolonnenavne. Det kan vi give
@@ -569,7 +648,10 @@ who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year, : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 
@@ -593,7 +675,10 @@ AF9606 <- who %>%
 
 
 ~~~
-Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year, : could not find function "%>%"
+Error in `filter()`:
+ℹ In argument: `iso2 == "AF"`.
+Caused by error:
+! object 'iso2' not found
 ~~~
 {: .error}
 
@@ -630,7 +715,7 @@ AF9606 %>%
 
 
 ~~~
-Error in AF9606 %>% ggplot(aes(x = year, y = total_tb, fill = sex)): could not find function "%>%"
+Error in eval(expr, envir, enclos): object 'AF9606' not found
 ~~~
 {: .error}
 
@@ -654,7 +739,7 @@ AF9606 %>%
 
 
 ~~~
-Error in AF9606 %>% ggplot(aes(x = year, y = total_tb, fill = sex)): could not find function "%>%"
+Error in eval(expr, envir, enclos): object 'AF9606' not found
 ~~~
 {: .error}
 
@@ -675,9 +760,15 @@ Med `ggplot()` er der genveje:
 
 
 ~~~
-Error in read_csv("../data/FEV.csv"): could not find function "read_csv"
+Rows: 654 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): Id, Age, FEV, Hgt, Sex, Smoke
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ~~~
-{: .error}
+{: .output}
 
 ~~~
 FEV %>% 
@@ -690,9 +781,14 @@ FEV %>%
 
 
 ~~~
-Error in FEV %>% ggplot(aes(x = FEV)): could not find function "%>%"
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ~~~
-{: .error}
+{: .output}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-03-unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-27</p>
+</div>
 
 `facet_wrap(~Smoke)` fortæller `ggplot()` at vi godt vil have lavet et histogram
 for hver guppe der er i "Smoke" kolonnnen.
