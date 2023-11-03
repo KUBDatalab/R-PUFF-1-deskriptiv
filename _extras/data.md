@@ -425,247 +425,224 @@ Sugar Taste Variables
 
 ### LEAD
 
-VARIABLE  COLUMN    DESCRIPTION
- id        1-3      IDENTIFICATION NUMBER
-
- area       5       AREA - RESIDENCE ON AUG'72
-                       1=0-1 MILES FROM SMELTER
-                       2=1-2.5 MILES
-                       3=2.5-4.1 MILES
-
- ageyrs    7-11      AGE in years xx.xx 
-
- sex        13       SEX  1=MALE  2=FEMALE
-
-       IQ TEST RESULTS
-
- iqv_inf   15-16      INF - INFORMATION SUBTEST IN WISC AND WPPSI
-
- iqv_comp  18-19      COMP - COMPREHENSION SUBTEST IN WISC AND WPPSI
-
- iqv_ar    21-22      AR - ARITHMETIC SUBTEST IN WISC AND WPPSI
-
- iqv_ds    24-25      DS - DIGIT SPAN SUBTEST(WISC) AND SENTENCE
-                           COMPLETION(WPPSI)
-
- iqv_raw   27-28      V/RAW - RAW SCORE/VERBAL IQ 
-
- iqp_pc    30-31      PC - PICTURE COMPLETION SUBTEST IN WISC AND WPPSI
-
- iqp_bd    33-34      BD - BLOCK DESIGN SUBTEST IN WISC AND WPPSI
-
- iqp_oa    36-37      OA - OBJECT ASSEMBLY SUBTEST(WISC), ANIMAL HOUSE
-                           SUBTEST(WPPSI)
-
- iqp_cod   39-40      COD - CODING SUBTEST(WISC), GEOMETRIC DESIGN
-                            SUBTEST(WPPSI)
-
- iqp_raw   42-43      P/RAW - RAW SCORE/PERFORMANCE IQ (TOTAL OF SCORES
-                              PC, BD, OA, & COD)
-
- hh_index  45-46      HH/INDEX - HOLLINGSHEAD INDEX OF SOCIAL STATUS
-
- iqv       48-50      IQV - VERBAL IQ
-
- iqp       52-54      IQP - PERFORMANCE IQ
-
- iqf       56-58      IQF - FULL SCALE IQ (NOT SUM OR AVERAGE OF IQV D IQP)
-
- iq_type    60        TYPE OF IQ TEST   1=WISC  2=WPPSI
-                       (WISC USUALLY GIVEN TO CHILDREN GE 5 YRS 1 MONTH OF AGE               
-                        WPPSI USUALLY GIVEN TO CHILDREN LE 5YRS OF AGE)
-
- lead_grp   62        GROUP - BLOOD LEAD LEVEL GROUP
-
-                         1=BLOOD LEAD LEVELS BELOW 40 MICROGRAMS/100ML IN
-                                BOTH 1972 & 1973 (control group)
-                           2=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO
-                                40 MICROGRAMS/100ML
-                                IN BOTH 72 & 73 OR A LEVEL GREATER THAN OR
-                                EQUAL TO 40
-                                IN 73 ALONE (3 CASES ONLY) (currently exposed 
-                                 Group)
-                           3=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO
-                                40 MICROGRAMS/100ML
-                                IN 72 AND LESS THAN 40 IN 73
-                                 (previously exposed group)
-
- Group       64          1=control group; 2=exposed group
- 
- ld72      66-67      LD72 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN72
-                              MISSING=99
-
- ld73      69-70      LD73 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN 73
-
- fst2yrs    72        FST2YRS - DID CHILD LIVE FOR 1ST 2 YRS WITHIN
-                              1 MILE OF SMELTER  1=YES  2=NO
-
- totyrs    74-75      TOTYRS - TOTAL NUMBER OF YEARS SPENT WITHIN
-                              4.1 MILES OF SMELTER
+|VARIABLE |     DESCRIPTION|
+|---------|-------------------|
+| id            |  IDENTIFICATION NUMBER|
+| area        |      AREA - RESIDENCE ON AUG'72|
+|                 |      1=0-1 MILES FROM SMELTER|
+|                 |      2=1-2.5 MILES|
+|                 |      3=2.5-4.1 MILES|
+| ageyrs    |      AGE in years xx.xx |
+| sex         |      SEX  1=MALE  2=FEMALE|
 
 
-       SYMPTOM DATA (AS REPORTED BY PARENTS)
+IQ TEST RESULTS
 
- pica       77         PICA   1=YES  2=NO
+|VARIABLE |     DESCRIPTION|
+|---------|---------------------|
+| iqv_inf |        INF - INFORMATION SUBTEST IN WISC AND WPPSI|
+| iqv_comp|        COMP - COMPREHENSION SUBTEST IN WISC AND WPPSI|
+| iqv_ar    |      AR - ARITHMETIC SUBTEST IN WISC AND WPPSI|
+| iqv_ds    |      DS - DIGIT SPAN SUBTEST(WISC) AND SENTENCE COMPLETION(WPPSI)|
+| iqv_raw |        V/RAW - RAW SCORE/VERBAL IQ |
+| iqp_pc    |      PC - PICTURE COMPLETION SUBTEST IN WISC AND WPPSI|
+| iqp_bd    |      BD - BLOCK DESIGN SUBTEST IN WISC AND WPPSI|
+| iqp_oa    |      OA - OBJECT ASSEMBLY SUBTEST(WISC), ANIMAL HOUSE SUBTEST(WPPSI)|
+| iqp_cod |        COD - CODING SUBTEST(WISC), GEOMETRIC DESIGN SUBTEST(WPPSI)|
+| iqp_raw |       P/RAW - RAW SCORE/PERFORMANCE IQ (TOTAL OF SCORES PC, BD, OA, & COD)|
+| hh_index|        HH/INDEX - HOLLINGSHEAD INDEX OF SOCIAL STATUS|
+| iqv         |    IQV - VERBAL IQ|
+| iqp         |    IQP - PERFORMANCE IQ|
+| iqf         |    IQF - FULL SCALE IQ (NOT SUM OR AVERAGE OF IQV D IQP)|
+| iq_type |           TYPE OF IQ TEST   1=WISC  2=WPPSI|
+|                 |      (WISC USUALLY GIVEN TO CHILDREN GE 5 YRS 1 MONTH OF AGE               |
+|                 |       WPPSI USUALLY GIVEN TO CHILDREN LE 5YRS OF AGE)|
+| lead_grp|           GROUP - BLOOD LEAD LEVEL GROUP|
+|                 |        1=BLOOD LEAD LEVELS BELOW 40 MICROGRAMS/100ML IN|
+|                 |               BOTH 1972 & 1973 (control group)|
+|                 |          2=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO|
+|                 |               40 MICROGRAMS/100ML|
+|                 |               IN BOTH 72 & 73 OR A LEVEL GREATER THAN OR|
+|                 |               EQUAL TO 40|
+|                 |               IN 73 ALONE (3 CASES ONLY) (currently exposed |
+|                 |                Group)|
+|                 |          3=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO|
+|                 |               40 MICROGRAMS/100ML|
+|                 |               IN 72 AND LESS THAN 40 IN 73|
+|                 |                (previously exposed group)|
+| Group     |            1=control group; 2=exposed group|
+|  ld72     |       LD72 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN72|
+|                 |             MISSING=99|
+| ld73        |    LD73 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN 73|
+| fst2yrs |           FST2YRS - DID CHILD LIVE FOR 1ST 2 YRS WITHIN|
+|                 |             1 MILE OF SMELTER  1=YES  2=NO|
+| totyrs    |      TOTYRS - TOTAL NUMBER OF YEARS SPENT WITHIN|
+|                 |             4.1 MILES OF SMELTER|
 
- colic      79         COLIC  1=YES  2=NO
 
- clumsi     81         CLUMSINESS  1=YES  2=NO
+SYMPTOM DATA (AS REPORTED BY PARENTS)
 
- irrit      83         IRRITABILITY  1=YES  2=NO
+|VARIABLE   |   DESCRIPTION|
+|----------|------------------------|
+| pica          |      PICA   1=YES  2=NO|
+| colic       |        COLIC  1=YES  2=NO|
+| clumsi      |        CLUMSINESS  1=YES  2=NO|
+| irrit       |        IRRITABILITY  1=YES  2=NO|
+| convul      |        CONVULSIONS  1=YES  2=NO|
 
- convul     85         CONVULSIONS  1=YES  2=NO
+CONTAIN NEUROLOGICAL TEST DATA
 
-      CONTAIN NEUROLOGICAL TEST DATA
-       
- _2plat_r  87-88       # OF TAPS FOR RIGHT HAND IN THE 2-PLATE TAPPING
-                              TEST  (#TAPS IN ONE 10 SECOND TRIAL)
-                              MISSING=99
-
- _2plat_l  90-91       # OF TAPS FOR LEFT HAND IN THE 2-PLATE TAPPING TEST
-                                (#TAPS IN ONE 10 SECOND TRIAL)
-                              MISSING=99
-
- visrea_r  93-94       VISUAL REACTION TIME RIGHT HAND (MILLISECONDS)
-                              MISSING=99
-
- visrea_l  96-97       VISUAL REATION TIME LEFT HAND (MILLISECONDS)
-                              MISSING=99
-
- audrea_r  99-100      AUDITORY REACTION TIME RIGHT HAND (MILLISECONDS)
-                              MISSING=99
-
- audrea_l  102-103     AUDITORY REACTION TIME LEFT HAND (MILLISECONDS)
-                              MISSING=99
-
- fwt_r    105-106      FINGER-WRIST TAPPING TEST RIGHT HAND
-                              (# TAPS IN ONE 10 SECOND TRIAL)
-                              MISSING=99
-
- fwt_l    108-109      FINGER-WRIST TAPPING TEST LEFT HAND
-                              (#TAPS IN ONE 10 SECOND TRIAL)
-                              MISSING=99
-
- hyperact  111-112    WWPS - WERRY-WEISS-PETERS SCALE FOR HYPERACTIVITY
-                              0=NO ACTIVITY . . . . 4=SEVERLY HYPERACTIVE
-                              (AS REPORTED BY PARENTS)
-                              MISSING=99
-
- maxfwt     114-115      Finger-wrist tapping test in dominant hand(max of              
-                         fwt_r,fwt_l)
+|VARIABLE |     DESCRIPTION       |
+|----------|-------------------------------|
+| _2plat_r  |       # OF TAPS FOR RIGHT HAND IN THE 2-PLATE TAPPING|
+|           |                   TEST  (#TAPS IN ONE 10 SECOND TRIAL)|
+|           |                   MISSING=99|
+| _2plat_l  |       # OF TAPS FOR LEFT HAND IN THE 2-PLATE TAPPING TEST|
+|           |                     (#TAPS IN ONE 10 SECOND TRIAL)|
+|           |                   MISSING=99|
+|visrea_r   |      VISUAL REACTION TIME RIGHT HAND (MILLISECONDS)|
+|           |                   MISSING=99|
+| visrea_l  |       VISUAL REATION TIME LEFT HAND (MILLISECONDS)|
+|           |                   MISSING=99|
+|audrea_r   |     AUDITORY REACTION TIME RIGHT HAND (MILLISECONDS)|
+|           |                   MISSING=99|
+| audrea_l  |     AUDITORY REACTION TIME LEFT HAND (MILLISECONDS)|
+|           |                   MISSING=99|
+| fwt_r|          FINGER-WRIST TAPPING TEST RIGHT HAND|
+|       |                       (# TAPS IN ONE 10 SECOND TRIAL)|
+|        |                      MISSING=99|
+| fwt_l   |       FINGER-WRIST TAPPING TEST LEFT HAND|
+|          |                    (#TAPS IN ONE 10 SECOND TRIAL)|
+|           |                   MISSING=99|
+| hyperact   |   WWPS - WERRY-WEISS-PETERS SCALE FOR HYPERACTIVITY|
+|             |                 0=NO ACTIVITY . . . . 4=SEVERLY HYPERACTIVE|
+|              |                (AS REPORTED BY PARENTS)|
+|               |               MISSING=99|
+| maxfwt         |  Finger-wrist tapping test in dominant hand(max of              |
+|                 |        fwt_r,fwt_l)|
 
 
 ### MICE
 
-|Variable   column      Description 
-| Id         1-2         ID
-| Group       4          GROUP 1=RP  2=NORMAL
-| Trtgrp      6          TREATMENT GROUP
-                         A=LIGHT
-                         B=DIM
-                         C=DARK
-| Age        8-9         AGE (days)
-| B_amp     13-14        B AMP  9999=missing
-| A_amp     16-19        A AMP  9999=missing  
+|Variable |        Description |
+----------|--------------------------------|
+| Id            |     ID|
+| Group     |          GROUP 1=RP  2=NORMAL|
+| Trtgrp    |          TREATMENT GROUP|
+|                    |     A=LIGHT|
+|                    |     B=DIM|
+|                    |     C=DARK|
+| Age         |       AGE (days)|
+| B_amp     |        B AMP  9999=missing|
+| A_amp     |        A AMP  9999=missing  |
 
 
 ### NEPHRO
 
-Variable         Column      Description/Code
----------------------------------------------------------------------------
-name               1-8       Study name
-id                10-11      Study number
-Endpnt             13        Endpoint  2=nephrotoxicity
-Antibio            15        Antibiotic 1=Amikacin/2=Gentamicin/3=Netilmicin/
-                                   4=Sisomycin/5=Tobramycin
-Samp_sz           17-19      Sample size 
-Side_eff          21-23      Number with side effects 
----------------------------------------------------------------------------
+|Variable   |            Description/Code|
+|----------|-----------------------------------------------------------------|
+|name           |          Study name|
+|id               |       Study number|
+|Endpnt       |             Endpoint  2=nephrotoxicity|
+|Antibio      |             Antibiotic 1=Amikacin/2=Gentamicin/3=Netilmicin/|
+|                   |                4=Sisomycin/5=Tobramycin|
+|Samp_sz      |           Sample size |
+|Side_eff   |             Number with side effects |
+
 
 
 ### NIFED
 
-Variable    Column       Description            Code
------------------------------------------------------------------------------
-Id           1-2         ID
-trtgrp        4          Treatment group        N=nifedipine/P=placebo
-bashrtrt     6-8         Baseline heart rate*   beats/min
-lv1hrtrt    10-12        Level 1 heart rate+    beats/min
-lv2hrtrt    14-16        Level 2 heart rate     beats/min
-lv3hrtrt    18-20        Level 3 heart rate     beats/min
-bassys      22-24        Baseline systolic bp*  mm Hg
-lv1sys      26-28        Level 1 systolic bp    mm Hg
-lv2sys      30-32        Level 2 systolic bp    mm Hg
-lv3sys      34-36        Level 3 systolic bp    mm Hg
------------------------------------------------------------------------------
+|Variable   |        Description          |  Code
+|----------|-------------------------------------------------------------------
+|Id               |     ID
+|trtgrp       |           Treatment group   |     N=nifedipine/P=placebo
+|bashrtrt   |           Baseline heart rate* |  beats/min
+|lv1hrtrt   |         Level 1 heart rate+   | beats/min
+|lv2hrtrt   |         Level 2 heart rate    | beats/min
+|lv3hrtrt   |         Level 3 heart rate    | beats/min
+|bassys       |       Baseline systolic bp* | mm Hg
+|lv1sys       |       Level 1 systolic bp  |  mm Hg
+|lv2sys       |       Level 2 systolic bp |   mm Hg
+|lv3sys       |       Level 3 systolic bp   | mm Hg
+
+
 * Immediately prior to randomization.
+
 + Highest heart rate and systolic blood pressure at baseline and each level of
   therapy respectively.
+
 Values of 999 indicates that either
+
 (a) the patient withdrew from the study prior to entering this level of therapy
+
 (b) the patient achieved pain relief prior to reaching this level or therapy,
+
 (c) the patient encountered this level of therapy, but this particular piece
        of data was missing.
 
 ### OTO
 
-Variable         Column       Description/Code
----------------------------------------------------------------------------
-Name               1-8        Study Name
-Id                10-11       Study Number 
-Endpnt             13         Endpoint 1=efficacy/2=nephrotoxicity/3=ototoxicity
-Antibio            15         Antibiotic 1=Amikacin/2=Gentamicin/3=Netilmicin/
-                                   4=Sisomycin/5=Tobramycin
-Samp_sz           17-19       Sample Size
-Side_eff          21-23       Number with side effect 
----------------------------------------------------------------------------
+|Variable   |             Description/Code|
+|----------|-----------------------------------------------------------------|
+|Name           |           Study Name|
+|Id               |        Study Number |
+|Endpnt       |              Endpoint 1=efficacy/2=nephrotoxicity/3=ototoxicity|
+|Antibio      |              Antibiotic 1=Amikacin/2=Gentamicin/3=Netilmicin/|
+|                   |                4=Sisomycin/5=Tobramycin|
+|Samp_sz      |            Sample Size|
+|Side_eff   |              Number with side effect |
+
 
 ### PIRIFORM
 
-Variable                      Column                                    Code
-
-ID                                1-6
-piriform                        8                                             Piriformis Syndrome  1=Negative,  2=Positive
-sex                              10                                            Sex  1=Male,  2=Female
-age                             12-14                                       Age
-maxchg                       16-21                                      Max change between tibia and peroneal
+|Variable  |                   Code|
+|---------|-----------------------------|
+|ID       |                         |
+|piriform | Piriformis Syndrome 1=Negative,  2=Positive|
+|sex      |                        Sex  1=Male,  2=Female|
+|age      |                                                         Age|
+|maxchg   |                    Max change between tibia and peroneal|
 
 
 ### SEXRAT
 
-Variable          Column
---------------------------------------
-nm_chld+            1         Number of children
-sx_1                3         Sex of 1st born
-sx_2                5         Sex of 2nd born
-sx_3                7         Sex of 3rd born
-sx_4                9         sex of 4th born
-sx_5                11        sex of 5th born 
-sexchldn*           13-17     Sex of all children  
-num_fam**           19-22     Number of families
---------------------------------------
+|Variable   | code|
+|---------|--------------|
+|nm_chld+   |     Number of children|
+|sx_1           | Sex of 1st born|
+|sx_2           | Sex of 2nd born|
+|sx_3           | Sex of 3rd born|
+|sx_4           | sex of 4th born|
+|sx_5           | sex of 5th born |
+|sexchldn*  |     Sex of all children  |
+|num_fam**  |     Number of families|
+
 + For families with 5+ children, the sex of the first 5 children are listed.
 The number of children is given as 5 for such families.
+
 * The sex of successive births is given. Thus, MMMF means that the first
 three children were males and the fourth child was a female. There were 484
 such families.
+
 ** Number of families with specific gender contribution of children
 
 
 ### SMOKE
 
-Variable      Columns         Code
------------------------------------------------------
-ID              1-3           ID number 
-Age             4-5           age 
-Gender           6            Gender        1=male/2=female
-Cig_day         7-8           Cigarettes/day      
-CO              9-11          Carbon monoxide (CO) (X 10) missing=999	   
-Min_last       12-15          Minutes elapsed since last cigarette missing=9999  
-LogCOadj       16-19          Log CO Adj * (X 1000)  missing=9999
-Day_abs        20-22          Days abstinent  Those abstinent less than 1 day
-                                    were given a value of zero.
---------------------------------------------------------------------
+|Variable       |        Code|
+|------------|-----------------------------------------|
+|ID                   |      ID number |
+|Age                  |      age |
+|Gender           |            Gender        1=male/2=female|
+|Cig_day          |          Cigarettes/day      |
+|CO                   |     Carbon monoxide (CO) (X 10) missing=999	   |
+|Min_last       |          Minutes elapsed since last cigarette missing=9999  |
+|LogCOadj       |          Log CO Adj * (X 1000)  missing=9999|
+|Day_abs          |        Days abstinent  Those abstinent less than 1 day|
+|                       |             were given a value of zero.|
+
+
 * This variable represents adjusted carbon monoxide (CO) values. CO values
 were adjusted for minutes elapsed since last cigarette smoked using the formula
 Log 10 CO (Adjusted) = Log 10 CO - (-0.000638) X (Min - 80), where Min is the
@@ -674,241 +651,208 @@ number of minutes elapsed since the last cigarette smoked.
 
 ### SWISS
 
-Variable      Column       Codes
------------------------------------------------------------
- ID             1-4         ID             
+|Variable     |        Codes|
+|-----------|------------------------------------------------|
+| ID                |      ID             |
+| age (yrs) |              age (yrs)      |
+| group         |            Group    1=High NAPAP, 2=Low NAPAP, 3 = control|
+| creat_68    |     x.xx Serum Creatinine 1968 (mg/dL) 9.99=missing |
+| creat_69    |     x.xx Serum Creatinine 1969 (mg/dL) 9.99=missing |
+| creat_70    |     x.xx Serum Creatinine 1970 (mg/dL) 9.99=missing |
+| creat_71    |     x.xx Serum Creatinine 1971 (mg/dL) 9.99=missing |
+| creat_72    |     x.xx Serum Creatinine 1972 (mg/dL) 9.99=missing |
+| creat_75    |     x.xx Serum Creatinine 1975 (mg/dL) 9.99=missing |
+| creat_78    |     x.xx Serum Creatinine 1978 (mg/dL) 9.99=missing|
 
- age (yrs)      6-7         age (yrs)      
-
- group           9          Group    1=High NAPAP, 2=Low NAPAP, 3 = control
-
- creat_68      12-15   x.xx Serum Creatinine 1968 (mg/dL) 9.99=missing 
-
- creat_69      18-21   x.xx Serum Creatinine 1969 (mg/dL) 9.99=missing 
-
- creat_70      24-27   x.xx Serum Creatinine 1970 (mg/dL) 9.99=missing 
-
- creat_71      30-33   x.xx Serum Creatinine 1971 (mg/dL) 9.99=missing 
-
- creat_72      36-39   x.xx Serum Creatinine 1972 (mg/dL) 9.99=missing 
-
- creat_75      42-45   x.xx Serum Creatinine 1975 (mg/dL) 9.99=missing 
-
- creat_78      48-51   x.xx Serum Creatinine 1978 (mg/dL) 9.99=missing
----------------------------------------------------------------
 
 
 ### TEAR
 
-Variable                      Column                                    Code
-
-ID                                1-2
-od3bas1                       3-9                                           OD 3sec baseline 1               
-od3bas2                       10-16                                       OD 3 sec baseline 2     
-od3im1                        17-23                                       OD 3 sec immediately post 1
-od3im2                        24-30                                       OD 3 sec immediately post 2         
-od3pst51		31-37				OD 3 sec 5min post 1
-od3pst52		38-44				OD 3 sec 5min post 2
-od3pt101		45-51				OD 3 sec 10min post 1
-od3pt102		52-58				OD 3 sec 10min post 2
-od3pt151		59-65				OD 3 sec 15min post 1
-od3pt152		66-72				OD 3 sec 15min post 2 
-os3bas1                        73-79                                      OS 3sec baseline 1               
-os3bas2                        80-86                                      OS 3 sec baseline 2     
-os3im1                         87-93                                      OS 3 sec immediately post 1
-os3im2                         94-100                                    OS 3 sec immediately post 2         
-os3pst51		101-107	 		OS 3 sec 5min post 1
-os3pst52		108-114			OS 3 sec 5min post 2
-os3pt101		115-121			OS 3 sec 10min post 1
-os3pt102		122-128			OS 3 sec 10min post 2
-os3pt151		129-135			OS 3 sec 15min post 1
-os3pt152		136-142			OS 3 sec 15min post 2
-od6bas1                       143-149                                  OD 6 sec baseline 1               
-od6bas2                       150-156                                  OD 6 sec baseline 2     
-od6im1                        157-163                                  OD 6 sec immediately post 1
-od6im2                        164-170                                  OD 6 sec immediately post 2         
-od6pst51		171-177			OD 6 sec 5min post 1
-od6pst52		178-184			OD 6 sec 5min post 2
-od6pt101		185-191			OD 6 sec 10min post 1
-od6pt102		192-198			OD 6 sec 10min post 2
-od6pt151		199-205			OD 6 sec 15min post 1
-od6pt152		206-212 			OD 6 sec 15min post 2 
-os6bas1                       213-219                                   OS 6 sec baseline 1               
-os6bas2                       220-226                                   OS 6 sec baseline 2     
-os6im1                        227-233                                   OS 6 sec immediately post 1
-os6im2                        234-240                                   OS 6 sec immediately post 2         
-os6pst51		241-247	 		OS 6 sec 5min post 1
-os6pst52		248-254			OS 6 sec 5min post 2
-os6pt101		255-261			OS 6 sec 10min post 1
-os6pt102		262-268			OS 6 sec 10min post 2
-os6pt151		269-275			OS 6 sec 15min post 1
-os6pt152		276-282			OS 6 sec 15min post 2
-od10bas1                     283-289                                  OD 10 sec baseline 1               
-od10bas2                     290-296                                  OD 10 sec baseline 2     
-od10im1                      297-303                                  OD 10 sec immediately post 1
-od10im2                      304-310                                  OD 10 sec immediately post 2         
-od10ps51		311-317			OD 10 sec 5min post 1
-od10ps52		318-324			OD 10 sec 5min post 2
-od10p101		325-331			OD 10 sec 10min post 1
-od10p102		332-338			OD 10 sec 10min post 2
-od10p151		339-345			OD 10 sec 15min post 1
-od10p152		346-352 			OD 10 sec 15min post 2 
-os10bas1                     353-359                                   OS 10 sec baseline 1               
-os10bas2                     360-366                                   OS 10 sec baseline 2     
-os10im1                      367-373                                   OS 10 sec immediately post 1
-os10im2                      374-380                                   OS 10 sec immediately post 2         
-os10ps51		381-387	 		OS 10 sec 5min post 1
-os10ps52		388-394			OS 10 sec 5min post 2
-os10p101		395-401			OS 10 sec 10min post 1
-os10p102		402-408			OS 10 sec 10min post 2
-os10p151		409-415			OS 10 sec 15min post 1
-os10p152		416-422			OS 10 sec 15min post 2
+|Variable|                                                          Code|
+|--------|---------------------------------------------|
+|ID           |         |
+|od3bas1  |             OD 3sec baseline 1               |
+|od3bas2  |             OD 3 sec baseline 2     |
+|od3im1   |             OD 3 sec immediately post 1|
+|od3im2   |             OD 3 sec immediately post 2         |
+|od3pst51|			OD 3 sec 5min post 1|
+|od3pst52|						OD 3 sec 5min post 2|
+|od3pt101|						OD 3 sec 10min post 1|
+|od3pt102|						OD 3 sec 10min post 2|
+|od3pt151|						OD 3 sec 15min post 1|
+|od3pt152|						OD 3 sec 15min post 2 |
+|os3bas1  |   OS 3sec baseline 1               |
+|os3bas2  |   OS 3 sec baseline 2     |
+|os3im1   |   OS 3 sec immediately post 1|
+|os3im2   |   OS 3 sec immediately post 2         |
+|os3pst51|			 		OS 3 sec 5min post 1|
+|os3pst52|					OS 3 sec 5min post 2|
+|os3pt101|					OS 3 sec 10min post 1|
+|os3pt102|					OS 3 sec 10min post 2|
+|os3pt151|					OS 3 sec 15min post 1|
+|os3pt152|					OS 3 sec 15min post 2|
+|od6bas1  |   OD 6 sec baseline 1               |
+|od6bas2  |   OD 6 sec baseline 2     |
+|od6im1   |   OD 6 sec immediately post 1|
+|od6im2   |   OD 6 sec immediately post 2         |
+|od6pst51|					OD 6 sec 5min post 1|
+|od6pst52|					OD 6 sec 5min post 2|
+|od6pt101|					OD 6 sec 10min post 1|
+|od6pt102|					OD 6 sec 10min post 2|
+|od6pt151|					OD 6 sec 15min post 1|
+|od6pt152|		 			OD 6 sec 15min post 2 |
+|os6bas1  |         OS 6 sec baseline 1               |
+|os6bas2  |         OS 6 sec baseline 2     |
+|os6im1   |         OS 6 sec immediately post 1|
+|os6im2   |         OS 6 sec immediately post 2         |
+|os6pst51|		      OS 6 sec 5min post 1|
+|os6pst52|		      OS 6 sec 5min post 2|
+|os6pt101|		      OS 6 sec 10min post 1|
+|os6pt102|		      OS 6 sec 10min post 2|
+|os6pt151|		      OS 6 sec 15min post 1|
+|os6pt152|		      OS 6 sec 15min post 2|
+|od10bas1|          OD 10 sec baseline 1               |
+|od10bas2|          OD 10 sec baseline 2     |
+|od10im1  |         OD 10 sec immediately post 1|
+|od10im2  |         OD 10 sec immediately post 2         |
+|od10ps51|		      OD 10 sec 5min post 1|
+|od10ps52|		      OD 10 sec 5min post 2|
+|od10p101|		      OD 10 sec 10min post 1|
+|od10p102|		      OD 10 sec 10min post 2|
+|od10p151|		      OD 10 sec 15min post 1|
+|od10p152|		      OD 10 sec 15min post 2 |
+|os10bas1|          OS 10 sec baseline 1               |
+|os10bas2|          OS 10 sec baseline 2     |
+|os10im1  |         OS 10 sec immediately post 1|
+|os10im2  |         OS 10 sec immediately post 2         |
+|os10ps51|		      OS 10 sec 5min post 1|
+|os10ps52|		      OS 10 sec 5min post 2|
+|os10p101|		      OS 10 sec 10min post 1|
+|os10p102|		      OS 10 sec 10min post 2|
+|os10p151|		      OS 10 sec 15min post 1|
+|os10p152|		      OS 10 sec 15min post 2|
 
 ### TEMPERAT
 
-Variable    COLUMN       LABEL
-Date         1-6         DATE (MDY)
-Out_temp     8-10        OUTSIDE TEMERATURE  Degrees Fahrenheit
-Room        12-13        ROOM LOCATION
-In_temp     15-18        INSIDE TEMPERATURE  Degrees Fahrenheit
-Cor_fac       20         CORRECTION FACTOR ADDED (1=YES 0=NO)
-Typ_wea       22         TYPE OF WEATHER
-                          1=SUNNY
-                          2=PARTLY CLOUDY
-                          3=CLOUDY
-                          4=RAINY
-                          5=FOGGY
-                          9=MISSING
+|Variable|    LABEL|
+|--------|---------------------|
+|Date       | DATE (MDY)|
+|Out_temp|    OUTSIDE TEMERATURE  Degrees Fahrenheit|
+|Room       | ROOM LOCATION|
+|In_temp  |   INSIDE TEMPERATURE  Degrees Fahrenheit|
+|Cor_fac  |   CORRECTION FACTOR ADDED (1=YES 0=NO)|
+|Typ_wea  |   TYPE OF WEATHER|
+|               |           1=SUNNY|
+|               |           2=PARTLY CLOUDY|
+|               |           3=CLOUDY|
+|               |           4=RAINY|
+|               |           5=FOGGY|
+|               |           9=MISSING|
 
 ### TENNIS1
 
-VARIABLE  Column       VARIABLE NAME
--------------------------------------------------------
-Id         3-5         ID
-
-Age        8-9         AGE    99=MISSING
-
-Sex         12         SEX   1=MALE / 2=FEMALE
-
-Num_epis    15         NUMBER OF EPISODES OF TENNIS ELBOW 9=MISSING	                      
-
-Typ_last    18         TYPE OF RACQUET USED DURING LAST EPISODE
-                        1=CONVENTIONAL SIZE
-                        2=MID-SIZE
-                        3=OVER-SIZE
-                        9=MISSING
-
-Wgt_last     21        WEIGHT OF RACQUET USED DURING LAST EPISODE
-                        1=HEAVY
-                        2=MEDIUM
-                        3=LIGHT
-                        4=DON'T KNOW
-                        9=MISSING
-
-Mat_last     24        MATERIAL OF RACQUET USED DURING LAST EPISODE
-                        1=WOOD
-                        2=ALUMINUM
-                        3=FIBERGLASS AND COMPOSITE
-                        4=GRAPHITE
-                        5=STEEL
-                        6=COMPOSITE
-                        7=OTHER
-                        9=MISSING
- 
- Str_last     27       STRING TYPE OF RACQUET USED DURING LAST EPISODE
-                        1=NYLON
-                        2=GUT
-                        3=DON'T KNOW
-                        9=MISSING
-
-Typ_curr       30      TYPE OF RACQUET USED CURRENTLY
-                         1=CONVENTIONAL SIZE
-                         2=MID-SIZE
-                         3=OVER-SIZE
-                         9=MISSING
-
- Wgt_curr      33      WEIGHT OF RACQUET USED CURRENTLY   
-                        1=HEAVY
-                        2=MEDIUM
-                        3=LIGHT
-                        4=DON'T KNOW
-                        9=MISSING
-
-Mat_curr       36      MATERIAL OF RACQUET USED CURRENTLY
-                        1=WOOD
-                        2=ALUMINUM
-                        3=FIBERGLASS AND COMPOSITE
-                        4=GRAPHITE
-                        5=STEEL
-                        6=COMPOSITE
-                        7=OTHER
-                        9=MISSING
- 
-Str_curr       39     STRING TYPE OF RACQUET USED CURRENTLY
-                       1=NYLON
-                       2=GUT
-                       3=DON'T KNOW
-                       9=MISSING
+|VARIABLE |        VARIABLE NAME|
+|--------|-----------------------------------------------|
+|Id       | ID|
+|Age      | AGE    99=MISSING|
+|Sex      | SEX   1=MALE / 2=FEMALE|
+|Num_epis | NUMBER OF EPISODES OF TENNIS ELBOW 9=MISSING	                      |
+|Typ_last | TYPE OF RACQUET USED DURING LAST EPISODE|
+|         |               1=CONVENTIONAL SIZE|
+|         |               2=MID-SIZE|
+|         |               3=OVER-SIZE|
+|         |               9=MISSING|
+|Wgt_last | WEIGHT OF RACQUET USED DURING LAST EPISODE|
+|         |               1=HEAVY|
+|         |               2=MEDIUM|
+|         |               3=LIGHT|
+|         |               4=DON'T KNOW|
+|         |               9=MISSING|
+|Mat_last | MATERIAL OF RACQUET USED DURING LAST EPISODE|
+|         |               1=WOOD|
+|         |               2=ALUMINUM|
+|         |               3=FIBERGLASS AND COMPOSITE|
+|         |               4=GRAPHITE|
+|         |               5=STEEL|
+|         |               6=COMPOSITE|
+|          |              7=OTHER|
+|         |               9=MISSING|
+| Str_last |STRING TYPE OF RACQUET USED DURING LAST EPISODE|
+|           |             1=NYLON|
+|           |             2=GUT|
+|           |             3=DON'T KNOW|
+|           |             9=MISSING|
+|Typ_curr | TYPE OF RACQUET USED CURRENTLY|
+|          |               1=CONVENTIONAL SIZE|
+|           |              2=MID-SIZE|
+|            |             3=OVER-SIZE|
+|             |            9=MISSING|
+| Wgt_curr     | WEIGHT OF RACQUET USED CURRENTLY   |
+|               |         1=HEAVY|
+|                |        2=MEDIUM|
+|                 |       3=LIGHT|
+|                  |      4=DON'T KNOW|
+|                   |     9=MISSING|
+|Mat_curr     | MATERIAL OF RACQUET USED CURRENTLY|
+|              |          1=WOOD|
+|             |           2=ALUMINUM|
+|             |           3=FIBERGLASS AND COMPOSITE|
+|             |           4=GRAPHITE|
+|             |           5=STEEL|
+|             |           6=COMPOSITE|
+|             |           7=OTHER|
+|             |           9=MISSING|
+|Str_curr     |  STRING TYPE OF RACQUET USED CURRENTLY|
+|             |          1=NYLON|
+|             |          2=GUT|
+|             |          3=DON'T KNOW|
+|             |          9=MISSING|
 
 ### TENNIS2
 
-VARIABLE   Column  PERIOD*  VARIABLE NAME
-----------------------------------------------------------------------------------
-id         3-5                ID
+|VARIABLE|     PERIOD* | VARIABLE NAME|
+|--------|-------------|-------------------------------------------------------------|
+|id           |         |     ID|
+|age          |          |    AGE|
+|sex          |         |      SEX|
+|               |        |        1 = MALE|
+|               |         |       2 = FEMALE|
+|               |         |       9 = MISSING|
+|drg_ord  |               |    DRUG ORDER|
+|               |         |       1 = MOTRIN-PLACEBO|
+|               |         |       2 = PLACEBO-MOTRIN|
+|painmx_2|            2   |    DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS|
+|               |         |        BAESLINE|
+|               |         |       1 = WORST|
+|               |         |       2 = UNCHANGED|
+|               |         |       3 = SLIGHTLY IMPROVED (25%)|
+|               |         |       4 = MODERATELY IMPROVED (50%)|
+|               |         |       5 = MOSTLY IMPROVED (75%)|
+|               |         |       6 = COMPLETELY IMPROVED|
+|               |         |       9 = MISSING|
+|pain12_2|            2   |    WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO                               |
+|               |         |      SAME PERIOD AT BASELINE  (SAME CODE AS painmx_2)|
+|painav_2|            2   |    DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS. BASELINE|
+|               |         |     (SAME CODE AS painmx_2)  |
+|painov_2|            2   |    OVERALL IMPRESSION OF DRUG EFFICACY VS. BASELINE (SAME CODE AS painmx_2)|
+|painmx_3|        3       |DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS  |
+|               |         |       BASELINE   (SAME CODE AS painmx_2)|
+|pain12_3|          3     |  WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO |
+|               |         |      SAME PERIOD AT BASELINE   (SAME CODE AS painmx_2)|
+|painav_3|            3   |    DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS BASELINE|
+|               |         |      (SAME CODE AS painmx_2)|
+|painov_3|            3   |    OVERALL IMPRESSION OF DRUG EFFICACY VS BASELINE|
+|               |         |      (SAME CODE AS painmx_2)|
+|painmx_4|            4   |    DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS  |
+|               |         |       BASELINE   (SAME CODE AS painmx_2)|
+|pain12_4|            4   |    WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO  |
+|               |         |      SAME PERIOD AT BASELINE  (SAME CODE AS painmx_2)|
+|painav_4|            4   |    DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS BASELINE|
+|               |         |       (SAME CODE AS painmx_2)|
+|painov_4|            4   |    OVERALL IMPRESSION OF DRUG EFFICACY VS BASELINE|
+|               |         |      (SAME CODE AS painmx_2)|
 
-age        8-9                AGE
 
-sex         12                SEX
-                               1 = MALE
-                               2 = FEMALE
-                               9 = MISSING
-
-drg_ord     15                DRUG ORDER
-                               1 = MOTRIN-PLACEBO
-                               2 = PLACEBO-MOTRIN
-
-painmx_2    18        2       DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS
-                                BAESLINE
-                               1 = WORST
-                               2 = UNCHANGED
-                               3 = SLIGHTLY IMPROVED (25%)
-                               4 = MODERATELY IMPROVED (50%)
-                               5 = MOSTLY IMPROVED (75%)
-                               6 = COMPLETELY IMPROVED
-                               9 = MISSING
-
-pain12_2    21        2       WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO                               
-                              SAME PERIOD AT BASELINE  (SAME CODE AS painmx_2)
-
-painav_2    24        2       DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS. BASELINE
-                             (SAME CODE AS painmx_2)  
-
-painov_2    27        2       OVERALL IMPRESSION OF DRUG EFFICACY VS. BASELINE		                        (SAME CODE AS painmx_2)
-
-painmx_3    30        3       DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS  
-                               BASELINE   (SAME CODE AS painmx_2)
-
-pain12_3    33        3       WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO                    
-                              SAME PERIOD AT BASELINE   (SAME CODE AS painmx_2)
-
-painav_3    36        3       DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS BASELINE
-                              (SAME CODE AS painmx_2)
-
-painov_3    39        3       OVERALL IMPRESSION OF DRUG EFFICACY VS BASELINE
-                              (SAME CODE AS painmx_2)
-
-painmx_4    42        4       DURING STUDY PERIOD, PAIN DURING MAXIMUM ACTIVITY VS  
-                               BASELINE   (SAME CODE AS painmx_2)
-
-pain12_4    45        4       WITHIN 12 HOURS FOLLOWING MAXIMAL ACTIVITY, COMPARED TO  
-                              SAME PERIOD AT BASELINE  (SAME CODE AS painmx_2)
-
-painav_4    48        4       DURING THE AVERAGE DAY OF STUDY PERIOD PAIN VS BASELINE
-                               (SAME CODE AS painmx_2)
-
-painov_4    51        4       OVERALL IMPRESSION OF DRUG EFFICACY VS BASELINE
-                              (SAME CODE AS painmx_2)
-----------------------------------------------------------------------------------
 * PERIOD 2 = PAIN SCORES AFTER THE FIRST ACTIVE DRUG PERIOD COMPARED WITH BASELINE
   
   PERIOD 3 = PAIN SCORES AFTER THE WASHOUT PERIOD COMPARED WITH BASELINE
