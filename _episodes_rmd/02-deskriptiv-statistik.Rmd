@@ -3,11 +3,11 @@ title: "Deskriptiv statistik og statistiske deskriptorer"
 teaching: 10
 exercises: 5
 questions:
-- "FIXME"
+- "Hvordan foretager vi beregninger af statistiske deskriptorer i R"
 objectives:
-- "FIXME"
+- "Forstå metodikken i brug af funktioner på subset af datasæt"
 keypoints:
-- "FIXME"
+- "At beregne en statistisk deskriptor kræver i almindelighed blot en funktion"
 source: Rmd
 ---
 

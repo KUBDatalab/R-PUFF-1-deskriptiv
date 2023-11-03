@@ -3,11 +3,13 @@ title: "At jonglere med data"
 teaching: 10
 exercises: 5
 questions:
-- "FIXME"
+- "Hvordan manipulerer jeg let mine data?"
 objectives:
-- "FIXME"
+- "Intruktion af tidyverse funktioner til manipulation af data"
+- "Intruktion af tidyverse funktioner til beregning af summary statistics"
+- "Intruktion af tidyverse funktioner til visualisering af data"
 keypoints:
-- "FIXME"
+- "Tidyverse pakkerne giver adgang til meget effektive værktøjer til arbejde med data"
 source: Rmd
 ---
 
@@ -15,6 +17,7 @@ source: Rmd
 source("../bin/chunk-options.R")
 knitr_fig_path("03-")
 # source("../bin/download_data.R")
+library(tidyverse)
 ```
 
 ## At jonglere
@@ -188,7 +191,6 @@ who %>%
 > ## Øvelse
 >
 > fjern både iso2, iso3 og new kolonnerne fra datasættet:
-
 >
 > > ## Løsning
 > > who %>% 
