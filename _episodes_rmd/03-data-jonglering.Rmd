@@ -53,11 +53,11 @@ Vi kommer her til at arbejde med det datasæt vi downloadede i sidste lektion.
 Vi starter med at indlæse det - bare for det tilfælde at det er blevet væk
 undervejs:
 ```{r eval = F}
-who <- read_csv("data/who.csv")
+who <- read_csv2("data/who.csv")
 ```
 
 ```{r echo  = F}
-who <- read_csv("../data/who.csv")
+who <- read_csv2("../data/who.csv")
 ```
 
 
