@@ -19,6 +19,7 @@ knitr_fig_path("03-")
 
 Meget af det vi skal - foretage statistiske test, bygge modeller, lave tabeller.
 Al den slags, er superlet. 
+
 Det svære er at finde ud af hvilken test vi vil foretage, eller hvilken model vi
 vil bygge. Det er også svært at tolke data. Men når først vi har fundet ud af hvad
 vi vil - så er det ret let. Vi skal "bare" finde den funktion der gør arbejdet for
@@ -45,15 +46,53 @@ hvor mange overflødige kolonner vi har).
 
 Vi kan have lyst til at lave en ny kolonne, baseret på hvad der er i de eksisterende
 kolonner. En variant er at den nye kolonne vi laver i virkeligheden erstatter en
-af de eksisterende.
+af de eksisterende. Det kunne være at en kolonne faktisk indeholder kategoriske
+data, men ikke på en måde så R kan arbejde med dem som kategoriske data. Så laver
+vi den om til en kolonne der indeholder katagoriske data.
 
 Og så kan vi have lyst til at opsummere værdierne i en kolonne, for eksempelvis at få
 gennemsnit eller standardafvigelse. Og vi kan have lyst til at gøre det for flere 
 grupper.
 
-Hvordan gør vi det?
+Hvordan gør vi det? Vi kommer her til at vise den lette måde at gøre det på.
+
+
+## Men allerførst: DATA!
+
+Vi kommer her til at arbejde med det datasæt vi downloadede i sidste lektion.
+
+Det et datasæt fra WHO, med oplysninger om udbredelsen af tuberkulose:
+
+```{r}
+head(data)
+```
+De første fire kolonner giver sig selv. 
+
+diag-kolonnen indeholder oplysninger om hvordan diagnosen er foretaget:
+* rel - tilbagefald
+* sn - stillet uden mikroskopi af sputum
+* sp - stillet ved mikroskopi af sputum
+* ep - ekstraplumonal TB
+
+sex-kolonnen angiver kønnet - m for mænd, f for kvinder.
+
+new-kolonne er en artefakt fra skabelsen af datasættet. Alle værdier er "new".
+
+Opgørelsen af antal nye TB tilfælde sker i aldersgrupper, gående fra age_low 
+til age_high. 
+
+value-kolonnen indeholder antallet af nye TB-tilfælde for det givne køn, 
+aldersgruppe, land, år og diagnostiske metode.
+
+
+
+
+
+
 
 ### Pipen
+
+En grundlæggende operator vi kommer til at bruge igen og igen er pipen.
 
 Når vi manipulerer data, skal vi ofte foretage mere end en handling.
 
@@ -84,10 +123,29 @@ funktioner, der samlet manipulerer vores data.
 > udgaver af pipen i samme pakke, men den mest brugte er %>%. Den er så nyttig,
 > at base-R, R uden nogen pakker, har introduceret sin egen udgave: |>
 > I default installationen af RStudio, er %>% tilgængelig med genvejstasten
-> ctrl-shift-m. Indtil default indstillingerne i RStudio bliver ændre, arbejder
+> ctrl-shift-m. Indtil default indstillingerne i RStudio bliver ændret, arbejder
 > vi med Magrittr pipen, og ikke base-R pipen.
 {.callout}
 
+Lad os prøve. 
+
+Funktionen `head()` tager en dataframe, og viser os de første 6 rækker:
+```{r}
+head(who)
+```
+
+Det kan være vældig nyttigt. Lad os tage et kig på hvordan det fungerer med 
+pipen:
+```{r}
+who %>% 
+  head()
+```
+
+Pipen tager hvad der står på venstre side, `who` og sender det til funktionen `head()`.
+head() funktionen skal have en dataframe, det får den fra pipen.
+
+Det er bøvlet hvis det bare er det vi skal gøre. Men som nævnt sparer det mange
+mellemregninger.
 
 ## Datamanipulation med Tidyverse
 
@@ -100,14 +158,244 @@ Når vi manipulerer data, er det særligt den del af tidyverse der hedder dplyr 
 bruger. 
 
 ### Udvælge kolonner
+Det er ikke alle kolonner vi behøver her. `iso2` og `iso3` er eksempelvis
+ikke så anvendelige her. Det er `new` heller ikke. 
+Vi kan måske få brug for dem hvis vi skal 
+tilføje data fra andre kilder, eller hvis vi skal visualisere data på et kort.
+
+Men de gør ikke noget godt for vores overblik over data. 
+
+Funktionen `select()` udvælger kolonner:
+
+```{r}
+who %>% 
+  select("country") %>% 
+  head()
+```
+
+Vi sender resultatet videre til `head()`  for ikke at skulle kigge på alle
+405.000 rækker.
+
+Vi kan udvælge mere end en kolonne:
+```{r}
+who %>% 
+  select(country, year) %>% 
+  head()
+```
+Og vi kan angive at der er kolonner vi ikke vil se på:
+
+```{r}
+who %>% 
+  select(-iso2)
+```
+challenge.
+fjern både iso2, iso3 og new kolonnerne fra datasættet:
+```{r}
+who %>% 
+  select(-iso2, -iso3, -new)
+```
+
+Bemærk at vi ikke fjerner kolonnerne fra vores oprindelige dataframe.
 
 ### Udvælge rækker
+Det kan være vi er interesserede i specifikke rækker. Eksempelvis alle dem hvor
+country er "Afghanistan". 
+
+Funktionen der gør det hedder `filter()`. 
+```{r}
+who %>% 
+  select(-c(iso2, iso3, new)) %>% 
+  filter(country == "Afghanistan") %>% 
+  head()
+```
+Bemærk at vi skriver "==". Vi specificerer at vi vil have de rækker hvor det 
+udtryk der står i funktionen er sandt. Altså her at der i "country" står
+"Afghanistan". Bemærk også, at i stedet for at sætte minus foran alle de
+kolonner vi ikke vil se på, kan vi samle dem i en vektor med `c()` funktionen,
+og sætte et minus foran den.
+
+challenge
+Udvælg de rækker hvor der er data om tuberkolose blandt drengebørn i alderen
+0 til 14 for Afghanistan:
+
+```{r}
+who %>% 
+  filter(country == "Afghanistan", sex == "m", age_low == "00")
+```
+
 
 ### Lave nye kolonner baseret på eksisterende
 
+Læg mærke til kolonneoverskrifterne. `age_low` kolonnen har "<chr>" stående.
+Det indikerer at kolonnen indeholder tekst, og ikke tal. Under `age_high` 
+står der "<dbl>". Det indikerer at kolonnen indeholder tal.
+
+Vi vil godt have lavet den nedre aldersgrænse om til tal.
+
+Og det gør vi ved at tage den eksisterende kolonne `age_low` og erstatte den med
+en ny kolonne, der hedder det samme - men som indeholder tal.
+
+```{r}
+who %>% 
+  mutate(age_low = as.numeric(age_low)) %>% 
+  head()
+```
+as.numeric() tager tekstinput, og konverterer det til et tal - hvis det kan gøres
+automatisk. Og det kan det i dette tilfælde.
+
+Nu kan vi lave matematik på den kolonne, og lave en ny kolonne hvor vi beregner 
+aldersintervallet i rækkerne:
+```{r}
+who %>% 
+    mutate(age_low = as.numeric(age_low)) %>% 
+    mutate(interval = age_high - age_low) %>% 
+  select(country, year, interval) %>% 
+  head()
+```
+
+Vi kan altså bruge `mutate()` funktionen både til at lave om på eksisterende
+kolonner. Og til at lave nye kolonner, baseret på data i de kolonner i allerede 
+har.
+
+
 ### Opsummering af data i kolonner
+Hvor mange nye tilfælde af TB var der i Afghanistan i 1997?
+
+Det er en opsummering. Så funktionen der skal bruges hedder summarise:
+
+```{r}
+who %>% 
+  filter(iso2 == "AF", 
+         year == 1997) %>% 
+  summarise(total_tb = sum(value, na.rm = T))
+```
+Der er manglende værdier. Og den slags skal kodes med `NA`. Inden vi kan lave 
+matematik på kolonner der indeholder manglende værdier, skal de fjernes. Og 
+det kan vi specificere med na.rm = T.
+
+Summarise kan opsummere meget andet, i dette tilfælde giver det ikke mening
+at beregne standardafvigelser, men i princippet kan alle summary-statistik
+funktioner lægges ind her:
+```{r}
+who %>% 
+  filter(iso2 == "AF",
+         year == 1997) %>% 
+  summarise(total_tb = sum(value, na.rm = T),
+            stdaf_tb = sd(value, na.rm = T))
+```
+
 
 ### Grupper dataframes
+
+Det var for 1997. Hvordan så det ud for 1998? Vi kunne ændre på værdien i 
+`filter`. Og samle resultaterne for hvert år. Det bliver træls når vi også 
+skal have værdierne for 1999, 2000, 2001 etc.
+
+I stedet grupperer vi dataframen:
+```{r}
+who %>% 
+  filter(iso2 == "AF",
+         year > 1996,
+         year < 2006) %>% 
+  group_by(year) %>% 
+  summarise(total_tb = sum(value, na.rm=T))
+```
+Vi har filtreret på årstal for at få en overskuelig tabel, men det er i `groupby` 
+magien sker.
+
+Skal vi have tabellen ud i et pænt format i vores RMarkdown, kan vi med fordel
+sende resultatet videre til funktionen `kable` der formatterer den pænt (eller 
+pænere). Den kommer fra pakken/biblioteket `knitr`:
+
+```{r}
+library(knitr)
+who %>% 
+  filter(iso2 == "AF",
+         year > 1996,
+         year < 2006) %>% 
+  group_by(year) %>% 
+  summarise(total_tb = sum(value, na.rm=T)) %>% 
+  kable()
+```
+
+Vi kan gruppere efter mere end en variabel. Er der eksempelvis forskel på
+hvor mange tilfælde af TB der diagnosticeres mellem kønnene?
+
+```{r}
+who %>% 
+  filter(iso2 == "AF",
+         year > 1996,
+         year < 2006) %>% 
+  group_by(year, sex) %>% 
+  summarise(total_tb = sum(value, na.rm=T))
+```
+Det er ikke en specielt let-læselig tabel. Det ville være rart hvis vi 
+fik en tabel hvor antallet af TB-tilfælde for hvert køn, stod i hver sin 
+kolonne.
+
+Det er en såkaldt pivotering. Og det gøres på denne måde:
+```{r}
+who %>% 
+  filter(iso2 == "AF",
+         year > 1996,
+         year < 2006) %>% 
+  group_by(year, sex) %>% 
+  summarise(total_tb = sum(value, na.rm=T)) %>% 
+  pivot_wider(names_from = sex, values_from = total_tb)
+```
+Vi laver en pivot_wider, fordi vi godt vil have en bredere, "wider" tabel.
+Vi skal angive en kolonne der indeholder de værdier vi godt vil have skal være kolonneoverskrifter
+bagefter. Og en kolonne der indeholder de værdier vi gerne vil have i tabellen.
+
+Tilsvarende kan vi gøre en bred kolonne længere (og smallere) med funktionen
+`pivot_longer`. Hvis vi godt vil have tabellen ovenfor tilbage til sin oprindelige
+form, kan vi bruge den funktion. Operationen er den samme, bare den anden vej:
+
+Vi havde en kolonne med værdier der blev til kolonneoverskrifter. Her blev en kolonne
+til to. Og vi havde en kolonne der indeholdet de værdier der skulle placeres 
+under de to nye kolonner.
+
+Så nu angiver vi hvilke af kolonnerne i den brede tabel der skal blive til værdier
+i en kolonne i den smalle tabel. Og hvad den kolonne skal hedde. Det er ikke 
+nødvendigt at angive hvilke kolonner værdierne skal komme fra, det er jo de samme
+som vi starter med at angive:
+
+```{r}
+who %>% 
+  filter(iso2 == "AF",
+         year > 1996,
+         year < 2006) %>% 
+  group_by(year, sex) %>% 
+  summarise(total_tb = sum(value, na.rm=T)) %>% 
+  pivot_wider(names_from = sex, values_from = total_tb) %>% 
+  pivot_longer(cols = c(f, m), names_to = "sex", )
+```
+
+Lad os lige se på den brede tabel igen:
+
+```{r}
+who %>% 
+  filter(iso2 == "AF",
+         year > 1996,
+         year < 2006) %>% 
+  group_by(year, sex) %>% 
+  summarise(total_tb = sum(value, na.rm=T)) %>% 
+  pivot_wider(names_from = sex, values_from = total_tb)
+```
+Det kunne være rart med mere meningsfyldte kolonnenavne. Det kan vi give
+dem med funktionen `rename()`:
+
+```{r}
+who %>% 
+  filter(iso2 == "AF",
+         year > 1996,
+         year < 2006) %>% 
+  group_by(year, sex) %>% 
+  summarise(total_tb = sum(value, na.rm=T)) %>% 
+  pivot_wider(names_from = sex, values_from = total_tb) %>% 
+  rename("female" = f,
+         "male" = m)
+```
 
 
 
