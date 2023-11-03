@@ -15,6 +15,8 @@ source: Rmd
 
 
 
+## At jonglere
+
 Meget af det vi skal - foretage statistiske test, bygge modeller, lave tabeller.
 Al den slags, er superlet. 
 
@@ -26,31 +28,15 @@ os. Og så skal vi have jongleret data til at have den form som funktionen tager
 
 Det ser vi på i dette modul.
 
-Vi har noget data. Hvad kan vi forestille os at man kan gøre med det?
+Vi har allerede set hvordan man kan subsette data. Og hvordan man kan trække en
+bestemt kolonne ud af et datasæt. 
 
-Data kommer i rækker og kolonner.
+Ofte har man brug for at gøre mere end en ting med sit data. Og hvis man
+laver et nyt objekt til hver af mellemregningerne, kan man hurtigt tabe overblikket.
 
-I rækkerne har vi observationer. I kolonnerne har vi variable.
-
-Nogen af variablene beskriver grupper af observationer. Det kan de i princippet
-alle gøre. Men nogen af dem giver mere mening end andre.
-
-Så. Vi kan have lyst til kun at se på bestemte observationer, baseret på hvilke
-værdier de har af bestemte variable.
-
-Vi kan have lyst til kun at se på bestemte kolonner (det gør vi som regel for at
-få noget der er mere overskueligt, stort set alt hvad vi laver er ligeglade med 
-hvor mange overflødige kolonner vi har).
-
-Vi kan have lyst til at lave en ny kolonne, baseret på hvad der er i de eksisterende
-kolonner. En variant er at den nye kolonne vi laver i virkeligheden erstatter en
-af de eksisterende. Det kunne være at en kolonne faktisk indeholder kategoriske
-data, men ikke på en måde så R kan arbejde med dem som kategoriske data. Så laver
-vi den om til en kolonne der indeholder katagoriske data.
-
-Og så kan vi have lyst til at opsummere værdierne i en kolonne, for eksempelvis at få
-gennemsnit eller standardafvigelse. Og vi kan have lyst til at gøre det for flere 
-grupper.
+Så hvis vi kunne finde en måde at sende den første mellemregning videre til
+den næste funktion der skal gøre noget ved vores data. Og måske endda sende
+dét resultat videre til en tredie funktion, så kan vi spare en del besvær.
 
 Hvordan gør vi det? Vi kommer her til at vise den lette måde at gøre det på.
 
@@ -59,37 +45,49 @@ Hvordan gør vi det? Vi kommer her til at vise den lette måde at gøre det på.
 
 Vi kommer her til at arbejde med det datasæt vi downloadede i sidste lektion.
 
-Det et datasæt fra WHO, med oplysninger om udbredelsen af tuberkulose:
+Vi starter med at indlæse det - bare for det tilfælde at det er blevet væk
+undervejs:
+
+~~~
+who <- read_csv("data/who.csv")
+~~~
+{: .language-r}
 
 
 ~~~
-head(data)
+Error in read_csv("../data/who.csv"): could not find function "read_csv"
+~~~
+{: .error}
+
+
+
+Det et datasæt fra WHO, med oplysninger om udbredelsen af tuberkulose. Vi ser på
+de første seks rækker:
+
+
+~~~
+head(who)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-                                                                            
-1 function (..., list = character(), package = NULL, lib.loc = NULL,        
-2     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE) 
-3 {                                                                         
-4     fileExt <- function(x) {                                              
-5         db <- grepl("\\\\.[^.]+\\\\.(gz|bz2|xz)$", x)                     
-6         ans <- sub(".*\\\\.", "", x)                                      
+Error in eval(expr, envir, enclos): object 'who' not found
 ~~~
-{: .output}
-De første fire kolonner giver sig selv. 
+{: .error}
+De første fire kolonner giver (næsten) sig selv. 
+
+new-kolonne er en artefakt fra skabelsen af datasættet. Alle værdier er "new".
 
 diag-kolonnen indeholder oplysninger om hvordan diagnosen er foretaget:
+
 * rel - tilbagefald
 * sn - stillet uden mikroskopi af sputum
 * sp - stillet ved mikroskopi af sputum
 * ep - ekstraplumonal TB
 
 sex-kolonnen angiver kønnet - m for mænd, f for kvinder.
-
-new-kolonne er en artefakt fra skabelsen af datasættet. Alle værdier er "new".
 
 Opgørelsen af antal nye TB tilfælde sker i aldersgrupper, gående fra age_low 
 til age_high. 
@@ -98,14 +96,10 @@ value-kolonnen indeholder antallet af nye TB-tilfælde for det givne køn,
 aldersgruppe, land, år og diagnostiske metode.
 
 
-
-
-
-
-
 ### Pipen
 
-En grundlæggende operator vi kommer til at bruge igen og igen er pipen.
+Det var vores data. Nu skal vi manipulere det. Og en grundlæggende operator 
+vi kommer til at bruge igen og igen er pipen.
 
 Når vi manipulerer data, skal vi ofte foretage mere end en handling.
 
@@ -248,21 +242,19 @@ who %>%
 Error in who %>% select(-iso2): could not find function "%>%"
 ~~~
 {: .error}
-challenge.
-fjern både iso2, iso3 og new kolonnerne fra datasættet:
 
-~~~
-who %>% 
-  select(-iso2, -iso3, -new)
-~~~
-{: .language-r}
+> ## Øvelse
+>
+> fjern både iso2, iso3 og new kolonnerne fra datasættet:
 
+>
+> > ## Løsning
+> > who %>% 
+> > 
+> >   select(-iso2, -iso3, -new)
+> {: .solution}
+{: .challenge}
 
-
-~~~
-Error in who %>% select(-iso2, -iso3, -new): could not find function "%>%"
-~~~
-{: .error}
 
 Bemærk at vi ikke fjerner kolonnerne fra vores oprindelige dataframe.
 
@@ -286,29 +278,26 @@ who %>%
 Error in who %>% select(-c(iso2, iso3, new)) %>% filter(country == "Afghanistan") %>% : could not find function "%>%"
 ~~~
 {: .error}
+
 Bemærk at vi skriver "==". Vi specificerer at vi vil have de rækker hvor det 
 udtryk der står i funktionen er sandt. Altså her at der i "country" står
 "Afghanistan". Bemærk også, at i stedet for at sætte minus foran alle de
 kolonner vi ikke vil se på, kan vi samle dem i en vektor med `c()` funktionen,
 og sætte et minus foran den.
 
-challenge
-Udvælg de rækker hvor der er data om tuberkolose blandt drengebørn i alderen
-0 til 14 for Afghanistan:
-
-
-~~~
-who %>% 
-  filter(country == "Afghanistan", sex == "m", age_low == "00")
-~~~
-{: .language-r}
-
-
-
-~~~
-Error in who %>% filter(country == "Afghanistan", sex == "m", age_low == : could not find function "%>%"
-~~~
-{: .error}
+> ## Øvelse
+>
+> Udvælg de rækker hvor der er data om tuberkolose blandt drengebørn i alderen
+> 0 til 14 for Afghanistan. 
+>
+> Hint: Vi kan tilføje mere end et kriterium i samme filter funktion
+>
+> > ## Løsning
+> > who %>% 
+> > 
+> > filter(country == "Afghanistan", sex == "m", age_low == "00")
+> {: .solution}
+{: .challenge}
 
 
 ### Lave nye kolonner baseret på eksisterende
@@ -364,6 +353,7 @@ har.
 
 
 ### Opsummering af data i kolonner
+
 Hvor mange nye tilfælde af TB var der i Afghanistan i 1997?
 
 Det er en opsummering. Så funktionen der skal bruges hedder summarise:
@@ -432,7 +422,7 @@ who %>%
 Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year) %>% : could not find function "%>%"
 ~~~
 {: .error}
-Vi har filtreret på årstal for at få en overskuelig tabel, men det er i `groupby` 
+Vi har filtreret på årstal for at få en overskuelig tabel, men det er i `group_by` 
 magien sker.
 
 Skal vi have tabellen ud i et pænt format i vores RMarkdown, kan vi med fordel
@@ -583,7 +573,128 @@ Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(yea
 ~~~
 {: .error}
 
+## Tidy-format - og plots
+
+Det brede format er lettere for mennesker at læse. Men det lange er lettere
+for computere. Formatet kaldes ofte for `tidy` - det er derfor 
+pakken vi indlæste kaldes `tidyverse`. Så lad os kigge på den lange tabel igen:
 
 
+~~~
+AF9606 <- who %>% 
+  filter(iso2 == "AF",
+         year > 1996,
+         year < 2006) %>% 
+  group_by(year, sex) %>% 
+  summarise(total_tb = sum(value, na.rm=T))
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in who %>% filter(iso2 == "AF", year > 1996, year < 2006) %>% group_by(year, : could not find function "%>%"
+~~~
+{: .error}
+
+
+
+~~~
+AF9606
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in eval(expr, envir, enclos): object 'AF9606' not found
+~~~
+{: .error}
+Vi har her gemt resultatet i objektet `AF9606` så vi let kan arbejde videre med
+det.
+
+En af fordelene ved det lange, tidy format er, at det også bliver let at 
+lave plots.
+
+Den funktion vi bruger til det hedder `ggplot()`. Vi kommer ikke til at gå i 
+detaljer med den her, men det fungerer på denne måde:
+
+
+~~~
+AF9606 %>% 
+  ggplot(aes(x = year, y = total_tb, fill = sex)) +
+  geom_col()
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in AF9606 %>% ggplot(aes(x = year, y = total_tb, fill = sex)): could not find function "%>%"
+~~~
+{: .error}
+
+`ggplot()` funktionen får sine data via pipen ` %>% `. I ggplot funktionen
+fortæller vi at vi vil have `year` på x-aksen. Vi vil have antallet af TB-tilfælde
+på y-aksen. Og vi vil have farvelagt ting baseret på sex. 
+
+Det i sig selv giver ikke et plot, men det gør det så snart vi tilføjer, med 
+et `+` en ekstra funktion, `geom_col()` der laver et søjle diagram.
+
+Det fikse er at vi ret let kan ændre på hvad vi vil have plottet:
+
+
+~~~
+AF9606 %>% 
+  ggplot(aes(x = year, y = total_tb, fill = sex)) +
+  geom_point()
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in AF9606 %>% ggplot(aes(x = year, y = total_tb, fill = sex)): could not find function "%>%"
+~~~
+{: .error}
+
+Ved blot at ændre `geom_col()` til `geom_point()` får vi et scatter plot i stedet
+for et søjlediagram. 
+
+De indbyggede plottefunktioner i R er ret gode, og til de fleste formål alt rigeligt.
+Men hvis man vil justere på farver eller lave mange plots, så kan det være en 
+udfordring
+
+`ggplot()` kan også spare en del mellemregninger, hvis man vil sammenligne data.
+
+Hvis vi vil lave et histogram over FEV for rygende børn, et for ikke-rygende 
+børn med de indbyggede funktioner, skulle vi først bruge `subset()` funktionen
+for at lave mindre datasæt, et for hver gruppe.
+
+Med `ggplot()` er der genveje:
+
+
+~~~
+Error in read_csv("../data/FEV.csv"): could not find function "read_csv"
+~~~
+{: .error}
+
+~~~
+FEV %>% 
+  ggplot(aes(x = FEV)) +
+  geom_histogram() +
+  facet_wrap(~Smoke)
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in FEV %>% ggplot(aes(x = FEV)): could not find function "%>%"
+~~~
+{: .error}
+
+`facet_wrap(~Smoke)` fortæller `ggplot()` at vi godt vil have lavet et histogram
+for hver guppe der er i "Smoke" kolonnnen.
 
 {% include links.md %}

@@ -331,23 +331,24 @@ Twin 2  Heavier Smoking Twin
 
 ### Heart
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Heart.csv)
-|Variable	|code
-|---------|--------
-|Diagnosis	|		Y1=normal
-				Y2=atrial septal defect without pulmonary stenosis or pulmonary hypertension
-				Y3=ventricular septal defect with valvular pulmonary stenosis
-				Y4=isolated pulmonary hypertension
-				Y5=transposed great vessels
-				Y6=ventricular septal defect without pulmonary hypertension
-				Y7=ventricular septal defect with pulmonary hypertension
-|Prevalence |		Prevalence
-|X1		| 		age 1-20 years old
-|X2		|		age>20 years old
-|X3		|		mild cyanosis
-|X4		|		easy fatigue
-|X5		|		chest pain
-|X6		|		repeated respiratory infections
-|X7		|		EKG axis more than 110
+
+|Variable	|code|
+|---------|--------|
+|Diagnosis	|		Y1=normal|
+|    |				Y2=atrial septal defect without pulmonary stenosis or pulmonary hypertension|
+|			|	Y3=ventricular septal defect with valvular pulmonary stenosis|
+|			|	Y4=isolated pulmonary hypertension|
+|			|	Y5=transposed great vessels|
+|			|	Y6=ventricular septal defect without pulmonary hypertension|
+|			|	Y7=ventricular septal defect with pulmonary hypertension|
+|Prevalence |		Prevalence|
+|X1		| 		age 1-20 years old|
+|X2		|		age>20 years old|
+|X3		|		mild cyanosis|
+|X4		|		easy fatigue|
+|X5		|		chest pain|
+|X6		|		repeated respiratory infections|
+|X7		|		EKG axis more than 110|
 
 
 ### HORMONE
@@ -368,7 +369,7 @@ Twin 2  Heavier Smoking Twin
 |Hormone        |        Hormone 1=SAL/2=APP/3=CCK/4=SEC/5=VIP
 
 
-### Hosiptal
+### Hospital
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Hospital.csv)
 
