@@ -15,7 +15,7 @@ source: Rmd
 
 
 
-# NB Denne bør deles op i to
+
 
 ## Reproducerbarhed
 
@@ -111,13 +111,14 @@ Intet andet end det der er beskrevet i filen gøres eller er tilgængelig.
 
 ## Lad os så komme i gang!
 
-Challenge:
+Vi har allerede et projekt. Og vi har lavet en mappe med data. Nu 
+opretter vi vores første RMarkdown dokument:
 
-Opret et projekt i Rstudio, og lav et R markdown dokument
+Øverste venstre hjørne, "File", "New file", "R Markdown". 
 
+Og så har vi et RMarkdown dokument!
 
-
-Et RMarkdown dokument består af tre dele:
+Sådan et består af tre dele:
 
 * En header - hvor vi definerer titlen på dokumentet, forfatter og dato. Der kan gemmes meget andet interessant i den. For avancerede funktioner her henviser vi
 til vores R-Markdown kursus (TBA)
@@ -147,13 +148,52 @@ I kode chunks har vi den R-kode der gør ting med vores data.
 
 Vi indsætter lettest en ny chunk ved tastatur-genvejen ctrl-alt-i
 
-Lad os starte med at få indlæst nogle biblioteker:
+Det allerførste vi gør når vi starter på vores analyse, efter vi har oprettet
+et projekt, og lavet en folder til at gemme vores data, er at indlæse biblioteker.
+
+Biblioteker er samlinger af nyttige funktioner der gør noget bestemt. Dem kan vi 
+installere på vores computer. Start med at køre dette i "Console":
+
+
+~~~
+install.packages("tidyverse")
+~~~
+{: .language-r}
+
+Dette er en funktion. Sådan en har vi set før. Den installerer pakker, der i 
+denne sammenhæng er synonym for "bibliotek". Den skal have et navn på hvad der
+skal installeres, her "tidyverse", og vi placerer det i anførselstegn, fordi
+funktionen skal have tekst, som den kan søge efter på nettet.
+
+Som default leder funktion på siden "CRAN". Pakker og biblioteker kan findes
+andre steder, men på CRAN er vi ret sikre på at tingene fungerer.
+
+R er superglad for at have alt i hukommelse. Så hvis vi indlæser alle biblioteker
+løber vi tør for RAM. I stedet indlæser vi de pakker vi har brug for. Det gør vi
+med funktionen "library". Og den skal ikke have tekst. Det er der langhårede 
+forklaringer på, som vi springer over her:
+
+
+~~~
+library(tidyverse)
+~~~
+{: .language-r}
+
+
+
 
 Challenge
+Tilføj en "codechunk" og indlæs tidyverse pakken.
 Indlæs tidyverse og pakke med medicinske data (hvad hedder det)
+HINT; Koden i chunken køres ved at klikke på den lille grønne pil i øverste
+højre hjørne af chunken.
 
 solution
 library()
+
+
+
+
 Nogle pakker overskriver hinanden. Det er normalt ikke et problem, men det er 
 en god ide at samle alle indlæsninger af pakker i starten af dokumentet. På den
 måde funger al efterfølgende kode ens. Indlæser vi en pakke der overskriver andre
@@ -161,25 +201,75 @@ pakker senere, kan vi have funktioner i første halvdel af vores dokument, der
 fungerer anderledes end funktionerne i anden halvdel af dokumentet.
 challenge done
 
-Lad os derefter kigge på noget data:
+## Lad os kigge på noget data!
 
-Challenge
-vis tabellen XXX - lav en ny kode chunk og skriv R-kode der viser tabellen.
-solution
-xxx
+Først downloader vi data til vores data-mappe:
 
-Kodechunks kan køres, eller "eksekveres" hvis vi vil lyde som om vi har styr på
-tingene og er rutinerede R-brugere, ved at klikke på den lille grønne knap
-eller ved ctrl+enter.
+
+~~~
+download.file(STI)
+~~~
+{: .language-r}
+
+Herefter kan vi indlæse data til et `objekt` i R:
+
+
+~~~
+data <- read_csv2("data/who.csv")
+~~~
+{: .language-r}
+
+
+~~~
+ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
+~~~
+{: .output}
+
+
+
+~~~
+Rows: 405440 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ";"
+chr (7): country, iso2, iso3, new, diag, sex, age_low
+dbl (3): year, age_high, value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+~~~
+{: .output}
+callout
+
+CSV betyder kommasepareret. Men hvad gør man når ens data
+bruger kommaet som decimalseparator? Man gemmer data som 
+semikolonsepareret data. Det er så hyppigt et problem, at 
+R har dublerede funktioner, hvor read_csv indlæser "ægte" 
+kommaseparerede data, mens read_csv2 indlæser semikolonseparerede
+data.
+
+
+
 
 Lad os også skrive noget prosatekst, der forklarer hvad vi gør.
 Challenge
 Tilføj tekst før indlæsning af biblioteker der forklarer hvilke biblioteker 
-du indlæser. Og tekst før visningen af tabellen, der forklarer hvilken tabel vi
-arbejder med.
+du indlæser. Og tekst før indlæsning af data, der forklarer,
+at her indlæser du data.
 solution
 
 challenge done
+
+Et godt sted at starte når vi skal arbejde med data, er at 
+tage et kig på de første få rækker.
+Det kan vi gøre med funktionen `head()`
+
+Challenge
+Indsæt en codechunk, der viser de første ti rækker af vores datasæt.
+
+solution
+head(data)
+challenge done
+
 
 Nu har vi et markdown dokument med indlejret R-kode. Lad os prøve at generere 
 et output.
@@ -191,26 +281,6 @@ markdowndokumentet til html som default. Vi kan vælge Word. PDF kan være lidt 
 bøvlet - det kræver en installation af LaTeX på din computer. Vi holder os til 
 html her, for det gør det hurtigere at se resultatet, rette lidt, køre knit 
 kommandoen igen, og se rettelserne.
-
-
-
-
-RMarkdown har den store fordel, at det virkelig tvinger os til reproducerbar
-analyse. Normalt når vi skriver scripts, kan vi have ting liggende i hukommelse 
-(environment), som vi har tilgængelig, også selvom vi måske sidst kørte vores 
-script for en uge siden.
-
-Det kan være superpraktisk hvis vi har lavet noget der tager lang tid for R at køre.
-
-Men det kan også betyde, at vores resultater ikke kan reproduceres. Sender du
-scriptet og data til en anden, får de ikke det med der ligger i hukommelsen på
-din computer. Og i værste fald kan de slet ikke foretage analysen.
-
-Når vi producerer et html-dokument med RMarkdown, genstartes R. Alt hvad der er 
-brug for af variable, objekter og funktioner, skal produceres af RMarkdown dokumentet.
-Intet uden for er tilgængeligt. Det sikrer, at hvis du sender data og script til
-en anden - så kan de foretage nøjagtig samme analyse som du lige lavede.
-
 
 
 
@@ -241,33 +311,12 @@ solution
 zzz <- yyy
 challenge done
 
-Skal vi have mere end et tal, eller tekst, gemt i et objekt, bruger vi
-`c()` funktionen:
-
-~~~
-noget <- c(1,2,3)
-~~~
-{: .language-r}
-
-Funktioner virker også på objekter. Vi kan derfor tage gennemsnittet af [noget]:
-
-~~~
-mean(noget)
-~~~
-{: .language-r}
 
 
+Mange dataanalyser kører ret enkelt. Udfordringen er at få data på den rigtige
+form. Og en af de detaljer er at hvis noget er en kategorisk variabel, så skal
+R vide det. 
 
-~~~
-[1] 2
-~~~
-{: .output}
-
-En særlig type data er faktorer. Det er kategoriske variable, variable der kun
-kan tage bestemte værdier. Eksempler kan være køn. Man er enten af hankøn, eller
-af hunkøn. Enten er man gravid, eller også er man ikke.
-
-Datatyper - faktorer
 
 
 

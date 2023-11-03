@@ -87,21 +87,6 @@ kausalitet.
 ## Et eksempel
 Her har vi et eksempel på et mønster vi kan undre os over. Hvilke måneder er 
 amerikanske football (ikke at forveksle med fodbold) spillere født?
-
-~~~
-── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-~~~
-{: .output}
-
 <div class="figure" style="text-align: center">
 <img src="../fig/rmd-02-unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2" width="612" />
 <p class="caption">plot of chunk unnamed-chunk-2</p>
@@ -197,6 +182,87 @@ At dømme efter øvelserne
 
 ## Beskrivende statistik
 
+
+Lad os starte med at få fingre i noget data.
+
+Vi downloader et datasæt til vores `data` mappe:
+
+
+~~~
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/FEV.csv", "data/fev.csv", mode = "wb")
+~~~
+{: .language-r}
+Herefter kan vi indlæse filen til et objekt i R:
+
+~~~
+FEV <- read_csv("data/FEV.csv")
+~~~
+{: .language-r}
+
+~~~
+Rows: 654 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): Id, Age, FEV, Hgt, Sex, Smoke
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+~~~
+{: .output}
+
+Datasættet indeholder oplysninger om lungevolumen (Forced expiratory volume), og
+er kodet således:
+
+|Variable |     Description     |      Format or Code
+|---------|---------------------|----------------------------
+| Id      |    ID number        |
+| Age     |    Age (yrs)        |
+| FEV     |    FEV (liters)     |      X.XXXX
+| Hgt     |    Height (inches)  |      XX.X
+| Sex     |    Sex              |      0=female/1=male
+| Smoke   |    Smoking Status   |      0=non-current smoker/1=current smoker
+
+Datasættet kan bruges til at vise sammenhænge mellem rygning, og lungekapacitet
+for børn.
+
+
+~~~
+FEV %>% 
+  group_by(Sex, Smoke, Age) %>% 
+  summarise(avg_fev = mean(FEV))
+~~~
+{: .language-r}
+
+
+
+~~~
+`summarise()` has grouped output by 'Sex', 'Smoke'. You can override using the
+`.groups` argument.
+~~~
+{: .output}
+
+
+
+~~~
+# A tibble: 51 × 4
+# Groups:   Sex, Smoke [4]
+     Sex Smoke   Age avg_fev
+   <dbl> <dbl> <dbl>   <dbl>
+ 1     0     0     3    1.07
+ 2     0     0     4    1.32
+ 3     0     0     5    1.36
+ 4     0     0     6    1.65
+ 5     0     0     7    1.83
+ 6     0     0     8    2.15
+ 7     0     0     9    2.38
+ 8     0     0    10    2.65
+ 9     0     0    11    2.81
+10     0     0    12    2.93
+# ℹ 41 more rows
+~~~
+{: .output}
+
+
 tal der beskriver fordelingen.
 
 De data vi har - har en eller anden fordeling. 
@@ -211,6 +277,6 @@ head
 summary
 
 
-
+data skal nok ikke ind allerede. Vi skal tale om hvad de her tal egentlig dækker over.
 
 {% include links.md %}

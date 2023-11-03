@@ -17,15 +17,90 @@ knitr_fig_path("00-")
 # source("../bin/download_data.R")
 ```
 
+# Hvad er R?
 
-Der er utroligt mange, utroligt gode, introduktioner til R. 
-http://r.sund.ku.dk/
-KUB datalabs introduktionskurser
-datacamp. Mange!
+R er et generelt programmeringssprog. Det betyder at der ikke er noget
+vi kan gøre i R, som vi ikke ligeså godt kunne gøre i et andet programmeringssprog, eksempelvis Python. Der er heller ikke noget vi kan
+gøre i et andet programmeringssprog som vi ikke kan gøre i R.
 
+Men R er designet til at lave statistisk dataanalyse, så når vi arbejder 
+med data og statistik, er R særligt velegnet. 
 
-datasæt:
-https://www.cengage.com/cgi-wadsworth/course_products_wp.pl?fid=M20b&product_isbn_issn=9780538733496&token
+R er et fortolket programmeringssprog. Det betyder at vi skriver et program,
+et script, og beder programmeringssproget om at gøre hvad der står i det 
+script. 
+
+Modsætningen er kompilerede sprog, hvor vi også skriver et program. Herefter
+beder vi en compiler om at oversætte det til noget en computer kan forstå,
+og gemme det som en eksekverbar fil. Når vi kører den, foretages alle
+vores kommandoer.
+
+Kompilerede sprog er som tommelfingerregel meget hurtige. Til gengæld er 
+det noget mere bøvlet at lave hurtige ændringer. Derfor foretrækker vi
+til arbejde med dataanalyse de fortolkede sprog, for vi kommer ofte til at
+lave små ændringer i en iterativ proces. Vi prøver noget, ser resultatet,
+og prøver noget lidt andet, indtil vi når i mål.
+
+# Interaktion med R
+
+R i sig selv er ikke specielt brugervenlig. Derfor arbejder vi med R i et
+såkaldt IDE, Integrated Development Environment. Der findes et par stykker,
+det mest udbredte er RStudio.
+
+RStudio har, når I åbner det første gang, tre paneler:
+
+* Console
+* Files
+* Environment
+
+I konsollen kan vi skrive kommandoer direkte til R. Det er også her vi 
+ser resultaterne.
+
+Det allerførste vi gør er at oprette et projekt.
+
+# Første trin i reproducerbar kode
+
+Målet for vores dataanalyse er at den er reproducerbar. Hvis vi finder et
+interessant resultat i vores data, skal vi helst kunne finde det igen i 
+morgen.
+
+Det kræver en vis disciplin. Og første trin er derfor at samle data, 
+kode og resultater et sted. 
+
+RStudio hjælper os med det. Opret et projekt, det sker i øverste højre
+hjørne af RStudio. 
+
+RStudio kan bruges til alt muligt, vi skal bruge det samme som (næsten) alle 
+andre skal bruge hver gang. Så standardvalg hele vejen igennem.
+
+Giv projektet et navn der giver mening, ikke kun for dig selv, men også
+for andre. 
+
+Noget data er følsomt, og skal hentes hver gang fra særligt sikrede 
+steder fordi I ofte kommer til at arbejde med kliniske data.
+
+Men det er også den undtagelse der er. Alt andet. Scripts,
+markdown-dokumenter (det kommer vi til), grafer. ALT andet, gemmes i dette
+projekt. Lad os starte med at lave en mappe hvor vi kan gemme data. 
+Skriv følgende i "Console" og tryk enter:
+
+```{r eval  = F}
+dir.create("data")
+```
+
+Ude i panelet, nederste højre hjørne, er der nu en mappe der hedder "data".
+
+Hvis dette er første gang du arbejder med R, har du nu kørt din første
+funktion i R. Den hed `dir.create`. Den havde et par paranteser. I dem
+skriver vi input eller information, som funktionen skal gøre noget ved.
+
+I dette tilfælde har vi en funktion, der laver, creater, en folder - eller
+på engelsk "directory", forkort "dir". Funktionen skal vide hvad folderen
+skal hedde. Og vi skriver "data" fordi vi godt vil have funktionen til at
+lave et directory der hedder data. Og vi sætter data i anførselstegn, fordi
+det er tekst. Og måden vi angiver at det er tekst, er ved at sætte det
+i anførselstegn.
+
 
 
 {% include links.md %}
