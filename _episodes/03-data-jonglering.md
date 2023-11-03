@@ -51,26 +51,24 @@ Vi starter med at indlæse det - bare for det tilfælde at det er blevet væk
 undervejs:
 
 ~~~
-who <- read_csv("data/who.csv")
+who <- read_csv2("data/who.csv")
 ~~~
 {: .language-r}
 
 
 ~~~
-Warning: One or more parsing issues, call `problems()` on your data frame for details,
-e.g.:
-  dat <- vroom(...)
-  problems(dat)
+ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
 ~~~
-{: .warning}
+{: .output}
 
 
 
 ~~~
-Rows: 405440 Columns: 1
+Rows: 405440 Columns: 10
 ── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): country;iso2;iso3;year;new;diag;sex;age_low;age_high;value
+Delimiter: ";"
+chr (7): country, iso2, iso3, new, diag, sex, age_low
+dbl (3): year, age_high, value
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -91,15 +89,15 @@ head(who)
 
 
 ~~~
-# A tibble: 6 × 1
-  `country;iso2;iso3;year;new;diag;sex;age_low;age_high;value`
-  <chr>                                                       
-1 Afghanistan;AF;AFG;1980;new;sp;m;00;14;NA                   
-2 Afghanistan;AF;AFG;1980;new;sp;m;15;24;NA                   
-3 Afghanistan;AF;AFG;1980;new;sp;m;25;34;NA                   
-4 Afghanistan;AF;AFG;1980;new;sp;m;35;44;NA                   
-5 Afghanistan;AF;AFG;1980;new;sp;m;45;54;NA                   
-6 Afghanistan;AF;AFG;1980;new;sp;m;55;64;NA                   
+# A tibble: 6 × 10
+  country     iso2  iso3   year new   diag  sex   age_low age_high value
+  <chr>       <chr> <chr> <dbl> <chr> <chr> <chr> <chr>      <dbl> <dbl>
+1 Afghanistan AF    AFG    1980 new   sp    m     00            14    NA
+2 Afghanistan AF    AFG    1980 new   sp    m     15            24    NA
+3 Afghanistan AF    AFG    1980 new   sp    m     25            34    NA
+4 Afghanistan AF    AFG    1980 new   sp    m     35            44    NA
+5 Afghanistan AF    AFG    1980 new   sp    m     45            54    NA
+6 Afghanistan AF    AFG    1980 new   sp    m     55            64    NA
 ~~~
 {: .output}
 De første fire kolonner giver (næsten) sig selv. 
@@ -174,15 +172,15 @@ head(who)
 
 
 ~~~
-# A tibble: 6 × 1
-  `country;iso2;iso3;year;new;diag;sex;age_low;age_high;value`
-  <chr>                                                       
-1 Afghanistan;AF;AFG;1980;new;sp;m;00;14;NA                   
-2 Afghanistan;AF;AFG;1980;new;sp;m;15;24;NA                   
-3 Afghanistan;AF;AFG;1980;new;sp;m;25;34;NA                   
-4 Afghanistan;AF;AFG;1980;new;sp;m;35;44;NA                   
-5 Afghanistan;AF;AFG;1980;new;sp;m;45;54;NA                   
-6 Afghanistan;AF;AFG;1980;new;sp;m;55;64;NA                   
+# A tibble: 6 × 10
+  country     iso2  iso3   year new   diag  sex   age_low age_high value
+  <chr>       <chr> <chr> <dbl> <chr> <chr> <chr> <chr>      <dbl> <dbl>
+1 Afghanistan AF    AFG    1980 new   sp    m     00            14    NA
+2 Afghanistan AF    AFG    1980 new   sp    m     15            24    NA
+3 Afghanistan AF    AFG    1980 new   sp    m     25            34    NA
+4 Afghanistan AF    AFG    1980 new   sp    m     35            44    NA
+5 Afghanistan AF    AFG    1980 new   sp    m     45            54    NA
+6 Afghanistan AF    AFG    1980 new   sp    m     55            64    NA
 ~~~
 {: .output}
 
@@ -198,15 +196,15 @@ who %>%
 
 
 ~~~
-# A tibble: 6 × 1
-  `country;iso2;iso3;year;new;diag;sex;age_low;age_high;value`
-  <chr>                                                       
-1 Afghanistan;AF;AFG;1980;new;sp;m;00;14;NA                   
-2 Afghanistan;AF;AFG;1980;new;sp;m;15;24;NA                   
-3 Afghanistan;AF;AFG;1980;new;sp;m;25;34;NA                   
-4 Afghanistan;AF;AFG;1980;new;sp;m;35;44;NA                   
-5 Afghanistan;AF;AFG;1980;new;sp;m;45;54;NA                   
-6 Afghanistan;AF;AFG;1980;new;sp;m;55;64;NA                   
+# A tibble: 6 × 10
+  country     iso2  iso3   year new   diag  sex   age_low age_high value
+  <chr>       <chr> <chr> <dbl> <chr> <chr> <chr> <chr>      <dbl> <dbl>
+1 Afghanistan AF    AFG    1980 new   sp    m     00            14    NA
+2 Afghanistan AF    AFG    1980 new   sp    m     15            24    NA
+3 Afghanistan AF    AFG    1980 new   sp    m     25            34    NA
+4 Afghanistan AF    AFG    1980 new   sp    m     35            44    NA
+5 Afghanistan AF    AFG    1980 new   sp    m     45            54    NA
+6 Afghanistan AF    AFG    1980 new   sp    m     55            64    NA
 ~~~
 {: .output}
 
@@ -247,11 +245,17 @@ who %>%
 
 
 ~~~
-Error in `select()`:
-! Can't subset columns that don't exist.
-✖ Column `country` doesn't exist.
+# A tibble: 6 × 1
+  country    
+  <chr>      
+1 Afghanistan
+2 Afghanistan
+3 Afghanistan
+4 Afghanistan
+5 Afghanistan
+6 Afghanistan
 ~~~
-{: .error}
+{: .output}
 
 Vi sender resultatet videre til `head()`  for ikke at skulle kigge på alle
 405.000 rækker.
@@ -268,11 +272,17 @@ who %>%
 
 
 ~~~
-Error in `select()`:
-! Can't subset columns that don't exist.
-✖ Column `country` doesn't exist.
+# A tibble: 6 × 2
+  country      year
+  <chr>       <dbl>
+1 Afghanistan  1980
+2 Afghanistan  1980
+3 Afghanistan  1980
+4 Afghanistan  1980
+5 Afghanistan  1980
+6 Afghanistan  1980
 ~~~
-{: .error}
+{: .output}
 Og vi kan angive at der er kolonner vi ikke vil se på:
 
 
@@ -285,11 +295,22 @@ who %>%
 
 
 ~~~
-Error in `select()`:
-! Can't subset columns that don't exist.
-✖ Column `iso2` doesn't exist.
+# A tibble: 405,440 × 9
+   country     iso3   year new   diag  sex   age_low age_high value
+   <chr>       <chr> <dbl> <chr> <chr> <chr> <chr>      <dbl> <dbl>
+ 1 Afghanistan AFG    1980 new   sp    m     00            14    NA
+ 2 Afghanistan AFG    1980 new   sp    m     15            24    NA
+ 3 Afghanistan AFG    1980 new   sp    m     25            34    NA
+ 4 Afghanistan AFG    1980 new   sp    m     35            44    NA
+ 5 Afghanistan AFG    1980 new   sp    m     45            54    NA
+ 6 Afghanistan AFG    1980 new   sp    m     55            64    NA
+ 7 Afghanistan AFG    1980 new   sp    m     65            99    NA
+ 8 Afghanistan AFG    1980 new   sp    f     00            14    NA
+ 9 Afghanistan AFG    1980 new   sp    f     15            24    NA
+10 Afghanistan AFG    1980 new   sp    f     25            34    NA
+# ℹ 405,430 more rows
 ~~~
-{: .error}
+{: .output}
 
 > ## Øvelse
 >
@@ -322,11 +343,17 @@ who %>%
 
 
 ~~~
-Error in `select()`:
-! Can't subset columns that don't exist.
-✖ Column `iso2` doesn't exist.
+# A tibble: 6 × 7
+  country      year diag  sex   age_low age_high value
+  <chr>       <dbl> <chr> <chr> <chr>      <dbl> <dbl>
+1 Afghanistan  1980 sp    m     00            14    NA
+2 Afghanistan  1980 sp    m     15            24    NA
+3 Afghanistan  1980 sp    m     25            34    NA
+4 Afghanistan  1980 sp    m     35            44    NA
+5 Afghanistan  1980 sp    m     45            54    NA
+6 Afghanistan  1980 sp    m     55            64    NA
 ~~~
-{: .error}
+{: .output}
 
 Bemærk at vi skriver "==". Vi specificerer at vi vil have de rækker hvor det 
 udtryk der står i funktionen er sandt. Altså her at der i "country" står
@@ -371,12 +398,17 @@ who %>%
 
 
 ~~~
-Error in `mutate()`:
-ℹ In argument: `age_low = as.numeric(age_low)`.
-Caused by error:
-! object 'age_low' not found
+# A tibble: 6 × 10
+  country     iso2  iso3   year new   diag  sex   age_low age_high value
+  <chr>       <chr> <chr> <dbl> <chr> <chr> <chr>   <dbl>    <dbl> <dbl>
+1 Afghanistan AF    AFG    1980 new   sp    m           0       14    NA
+2 Afghanistan AF    AFG    1980 new   sp    m          15       24    NA
+3 Afghanistan AF    AFG    1980 new   sp    m          25       34    NA
+4 Afghanistan AF    AFG    1980 new   sp    m          35       44    NA
+5 Afghanistan AF    AFG    1980 new   sp    m          45       54    NA
+6 Afghanistan AF    AFG    1980 new   sp    m          55       64    NA
 ~~~
-{: .error}
+{: .output}
 as.numeric() tager tekstinput, og konverterer det til et tal - hvis det kan gøres
 automatisk. Og det kan det i dette tilfælde.
 
@@ -395,12 +427,17 @@ who %>%
 
 
 ~~~
-Error in `mutate()`:
-ℹ In argument: `age_low = as.numeric(age_low)`.
-Caused by error:
-! object 'age_low' not found
+# A tibble: 6 × 3
+  country      year interval
+  <chr>       <dbl>    <dbl>
+1 Afghanistan  1980       14
+2 Afghanistan  1980        9
+3 Afghanistan  1980        9
+4 Afghanistan  1980        9
+5 Afghanistan  1980        9
+6 Afghanistan  1980        9
 ~~~
-{: .error}
+{: .output}
 
 Vi kan altså bruge `mutate()` funktionen både til at lave om på eksisterende
 kolonner. Og til at lave nye kolonner, baseret på data i de kolonner i allerede 
@@ -425,12 +462,12 @@ who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+# A tibble: 1 × 1
+  total_tb
+     <dbl>
+1      128
 ~~~
-{: .error}
+{: .output}
 Der er manglende værdier. Og den slags skal kodes med `NA`. Inden vi kan lave 
 matematik på kolonner der indeholder manglende værdier, skal de fjernes. Og 
 det kan vi specificere med na.rm = T.
@@ -451,12 +488,12 @@ who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+# A tibble: 1 × 2
+  total_tb stdaf_tb
+     <dbl>    <dbl>
+1      128     12.5
 ~~~
-{: .error}
+{: .output}
 
 
 ### Grupper dataframes
@@ -480,12 +517,20 @@ who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+# A tibble: 9 × 2
+   year total_tb
+  <dbl>    <dbl>
+1  1997      128
+2  1998     1778
+3  1999      745
+4  2000     2666
+5  2001     4639
+6  2002     6509
+7  2003     6528
+8  2004     8245
+9  2005     9949
 ~~~
-{: .error}
+{: .output}
 Vi har filtreret på årstal for at få en overskuelig tabel, men det er i `group_by` 
 magien sker.
 
@@ -508,13 +553,17 @@ who %>%
 
 
 
-~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
-~~~
-{: .error}
+| year| total_tb|
+|----:|--------:|
+| 1997|      128|
+| 1998|     1778|
+| 1999|      745|
+| 2000|     2666|
+| 2001|     4639|
+| 2002|     6509|
+| 2003|     6528|
+| 2004|     8245|
+| 2005|     9949|
 
 Vi kan gruppere efter mere end en variabel. Er der eksempelvis forskel på
 hvor mange tilfælde af TB der diagnosticeres mellem kønnene?
@@ -533,12 +582,38 @@ who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+# A tibble: 18 × 3
+# Groups:   year [9]
+    year sex   total_tb
+   <dbl> <chr>    <dbl>
+ 1  1997 f          102
+ 2  1997 m           26
+ 3  1998 f         1207
+ 4  1998 m          571
+ 5  1999 f          517
+ 6  1999 m          228
+ 7  2000 f         1751
+ 8  2000 m          915
+ 9  2001 f         3062
+10  2001 m         1577
+11  2002 f         4418
+12  2002 m         2091
+13  2003 f         4423
+14  2003 m         2105
+15  2004 f         5587
+16  2004 m         2658
+17  2005 f         6818
+18  2005 m         3131
+~~~
+{: .output}
 Det er ikke en specielt let-læselig tabel. Det ville være rart hvis vi 
 fik en tabel hvor antallet af TB-tilfælde for hvert køn, stod i hver sin 
 kolonne.
@@ -559,12 +634,29 @@ who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+# A tibble: 9 × 3
+# Groups:   year [9]
+   year     f     m
+  <dbl> <dbl> <dbl>
+1  1997   102    26
+2  1998  1207   571
+3  1999   517   228
+4  2000  1751   915
+5  2001  3062  1577
+6  2002  4418  2091
+7  2003  4423  2105
+8  2004  5587  2658
+9  2005  6818  3131
+~~~
+{: .output}
 Vi laver en pivot_wider, fordi vi godt vil have en bredere, "wider" tabel.
 Vi skal angive en kolonne der indeholder de værdier vi godt vil have skal være kolonneoverskrifter
 bagefter. Og en kolonne der indeholder de værdier vi gerne vil have i tabellen.
@@ -598,12 +690,38 @@ who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+# A tibble: 18 × 3
+# Groups:   year [9]
+    year sex   value
+   <dbl> <chr> <dbl>
+ 1  1997 f       102
+ 2  1997 m        26
+ 3  1998 f      1207
+ 4  1998 m       571
+ 5  1999 f       517
+ 6  1999 m       228
+ 7  2000 f      1751
+ 8  2000 m       915
+ 9  2001 f      3062
+10  2001 m      1577
+11  2002 f      4418
+12  2002 m      2091
+13  2003 f      4423
+14  2003 m      2105
+15  2004 f      5587
+16  2004 m      2658
+17  2005 f      6818
+18  2005 m      3131
+~~~
+{: .output}
 
 Lad os lige se på den brede tabel igen:
 
@@ -622,12 +740,29 @@ who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+# A tibble: 9 × 3
+# Groups:   year [9]
+   year     f     m
+  <dbl> <dbl> <dbl>
+1  1997   102    26
+2  1998  1207   571
+3  1999   517   228
+4  2000  1751   915
+5  2001  3062  1577
+6  2002  4418  2091
+7  2003  4423  2105
+8  2004  5587  2658
+9  2005  6818  3131
+~~~
+{: .output}
 Det kunne være rart med mere meningsfyldte kolonnenavne. Det kan vi give
 dem med funktionen `rename()`:
 
@@ -648,12 +783,29 @@ who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+# A tibble: 9 × 3
+# Groups:   year [9]
+   year female  male
+  <dbl>  <dbl> <dbl>
+1  1997    102    26
+2  1998   1207   571
+3  1999    517   228
+4  2000   1751   915
+5  2001   3062  1577
+6  2002   4418  2091
+7  2003   4423  2105
+8  2004   5587  2658
+9  2005   6818  3131
+~~~
+{: .output}
 
 ## Tidy-format - og plots
 
@@ -675,12 +827,10 @@ AF9606 <- who %>%
 
 
 ~~~
-Error in `filter()`:
-ℹ In argument: `iso2 == "AF"`.
-Caused by error:
-! object 'iso2' not found
+`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.
 ~~~
-{: .error}
+{: .output}
 
 
 
@@ -692,9 +842,30 @@ AF9606
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'AF9606' not found
+# A tibble: 18 × 3
+# Groups:   year [9]
+    year sex   total_tb
+   <dbl> <chr>    <dbl>
+ 1  1997 f          102
+ 2  1997 m           26
+ 3  1998 f         1207
+ 4  1998 m          571
+ 5  1999 f          517
+ 6  1999 m          228
+ 7  2000 f         1751
+ 8  2000 m          915
+ 9  2001 f         3062
+10  2001 m         1577
+11  2002 f         4418
+12  2002 m         2091
+13  2003 f         4423
+14  2003 m         2105
+15  2004 f         5587
+16  2004 m         2658
+17  2005 f         6818
+18  2005 m         3131
 ~~~
-{: .error}
+{: .output}
 Vi har her gemt resultatet i objektet `AF9606` så vi let kan arbejde videre med
 det.
 
@@ -712,12 +883,10 @@ AF9606 %>%
 ~~~
 {: .language-r}
 
-
-
-~~~
-Error in eval(expr, envir, enclos): object 'AF9606' not found
-~~~
-{: .error}
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-03-unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-24</p>
+</div>
 
 `ggplot()` funktionen får sine data via pipen ` %>% `. I ggplot funktionen
 fortæller vi at vi vil have `year` på x-aksen. Vi vil have antallet af TB-tilfælde
@@ -736,12 +905,10 @@ AF9606 %>%
 ~~~
 {: .language-r}
 
-
-
-~~~
-Error in eval(expr, envir, enclos): object 'AF9606' not found
-~~~
-{: .error}
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-03-unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-25</p>
+</div>
 
 Ved blot at ændre `geom_col()` til `geom_point()` får vi et scatter plot i stedet
 for et søjlediagram. 

@@ -134,7 +134,6 @@ er pakken `readxl`, der indeholder funktioner der kan indlæse Excel-filer.
 > ## Øvelse
 >
 > Installer "tidyverse" og "readxl"
-
 >
 > > ## Løsning
 > > 
