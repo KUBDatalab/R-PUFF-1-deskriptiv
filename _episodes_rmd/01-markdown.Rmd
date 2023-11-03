@@ -75,7 +75,7 @@ og nå frem til nøjagtig samme resultat.
 > Den variation i output af metoderne er helt forventelig. Matematikken bag 
 > forudsætter et vist element af tilfældighed, og det er ikke noget vi skal forsøge
 > at pille ved.
-{.callout}
+{: .callout}
 
 Det kræver at vi har beskrevet vores analyse detaljeret nok. Og det kan være 
 svært i eksempelvis Excel, hvor vi vil skulle nedskrive detaljer om at "efter 
