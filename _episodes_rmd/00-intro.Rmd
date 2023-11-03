@@ -7,9 +7,11 @@ questions:
 objectives:
 - "Opret et projekt"
 - "Organiser data"
+- "Installer tidyverse og readxl"
 keypoints:
 - "R er scriptet og interaktivt"
 - "Organiser dine data fra start, det sparer tid"
+- "Pakker er samlinger af nyttige funktioner"
 source: Rmd
 ---
 
@@ -60,7 +62,7 @@ ser resultaterne.
 
 Det allerførste vi gør er at oprette et projekt.
 
-# Første trin i reproducerbar kode
+## Første trin i reproducerbar kode - et projekt
 
 Målet for vores dataanalyse er at den er reproducerbar. Hvis vi finder et
 interessant resultat i vores data, skal vi helst kunne finde det igen i 
@@ -77,6 +79,8 @@ andre skal bruge hver gang. Så standardvalg hele vejen igennem.
 
 Giv projektet et navn der giver mening, ikke kun for dig selv, men også
 for andre. 
+
+## Organiser data
 
 Noget data er følsomt, og skal hentes hver gang fra særligt sikrede 
 steder fordi I ofte kommer til at arbejde med kliniske data.
@@ -103,6 +107,49 @@ lave et directory der hedder data. Og vi sætter data i anførselstegn, fordi
 det er tekst. Og måden vi angiver at det er tekst, er ved at sætte det
 i anførselstegn.
 
+## Installer hyppigt brugte pakker
+
+Du prøvede lige at køre din første funktion. Og generelt når vi gør noget med
+data i R, så gør vi det med en funktion. 
+
+R har mange indbyggede funktioner, og vi kan også skrive vores egne. Det kommer 
+vi ikke til her. Men andre har skrevet funktioner som vi kan genbruge.
+
+I stedet for at gå på nettet og kopiere dem, er det i R sat i system. Et bestemt
+sted på nettet - det behøver vi ikke bekymre os om her - er kvalitetssikrede 
+pakker samlet, og vi kan hente dem gennem R/RStudio.
+
+Det gør vi ved at bruge funktionen `install.packages()`. Den skal have en 
+tekststreng ganske som `make.dir()` funktionen, og der skriver vi navnet på 
+den pakke vi ønsker at installere. 
+
+Nogen pakker er samlinger af pakker, og 
+pakken `tidyverse` indeholder en lang række pakker, der er supernyttige når man 
+skal manipulere og analysere data. Fordi der er mange pakker i den, tager det 
+ret lang tid - så vær tålmodig!
+
+En anden pakke du sandsynligvis får brug for
+er pakken `readxl`, der indeholder funktioner der kan indlæse Excel-filer.
+
+> ## Øvelse
+>
+> Installer "tidyverse" og "readxl"
+
+>
+> > ## Løsning
+> > 
+> > Dette gøres lettes i "Console":
+> > 
+> > install.packages("tidyverse")
+> > install.packages("readxl")
+> {: .solution}
+{: .challenge}
+
+`install.packages()` installerer pakkerne på din computer. Hvis du vil have 
+adgang til at bruge dem i din kode, skal du indlæse dem. Det gør du med 
+funktionen `library()` og her behøver du ikke sætte "" omkring pakke-navnet.
+
+Det er også en god måde at teste om installationen gik som den skulle.
 
 
 {% include links.md %}
