@@ -14,6 +14,8 @@ source: Rmd
 ```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("02-")
+
+library(tidyverse)
 # source("../bin/download_data.R")
 ```
 
@@ -90,7 +92,7 @@ kausalitet.
 Her har vi et eksempel på et mønster vi kan undre os over. Hvilke måneder er 
 amerikanske football (ikke at forveksle med fodbold) spillere født?
 ```{r echo =F }
-library(tidyverse)
+
 am_foot <- tribble(~Month, ~Observed, ~Expected,
 "January",	1734,	1527.68,
 "February",	1575,	1428.67,
@@ -179,6 +181,44 @@ At dømme efter øvelserne
 
 ## Beskrivende statistik
 
+
+Lad os starte med at få fingre i noget data.
+
+Vi downloader et datasæt til vores `data` mappe:
+
+```{r eval  = F}
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/FEV.csv", "data/fev.csv", mode = "wb")
+```
+Herefter kan vi indlæse filen til et objekt i R:
+```{r eval = F}
+FEV <- read_csv("data/FEV.csv")
+```
+```{r echo = F}
+FEV <- read_csv("../data/FEV.csv")
+```
+
+Datasættet indeholder oplysninger om lungevolumen (Forced expiratory volume), og
+er kodet således:
+
+|Variable |     Description     |      Format or Code
+|---------|---------------------|----------------------------
+| Id      |    ID number        |
+| Age     |    Age (yrs)        |
+| FEV     |    FEV (liters)     |      X.XXXX
+| Hgt     |    Height (inches)  |      XX.X
+| Sex     |    Sex              |      0=female/1=male
+| Smoke   |    Smoking Status   |      0=non-current smoker/1=current smoker
+
+Datasættet kan bruges til at vise sammenhænge mellem rygning, og lungekapacitet
+for børn.
+
+```{r}
+FEV %>% 
+  group_by(Sex, Smoke, Age) %>% 
+  summarise(avg_fev = mean(FEV))
+```
+
+
 tal der beskriver fordelingen.
 
 De data vi har - har en eller anden fordeling. 
@@ -193,6 +233,6 @@ head
 summary
 
 
-
+data skal nok ikke ind allerede. Vi skal tale om hvad de her tal egentlig dækker over.
 
 {% include links.md %}
