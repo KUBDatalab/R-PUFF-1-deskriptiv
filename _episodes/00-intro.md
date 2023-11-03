@@ -5,11 +5,13 @@ title: "Introduktion til R"
 teaching: 10
 exercises: 5
 questions:
-- "FIXME"
+- "Hvad er R"
 objectives:
-- "FIXME"
+- "Opret et projekt"
+- "Organiser data"
 keypoints:
-- "FIXME"
+- "R er scriptet og interaktivt"
+- "Organiser dine data fra start, det sparer tid"
 source: Rmd
 ---
 
