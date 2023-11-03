@@ -10,7 +10,7 @@ brug, men her er de.
 
 ### BETACAR
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/BETACAR.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BETACAR.csv)
 
 
 |Variable    |          Description/Code
@@ -27,7 +27,7 @@ brug, men her er de.
 
 ### BLOOD
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/BLOOD.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BLOOD.csv)
 
 |Variable                  |          Description
 |----------------|----------------------------
@@ -44,7 +44,7 @@ brug, men her er de.
 
 ### BONEDEN
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/BONEDEN.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BONEDEN.csv)
 
 
 |Variable  |  Column   |      Code
@@ -89,7 +89,7 @@ Twin 2  Heavier Smoking Twin
 
 ### BOTOX
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/BOTOX.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BOTOX.csv)
 
 
 |Variable    |       Code
@@ -117,7 +117,7 @@ Twin 2  Heavier Smoking Twin
 |pain17      |        pain score month 17  missing=999
 
 ### Breast
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Breast.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Breast.csv)
 
 
 |variable     |     Description |
@@ -147,7 +147,7 @@ Twin 2  Heavier Smoking Twin
 
 ###  Corneal
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Corneal.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Corneal.csv)
 
 
 |Variable   |        Variable label|
@@ -173,7 +173,7 @@ Twin 2  Heavier Smoking Twin
 
 ### DIABETES
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/DIABETES.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/DIABETES.csv)
 
 
 |Variable     |                                       Code|
@@ -190,7 +190,7 @@ Twin 2  Heavier Smoking Twin
 
 ### EAR
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/EAR.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/EAR.csv)
 
 
 |Variable      |         Description               |Format or Code|
@@ -206,7 +206,7 @@ Twin 2  Heavier Smoking Twin
 
 ### EFF
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/EFF.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/EFF.csv)
 
 
 |Variable           |           Description/Code|
@@ -224,7 +224,7 @@ Twin 2  Heavier Smoking Twin
 
 ###  ENDOCRIN
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/ENDOCRIN.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ENDOCRIN.csv)
 
 
 | Variable          |   LABEL|
@@ -239,7 +239,7 @@ Twin 2  Heavier Smoking Twin
 
 ### Estradl
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Estradl.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Estradl.csv)
 
 
 |Variable|			Code	|
@@ -258,7 +258,7 @@ Twin 2  Heavier Smoking Twin
 
 ### ESTROGEN
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/ESTROGEN.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTROGEN.csv)
 
 
 |Variable |                   LABEL|
@@ -302,7 +302,7 @@ Twin 2  Heavier Smoking Twin
 
 ### FEV
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/FEV.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/FEV.csv)
 
 |Variable |     Description     |      Format or Code
 |---------|---------------------|----------------------------
@@ -316,7 +316,7 @@ Twin 2  Heavier Smoking Twin
 
 
 ### Field
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Field.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Field.csv)
 
 |Variable   |	Description
 |-----------|--------------
@@ -330,7 +330,7 @@ Twin 2  Heavier Smoking Twin
 |totfldos     |	  total field area left eye (OS) in degrees²
 
 ### Heart
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Heart.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Heart.csv)
 
 |Variable	|code|
 |---------|--------|
@@ -352,7 +352,7 @@ Twin 2  Heavier Smoking Twin
 
 
 ### HORMONE
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/HORMONE.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/HORMONE.csv)
 
 |Variable       |      Description/Code
 |---------------|------------------------------------------------------------
@@ -371,7 +371,7 @@ Twin 2  Heavier Smoking Twin
 
 ### Hospital
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Hospital.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Hospital.csv)
 
 
 |Variable   |            Label
@@ -390,7 +390,7 @@ Twin 2  Heavier Smoking Twin
 
 ### INFANTBP
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/INFANTBP.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/INFANTBP.csv)
 
 Salt Taste Variables
 
@@ -425,6 +425,8 @@ Sugar Taste Variables
 
 
 ### LEAD
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/LEAD.csv)
 
 |VARIABLE |     DESCRIPTION|
 |---------|-------------------|
@@ -525,6 +527,8 @@ CONTAIN NEUROLOGICAL TEST DATA
 
 ### MICE
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/MICE.csv)
+
 |Variable |        Description |
 ----------|--------------------------------|
 | Id            |     ID|
@@ -540,6 +544,8 @@ CONTAIN NEUROLOGICAL TEST DATA
 
 ### NEPHRO
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/NEPHRO.csv)
+
 |Variable   |            Description/Code|
 |----------|-----------------------------------------------------------------|
 |name           |          Study name|
@@ -553,6 +559,8 @@ CONTAIN NEUROLOGICAL TEST DATA
 
 
 ### NIFED
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/NIFED.csv)
 
 |Variable   |        Description          |  Code
 |----------|-------------------------------------------------------------------
@@ -584,6 +592,8 @@ Values of 999 indicates that either
 
 ### OTO
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/OTO.csv)
+
 |Variable   |             Description/Code|
 |----------|-----------------------------------------------------------------|
 |Name           |           Study Name|
@@ -597,6 +607,8 @@ Values of 999 indicates that either
 
 ### PIRIFORM
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/PIRIFORM.csv)
+
 |Variable  |                   Code|
 |---------|-----------------------------|
 |ID       |                         |
@@ -607,6 +619,8 @@ Values of 999 indicates that either
 
 
 ### SEXRAT
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/SEXRAT.csv)
 
 |Variable   | code|
 |---------|--------------|
@@ -631,6 +645,8 @@ such families.
 
 ### SMOKE
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/SMOKE.csv)
+
 |Variable       |        Code|
 |------------|-----------------------------------------|
 |ID                   |      ID number |
@@ -652,6 +668,8 @@ number of minutes elapsed since the last cigarette smoked.
 
 ### SWISS
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/SWISS.csv)
+
 |Variable     |        Codes|
 |-----------|------------------------------------------------|
 | ID                |      ID             |
@@ -668,6 +686,8 @@ number of minutes elapsed since the last cigarette smoked.
 
 
 ### TEAR
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/TEAR.csv)
 
 |Variable|                                                          Code|
 |--------|---------------------------------------------|
@@ -735,6 +755,8 @@ number of minutes elapsed since the last cigarette smoked.
 
 ### TEMPERAT
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/TEMPERAT.csv)
+
 |Variable|    LABEL|
 |--------|---------------------|
 |Date       | DATE (MDY)|
@@ -751,6 +773,8 @@ number of minutes elapsed since the last cigarette smoked.
 |               |           9=MISSING|
 
 ### TENNIS1
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/TENNIS1.csv)
 
 |VARIABLE |        VARIABLE NAME|
 |--------|-----------------------------------------------|
@@ -811,6 +835,8 @@ number of minutes elapsed since the last cigarette smoked.
 
 ### TENNIS2
 
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/TENNIS2.csv)
+
 |VARIABLE|     PERIOD* | VARIABLE NAME|
 |--------|-------------|-------------------------------------------------------------|
 |id           |         |     ID|
@@ -863,6 +889,8 @@ number of minutes elapsed since the last cigarette smoked.
 
 
 ### VALID
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/VALID.csv)
 
 |Variable     |        Description             |Format or Code
 |-------------|-----------------------------------|-----------
