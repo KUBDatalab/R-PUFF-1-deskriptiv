@@ -53,7 +53,8 @@ brug, men her er de.
 |Age       |   9-11    |    Age (yrs)
 |zyg       |  12-14    |    1=mz 2=dz
 
-    Twin 1  Lighter Smoking Twin
+Twin 1  Lighter Smoking Twin
+
 |Variable |      Code
 |---------|-----------------------------------------------
 |ht1      |     Height (cm)
@@ -68,7 +69,7 @@ brug, men her er de.
 |fn1      |     Femoral neck (g/cm**2)
 |fs1      |     Femoral shaft (g/cm**2)
 
-      Twin 2  Heavier Smoking Twin
+Twin 2  Heavier Smoking Twin
 
 |Variable  |      Code
 |----------|-----------------------------------------------------------
@@ -119,27 +120,28 @@ brug, men her er de.
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Breast.csv)
 
 
-variable    column    Description
-Id           1-6      ID
-case          8       case   1=case, 0=control
-age          10-11    age
-agemenar     13-14    age at menarche
-agemenop     16-17    age at menopause
-afb          19-20    age at first birth  98=nullip
-parity       22-23    parity
-bbd           25      Benign Breast disease  1=yes/0=no
-famhx         27      family history breast cancer  1=yes/0=no
-bmi          30-34    BMI (kg/m**2)
-hgt          37-38    Height (inches)
-alcohol      40-45    Alcohol use (grams/day)
-pmh           47      PMH status  2=never user/3=current user
-dur3         49-51    Duration of Estrogen use  (months)
-dur4         53-55    Duration of Estrogen + progesterone use  (months)
-csmk          57      Current Smoker 1=yes/0=no
-psmk          59      Past smoker  1=yes/0=no
-foluptm      61-64    Months of follow up Note: Some subjects provided no  
-                      follow up after the 1990 questionnaire: foluptm=0 for
-                      these people
+|variable     |     Description |
+|-------------|-----------------------------------------|
+|Id           |        ID |
+|case         |       case   1=case, 0=control  |
+|age          |          age  |
+|agemenar     |       age at menarche |
+|agemenop     |       age at menopause  |
+|afb          |          age at first birth  98=nullip  |
+|parity       |        parity |
+|bbd          |        Benign Breast disease  1=yes/0=no  |
+|famhx        |        family history breast cancer  1=yes/0=no |
+|bmi          |          BMI (kg/m**2)  |
+|hgt          |          Height (inches)  |
+|alcohol      |        Alcohol use (grams/day)  |
+|pmh          |        PMH status  2=never user/3=current user  |
+|dur3         |          Duration of Estrogen use  (months) |
+|dur4         |          Duration of Estrogen + progesterone use  (months)  |
+|csmk         |        Current Smoker 1=yes/0=no  |
+|psmk         |        Past smoker  1=yes/0=no  |
+|foluptm      |        Months of follow up Note: Some subjects provided no    |
+|              |        follow up after the 1990 questionnaire: foluptm=0 for |
+|              |        these people  |
 
 
 
@@ -148,24 +150,25 @@ foluptm      61-64    Months of follow up Note: Some subjects provided no
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Corneal.csv)
 
 
-Variable   Column      Variable label
-  id        2-3        ID
-  tr         5         Treatment   1=M   2=G  3=P          
-  c1        8-9        Central  visit 1                    
-  s1       12-13       Superior visit 1                    
-  i1       16-17       Inferior Visit 1                    
-  t1       20-21       Temporal visit 1                    
-  n1       24-25       Nasal Visit 1                       
-  c2       28-29       Central Visit 2(day 7)              
-  s2       32-33       Superior Visit 2                    
-  i2       36-37       Inferior Visit 2                    
-  t2       40-42       Temporal Visit 2                    
-  n2       44-45       Nasal Visit 2                       
-  c3       48-49       Central Visit 3(day 14)  missing=99             
-  s3       52-53       Superior Visit 3  missing=99                  
-  i3       56-57       Inferior Visit 3  missing=99                  
-  t3       60-61       Temporal Visit 3  missing=99                  
-  n3       64-65       Nasal Visit 3     missing=99   
+|Variable   |        Variable label|
+|-----------|-------------------------------|
+|  id       |    ID|
+|  tr       |      Treatment   1=M   2=G  3=P          |
+|  c1       |        Central  visit 1                    |
+|  s1       |         Superior visit 1                    |
+|  i1       |         Inferior Visit 1                    |
+|  t1       |         Temporal visit 1                    |
+|  n1       |         Nasal Visit 1                       |
+|  c2       |         Central Visit 2(day 7)              |
+|  s2       |         Superior Visit 2                    |
+|  i2       |         Inferior Visit 2                    |
+|  t2       |         Temporal Visit 2                    |
+|  n2       |         Nasal Visit 2                       |
+|  c3       |         Central Visit 3(day 14)  missing=99             |
+|  s3       |         Superior Visit 3  missing=99                  |
+|  i3       |         Inferior Visit 3  missing=99                  |
+|  t3       |         Temporal Visit 3  missing=99                  |
+|  n3       |         Nasal Visit 3     missing=99   |
 
 
 ### DIABETES
@@ -173,15 +176,16 @@ Variable   Column      Variable label
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/DIABETES.csv)
 
 
-Variable                      Column                      Code
-ID                                 1-6
-mon_a1c 	  	 8-9			Month A1c
-day_a1c              	11-12                          Day A1c
-yr_a1c                         14-15                          Yr A1c 
-age_yrs                       17-20			Age in years	     
-gly_a1c                       22-28                           Hemoglobin A1c                                     
-ht_cm                          30-34                           Height in cm    missing=999.9        
-wt_kg			36-39 	   		Weight in kg
+|Variable     |                                       Code|
+|-----------|----------------------------------------------|
+|ID                 |     |
+|mon_a1c 	  	| 			Month |
+|day_a1c        |                    Day A1c|
+|yr_a1c         |                          Yr  |
+|age_yrs        |			Age in years	|
+|gly_a1c        |                     Hemoglobin A1c                                     |
+|ht_cm            |                                         Height in cm    missing=999.9
+|wt_kg			 	 |  		Weight in 
 
 
 ### EAR
@@ -189,15 +193,15 @@ wt_kg			36-39 	   		Weight in kg
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/EAR.csv)
 
 
-Variable      Column         Description               Format or Code
--------------------------------------------------------------------------
- Id             1-3          ID
- Clear           5           Clearance by 14 days     1=yes/0=no
- Antibo          7           Antibiotic               1=CEF/2=AMO
- Age             9           Age                      1=<2 yrs/2=2-5 yrs/
-                                                      3=6+ yrs
- Ear            11           Ear                      1=1st ear/2=2nd ear
-------------------------------------------------------------------------
+|Variable      |         Description               |Format or Code|
+|--------------|-----------------------------------------------------------|
+|Id           |            ID                         ||
+| Clear        |              Clearance by 14 days   |  1=yes/0=no|
+| Antibo       |              Antibiotic             |  1=CEF/2=AMO|
+| Age          |              Age                    |  1=<2 yrs/2=2-5 yrs/|
+|              |                                     |   3=6+ yrs|
+| Ear          |             Ear                     | 1=1st ear/2=2nd ear|
+
 
 
 ### EFF
@@ -205,17 +209,17 @@ Variable      Column         Description               Format or Code
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/EFF.csv)
 
 
-Variable             Column         Description/Code
----------------------------------------------------------------------------
-Name                   1-8          Study name
-Id                    10-11         Study Number 
-Endpnt                 13           Endpoint  1=efficacy   
-Antibio                15           Antibiotic                  
-                                    1=Amikacin/2=Gentamicin/3=Netilmicin/
-                                    4=Sisomycin/5=Tobramycin
-Samp_sz               17-19         Sample Size 
-Cured                 21-23         Number Cured 
----------------------------------------------------------------------------
+|Variable           |           Description/Code|
+|--------------|-------------------------------------------------------------|
+|Name                   |         Study name|
+|Id                       |      Study Number |
+|Endpnt               |             Endpoint  1=efficacy   |
+|Antibio              |             Antibiotic                  |
+|                           |         1=Amikacin/2=Gentamicin/3=Netilmicin/|
+|                           |         4=Sisomycin/5=Tobramycin|
+|Samp_sz              |          Sample Size |
+|Cured                  |        Number Cured |
+
 
 
 ###  ENDOCRIN
@@ -223,13 +227,14 @@ Cured                 21-23         Number Cured
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/ENDOCRIN.csv)
 
 
- Variable      COLUMN       LABEL
-  Subject        1          SUBJECT #
-  Replicat       3          REPLICATE #
-  Estrone       5-8         ESTRONE
-  Estradol     10-13        ESTRADIOL
-  Androste     15-18        ANDROSTENEDIONE
-  Testost      20-23        TESTOSTERONE
+| Variable          |   LABEL|
+|--------------|-------------------------- |
+|  Subject          |        SUBJECT #|
+|  Replicat       |          REPLICATE #|
+|  Estrone          |      ESTRONE|
+|  Estradol       |      ESTRADIOL|
+|  Androste       |      ANDROSTENEDIONE|
+|  Testost          |    TESTOSTERONE|
 
 
 ### Estradl
@@ -237,18 +242,18 @@ Cured                 21-23         Number Cured
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/Estradl.csv)
 
 
-Variable	Column		Code	
-
-Id		5-8			Identification number
-Estradl		12-16			Estradiol
-Ethnic		18			Ethnicity 0=African-American;  1=Caucasian
-Entage		20-21			Age
-Numchild	24			Parity, number of children  9=missing
-Agefbo		26-27			Age at 1st birth (=0 if numchild=0)  99=missing
-Anykids	29			any children  1=yes;  0=no   9=missing
-Agemenar	32-35			age at menarche   99=missing
-BMI		37-43			Body Mass Index
-WHR		46-49			waist-hip ratio
+|Variable|			Code	|
+|--------|-----------------------------------------------------|
+|Id					  | Identification number|
+|Estradl	|				Estradiol|
+|Ethnic		|			Ethnicity 0=African-American;  1=Caucasian|
+|Entage		|			Age|
+|Numchild|				Parity, number of children  9=missing|
+|Agefbo		|			Age at 1st birth (=0 if numchild=0)  99=missing|
+|Anykids	|			any children  1=yes;  0=no   9=missing|
+|Agemenar|				age at menarche   99=missing|
+|BMI					|Body Mass Index|
+|WHR					|waist-hip ratio|
 
 
 ### ESTROGEN
@@ -256,43 +261,43 @@ WHR		46-49			waist-hip ratio
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/ESTROGEN.csv)
 
 
-Variable    COLUMN                LABEL
-
-Id           1-2                   ID
-std_typ       4                    STUDY TYPE
-                                     1=0.625MG VS PLACEBO
-                                     2=1.25MG VS PLACEBO
-                                     3=1.25MG VS 0.625MG
-period        6                    PERIOD
-trtgrp        8                    TREATMENT
-                                     1=PLACEBO
-                                     2=0.625MG
-                                     3=1.25MG
-sysd1r1     10-12                 SYSTOLIC BP DAY 1 READING 1
-                                     MISSING=999
-diasd1r1    14-16                 DIASTOLIC BP DAY 1 READING 1
-                                     MISSING=999
-sysd1r2     18-20                 SYSTOLIC BP DAY 1 READING 2
-                                     MISSING=999
-diasd1r2    22-24                 DIASTOLIC BP DAY 1 READING 2
-                                     MISSING=999
-sysd1r3     26-28                 SYSTOLIC BP  DAY 1 READING 3
-                                     MISSING=999
-diasd1r3    30-32                 DIASTOLIC BP DAY 1 READING 3
-                                     MISSING=999
-sysd2r1     34-36                 SYSTOLIC BP DAY 2 READING 1
-                                     MISSING=999
-diasd2r1    38-40                 DIASTOLIC BP DAY 2 READING 1
-sysd2r2     42-44                 SYSTOLIC BP DAY 2 READING 2
-diasd2r2    46-48                 DIASTOLIC BP DAY 2 READING 2
-sysd2r3     50-52                 SYSTOLIC BP DAY 2 READING 3
-diasd2r3    54-56                 DIASTOLIC BP DAY 2 READING 3
-sysd3r1     58-60                 SYSTOLIC BP DAY 3 READING 1
-diasd3r1    62-64                 DIASTOLIC BP DAY 3 READING 1
-sysd3r2     66-68                 SYSTOLIC BP DAY 3 READING 2
-diasd3r2    70-72                 DIASTOLIC BP DAY 3 READING 2
-sysd3r3     74-76                 SYSTOLIC BP DAY 3 READING 3
-diasd3r3    78-80                 DIASTOLIC BP DAY 3 READING 3
+|Variable |                   LABEL|
+|---------|------------------------------------------|
+|Id             |                 ID|
+|std_typ    |                       STUDY TYPE|
+|                 |                    1=0.625MG VS PLACEBO|
+|                 |                    2=1.25MG VS PLACEBO|
+|                 |                    3=1.25MG VS 0.625MG|
+|period     |                       PERIOD|
+|trtgrp     |                       TREATMENT|
+|                 |                    1=PLACEBO|
+|                 |                    2=0.625MG|
+|                 |                    3=1.25MG|
+|sysd1r1    |                  SYSTOLIC BP DAY 1 READING 1|
+|                 |                    MISSING=999|
+|diasd1r1 |                    DIASTOLIC BP DAY 1 READING 1|
+|                 |                    MISSING=999|
+|sysd1r2    |                  SYSTOLIC BP DAY 1 READING 2|
+|                 |                    MISSING=999|
+|diasd1r2 |                    DIASTOLIC BP DAY 1 READING 2|
+|                 |                    MISSING=999|
+|sysd1r3    |                  SYSTOLIC BP  DAY 1 READING 3|
+|                 |                    MISSING=999|
+|diasd1r3 |                    DIASTOLIC BP DAY 1 READING 3|
+|                 |                    MISSING=999|
+|sysd2r1    |                  SYSTOLIC BP DAY 2 READING 1|
+|                 |                    MISSING=999|
+|diasd2r1 |                    DIASTOLIC BP DAY 2 READING 1|
+|sysd2r2    |                  SYSTOLIC BP DAY 2 READING 2|
+|diasd2r2 |                    DIASTOLIC BP DAY 2 READING 2|
+|sysd2r3    |                  SYSTOLIC BP DAY 2 READING 3|
+|diasd2r3 |                    DIASTOLIC BP DAY 2 READING 3|
+|sysd3r1    |                  SYSTOLIC BP DAY 3 READING 1|
+|diasd3r1 |                    DIASTOLIC BP DAY 3 READING 1|
+|sysd3r2    |                  SYSTOLIC BP DAY 3 READING 2|
+|diasd3r2 |                    DIASTOLIC BP DAY 3 READING 2|
+|sysd3r3    |                  SYSTOLIC BP DAY 3 READING 3|
+|diasd3r3 |                    DIASTOLIC BP DAY 3 READING 3|
 
 
 ### FEV
@@ -386,33 +391,35 @@ diasd3r3    78-80                 DIASTOLIC BP DAY 3 READING 3
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/INFANTBP.csv)
 
--------------------------------------------------------------------------
-Variable        Column         Format    Description
--------------------------------------------------------------------------
 Salt Taste Variables
--------------------------------------------------------------------------
- ID              2-4
- Mn_sbp          7-11            xx.xx   Mean SBP 99.99=missing
- Mn_dbp         13-17            xx.xx   Mean DBP 99.99=missing
- MSB1slt        19-24           xxx.xx   MSB-trial 1* water
- MSB2slt        26-31           xxx.xx   MSB-trial 2 water
- MSB3slt        33-38           xxx.xx   MSB-trial 3 0.1 molar salt + water
- MSB4slt        40-45           xxx.xx   MSB-trial 4 0.1 molar salt + water
- MSB5slt        47-52           xxx.xx   MSB-trial 5 water
- MSB6slt        54-59           xxx.xx   MSB-trial 6 water
- MSB7slt        61-66           xxx.xx   MSB-trial 7 0.3 molar salt + water
- MSB8slt        68-73           xxx.xx   MSB-trial 8 0.3 molar salt + water
- MSB9slt        75-80           xxx.xx   MSB-trial 9 water
- MSB10slt       82-87           xxx.xx   MSB-trial 10 water
+
+|Variable   |              Format |   Description|
+|----------|-----------------------|---------------------------------------|
+| ID              |                | |
+| Mn_sbp      |                xx.xx|   Mean SBP 99.99=missing|
+| Mn_dbp      |               xx.xx |  Mean DBP 99.99=missing|
+| MSB1slt   |                xxx.xx |  MSB-trial 1* water|
+| MSB2slt   |                xxx.xx |  MSB-trial 2 water|
+| MSB3slt   |                xxx.xx |  MSB-trial 3 0.1 molar salt + water|
+| MSB4slt   |                xxx.xx |  MSB-trial 4 0.1 molar salt + water|
+| MSB5slt   |                xxx.xx |  MSB-trial 5 water|
+| MSB6slt   |                xxx.xx |  MSB-trial 6 water|
+| MSB7slt   |                xxx.xx |  MSB-trial 7 0.3 molar salt + water|
+| MSB8slt   |                xxx.xx |  MSB-trial 8 0.3 molar salt + water|
+| MSB9slt   |                xxx.xx |  MSB-trial 9 water|
+| MSB10slt  |                xxx.xx |  MSB-trial 10 water|
 
 Sugar Taste Variables
---------------------------------------------------------------------------
- MSB1sug        89-94           xxx.xx   MSB-trial 1 non-nutritive sucking
- MSB2sug        96-101          xxx.xx   MSB-trial 2 water
- MSB3sug       103-108          xxx.xx   MSB-trial 3 5% sucrose + water
- MSB4sug       110-115          xxx.xx   MSB-trial 4 15% sucrose + water
- MSB5sug       117-122          xxx.xx   MSB-trial 5 non-nutritive sucking
---------------------------------------------------------------------------
+
+|Variable     |            Format |   Description|
+|-----------|--------------|-----------------------------------------------|
+| MSB1sug     |              xxx.xx|   MSB-trial 1 non-nutritive sucking|
+| MSB2sug     |             xxx.xx  | MSB-trial 2 water|
+| MSB3sug     |            xxx.xx |  MSB-trial 3 5% sucrose + water|
+| MSB4sug     |            xxx.xx |  MSB-trial 4 15% sucrose + water|
+| MSB5sug     |            xxx.xx |  MSB-trial 5 non-nutritive sucking|
+
+
 * for MSB data 999.99 is a missing value; 0 indicates the baby did not suck.
 
 
