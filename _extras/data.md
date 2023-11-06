@@ -237,9 +237,9 @@ Twin 2  Heavier Smoking Twin
 |  Testost          |    TESTOSTERONE|
 
 
-### Estradl
+### ESTRADL
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Estradl.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv)
 
 
 |Variable|			Code	|
