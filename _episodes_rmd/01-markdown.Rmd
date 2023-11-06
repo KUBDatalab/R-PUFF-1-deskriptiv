@@ -193,7 +193,6 @@ library(tidyverse)
 > ## Øvelse
 >
 > Tilføj en codechunk til dit RMarkdown dokument, og indlæst tidyverse pakken
-
 >
 > > ## Løsning
 > > Chunk tilføjes med ctrl+alt+i
