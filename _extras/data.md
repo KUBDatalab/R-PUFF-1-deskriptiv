@@ -120,55 +120,55 @@ Twin 2  Heavier Smoking Twin
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Breast.csv)
 
 
-|variable     |     Description |
-|-------------|-----------------------------------------|
-|Id           |        ID |
-|case         |       case   1=case, 0=control  |
-|age          |          age  |
-|agemenar     |       age at menarche |
-|agemenop     |       age at menopause  |
-|afb          |          age at first birth  98=nullip  |
-|parity       |        parity |
-|bbd          |        Benign Breast disease  1=yes/0=no  |
-|famhx        |        family history breast cancer  1=yes/0=no |
-|bmi          |          BMI (kg/m**2)  |
-|hgt          |          Height (inches)  |
-|alcohol      |        Alcohol use (grams/day)  |
-|pmh          |        PMH status  2=never user/3=current user  |
-|dur3         |          Duration of Estrogen use  (months) |
-|dur4         |          Duration of Estrogen + progesterone use  (months)  |
-|csmk         |        Current Smoker 1=yes/0=no  |
-|psmk         |        Past smoker  1=yes/0=no  |
-|foluptm      |        Months of follow up Note: Some subjects provided no    |
-|              |        follow up after the 1990 questionnaire: foluptm=0 for |
-|              |        these people  |
+|variable |  Description                                            |
+|---------|---------------------------------------------------------|
+|Id       |  ID                                                     |
+|case     |  case   1=case, 0=control                               |
+|age      |  age                                                    |
+|agemenar |  age at menarche                                        |
+|agemenop |  age at menopause                                       |
+|afb      |  age at first birth  98=nullip                          |
+|parity   |  parity                                                 |
+|bbd      |  Benign Breast disease  1=yes/0=no                      |
+|famhx    |  family history breast cancer  1=yes/0=no               |
+|bmi      |  BMI (kg/m**2)                                          |
+|hgt      |  Height (inches)                                        |
+|alcohol  |  Alcohol use (grams/day)                                |
+|pmh      |  PMH status  2=never user/3=current user                |
+|dur3     |  Duration of Estrogen use  (months)                     |
+|dur4     |  Duration of Estrogen + progesterone use  (months)      |
+|csmk     |  Current Smoker 1=yes/0=no                              |
+|psmk     |  Past smoker  1=yes/0=no                                |
+|foluptm  |  Months of follow up Note: Some subjects provided no    |
+|         |  follow up after the 1990 questionnaire: foluptm=0 for  |
+|         |  these people                                           |
 
 
 
-###  Corneal
+###  CORNEAL
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Corneal.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/CORNEAL.csv)
 
 
-|Variable   |        Variable label|
-|-----------|-------------------------------|
-|  id       |    ID|
-|  tr       |      Treatment   1=M   2=G  3=P          |
-|  c1       |        Central  visit 1                    |
-|  s1       |         Superior visit 1                    |
-|  i1       |         Inferior Visit 1                    |
-|  t1       |         Temporal visit 1                    |
-|  n1       |         Nasal Visit 1                       |
-|  c2       |         Central Visit 2(day 7)              |
-|  s2       |         Superior Visit 2                    |
-|  i2       |         Inferior Visit 2                    |
-|  t2       |         Temporal Visit 2                    |
-|  n2       |         Nasal Visit 2                       |
-|  c3       |         Central Visit 3(day 14)  missing=99             |
-|  s3       |         Superior Visit 3  missing=99                  |
-|  i3       |         Inferior Visit 3  missing=99                  |
-|  t3       |         Temporal Visit 3  missing=99                  |
-|  n3       |         Nasal Visit 3     missing=99   |
+|Variable  |  Variable label                       |
+|----------|---------------------------------------|
+|  id      |  ID                                   |
+|  tr      |  Treatment   1=M   2=G  3=P           |
+|  c1      |  Central  visit 1                     |
+|  s1      |  Superior visit 1                     |
+|  i1      |  Inferior Visit 1                     |
+|  t1      |  Temporal visit 1                     |
+|  n1      |  Nasal Visit 1                        |
+|  c2      |  Central Visit 2(day 7)               |
+|  s2      |  Superior Visit 2                     |
+|  i2      |  Inferior Visit 2                     |
+|  t2      |  Temporal Visit 2                     |
+|  n2      |  Nasal Visit 2                        |
+|  c3      |  Central Visit 3(day 14)  missing=99  |
+|  s3      |  Superior Visit 3         missing=99  |
+|  i3      |  Inferior Visit 3         missing=99  |
+|  t3      |  Temporal Visit 3         missing=99  |
+|  n3      |  Nasal Visit 3            missing=99  |
 
 
 ### DIABETES
@@ -176,16 +176,16 @@ Twin 2  Heavier Smoking Twin
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/DIABETES.csv)
 
 
-|Variable     |                                       Code|
-|-----------|----------------------------------------------|
-|ID                 |     |
-|mon_a1c 	  	| 			Month |
-|day_a1c        |                    Day A1c|
-|yr_a1c         |                          Yr  |
-|age_yrs        |			Age in years	|
-|gly_a1c        |                     Hemoglobin A1c                                     |
-|ht_cm            |                                         Height in cm    missing=999.9
-|wt_kg			 	 |  		Weight in 
+|Variable  |  Code                          |
+|----------|--------------------------------|
+|ID        |                                |
+|mon_a1c   |  Month                         |
+|day_a1c   |  Day A1c                       |
+|yr_a1c    |  Yr                            |
+|age_yrs   |  Age in years                  |
+|gly_a1c   |  Hemoglobin A1c                |
+|ht_cm     |  Height in cm    missing=999.9 | 
+|wt_kg     |  Weight in                     |
 
 
 ### EAR
@@ -193,14 +193,14 @@ Twin 2  Heavier Smoking Twin
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/EAR.csv)
 
 
-|Variable      |         Description               |Format or Code|
-|--------------|-----------------------------------------------------------|
-|Id           |            ID                         ||
-| Clear        |              Clearance by 14 days   |  1=yes/0=no|
-| Antibo       |              Antibiotic             |  1=CEF/2=AMO|
-| Age          |              Age                    |  1=<2 yrs/2=2-5 yrs/|
-|              |                                     |   3=6+ yrs|
-| Ear          |             Ear                     | 1=1st ear/2=2nd ear|
+| Variable  |         Description    |  Format or Code       |
+|-----------|------------------------|-----------------------|
+| Id        |  ID                    |                       |
+| Clear     |  Clearance by 14 days  |  1=yes/0=no           |
+| Antibo    |  Antibiotic            |  1=CEF/2=AMO          |
+| Age       |  Age                   |  1=<2 yrs/2=2-5 yrs/  |
+|           |                        |  3=6+ yrs             |
+| Ear       |  Ear                   |  1=1st ear/2=2nd ear  |
 
 
 
@@ -209,16 +209,16 @@ Twin 2  Heavier Smoking Twin
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/EFF.csv)
 
 
-|Variable           |           Description/Code|
-|--------------|-------------------------------------------------------------|
-|Name                   |         Study name|
-|Id                       |      Study Number |
-|Endpnt               |             Endpoint  1=efficacy   |
-|Antibio              |             Antibiotic                  |
-|                           |         1=Amikacin/2=Gentamicin/3=Netilmicin/|
-|                           |         4=Sisomycin/5=Tobramycin|
-|Samp_sz              |          Sample Size |
-|Cured                  |        Number Cured |
+|Variable  |  Description/Code|
+|----------|----------------------------------------|
+|Name      |  Study name                            |
+|Id        |  Study Number                          |
+|Endpnt    |  Endpoint  1=efficacy                  |
+|Antibio   |  Antibiotic                            |
+|          |  1=Amikacin/2=Gentamicin/3=Netilmicin/ |
+|          |  4=Sisomycin/5=Tobramycin              |
+|Samp_sz   |  Sample Size                           |
+|Cured     |  Number Cured                          |
 
 
 
@@ -227,14 +227,14 @@ Twin 2  Heavier Smoking Twin
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ENDOCRIN.csv)
 
 
-| Variable          |   LABEL|
-|--------------|-------------------------- |
-|  Subject          |        SUBJECT #|
-|  Replicat       |          REPLICATE #|
-|  Estrone          |      ESTRONE|
-|  Estradol       |      ESTRADIOL|
-|  Androste       |      ANDROSTENEDIONE|
-|  Testost          |    TESTOSTERONE|
+| Variable   |  LABEL           |
+|------------|------------------|
+|  Subject   |  SUBJECT #       |
+|  Replicat  |  REPLICATE #     |
+|  Estrone   |  ESTRONE         |
+|  Estradol  |  ESTRADIOL       |
+|  Androste  |  ANDROSTENEDIONE |
+|  Testost   |  TESTOSTERONE    |
 
 
 ### ESTRADL
@@ -242,18 +242,18 @@ Twin 2  Heavier Smoking Twin
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv)
 
 
-|Variable|			Code	|
-|--------|-----------------------------------------------------|
-|Id					  | Identification number|
-|Estradl	|				Estradiol|
-|Ethnic		|			Ethnicity 0=African-American;  1=Caucasian|
-|Entage		|			Age|
-|Numchild|				Parity, number of children  9=missing|
-|Agefbo		|			Age at 1st birth (=0 if numchild=0)  99=missing|
-|Anykids	|			any children  1=yes;  0=no   9=missing|
-|Agemenar|				age at menarche   99=missing|
-|BMI					|Body Mass Index|
-|WHR					|waist-hip ratio|
+|Variable |  Code	                                           |
+|---------|--------------------------------------------------|
+|Id       |  Identification number                           |
+|Estradl  |  Estradiol                                       |
+|Ethnic   |  Ethnicity 0=African-American;  1=Caucasian      |
+|Entage   |  Age                                             |
+|Numchild |  Parity, number of children  9=missing           |
+|Agefbo   |  Age at 1st birth (=0 if numchild=0)  99=missing |
+|Anykids	|  any children  1=yes;  0=no   9=missing          |
+|Agemenar |  age at menarche   99=missing                    |
+|BMI      |  Body Mass Index                                 |
+|WHR      |  waist-hip ratio                                 |
 
 
 ### ESTROGEN
@@ -261,43 +261,43 @@ Twin 2  Heavier Smoking Twin
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTROGEN.csv)
 
 
-|Variable |                   LABEL|
-|---------|------------------------------------------|
-|Id             |                 ID|
-|std_typ    |                       STUDY TYPE|
-|                 |                    1=0.625MG VS PLACEBO|
-|                 |                    2=1.25MG VS PLACEBO|
-|                 |                    3=1.25MG VS 0.625MG|
-|period     |                       PERIOD|
-|trtgrp     |                       TREATMENT|
-|                 |                    1=PLACEBO|
-|                 |                    2=0.625MG|
-|                 |                    3=1.25MG|
-|sysd1r1    |                  SYSTOLIC BP DAY 1 READING 1|
-|                 |                    MISSING=999|
-|diasd1r1 |                    DIASTOLIC BP DAY 1 READING 1|
-|                 |                    MISSING=999|
-|sysd1r2    |                  SYSTOLIC BP DAY 1 READING 2|
-|                 |                    MISSING=999|
-|diasd1r2 |                    DIASTOLIC BP DAY 1 READING 2|
-|                 |                    MISSING=999|
-|sysd1r3    |                  SYSTOLIC BP  DAY 1 READING 3|
-|                 |                    MISSING=999|
-|diasd1r3 |                    DIASTOLIC BP DAY 1 READING 3|
-|                 |                    MISSING=999|
-|sysd2r1    |                  SYSTOLIC BP DAY 2 READING 1|
-|                 |                    MISSING=999|
-|diasd2r1 |                    DIASTOLIC BP DAY 2 READING 1|
-|sysd2r2    |                  SYSTOLIC BP DAY 2 READING 2|
-|diasd2r2 |                    DIASTOLIC BP DAY 2 READING 2|
-|sysd2r3    |                  SYSTOLIC BP DAY 2 READING 3|
-|diasd2r3 |                    DIASTOLIC BP DAY 2 READING 3|
-|sysd3r1    |                  SYSTOLIC BP DAY 3 READING 1|
-|diasd3r1 |                    DIASTOLIC BP DAY 3 READING 1|
-|sysd3r2    |                  SYSTOLIC BP DAY 3 READING 2|
-|diasd3r2 |                    DIASTOLIC BP DAY 3 READING 2|
-|sysd3r3    |                  SYSTOLIC BP DAY 3 READING 3|
-|diasd3r3 |                    DIASTOLIC BP DAY 3 READING 3|
+|Variable  |  LABEL                        |
+|----------|-------------------------------|
+|Id        |  ID                           |
+|std_typ   |  STUDY TYPE                   |
+|          |  1=0.625MG VS PLACEBO         |
+|          |  2=1.25MG VS PLACEBO          |
+|          |  3=1.25MG VS 0.625MG          |
+|period    |  PERIOD                       |
+|trtgrp    |  TREATMENT                    |
+|          |  1=PLACEBO                    |
+|          |  2=0.625MG                    |
+|          |  3=1.25MG                     |
+|sysd1r1   |  SYSTOLIC BP DAY 1 READING 1  |
+|          |  MISSING=999                  |
+|diasd1r1  |  DIASTOLIC BP DAY 1 READING 1 |
+|          |  MISSING=999                  |
+|sysd1r2   |  SYSTOLIC BP DAY 1 READING 2  |
+|          |  MISSING=999                  |
+|diasd1r2  |  DIASTOLIC BP DAY 1 READING 2 |
+|          |  MISSING=999                  |
+|sysd1r3   |  SYSTOLIC BP  DAY 1 READING 3 |
+|          |  MISSING=999                  |
+|diasd1r3  |  DIASTOLIC BP DAY 1 READING 3 |
+|          |  MISSING=999                  |
+|sysd2r1   |  SYSTOLIC BP DAY 2 READING 1  |
+|          |  MISSING=999                  |
+|diasd2r1  |  DIASTOLIC BP DAY 2 READING 1 |
+|sysd2r2   |  SYSTOLIC BP DAY 2 READING 2  |
+|diasd2r2  |  DIASTOLIC BP DAY 2 READING 2 |
+|sysd2r3   |  SYSTOLIC BP DAY 2 READING 3  |
+|diasd2r3  |  DIASTOLIC BP DAY 2 READING 3 |
+|sysd3r1   |  SYSTOLIC BP DAY 3 READING 1  |
+|diasd3r1  |  DIASTOLIC BP DAY 3 READING 1 |
+|sysd3r2   |  SYSTOLIC BP DAY 3 READING 2  |
+|diasd3r2  |  DIASTOLIC BP DAY 3 READING 2 |
+|sysd3r3   |  SYSTOLIC BP DAY 3 READING 3  |
+|diasd3r3  |  DIASTOLIC BP DAY 3 READING 3 |
 
 
 ### FEV
