@@ -316,6 +316,12 @@ Det gør vi med "| Smoke" delen.
 
 Endelig fortæller vi hvilket datasæt vi vil arbejde med: "data=FEV".
 
+Vi får en advarsel! Funktionen forventer at det vi stratificerer efter er 
+en kategorisk variabel. Det kan vi fixe:
+
+```{r}
+table1(~Age + Sex + FEV + Hgt | factor(Smoke), data=FEV)
+```
 
 
 
