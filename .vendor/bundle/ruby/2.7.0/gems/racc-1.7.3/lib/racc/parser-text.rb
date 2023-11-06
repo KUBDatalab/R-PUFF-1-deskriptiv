@@ -15,7 +15,7 @@ unless $".find {|p| p.end_with?('/racc/info.rb')}
 $".push "#{__dir__}/racc/info.rb"
 
 module Racc
-  VERSION   = '1.7.1'
+  VERSION   = '1.7.3'
   Version = VERSION
   Copyright = 'Copyright (c) 1999-2006 Minero Aoki'
 end

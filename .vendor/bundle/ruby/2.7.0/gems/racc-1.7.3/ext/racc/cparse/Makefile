@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20231103-11882-t3f3ll
-sitelibdir = $(DESTDIR)./.gem.20231103-11882-t3f3ll
+sitearchdir = $(DESTDIR)./.gem.20231106-10652-gg0y7y
+sitelibdir = $(DESTDIR)./.gem.20231106-10652-gg0y7y
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -87,7 +87,7 @@ CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS) -g -O2 -fPIC $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DRACC_INFO_VERSION=1.7.2 -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include -DENABLE_PATH_CHECK=0 $(DEFS) $(cppflags)
+CPPFLAGS = -DRACC_INFO_VERSION=1.7.3 -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include -DENABLE_PATH_CHECK=0 $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS) -g -O2 $(ARCH_FLAG)
 ldflags  = -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic
 dldflags = -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib  -Wl,--compress-debug-sections=zlib 

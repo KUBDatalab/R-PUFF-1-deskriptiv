@@ -450,4 +450,158 @@ enkle. Hvis ellers man kan finde ud af hvilken af dem man skal bruge. Og hvis
 man kan få manipuleret sine data, så de har den rigtige form og indhold. Og det 
 er ikke helt så enkelt.
 
+## Table1
+
+Den hedder Table One af en grund - det er i den medicinske litteratur standard
+sammenstillingen af deskriptive data.
+
+Den laves relativt enkelt - hvis man har den rette pakke installeret.
+
+Derfor:
+
+~~~
+install.packages("table1")
+~~~
+{: .language-r}
+
+Herefter:
+
+~~~
+library(table1)
+~~~
+{: .language-r}
+
+
+
+~~~
+
+Attaching package: 'table1'
+~~~
+{: .output}
+
+
+
+~~~
+The following objects are masked from 'package:base':
+
+    units, units<-
+~~~
+{: .output}
+
+Og så er den ret lige til:
+
+~~~
+table1(~Age + Sex + FEV + Hgt | Smoke, data=FEV)
+~~~
+{: .language-r}
+
+
+
+~~~
+Warning in table1.formula(~Age + Sex + FEV + Hgt | Smoke, data = FEV): Terms to
+the right of '|' in formula 'x' define table columns and are expected to be
+factors with meaningful labels.
+~~~
+{: .warning}
+
+<!--html_preserve--><div class="Rtable1"><table class="Rtable1">
+<thead>
+<tr>
+<th class='rowlabel firstrow lastrow'></th>
+<th class='firstrow lastrow'><span class='stratlabel'>0<br><span class='stratn'>(N=589)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>1<br><span class='stratn'>(N=65)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>Overall<br><span class='stratn'>(N=654)</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='rowlabel firstrow'>Age</td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>9.53 (2.74)</td>
+<td>13.5 (2.34)</td>
+<td>9.93 (2.95)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>9.00 [3.00, 19.0]</td>
+<td class='lastrow'>13.0 [9.00, 19.0]</td>
+<td class='lastrow'>10.0 [3.00, 19.0]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'>Sex</td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>0.526 (0.500)</td>
+<td>0.400 (0.494)</td>
+<td>0.514 (0.500)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>1.00 [0, 1.00]</td>
+<td class='lastrow'>0 [0, 1.00]</td>
+<td class='lastrow'>1.00 [0, 1.00]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'>FEV</td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>2.57 (0.851)</td>
+<td>3.28 (0.750)</td>
+<td>2.64 (0.867)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>2.47 [0.791, 5.79]</td>
+<td class='lastrow'>3.17 [1.69, 4.87]</td>
+<td class='lastrow'>2.55 [0.791, 5.79]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'>Hgt</td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>60.6 (5.67)</td>
+<td>66.0 (3.19)</td>
+<td>61.1 (5.70)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>61.0 [46.0, 74.0]</td>
+<td class='lastrow'>66.0 [58.0, 72.0]</td>
+<td class='lastrow'>61.5 [46.0, 74.0]</td>
+</tr>
+</tbody>
+</table>
+</div><!--/html_preserve-->
+
+
+
+Og vil vi have variablene Age, Sex, FEV og Hgt beskrevet. Det gør vi med 
+"~Age + Sex + FEV + Hgt".
+
+Vi vil godt have stratificeret vores data efter om der ryges eller ej.
+Det gør vi med "| Smoke" delen.
+
+Endelig fortæller vi hvilket datasæt vi vil arbejde med: "data=FEV".
+
+
+
+
 {% include links.md %}
+

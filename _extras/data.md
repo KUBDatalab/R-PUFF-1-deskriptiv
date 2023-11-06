@@ -47,11 +47,11 @@ brug, men her er de.
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BONEDEN.csv)
 
 
-|Variable  |  Column   |      Code
-|----------|------------|-----------------------------------------------
-|ID        |   2-8     |
-|Age       |   9-11    |    Age (yrs)
-|zyg       |  12-14    |    1=mz 2=dz
+|Variable  |      Code
+|----------|-----------------------------------------------
+|ID        |
+|Age       |    Age (yrs)
+|zyg       |  1=mz 2=dz
 
 Twin 1  Lighter Smoking Twin
 
@@ -237,9 +237,9 @@ Twin 2  Heavier Smoking Twin
 |  Testost          |    TESTOSTERONE|
 
 
-### Estradl
+### ESTRADL
 
-[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/Estradl.csv)
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv)
 
 
 |Variable|			Code	|

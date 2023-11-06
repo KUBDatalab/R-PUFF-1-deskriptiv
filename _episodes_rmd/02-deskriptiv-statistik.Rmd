@@ -284,4 +284,40 @@ enkle. Hvis ellers man kan finde ud af hvilken af dem man skal bruge. Og hvis
 man kan få manipuleret sine data, så de har den rigtige form og indhold. Og det 
 er ikke helt så enkelt.
 
+## Table1
+
+Den hedder Table One af en grund - det er i den medicinske litteratur standard
+sammenstillingen af deskriptive data.
+
+Den laves relativt enkelt - hvis man har den rette pakke installeret.
+
+Derfor:
+```{r eval =F}
+install.packages("table1")
+```
+
+Herefter:
+```{r}
+library(table1)
+```
+
+Og så er den ret lige til:
+```{r}
+table1(~Age + Sex + FEV + Hgt | Smoke, data=FEV)
+```
+
+
+
+Og vil vi have variablene Age, Sex, FEV og Hgt beskrevet. Det gør vi med 
+"~Age + Sex + FEV + Hgt".
+
+Vi vil godt have stratificeret vores data efter om der ryges eller ej.
+Det gør vi med "| Smoke" delen.
+
+Endelig fortæller vi hvilket datasæt vi vil arbejde med: "data=FEV".
+
+
+
+
 {% include links.md %}
+
