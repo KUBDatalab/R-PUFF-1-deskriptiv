@@ -268,6 +268,27 @@ Vi kan altså bruge `mutate()` funktionen både til at lave om på eksisterende
 kolonner. Og til at lave nye kolonner, baseret på data i de kolonner i allerede 
 har.
 
+### Kategoriske variable
+
+Som omtalt er kategoriske variable specielle. De kan kun tage en enkelt værdi.
+
+Funktioner, modeller osv i R har ingen problemer med at arbejde med kategoriske
+data. De skal blot vide at det er kategoriske data. Og det markerer vi på en 
+særlig måde i R - det kaldes `factor`.
+
+I dette tilfælde er lande en kategorisk værdi. Enten er tallene fra Afghanistan.
+Eller også er de fra Australien.
+
+Når vi vil sikre at en kategorisk værdi behandles som en kategorisk værdi,
+bruger vi funktionen `factor()`:
+
+```{r}
+who %>% 
+  mutate(country = factor(country)) %>% 
+  head()
+```
+Nu er `country` variable kategorisk. Det var den sådan set også før. Men nu ved
+R det!
 
 ### Opsummering af data i kolonner
 

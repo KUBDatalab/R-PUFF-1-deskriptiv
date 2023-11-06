@@ -1,0 +1,136 @@
+---
+title: "Lineære modeller"
+teaching: 10
+exercises: 5
+questions:
+- "Hvordan fitter jeg en lineær model i R?"
+objectives:
+- "FIXME"
+keypoints:
+- "FIXME"
+source: Rmd
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("04-")
+# source("../bin/download_data.R")
+library(tidyverse)
+```
+# NB - denne side er til dag 2 - og ikke helt færdig.
+
+
+Vi genbesøger lige fev datasættet:
+
+```{r eval = F}
+fev <- read_csv("data/FEV.csv")
+```
+```{r echo = F}
+fev <- read_csv("../data/FEV.csv")
+```
+
+Det så således ud:
+```{r}
+fev %>% head()
+```
+
+
+Når vi laver en lineær model, skal vi angive modellen på en særlig måde. 
+I R kaldes det for `formel-notation` og `FEV ~ Hgt` dækker over at vi godt vil
+forklare FEV som funktion af Hgt. Altså en model hvor vi forestiller os at 
+Forced Expiratory Volume er en lineær funktion af børnenes højde.
+
+Funktionen der laver vores lineære model hedder `lm()` og skal også have at vide,
+at det data vi bruger, hedder fev:
+
+```{r}
+model <- lm(FEV ~ Hgt, data = fev)
+```
+
+Det output vi får direkte er ikke særligt nyttigt. Derfor gemmer vi resultatet i
+et objekt, her kalder vi det `model`. 
+
+Outputtet direkte ser således ud:
+
+```{r}
+model
+```
+
+Det giver os skæring og hældning. Men vi vil godt vide lidt mere:
+
+```{r}
+summary(model)
+```
+
+Ikke meget lineær. men ret.
+
+Undertiden kan vi have behov for at få resultaterne ud i en tabel.
+
+Hvis vi installerer pakken `broom`, får vi adgang til funktion `tidy()` der
+piller de mest interessante data ud til os:
+```{r}
+library(broom)
+tidy(model)
+```
+
+Og vil vi have et endnu mere lækkert format, kan vi installere pakken `stargazer`,
+der har en funktion der hedder - wait for it - `stargazer()` der kan formattere
+ting pænt for os. Her vælger vi `type="text"` der egner sig fint til dette 
+output format, men andre muligheder findes:
+```{r}
+library(stargazer)
+stargazer(model, type="text")
+```
+
+Modellen er lineær. Fordi vi har valgt at den skal være lineær. Inden du beslutter
+det, så tag et kig på data:
+
+```{r}
+plot(FEV ~ Hgt, dat = FEV)
+```
+
+Det kunne godt se lineært ud. Går vi over i `ggplot`-universet, kan vi relativt
+let lave det samme, nu med en lineær regressionslinie lagt ind også:
+
+```{r}
+fev %>% 
+  ggplot(aes(x = Hgt, y = FEV)) +
+  geom_point() +
+  geom_smooth(method="lm")
+```
+
+Hvis vi godt vil have konfidensintervaller på parametrene i vores model, er der 
+en funktion til det:
+
+```{r}
+confint(model)
+```
+Og hvis vi ikke vil nøjes med et 95% interval, kan vi specificere et andet:
+
+```{r}
+confint(model, level = 0.99)
+```
+Challenge: 
+Hvorfor bliver konfidensintervallet bredere?
+
+
+Dette kunne også være en øvelse:
+```{r}
+drenge <- FEV %>% 
+  filter(Sex == 0)
+
+piger <- FEV %>% 
+  filter(Sex == 1)
+
+
+```
+
+```{r}
+lm(FEV ~ Hgt, data = drenge) %>% summary()
+```
+```{r}
+lm(FEV ~ Hgt, data = piger) %>% summary()
+```
+
+
+{% include links.md %}
