@@ -600,6 +600,100 @@ Det gør vi med "| Smoke" delen.
 
 Endelig fortæller vi hvilket datasæt vi vil arbejde med: "data=FEV".
 
+Vi får en advarsel! Funktionen forventer at det vi stratificerer efter er 
+en kategorisk variabel. Det kan vi fixe:
+
+
+~~~
+table1(~Age + Sex + FEV + Hgt | factor(Smoke), data=FEV)
+~~~
+{: .language-r}
+
+<!--html_preserve--><div class="Rtable1"><table class="Rtable1">
+<thead>
+<tr>
+<th class='rowlabel firstrow lastrow'></th>
+<th class='firstrow lastrow'><span class='stratlabel'>0<br><span class='stratn'>(N=589)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>1<br><span class='stratn'>(N=65)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>Overall<br><span class='stratn'>(N=654)</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='rowlabel firstrow'>Age</td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>9.53 (2.74)</td>
+<td>13.5 (2.34)</td>
+<td>9.93 (2.95)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>9.00 [3.00, 19.0]</td>
+<td class='lastrow'>13.0 [9.00, 19.0]</td>
+<td class='lastrow'>10.0 [3.00, 19.0]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'>Sex</td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>0.526 (0.500)</td>
+<td>0.400 (0.494)</td>
+<td>0.514 (0.500)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>1.00 [0, 1.00]</td>
+<td class='lastrow'>0 [0, 1.00]</td>
+<td class='lastrow'>1.00 [0, 1.00]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'>FEV</td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>2.57 (0.851)</td>
+<td>3.28 (0.750)</td>
+<td>2.64 (0.867)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>2.47 [0.791, 5.79]</td>
+<td class='lastrow'>3.17 [1.69, 4.87]</td>
+<td class='lastrow'>2.55 [0.791, 5.79]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'>Hgt</td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>60.6 (5.67)</td>
+<td>66.0 (3.19)</td>
+<td>61.1 (5.70)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>61.0 [46.0, 74.0]</td>
+<td class='lastrow'>66.0 [58.0, 72.0]</td>
+<td class='lastrow'>61.5 [46.0, 74.0]</td>
+</tr>
+</tbody>
+</table>
+</div><!--/html_preserve-->
 
 
 

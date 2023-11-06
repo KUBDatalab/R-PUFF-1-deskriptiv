@@ -443,6 +443,44 @@ Vi kan altså bruge `mutate()` funktionen både til at lave om på eksisterende
 kolonner. Og til at lave nye kolonner, baseret på data i de kolonner i allerede 
 har.
 
+### Kategoriske variable
+
+Som omtalt er kategoriske variable specielle. De kan kun tage en enkelt værdi.
+
+Funktioner, modeller osv i R har ingen problemer med at arbejde med kategoriske
+data. De skal blot vide at det er kategoriske data. Og det markerer vi på en 
+særlig måde i R - det kaldes `factor`.
+
+I dette tilfælde er lande en kategorisk værdi. Enten er tallene fra Afghanistan.
+Eller også er de fra Australien.
+
+Når vi vil sikre at en kategorisk værdi behandles som en kategorisk værdi,
+bruger vi funktionen `factor()`:
+
+
+~~~
+who %>% 
+  mutate(country = factor(country)) %>% 
+  head()
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 6 × 10
+  country     iso2  iso3   year new   diag  sex   age_low age_high value
+  <fct>       <chr> <chr> <dbl> <chr> <chr> <chr> <chr>      <dbl> <dbl>
+1 Afghanistan AF    AFG    1980 new   sp    m     00            14    NA
+2 Afghanistan AF    AFG    1980 new   sp    m     15            24    NA
+3 Afghanistan AF    AFG    1980 new   sp    m     25            34    NA
+4 Afghanistan AF    AFG    1980 new   sp    m     35            44    NA
+5 Afghanistan AF    AFG    1980 new   sp    m     45            54    NA
+6 Afghanistan AF    AFG    1980 new   sp    m     55            64    NA
+~~~
+{: .output}
+Nu er `country` variable kategorisk. Det var den sådan set også før. Men nu ved
+R det!
 
 ### Opsummering af data i kolonner
 
@@ -884,8 +922,8 @@ AF9606 %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-03-unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-24</p>
+<img src="../fig/rmd-03-unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-25</p>
 </div>
 
 `ggplot()` funktionen får sine data via pipen ` %>% `. I ggplot funktionen
@@ -906,8 +944,8 @@ AF9606 %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-03-unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-25</p>
+<img src="../fig/rmd-03-unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-26</p>
 </div>
 
 Ved blot at ændre `geom_col()` til `geom_point()` får vi et scatter plot i stedet
@@ -953,8 +991,8 @@ FEV %>%
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-03-unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-27</p>
+<img src="../fig/rmd-03-unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-28</p>
 </div>
 
 `facet_wrap(~Smoke)` fortæller `ggplot()` at vi godt vil have lavet et histogram
