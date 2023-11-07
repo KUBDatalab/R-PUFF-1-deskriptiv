@@ -86,7 +86,7 @@ Modellen er lineær. Fordi vi har valgt at den skal være lineær. Inden du besl
 det, så tag et kig på data:
 
 ```{r}
-plot(FEV ~ Hgt, dat = FEV)
+plot(FEV ~ Hgt, dat = fev)
 ```
 
 Det kunne godt se lineært ud. Går vi over i `ggplot`-universet, kan vi relativt
@@ -98,6 +98,9 @@ fev %>%
   geom_point() +
   geom_smooth(method="lm")
 ```
+
+Det er `method="lm"` der angiver at det skal være en lineær linie der skal
+ligges ind. 
 
 Hvis vi godt vil have konfidensintervaller på parametrene i vores model, er der 
 en funktion til det:
@@ -116,10 +119,10 @@ Hvorfor bliver konfidensintervallet bredere?
 
 Dette kunne også være en øvelse:
 ```{r}
-drenge <- FEV %>% 
+drenge <- fev %>% 
   filter(Sex == 0)
 
-piger <- FEV %>% 
+piger <- fev %>% 
   filter(Sex == 1)
 
 
@@ -131,6 +134,8 @@ lm(FEV ~ Hgt, data = drenge) %>% summary()
 ```{r}
 lm(FEV ~ Hgt, data = piger) %>% summary()
 ```
+
+## Et andet datasæt
 
 
 {% include links.md %}
