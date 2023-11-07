@@ -262,7 +262,7 @@ være på y-aksen. Og derfor skal den indbyggede `plot()` funktion have to
 vektorer med tal:
 
 ```{r}
-plot(fev$Age, FEV$Hgt)
+plot(fev$Age, fev$Hgt)
 ```
 
 # Boxplot
@@ -271,7 +271,7 @@ Boxplots samler en række opsummerende statistiske værdier for en variabel i
 ét plot. Vi kan angive det på lidt forskellige måder, men foretrækker denne:
 
 ```{r}
-boxplot(fev$FEV, data= FEV)
+boxplot(fev$FEV)
 ```
 
 Og hvorfor det? Fordi det gør det lettere at forstå, at når vi vil have 
