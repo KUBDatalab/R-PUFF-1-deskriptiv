@@ -152,13 +152,14 @@ til den funktion der er på højre side. Det tillader os at lave kæder af
 funktioner, der samlet manipulerer vores data.
 
 > ## Er der ikke en nyere pipe?
+>
 > Pipen kommer oprindeligt fra pakken magrittr. Der er andre nyttige
 > udgaver af pipen i samme pakke, men den mest brugte er %>%. Den er så nyttig,
 > at base-R, R uden nogen pakker, har introduceret sin egen udgave: |>
 > I default installationen af RStudio, er %>% tilgængelig med genvejstasten
 > ctrl-shift-m. Indtil default indstillingerne i RStudio bliver ændret, arbejder
 > vi med Magrittr pipen, og ikke base-R pipen.
-{.callout}
+{: .callout}
 
 Lad os prøve. 
 

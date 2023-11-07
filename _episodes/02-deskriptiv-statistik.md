@@ -408,16 +408,14 @@ vektorer med tal:
 
 
 ~~~
-plot(fev$Age, FEV$Hgt)
+plot(fev$Age, fev$Hgt)
 ~~~
 {: .language-r}
 
-
-
-~~~
-Error in eval(expr, envir, enclos): object 'FEV' not found
-~~~
-{: .error}
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-02-unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-23</p>
+</div>
 
 # Boxplot
 
@@ -426,16 +424,14 @@ Boxplots samler en række opsummerende statistiske værdier for en variabel i
 
 
 ~~~
-boxplot(fev$FEV, data= FEV)
+boxplot(fev$FEV)
 ~~~
 {: .language-r}
 
-
-
-~~~
-Error in eval(expr, envir, enclos): object 'FEV' not found
-~~~
-{: .error}
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-02-unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-24</p>
+</div>
 
 Og hvorfor det? Fordi det gør det lettere at forstå, at når vi vil have 
 to boxplots, et for drenge og et for piger, så kan vi let få det på denne måde:
