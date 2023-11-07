@@ -316,11 +316,13 @@ mit_første_objekt <- 1
 ```
 
 
-> ## callout
+> ## Navngivning
 > hvad skal jeg kalde mine objekter? Noget der beskriver hvad der er gemt i den.
 > Noget der er så kort at man kan holde ud at taste det ind mere end en gang.
 > Og så må det ikke starte med tal, indeholde mellemrum, bindestreger, *, / eller
 > +. For det er matematiske operatorer.
+>
+> Prøv at være konsekvent når du navngiver.
 {: .callout}
 
 Det kan vi lave matematik på:
