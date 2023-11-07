@@ -192,8 +192,7 @@ library(tidyverse)
 
 > ## Øvelse
 >
-> Tilføj en codechunk til dit RMarkdown dokument, og indlæst tidyverse pakken
-
+> Tilføj en codechunk til dit RMarkdown dokument, og indlæs tidyverse pakken
 >
 > > ## Løsning
 > > Chunk tilføjes med ctrl+alt+i
@@ -255,8 +254,8 @@ Lad os også skrive noget prosatekst, der forklarer hvad vi gør.
 >
 > > ## Løsning
 > > Prosateksten om biblioteker placeres umiddelbart før den "code chunk" hvor 
-> du indlæser bibliotekerne. Tilsvarende med forklaringen om indlæsning af 
-> data.
+> > du indlæser bibliotekerne. Tilsvarende med forklaringen om indlæsning af 
+> > data.
 > {: .solution}
 {: .challenge}
 
@@ -305,7 +304,12 @@ Mellemregningerne kan vi gemme i `objekter`. Vi kalder dem også ofte for
 variable, men det kan være lidt misvisende. Vi bruger den såkaldte "assignment"
 operator til det: <-
 
-På venstresiden skriver vi navnet på det objekt vi vil gemme noget i.
+På venstresiden skriver vi navnet på det objekt vi vil gemme noget i. Her tallet 1:
+
+```{r}
+mit_første_objekt <- 1
+```
+
 
 > ## callout
 > hvad skal jeg kalde mine objekter? Noget der beskriver hvad der er gemt i den.
@@ -314,8 +318,41 @@ På venstresiden skriver vi navnet på det objekt vi vil gemme noget i.
 > +. For det er matematiske operatorer.
 {: .callout}
 
+Det kan vi lave matematik på:
 
+```{r}
+mit_første_objekt * 2
+```
 
+Vi kan have mere end et tal i et objekt. Det bruger vi `c()` funktionen til.
+Og så kalder vi det for en vektor:
+
+```{r}
+min_første_vektor <- c(42, 47)
+```
+
+Hvis vi vil se indholdet, skriver vi navnet på objektet:
+
+```{r}
+min_første_vektor
+```
+
+Vi kan også lave matematik på vektorer:
+
+```{r}
+min_første_vektor * 2
+```
+
+Og vi kan vokse dem:
+
+```{r}
+(min_første_vektor <- c(min_første_vektor, 100))
+```
+Her har vi puttet hele udtrykket ind i en parantes. Så bliver det ikke kun
+evalueret. Det bliver også vist. Det gør vi sjældent i praksis, men her kan
+det være nyttigt - ellers bliver siden endnu længere.
+
+Vi kan lave sammenligninger på vr
 
 
 {% include links.md %}

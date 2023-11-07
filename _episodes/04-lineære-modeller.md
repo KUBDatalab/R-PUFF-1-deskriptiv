@@ -223,16 +223,14 @@ det, så tag et kig på data:
 
 
 ~~~
-plot(FEV ~ Hgt, dat = FEV)
+plot(FEV ~ Hgt, dat = fev)
 ~~~
 {: .language-r}
 
-
-
-~~~
-Error in eval(m$data, eframe): object 'FEV' not found
-~~~
-{: .error}
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-04-unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div>
 
 Det kunne godt se lineært ud. Går vi over i `ggplot`-universet, kan vi relativt
 let lave det samme, nu med en lineær regressionslinie lagt ind også:
@@ -257,6 +255,9 @@ fev %>%
 <img src="../fig/rmd-04-unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11" width="612" />
 <p class="caption">plot of chunk unnamed-chunk-11</p>
 </div>
+
+Det er `method="lm"` der angiver at det skal være en lineær linie der skal
+ligges ind. 
 
 Hvis vi godt vil have konfidensintervaller på parametrene i vores model, er der 
 en funktion til det:
@@ -298,32 +299,13 @@ Hvorfor bliver konfidensintervallet bredere?
 Dette kunne også være en øvelse:
 
 ~~~
-drenge <- FEV %>% 
+drenge <- fev %>% 
   filter(Sex == 0)
-~~~
-{: .language-r}
 
-
-
-~~~
-Error in eval(expr, envir, enclos): object 'FEV' not found
-~~~
-{: .error}
-
-
-
-~~~
-piger <- FEV %>% 
+piger <- fev %>% 
   filter(Sex == 1)
 ~~~
 {: .language-r}
-
-
-
-~~~
-Error in eval(expr, envir, enclos): object 'FEV' not found
-~~~
-{: .error}
 
 
 ~~~
@@ -334,9 +316,26 @@ lm(FEV ~ Hgt, data = drenge) %>% summary()
 
 
 ~~~
-Error in eval(mf, parent.frame()): object 'drenge' not found
+
+Call:
+lm(formula = FEV ~ Hgt, data = drenge)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.54654 -0.20323  0.01498  0.22968  1.02038 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -4.318219   0.252449  -17.11   <2e-16 ***
+Hgt          0.112426   0.004179   26.90   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3566 on 316 degrees of freedom
+Multiple R-squared:  0.696,	Adjusted R-squared:  0.6951 
+F-statistic: 723.6 on 1 and 316 DF,  p-value: < 2.2e-16
 ~~~
-{: .error}
+{: .output}
 
 ~~~
 lm(FEV ~ Hgt, data = piger) %>% summary()
@@ -346,9 +345,28 @@ lm(FEV ~ Hgt, data = piger) %>% summary()
 
 
 ~~~
-Error in eval(mf, parent.frame()): object 'piger' not found
+
+Call:
+lm(formula = FEV ~ Hgt, data = piger)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.13438 -0.30820 -0.00568  0.30821  2.00491 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -5.863848   0.254470  -23.04   <2e-16 ***
+Hgt          0.139883   0.004082   34.27   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4729 on 334 degrees of freedom
+Multiple R-squared:  0.7786,	Adjusted R-squared:  0.7779 
+F-statistic:  1175 on 1 and 334 DF,  p-value: < 2.2e-16
 ~~~
-{: .error}
+{: .output}
+
+## Et andet datasæt
 
 
 {% include links.md %}
