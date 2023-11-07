@@ -33,12 +33,11 @@ download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/
 ```
 Herefter kan vi indlæse filen til et objekt i R:
 ```{r eval = F}
-FEV <- read_csv("data/FEV.csv")
+fev <- read_csv("data/FEV.csv")
 ```
 ```{r echo = F}
-FEV <- read_csv("../data/FEV.csv")
+fev <- read_csv("../data/FEV.csv")
 ```
-
 Datasættet indeholder oplysninger om lungevolumen (Forced expiratory volume), og
 er kodet således:
 
@@ -54,9 +53,12 @@ er kodet således:
 Datasættet kan bruges til at vise sammenhænge mellem rygning, og lungekapacitet
 for børn.
 
+Og da datasættet har en variabel der hedder FEV, indlæser vi datasættet til 
+objektet fev. R skelner mellem store og små bogstaver!
+
 De første 10 rækker ser således ud:
 ```{r}
-head(FEV)
+head(fev)
 ```
 
 
@@ -72,10 +74,10 @@ Der er som regel altid mere end en måde at gøre ting på i programmering.
 Men en relativt let måde at trække værdierne for FEV ud af dette datasæt er at
 bruge $-notationen:
 ```{r eval = F}
-FEV$FEV
+fev$FEV
 ```
 ```{r echo = F}
-head(FEV$FEV)
+head(fev$FEV)
 ```
 
 Her trækker vi de første seks observationer ud - der er 654 ialt. Resultatet 
@@ -86,14 +88,14 @@ kaldes en `vektor`.
 Middelværdien findes ved at give funktionen `mean()` en vektor med tallene:
 
 ```{r}
-mean(FEV$FEV)
+mean(fev$FEV)
 ```
 ### Medianen
 
 Medianen, den midterste værdi findes på lignende måde:
 
 ```{r}
-median(FEV$FEV)
+median(fev$FEV)
 ```
 ### Standardafvigelser
 
@@ -101,7 +103,7 @@ Nu kan vi genkende mønsteret. Vi skal finde funktionen der kan tage nogen tal
 i form af en vektor, og beregne standardafvigelsen. Funktionen hedder `sd`:
 
 ```{r}
-sd(FEV$FEV)
+sd(fev$FEV)
 ```
 
 ### Varians
@@ -109,7 +111,7 @@ sd(FEV$FEV)
 Og nu er det ingen overraskelse:
 
 ```{r}
-var(FEV$FEV)
+var(fev$FEV)
 ```
 Hvordan finder man den funktion man skal bruge? Først finder man ud af hvad 
 det man vil gøre hedder på engelsk. Så søger man efter det i hjælpefunktionen
@@ -134,7 +136,7 @@ For at sikre at vores kategoriske data opfattes som kategoriske af R, kan vi
 pakke dem ind i funktionen `factor` der i dette tilfælde konverterer hvad der ellers kunne forstås som tal, til en kategoriskværdi:
 
 ```{r eval = F}
-factor(FEV$Sex)
+factor(fev$Sex)
 ```
 
 Det er ikke strengt nødvendigt i dette tilfælde, men det er et godt trick at 
@@ -143,7 +145,7 @@ kende.
 Men hvordan tæller vi så? Vi bruger `table()` funktionen:
 
 ```{r}
-table(FEV$Sex)
+table(fev$Sex)
 ```
 Ofte er vi også interesserede i at vide hvordan fordelingen er i procent. 
 
@@ -152,7 +154,7 @@ gemt antallet i et objekt:
 
 > ## Øvelse
 >
-> Gem resultatet af `table(FEV$Sex)` i et objekt. Kald det `antal` og
+> Gem resultatet af `table(fev$Sex)` i et objekt. Kald det `antal` og
 > kør derefter funktione `prop.table()` på `antal`
 >
 > > ## Løsning
@@ -171,7 +173,7 @@ Histogrammer viser fordelingen af observationer grafisk.R har en indbygget
 funktion, `hist()` der gør netop det:
 
 ```{r}
-hist(FEV$FEV)
+hist(fev$FEV)
 ```
 
 ### Hvad hvis vi vil vide hvordan de ser ud for rygende børn?
@@ -182,11 +184,11 @@ have pillet de rygende børn ud af datasættet.
 Vi ved, eller kan slå op, at de børn der ryger, er markeret med et 1-tal i 
 kolonnen `Smoke`:
 ```{r eval = F}
-FEV$Smoke
+fev$Smoke
 ```
 
 ```{r echo = F}
-head(FEV$Smoke)
+head(fev$Smoke)
 ```
 Her ser vi kun de første seks observationer - de er alle 0.
 
@@ -196,11 +198,11 @@ så er der tale om et ikke-ryger barn.
 Den sammenligning kan vi lave på denne måde:
 
 ```{r eval = F}
-FEV$Smoke == 0
+fev$Smoke == 0
 ```
 
 ```{r echo = F}
-head(FEV$Smoke == 0)
+head(fev$Smoke == 0)
 ```
 Vi ser igen kun på de første seks resultater. Svaret er "TRUE", altså at 
 værdien i "Smoke" kolonen  er 0. Havde den ikke været det, havde svaret været
@@ -211,23 +213,23 @@ at "subsette" vores datasæt, så vi kun får de rækker, der matcher en "TRUE"
 værdi. Funktionen `subset()` er vores ven:
 
 ```{r}
-subset(FEV, Smoke == 0)
+subset(fev, Smoke == 0)
 ```
 
 > ## Øvelse
-> Subset FEV datasættet, så du får de observationer i datasættet, der beskriver
+> Subset fev datasættet, så du får de observationer i datasættet, der beskriver
 > børn der ryger. Gem resultatet i et nyt objekt, og plot histogrammet
 >
 > Bonus øvelse, lav samme øvelse, med de børn der _ikke_ ryger.
 > 
 > > ## Løsning
-> > rygere <- subset(FEV, Smoke == 1)
+> > rygere <- subset(fev, Smoke == 1)
 > > 
 > > hist(rygere)
 > >
 > > Bonus:
 > > 
-> > ikkerygere <- subset(FEV, Smoke == 0)
+> > ikkerygere <- subset(fev, Smoke == 0)
 > > 
 > > hist(ikkerygere)
 > > 
@@ -242,14 +244,14 @@ observationerne højere. Det fører til at 100% - 2.5% - 2.5% = 95% af observati
 ligger mellem de to værdier. Funktionen `quantile()` kan hjælpe:
 
 ```{r}
-quantile(FEV$FEV, 0.025)
+quantile(fev$FEV, 0.025)
 ```
 ```{r}
-quantile(FEV$FEV, 0.975)
+quantile(fev$FEV, 0.975)
 ```
 Det kan vi samle i en enkelt linie kode_
 ```{r}
-quantile(FEV$FEV, c(0.025, 0.975))
+quantile(fev$FEV, c(0.025, 0.975))
 ```
 
 ## Scatterplot
@@ -260,7 +262,7 @@ være på y-aksen. Og derfor skal den indbyggede `plot()` funktion have to
 vektorer med tal:
 
 ```{r}
-plot(FEV$Age, FEV$Hgt)
+plot(fev$Age, FEV$Hgt)
 ```
 
 # Boxplot
@@ -269,14 +271,14 @@ Boxplots samler en række opsummerende statistiske værdier for en variabel i
 ét plot. Vi kan angive det på lidt forskellige måder, men foretrækker denne:
 
 ```{r}
-boxplot(FEV$FEV, data= FEV)
+boxplot(fev$FEV, data= FEV)
 ```
 
 Og hvorfor det? Fordi det gør det lettere at forstå, at når vi vil have 
 to boxplots, et for drenge og et for piger, så kan vi let få det på denne måde:
 
 ```{r}
-boxplot(FEV~Sex, data = FEV)
+boxplot(FEV~Sex, data = fev)
 ```
 
 Som det fremgår, er de fleste af de statiske funktioner vi skal bruge ret 
@@ -303,7 +305,7 @@ library(table1)
 
 Og så er den ret lige til:
 ```{r}
-table1(~Age + Sex + FEV + Hgt | Smoke, data=FEV)
+table1(~Age + Sex + FEV + Hgt | Smoke, data=fev)
 ```
 
 
@@ -320,7 +322,7 @@ Vi får en advarsel! Funktionen forventer at det vi stratificerer efter er
 en kategorisk variabel. Det kan vi fixe:
 
 ```{r}
-table1(~Age + Sex + FEV + Hgt | factor(Smoke), data=FEV)
+table1(~Age + Sex + FEV + Hgt | factor(Smoke), data=fev)
 ```
 
 

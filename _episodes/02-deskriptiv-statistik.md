@@ -32,7 +32,7 @@ download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/
 Herefter kan vi indlæse filen til et objekt i R:
 
 ~~~
-FEV <- read_csv("data/FEV.csv")
+fev <- read_csv("data/FEV.csv")
 ~~~
 {: .language-r}
 
@@ -46,7 +46,6 @@ dbl (6): Id, Age, FEV, Hgt, Sex, Smoke
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ~~~
 {: .output}
-
 Datasættet indeholder oplysninger om lungevolumen (Forced expiratory volume), og
 er kodet således:
 
@@ -62,10 +61,13 @@ er kodet således:
 Datasættet kan bruges til at vise sammenhænge mellem rygning, og lungekapacitet
 for børn.
 
+Og da datasættet har en variabel der hedder FEV, indlæser vi datasættet til 
+objektet fev. R skelner mellem store og små bogstaver!
+
 De første 10 rækker ser således ud:
 
 ~~~
-head(FEV)
+head(fev)
 ~~~
 {: .language-r}
 
@@ -98,7 +100,7 @@ Men en relativt let måde at trække værdierne for FEV ud af dette datasæt er 
 bruge $-notationen:
 
 ~~~
-FEV$FEV
+fev$FEV
 ~~~
 {: .language-r}
 
@@ -116,7 +118,7 @@ Middelværdien findes ved at give funktionen `mean()` en vektor med tallene:
 
 
 ~~~
-mean(FEV$FEV)
+mean(fev$FEV)
 ~~~
 {: .language-r}
 
@@ -132,7 +134,7 @@ Medianen, den midterste værdi findes på lignende måde:
 
 
 ~~~
-median(FEV$FEV)
+median(fev$FEV)
 ~~~
 {: .language-r}
 
@@ -149,7 +151,7 @@ i form af en vektor, og beregne standardafvigelsen. Funktionen hedder `sd`:
 
 
 ~~~
-sd(FEV$FEV)
+sd(fev$FEV)
 ~~~
 {: .language-r}
 
@@ -166,7 +168,7 @@ Og nu er det ingen overraskelse:
 
 
 ~~~
-var(FEV$FEV)
+var(fev$FEV)
 ~~~
 {: .language-r}
 
@@ -200,7 +202,7 @@ pakke dem ind i funktionen `factor` der i dette tilfælde konverterer hvad der e
 
 
 ~~~
-factor(FEV$Sex)
+factor(fev$Sex)
 ~~~
 {: .language-r}
 
@@ -211,7 +213,7 @@ Men hvordan tæller vi så? Vi bruger `table()` funktionen:
 
 
 ~~~
-table(FEV$Sex)
+table(fev$Sex)
 ~~~
 {: .language-r}
 
@@ -230,7 +232,7 @@ gemt antallet i et objekt:
 
 > ## Øvelse
 >
-> Gem resultatet af `table(FEV$Sex)` i et objekt. Kald det `antal` og
+> Gem resultatet af `table(fev$Sex)` i et objekt. Kald det `antal` og
 > kør derefter funktione `prop.table()` på `antal`
 >
 > > ## Løsning
@@ -250,7 +252,7 @@ funktion, `hist()` der gør netop det:
 
 
 ~~~
-hist(FEV$FEV)
+hist(fev$FEV)
 ~~~
 {: .language-r}
 
@@ -268,7 +270,7 @@ Vi ved, eller kan slå op, at de børn der ryger, er markeret med et 1-tal i
 kolonnen `Smoke`:
 
 ~~~
-FEV$Smoke
+fev$Smoke
 ~~~
 {: .language-r}
 
@@ -286,7 +288,7 @@ Den sammenligning kan vi lave på denne måde:
 
 
 ~~~
-FEV$Smoke == 0
+fev$Smoke == 0
 ~~~
 {: .language-r}
 
@@ -305,7 +307,7 @@ værdi. Funktionen `subset()` er vores ven:
 
 
 ~~~
-subset(FEV, Smoke == 0)
+subset(fev, Smoke == 0)
 ~~~
 {: .language-r}
 
@@ -330,19 +332,19 @@ subset(FEV, Smoke == 0)
 {: .output}
 
 > ## Øvelse
-> Subset FEV datasættet, så du får de observationer i datasættet, der beskriver
+> Subset fev datasættet, så du får de observationer i datasættet, der beskriver
 > børn der ryger. Gem resultatet i et nyt objekt, og plot histogrammet
 >
 > Bonus øvelse, lav samme øvelse, med de børn der _ikke_ ryger.
 > 
 > > ## Løsning
-> > rygere <- subset(FEV, Smoke == 1)
+> > rygere <- subset(fev, Smoke == 1)
 > > 
 > > hist(rygere)
 > >
 > > Bonus:
 > > 
-> > ikkerygere <- subset(FEV, Smoke == 0)
+> > ikkerygere <- subset(fev, Smoke == 0)
 > > 
 > > hist(ikkerygere)
 > > 
@@ -358,7 +360,7 @@ ligger mellem de to værdier. Funktionen `quantile()` kan hjælpe:
 
 
 ~~~
-quantile(FEV$FEV, 0.025)
+quantile(fev$FEV, 0.025)
 ~~~
 {: .language-r}
 
@@ -371,7 +373,7 @@ quantile(FEV$FEV, 0.025)
 {: .output}
 
 ~~~
-quantile(FEV$FEV, 0.975)
+quantile(fev$FEV, 0.975)
 ~~~
 {: .language-r}
 
@@ -385,7 +387,7 @@ quantile(FEV$FEV, 0.975)
 Det kan vi samle i en enkelt linie kode_
 
 ~~~
-quantile(FEV$FEV, c(0.025, 0.975))
+quantile(fev$FEV, c(0.025, 0.975))
 ~~~
 {: .language-r}
 
@@ -406,14 +408,16 @@ vektorer med tal:
 
 
 ~~~
-plot(FEV$Age, FEV$Hgt)
+plot(fev$Age, FEV$Hgt)
 ~~~
 {: .language-r}
 
-<div class="figure" style="text-align: center">
-<img src="../fig/rmd-02-unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-23</p>
-</div>
+
+
+~~~
+Error in eval(expr, envir, enclos): object 'FEV' not found
+~~~
+{: .error}
 
 # Boxplot
 
@@ -422,21 +426,23 @@ Boxplots samler en række opsummerende statistiske værdier for en variabel i
 
 
 ~~~
-boxplot(FEV$FEV, data= FEV)
+boxplot(fev$FEV, data= FEV)
 ~~~
 {: .language-r}
 
-<div class="figure" style="text-align: center">
-<img src="../fig/rmd-02-unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-24</p>
-</div>
+
+
+~~~
+Error in eval(expr, envir, enclos): object 'FEV' not found
+~~~
+{: .error}
 
 Og hvorfor det? Fordi det gør det lettere at forstå, at når vi vil have 
 to boxplots, et for drenge og et for piger, så kan vi let få det på denne måde:
 
 
 ~~~
-boxplot(FEV~Sex, data = FEV)
+boxplot(FEV~Sex, data = fev)
 ~~~
 {: .language-r}
 
@@ -491,14 +497,14 @@ The following objects are masked from 'package:base':
 Og så er den ret lige til:
 
 ~~~
-table1(~Age + Sex + FEV + Hgt | Smoke, data=FEV)
+table1(~Age + Sex + FEV + Hgt | Smoke, data=fev)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-Warning in table1.formula(~Age + Sex + FEV + Hgt | Smoke, data = FEV): Terms to
+Warning in table1.formula(~Age + Sex + FEV + Hgt | Smoke, data = fev): Terms to
 the right of '|' in formula 'x' define table columns and are expected to be
 factors with meaningful labels.
 ~~~
@@ -605,7 +611,7 @@ en kategorisk variabel. Det kan vi fixe:
 
 
 ~~~
-table1(~Age + Sex + FEV + Hgt | factor(Smoke), data=FEV)
+table1(~Age + Sex + FEV + Hgt | factor(Smoke), data=fev)
 ~~~
 {: .language-r}
 

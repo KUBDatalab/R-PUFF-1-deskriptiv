@@ -222,6 +222,11 @@ Først downloader vi data til vores data-mappe:
 download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF-1-deskriptiv/main/data/who.csv", "data/who.csv", mode = "wb")
 ~~~
 {: .language-r}
+Hvis ikke det virker - så stil dig selv tre spørgsmål:
+
+1. Fik jeg oprettet et projekt? Hvis ikke, så opret projektet og prøv igen.
+2. Fik jeg oprettet en data-mappe? Hvis ikke, så opret mappen og prøv igen.
+3. Kaldte jeg datamappen "data" eller "Data"? Det gør en forskel!
 
 Herefter kan vi indlæse data til et `objekt` i R:
 
@@ -282,7 +287,7 @@ Lad os også skrive noget prosatekst, der forklarer hvad vi gør.
 > {: .solution}
 {: .challenge}
 
-## Hvordan ser det data ud?
+## Hvordan ser data ud?
 
 Et godt sted at starte når vi skal arbejde med data, er at 
 tage et kig på de første få rækker.
@@ -415,7 +420,111 @@ Her har vi puttet hele udtrykket ind i en parantes. Så bliver det ikke kun
 evalueret. Det bliver også vist. Det gør vi sjældent i praksis, men her kan
 det være nyttigt - ellers bliver siden endnu længere.
 
-Vi kan lave sammenligninger på vr
+Vi kan lave sammenligninger på vektorer:
 
+
+~~~
+min_første_vektor < 100
+~~~
+{: .language-r}
+
+
+
+~~~
+[1]  TRUE  TRUE FALSE
+~~~
+{: .output}
+Det giver en "logisk" vektor, med sand/falsk værdier. Der sammenlignes element
+for element i vektoren. Og der svares "TRUE" hvis udsagnet er sandt, "FALSE" 
+hvis det er falsk.
+
+## Subsetting
+
+Ordet "subset" er ret godt at kende, især når man skal google svar, eller have
+hjælp af en chatbot.
+
+Det handler om at udtrække dele af noget større, at tage et subset. 
+
+Vi kan bruge logiske vektorer til at subsette andre vektorer:
+
+
+~~~
+min_første_vektor[min_første_vektor < 100]
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 42 47
+~~~
+{: .output}
+Vi får her returneret de elementer i vektoren der matcher en sand værdi. Og ikke
+det ene element der matcher en falsk værdi. Bemærk de kantede paranteser, dem
+bruger vi generelt når vi subsetter vektorer.¨
+
+## Dataframes
+
+Normalt har vi data i tabeller. I R kalder vi den slags for `dataframes` eller
+`tibbles`. Hver kolonne i en dataframe er en vektor, og alle kolonnerne skal have
+samme længde. 
+
+Vektorer kan kun indeholde en type data, tal, tekst, logiske værdier eller kategoriske
+værdier. Og derfor kan vi også kun have en type data i en kolonne i en dataframe.
+Her adskiller R sig en del fra Excel!
+
+Lad os lave en dataframe:
+
+~~~
+(min_første_dataframe <- data.frame(id = c("A", "B", "C"), value = min_første_vektor))
+~~~
+{: .language-r}
+
+
+
+~~~
+  id value
+1  A    42
+2  B    47
+3  C   100
+~~~
+{: .output}
+
+Normalt laver vi ikke selv dataframes på denne måde. Men vi skal bruge 
+en dataframe for at vise hvordan vi subsetter sådan en.
+
+Hvis vi kun er interesseret i den kolonne der hedder `value`, eksempelvis fordi
+vi vil beregne noget statistik på den, kan vi subsette dataframen på mange måder,
+men den enkleste er nok dollarnotationen:
+
+
+~~~
+min_første_dataframe$value
+~~~
+{: .language-r}
+
+
+
+~~~
+[1]  42  47 100
+~~~
+{: .output}
+Og nu kan vi så beregne gennemsnittet:
+
+
+~~~
+mean(min_første_dataframe$value)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 63
+~~~
+{: .output}
+
+Og så har vi ca. det på plads vi skal bruge for at kunne lave deskriptiv statistik
+på noget data.
 
 {% include links.md %}
