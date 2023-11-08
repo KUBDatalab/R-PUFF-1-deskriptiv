@@ -13,33 +13,33 @@ brug, men her er de.
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BETACAR.csv)
 
 
-|Variable    |          Description/Code
-|------------|---------------------------------------------------------
-|Prepar      |  Preparation 1=SOL/2=ROCHE/3=BASF-30/4=BASF-60
-|Id          |      Subject #
-|Base1lvl    |   1st Baseline Level 
-|Base2lvl    | 2nd Baseline Level 
-|Wk6lvl      |    Week 6 Level
-|Wk8lvl      |     Week 8 Level 
-|Wk10lvl     | Week 10 Level	
-|Wk12lvl     |      Week 12 Level 
+|Variable  |  Description/Code
+|----------|---------------------------------------------------------
+|Prepar    |  Preparation 1=SOL/2=ROCHE/3=BASF-30/4=BASF-60
+|Id        |  Subject #
+|Base1lvl  |  1st Baseline Level 
+|Base2lvl  |  2nd Baseline Level 
+|Wk6lvl    |  Week 6 Level
+|Wk8lvl    |  Week 8 Level 
+|Wk10lvl   |  Week 10 Level	
+|Wk12lvl   |  Week 12 Level 
 
 
 ### BLOOD
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BLOOD.csv)
 
-|Variable                  |          Description
-|----------------|----------------------------
-|Id                     |                       ID
-|matchid         |                 Matched ID
-|case            |                      Case/control  1=case/ 0=control
-|curpmh          |                   Current PMH use  1=yes / 0=no
-|ageblood                   |                Age at blood draw
-|estradol                 |                  Estradiol
-|estrone                  |                  Estrone  missing=999
-|testost                 |                   Testosterone  missing=999
-|prolactn                  |                 Prolactin   xx.xx  missing=99.99
+|Variable  |  Description
+|----------|----------------------------
+|Id        |  ID
+|matchid   |  Matched ID
+|case      |  Case/control  1=case/ 0=control
+|curpmh    |  Current PMH use  1=yes / 0=no
+|ageblood  |  Age at blood draw
+|estradol  |  Estradiol
+|estrone   |  Estrone  missing=999
+|testost   |  Testosterone  missing=999
+|prolactn  |  Prolactin   xx.xx  missing=99.99
 
 
 ### BONEDEN
@@ -47,11 +47,11 @@ brug, men her er de.
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BONEDEN.csv)
 
 
-|Variable  |      Code
-|----------|-----------------------------------------------
-|ID        |
-|Age       |    Age (yrs)
-|zyg       |  1=mz 2=dz
+|  Variable  |  Code       |
+|------------|-------------|
+|  ID        |             |
+|  Age       |  Age (yrs)  |
+|  zyg       |  1=mz 2=dz  |
 
 Twin 1  Lighter Smoking Twin
 
@@ -85,8 +85,18 @@ Twin 2  Heavier Smoking Twin
 |fn2       |         Femoral neck (g/cm**2)
 |fs2       |         Femoral shaft (g/cm**2)
 
+Tvillingestudie af sammenhængen mellem knogletæthed og cigaretrygning. 41 midaldrende
+kvindelige tvillinger, der havde forskelligt ryge-historik. Data fra et australsk 
+studie, foretaget på et hospital i Victoria.
 
+Pack-years er pakkeår, defineret som hvor mange år der er røget en pakke 
+cigaretter om dagen, normalt ca 20 cigaretter pr pakke. Yderligere variable
+ret selvforklarende - der er ikke definitioner på hvad en kop te eller
+kaffe dækker over. Dog:
 
+* Lumbar spine: L1-L5. 
+* Femoral neck: Collum femoris
+* Femoral shaft: Corpus femoris
 ### BOTOX
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BOTOX.csv)
@@ -94,27 +104,27 @@ Twin 2  Heavier Smoking Twin
 
 |Variable    |       Code
 |------------|---------------------------------------------------------
-|ID          |
-|group       |           1=TL/2=Placebo/3=Botox
-|pain0       |         pain score month 0  missing=999
-|pain05      |        pain score month 0.5  missing=999
-|pain1       |        pain score month 1  missing=999
-|pain2       |        pain score month 2  mising=999
-|pain3       |        pain score month 3  missing=999
-|pain4       |        pain score month 4  missing=999
-|pain5       |        pain score month 5  missing=999
-|pain6       |        pain score month 6  missing=999
-|pain7       |        pain score month 7  missing=999
-|pain8       |        pain score month 8  missing=999
-|pain9       |        pain score month 9  missing=999
-|pain10      |        pain score month 10  missing=999
-|pain11      |        pain score month 11  missing=999
-|pain12      |        pain score month 12  missing=999
-|pain13      |        pain score month 13  missing=999
-|pain14      |        pain score month 14  missing=999
-|pain15      |        pain score month 15  missing=999
-|pain16      |        pain score month 16  missing=999
-|pain17      |        pain score month 17  missing=999
+|ID          |  
+|group       |  1=TL/2=Placebo/3=Botox
+|pain0       |  pain score month 0  missing=999
+|pain05      |  pain score month 0.5  missing=999
+|pain1       |  pain score month 1  missing=999
+|pain2       |  pain score month 2  mising=999
+|pain3       |  pain score month 3  missing=999
+|pain4       |  pain score month 4  missing=999
+|pain5       |  pain score month 5  missing=999
+|pain6       |  pain score month 6  missing=999
+|pain7       |  pain score month 7  missing=999
+|pain8       |  pain score month 8  missing=999
+|pain9       |  pain score month 9  missing=999
+|pain10      |  pain score month 10  missing=999
+|pain11      |  pain score month 11  missing=999
+|pain12      |  pain score month 12  missing=999
+|pain13      |  pain score month 13  missing=999
+|pain14      |  pain score month 14  missing=999
+|pain15      |  pain score month 15  missing=999
+|pain16      |  pain score month 16  missing=999
+|pain17      |  pain score month 17  missing=999
 
 ### BREAST
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BREAST.csv)
@@ -304,14 +314,14 @@ Twin 2  Heavier Smoking Twin
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/FEV.csv)
 
-|Variable |     Description     |      Format or Code
-|---------|---------------------|----------------------------
-| Id      |    ID number        |
-| Age     |    Age (yrs)        |
-| FEV     |    FEV (liters)     |      X.XXXX
-| Hgt     |    Height (inches)  |      XX.X
-| Sex     |    Sex              |      0=female/1=male
-| Smoke   |    Smoking Status   |      0=non-current smoker/1=current smoker
+|Variable |  Description      |  Format or Code                         |
+|---------|-------------------|-----------------------------------------|
+| Id      |  ID number        |                                         |
+| Age     |  Age (yrs)        |                                         |
+| FEV     |  FEV (liters)     |  X.XXXX                                 |
+| Hgt     |  Height (inches)  |  XX.X                                   |
+| Sex     |  Sex              |  0=female/1=male                        |
+| Smoke   |  Smoking Status   |  0=non-current smoker/1=current smoker  |
 
 FEV - Forced Expiratory Volume er et index for lungefunktion, der måler
 det volumen luft (i liter) der kan udstødes af lungerne på et sekund. 
@@ -327,55 +337,55 @@ American Journal of Epidemiology, 110, 15-26.
 ### FIELD
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/FIELD.csv)
 
-|Variable   |	Description
-|-----------|--------------
-|id          |  ID
-|group        |              group (1=RHO/2=RPGR)
-|age           |        age at visit  (XX.X in years)
-|gender       |            gender (1=m/2=f)  Note: all RPGR individuals have to be male 
-|dtvisit      |	  date of visit (month/day/year)
-|folowup      |	  time from 1st visit in years
-|totfldod     |	  total field area right eye (OD) in degrees²
-|totfldos     |	  total field area left eye (OS) in degrees²
+|Variable  |  Description
+|----------|--------------
+|id        |  ID
+|group     |  group (1=RHO/2=RPGR)
+|age       |  age at visit  (XX.X in years)
+|gender    |  gender (1=m/2=f)  Note: all RPGR individuals have to be male 
+|dtvisit   |  date of visit (month/day/year)
+|folowup   |  time from 1st visit in years
+|totfldod  |  total field area right eye (OD) in degrees²
+|totfldos  |  total field area left eye (OS) in degrees²
 
 ### HEART
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/HEART.csv)
 
-|Variable	|code|
-|---------|--------|
-|Diagnosis	|		Y1=normal|
-|    |				Y2=atrial septal defect without pulmonary stenosis or pulmonary hypertension|
-|			|	Y3=ventricular septal defect with valvular pulmonary stenosis|
-|			|	Y4=isolated pulmonary hypertension|
-|			|	Y5=transposed great vessels|
-|			|	Y6=ventricular septal defect without pulmonary hypertension|
-|			|	Y7=ventricular septal defect with pulmonary hypertension|
-|Prevalence |		Prevalence|
-|X1		| 		age 1-20 years old|
-|X2		|		age>20 years old|
-|X3		|		mild cyanosis|
-|X4		|		easy fatigue|
-|X5		|		chest pain|
-|X6		|		repeated respiratory infections|
-|X7		|		EKG axis more than 110|
+|Variable    |  code                                                                          |
+|------------|--------------------------------------------------------------------------------|
+|Diagnosis   |  Y1=normal                                                                     |
+|            |  Y2=atrial septal defect without pulmonary stenosis or pulmonary hypertension  |
+|            |  Y3=ventricular septal defect with valvular pulmonary stenosis                 |
+|            |  Y4=isolated pulmonary hypertension                                            |
+|            |  Y5=transposed great vessels                                                   |
+|            |  Y6=ventricular septal defect without pulmonary hypertension                   |
+|            |  Y7=ventricular septal defect with pulmonary hypertension                      |
+|Prevalence  |  Prevalence                                                                    |
+|X1          |  age 1-20 years old                                                            |
+|X2          |  age>20 years old                                                              |
+|X3          |  mild cyanosis                                                                 |
+|X4          |  easy fatigue                                                                  |
+|X5          |  chest pain                                                                    |
+|X6          |  repeated respiratory infections                                               |
+|X7          |  EKG axis more than 110                                                        |
 
 
 ### HORMONE
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/HORMONE.csv)
 
-|Variable       |      Description/Code
-|---------------|------------------------------------------------------------
-|ID             |       ID
-|Bilsecpr       |      Biliary secretion-pre      
-|Bilphpr        |      Biliary pH-pre             
-|Pansecpr       |       Pancreatic secretion-pre   
-|Panphpr        |      Pancreatic pH-pre          
-|Dose           |      Dose 
-|Bilsecpt       |      Biliary secretion-post     
-|Bilphpt        |      Biliary pH-post            
-|Pansecpt       | Pancreatic secretion-post  
-|Panphpt        |       Pancreatic pH-post 
-|Hormone        |        Hormone 1=SAL/2=APP/3=CCK/4=SEC/5=VIP
+|Variable  |  Description/Code
+|----------|----------------------------------------|
+|ID        |  ID                                    |
+|Bilsecpr  |  Biliary secretion-pre                 |
+|Bilphpr   |  Biliary pH-pre                        |
+|Pansecpr  |  Pancreatic secretion-pre              |
+|Panphpr   |  Pancreatic pH-pre                     |
+|Dose      |  Dose                                  |
+|Bilsecpt  |  Biliary secretion-post                |
+|Bilphpt   |  Biliary pH-post                       |
+|Pansecpt  |  Pancreatic secretion-post             |
+|Panphpt   |  Pancreatic pH-post                    |
+|Hormone   |  Hormone 1=SAL/2=APP/3=CCK/4=SEC/5=VIP |
 
 
 ### HOSPITAL
@@ -383,17 +393,17 @@ American Journal of Epidemiology, 110, 15-26.
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/HOSPITAL.csv)
 
 
-|Variable   |            Label
-|------------| ---------------
-|   Id           |  id no.
-|   Dur_stay     |           Duration of hospital stay
-|   Age         |           Age
-|   Sex         |            Sex  1=male/2=female
-|   Temp        |          First temperature following admission
-|   WBC         |          First WBC(x1000) following admission
-|   Antibio      |            Received antibiotic 1=yes/2=no
-|   Bact_cul     |            Received bacterial culture 1=yes/2=no
-|   Service      |            Service 1=med/2=surg.
+|  Variable  |  Label
+|------------|----------------
+|  Id        |  id no.
+|  Dur_stay  |  Duration of hospital stay
+|  Age       |  Age
+|  Sex       |  Sex  1=male/2=female
+|  Temp      |  First temperature following admission
+|  WBC       |  First WBC(x1000) following admission
+|  Antibio   |  Received antibiotic 1=yes/2=no
+|  Bact_cul  |  Received bacterial culture 1=yes/2=no
+|  Service   |  Service 1=med/2=surg.
 
 
 
@@ -403,31 +413,31 @@ American Journal of Epidemiology, 110, 15-26.
 
 Salt Taste Variables
 
-|Variable   |              Format |   Description|
-|----------|-----------------------|---------------------------------------|
-| ID              |                | |
-| Mn_sbp      |                xx.xx|   Mean SBP 99.99=missing|
-| Mn_dbp      |               xx.xx |  Mean DBP 99.99=missing|
-| MSB1slt   |                xxx.xx |  MSB-trial 1* water|
-| MSB2slt   |                xxx.xx |  MSB-trial 2 water|
-| MSB3slt   |                xxx.xx |  MSB-trial 3 0.1 molar salt + water|
-| MSB4slt   |                xxx.xx |  MSB-trial 4 0.1 molar salt + water|
-| MSB5slt   |                xxx.xx |  MSB-trial 5 water|
-| MSB6slt   |                xxx.xx |  MSB-trial 6 water|
-| MSB7slt   |                xxx.xx |  MSB-trial 7 0.3 molar salt + water|
-| MSB8slt   |                xxx.xx |  MSB-trial 8 0.3 molar salt + water|
-| MSB9slt   |                xxx.xx |  MSB-trial 9 water|
-| MSB10slt  |                xxx.xx |  MSB-trial 10 water|
+|  Variable  |  Format |  Description                         |
+|------------|---------|--------------------------------------|
+|  ID        |         |                                      |
+|  Mn_sbp    |  xx.xx  |  Mean SBP 99.99=missing              |
+|  Mn_dbp    |  xx.xx  |  Mean DBP 99.99=missing              |
+|  MSB1slt   |  xxx.xx |  MSB-trial 1* water                  |
+|  MSB2slt   |  xxx.xx |  MSB-trial 2 water                   |
+|  MSB3slt   |  xxx.xx |  MSB-trial 3 0.1 molar salt + water  |
+|  MSB4slt   |  xxx.xx |  MSB-trial 4 0.1 molar salt + water  |
+|  MSB5slt   |  xxx.xx |  MSB-trial 5 water                   |
+|  MSB6slt   |  xxx.xx |  MSB-trial 6 water                   |
+|  MSB7slt   |  xxx.xx |  MSB-trial 7 0.3 molar salt + water  |
+|  MSB8slt   |  xxx.xx |  MSB-trial 8 0.3 molar salt + water  |
+|  MSB9slt   |  xxx.xx |  MSB-trial 9 water                   |
+|  MSB10slt  |  xxx.xx |  MSB-trial 10 water                  |
 
 Sugar Taste Variables
 
-|Variable     |            Format |   Description|
-|-----------|--------------|-----------------------------------------------|
-| MSB1sug     |              xxx.xx|   MSB-trial 1 non-nutritive sucking|
-| MSB2sug     |             xxx.xx  | MSB-trial 2 water|
-| MSB3sug     |            xxx.xx |  MSB-trial 3 5% sucrose + water|
-| MSB4sug     |            xxx.xx |  MSB-trial 4 15% sucrose + water|
-| MSB5sug     |            xxx.xx |  MSB-trial 5 non-nutritive sucking|
+|  Variable  |  Format  |  Description                        |
+|------------|----------|-------------------------------------|
+|  MSB1sug   |  xxx.xx  |  MSB-trial 1 non-nutritive sucking  |
+|  MSB2sug   |  xxx.xx  |  MSB-trial 2 water                  |
+|  MSB3sug   |  xxx.xx  |  MSB-trial 3 5% sucrose + water     |
+|  MSB4sug   |  xxx.xx  |  MSB-trial 4 15% sucrose + water    |
+|  MSB5sug   |  xxx.xx  |  MSB-trial 5 non-nutritive sucking  |
 
 
 * for MSB data 999.99 is a missing value; 0 indicates the baby did not suck.
@@ -437,133 +447,133 @@ Sugar Taste Variables
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/LEAD.csv)
 
-|VARIABLE |     DESCRIPTION|
-|---------|-------------------|
-| id            |  IDENTIFICATION NUMBER|
-| area        |      AREA - RESIDENCE ON AUG'72|
-|                 |      1=0-1 MILES FROM SMELTER|
-|                 |      2=1-2.5 MILES|
-|                 |      3=2.5-4.1 MILES|
-| ageyrs    |      AGE in years xx.xx |
-| sex         |      SEX  1=MALE  2=FEMALE|
+|  VARIABLE  |  DESCRIPTION                 |
+|------------|------------------------------|
+|  id        |  IDENTIFICATION NUMBER       |
+|  area      |  AREA - RESIDENCE ON AUG'72  |
+|            |  1=0-1 MILES FROM SMELTER    |
+|            |  2=1-2.5 MILES               |
+|            |  3=2.5-4.1 MILES             |
+|  ageyrs    |  AGE in years xx.xx          |
+|  sex       |  SEX  1=MALE  2=FEMALE       |
 
 
 IQ TEST RESULTS
 
-|VARIABLE |     DESCRIPTION|
-|---------|---------------------|
-| iqv_inf |        INF - INFORMATION SUBTEST IN WISC AND WPPSI|
-| iqv_comp|        COMP - COMPREHENSION SUBTEST IN WISC AND WPPSI|
-| iqv_ar    |      AR - ARITHMETIC SUBTEST IN WISC AND WPPSI|
-| iqv_ds    |      DS - DIGIT SPAN SUBTEST(WISC) AND SENTENCE COMPLETION(WPPSI)|
-| iqv_raw |        V/RAW - RAW SCORE/VERBAL IQ |
-| iqp_pc    |      PC - PICTURE COMPLETION SUBTEST IN WISC AND WPPSI|
-| iqp_bd    |      BD - BLOCK DESIGN SUBTEST IN WISC AND WPPSI|
-| iqp_oa    |      OA - OBJECT ASSEMBLY SUBTEST(WISC), ANIMAL HOUSE SUBTEST(WPPSI)|
-| iqp_cod |        COD - CODING SUBTEST(WISC), GEOMETRIC DESIGN SUBTEST(WPPSI)|
-| iqp_raw |       P/RAW - RAW SCORE/PERFORMANCE IQ (TOTAL OF SCORES PC, BD, OA, & COD)|
-| hh_index|        HH/INDEX - HOLLINGSHEAD INDEX OF SOCIAL STATUS|
-| iqv         |    IQV - VERBAL IQ|
-| iqp         |    IQP - PERFORMANCE IQ|
-| iqf         |    IQF - FULL SCALE IQ (NOT SUM OR AVERAGE OF IQV D IQP)|
-| iq_type |           TYPE OF IQ TEST   1=WISC  2=WPPSI|
-|                 |      (WISC USUALLY GIVEN TO CHILDREN GE 5 YRS 1 MONTH OF AGE               |
-|                 |       WPPSI USUALLY GIVEN TO CHILDREN LE 5YRS OF AGE)|
-| lead_grp|           GROUP - BLOOD LEAD LEVEL GROUP|
-|                 |        1=BLOOD LEAD LEVELS BELOW 40 MICROGRAMS/100ML IN|
-|                 |               BOTH 1972 & 1973 (control group)|
-|                 |          2=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO|
-|                 |               40 MICROGRAMS/100ML|
-|                 |               IN BOTH 72 & 73 OR A LEVEL GREATER THAN OR|
-|                 |               EQUAL TO 40|
-|                 |               IN 73 ALONE (3 CASES ONLY) (currently exposed |
-|                 |                Group)|
-|                 |          3=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO|
-|                 |               40 MICROGRAMS/100ML|
-|                 |               IN 72 AND LESS THAN 40 IN 73|
-|                 |                (previously exposed group)|
-| Group     |            1=control group; 2=exposed group|
-|  ld72     |       LD72 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN72|
-|                 |             MISSING=99|
-| ld73        |    LD73 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN 73|
-| fst2yrs |           FST2YRS - DID CHILD LIVE FOR 1ST 2 YRS WITHIN|
-|                 |             1 MILE OF SMELTER  1=YES  2=NO|
-| totyrs    |      TOTYRS - TOTAL NUMBER OF YEARS SPENT WITHIN|
-|                 |             4.1 MILES OF SMELTER|
+|  VARIABLE  |  DESCRIPTION                                                           |
+|------------|------------------------------------------------------------------------|
+|  iqv_inf   |  INF - INFORMATION SUBTEST IN WISC AND WPPSI                           |
+|  iqv_comp  |  COMP - COMPREHENSION SUBTEST IN WISC AND WPPSI                        |
+|  iqv_ar    |  AR - ARITHMETIC SUBTEST IN WISC AND WPPSI                             |
+|  iqv_ds    |  DS - DIGIT SPAN SUBTEST(WISC) AND SENTENCE COMPLETION(WPPSI)          |
+|  iqv_raw   |  V/RAW - RAW SCORE/VERBAL IQ                                           |
+|  iqp_pc    |  PC - PICTURE COMPLETION SUBTEST IN WISC AND WPPSI                     |
+|  iqp_bd    |  BD - BLOCK DESIGN SUBTEST IN WISC AND WPPSI                           |
+|  iqp_oa    |  OA - OBJECT ASSEMBLY SUBTEST(WISC), ANIMAL HOUSE SUBTEST(WPPSI)       |
+|  iqp_cod   |  COD - CODING SUBTEST(WISC), GEOMETRIC DESIGN SUBTEST(WPPSI)           |
+|  iqp_raw   |  P/RAW - RAW SCORE/PERFORMANCE IQ (TOTAL OF SCORES PC, BD, OA, & COD)  |
+|  hh_index  |  HH/INDEX - HOLLINGSHEAD INDEX OF SOCIAL STATUS                        |
+|  iqv       |  IQV - VERBAL IQ                                                       |
+|  iqp       |  IQP - PERFORMANCE IQ                                                  |
+|  iqf       |  IQF - FULL SCALE IQ (NOT SUM OR AVERAGE OF IQV D IQP)                 |
+|  iq_type   |  TYPE OF IQ TEST   1=WISC  2=WPPSI                                     |
+|            |  (WISC USUALLY GIVEN TO CHILDREN GE 5 YRS 1 MONTH OF AGE               |
+|            |  WPPSI USUALLY GIVEN TO CHILDREN LE 5YRS OF AGE)                       |
+|  lead_grp  |  GROUP - BLOOD LEAD LEVEL GROUP                                        |
+|            |  1=BLOOD LEAD LEVELS BELOW 40 MICROGRAMS/100ML IN                      |
+|            |  BOTH 1972 & 1973 (control group)                                      |
+|            |  2=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO                          |
+|            |  40 MICROGRAMS/100ML                                                   |
+|            |  IN BOTH 72 & 73 OR A LEVEL GREATER THAN OR                            |
+|            |  EQUAL TO 40                                                           |
+|            |  IN 73 ALONE (3 CASES ONLY) (currently exposed                         |
+|            |  Group)                                                                |
+|            |  3=BLOOD LEAD LEVELS GREATER THAN OR EQUAL TO                          |
+|            |  40 MICROGRAMS/100ML                                                   |
+|            |  IN 72 AND LESS THAN 40 IN 73                                          |
+|            |  (previously exposed group)                                            |
+|  Group     |  1=control group; 2=exposed group                                      |
+|  ld72      |  LD72 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN72                      |
+|            |  MISSING=99                                                            |
+|  ld73      |  LD73 - BLOOD LEAD VALUES (MICROGRAMS/100ML) IN 73                     |
+|  fst2yrs   |  FST2YRS - DID CHILD LIVE FOR 1ST 2 YRS WITHIN                         |
+|            |  1 MILE OF SMELTER  1=YES  2=NO                                        |
+|  totyrs    |  TOTYRS - TOTAL NUMBER OF YEARS SPENT WITHIN                           |
+|            |  4.1 MILES OF SMELTER                                                  |
 
 
 SYMPTOM DATA (AS REPORTED BY PARENTS)
 
-|VARIABLE   |   DESCRIPTION|
-|----------|------------------------|
-| pica          |      PICA   1=YES  2=NO|
-| colic       |        COLIC  1=YES  2=NO|
-| clumsi      |        CLUMSINESS  1=YES  2=NO|
-| irrit       |        IRRITABILITY  1=YES  2=NO|
-| convul      |        CONVULSIONS  1=YES  2=NO|
+|  VARIABLE  |  DESCRIPTION                |
+|------------|-----------------------------|
+|  pica      |  PICA   1=YES  2=NO         |
+|  colic     |  COLIC  1=YES  2=NO         |
+|  clumsi    |  CLUMSINESS  1=YES  2=NO    |
+|  irrit     |  IRRITABILITY  1=YES  2=NO  |
+|  convul    |  CONVULSIONS  1=YES  2=NO   |
 
 CONTAIN NEUROLOGICAL TEST DATA
 
-|VARIABLE |     DESCRIPTION       |
-|----------|-------------------------------|
-| _2plat_r  |       # OF TAPS FOR RIGHT HAND IN THE 2-PLATE TAPPING|
-|           |                   TEST  (#TAPS IN ONE 10 SECOND TRIAL)|
-|           |                   MISSING=99|
-| _2plat_l  |       # OF TAPS FOR LEFT HAND IN THE 2-PLATE TAPPING TEST|
-|           |                     (#TAPS IN ONE 10 SECOND TRIAL)|
-|           |                   MISSING=99|
-|visrea_r   |      VISUAL REACTION TIME RIGHT HAND (MILLISECONDS)|
-|           |                   MISSING=99|
-| visrea_l  |       VISUAL REATION TIME LEFT HAND (MILLISECONDS)|
-|           |                   MISSING=99|
-|audrea_r   |     AUDITORY REACTION TIME RIGHT HAND (MILLISECONDS)|
-|           |                   MISSING=99|
-| audrea_l  |     AUDITORY REACTION TIME LEFT HAND (MILLISECONDS)|
-|           |                   MISSING=99|
-| fwt_r|          FINGER-WRIST TAPPING TEST RIGHT HAND|
-|       |                       (# TAPS IN ONE 10 SECOND TRIAL)|
-|        |                      MISSING=99|
-| fwt_l   |       FINGER-WRIST TAPPING TEST LEFT HAND|
-|          |                    (#TAPS IN ONE 10 SECOND TRIAL)|
-|           |                   MISSING=99|
-| hyperact   |   WWPS - WERRY-WEISS-PETERS SCALE FOR HYPERACTIVITY|
-|             |                 0=NO ACTIVITY . . . . 4=SEVERLY HYPERACTIVE|
-|              |                (AS REPORTED BY PARENTS)|
-|               |               MISSING=99|
-| maxfwt         |  Finger-wrist tapping test in dominant hand(max of              |
-|                 |        fwt_r,fwt_l)|
+|  VARIABLE  |  DESCRIPTION                                                     |
+|------------|------------------------------------------------------------------|
+|  _2plat_r  |  # OF TAPS FOR RIGHT HAND IN THE 2-PLATE TAPPING                 |
+|            |  TEST  (#TAPS IN ONE 10 SECOND TRIAL)                            |
+|            |  MISSING=99                                                      |
+|  _2plat_l  |  # OF TAPS FOR LEFT HAND IN THE 2-PLATE TAPPING TEST             |
+|            |  (#TAPS IN ONE 10 SECOND TRIAL)                                  |
+|            |  MISSING=99                                                      |
+|  visrea_r  |  VISUAL REACTION TIME RIGHT HAND (MILLISECONDS)                  |
+|            |  MISSING=99                                                      |
+|  visrea_l  |  VISUAL REATION TIME LEFT HAND (MILLISECONDS)                    |
+|            |  MISSING=99                                                      |
+|  audrea_r  |  AUDITORY REACTION TIME RIGHT HAND (MILLISECONDS)                |
+|            |  MISSING=99                                                      |
+|  audrea_l  |  AUDITORY REACTION TIME LEFT HAND (MILLISECONDS)                 |
+|            |  MISSING=99                                                      |
+|  fwt_r     |  FINGER-WRIST TAPPING TEST RIGHT HAND                            |
+|            |  (# TAPS IN ONE 10 SECOND TRIAL)                                 |
+|            |  MISSING=99                                                      |
+|  fwt_l     |  FINGER-WRIST TAPPING TEST LEFT HAND                             |
+|            |  (#TAPS IN ONE 10 SECOND TRIAL)                                  |
+|            |  MISSING=99                                                      |
+|  hyperact  |  WWPS - WERRY-WEISS-PETERS SCALE FOR HYPERACTIVITY               |
+|            |  0=NO ACTIVITY . . . . 4=SEVERLY HYPERACTIVE                     |
+|            |  (AS REPORTED BY PARENTS)                                        |
+|            |  MISSING=99                                                      |
+|  maxfwt    |  Finger-wrist tapping test in dominant hand(max of fwt_r,fwt_l)  |
+
 
 
 ### MICE
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/MICE.csv)
 
-|Variable |        Description |
-----------|--------------------------------|
-| Id            |     ID|
-| Group     |          GROUP 1=RP  2=NORMAL|
-| Trtgrp    |          TREATMENT GROUP|
-|                    |     A=LIGHT|
-|                    |     B=DIM|
-|                    |     C=DARK|
-| Age         |       AGE (days)|
-| B_amp     |        B AMP  9999=missing|
-| A_amp     |        A AMP  9999=missing  |
+|  Variable  |  Description           |
+|------------|------------------------|
+|  Id        |  ID                    |
+|  Group     |  GROUP 1=RP  2=NORMAL  |
+|  Trtgrp    |  TREATMENT GROUP       |
+|            |  A=LIGHT               |
+|            |  B=DIM                 |
+|            |  C=DARK                |
+|  Age       |  AGE (days)            |
+|  B_amp     |  B AMP  9999=missing   |
+|  A_amp     |  A AMP  9999=missing   |
 
 
 ### NEPHRO
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/NEPHRO.csv)
 
-|Variable   |            Description/Code|
-|----------|-----------------------------------------------------------------|
-|name           |          Study name|
-|id               |       Study number|
-|Endpnt       |             Endpoint  2=nephrotoxicity|
-|Antibio      |             Antibiotic 1=Amikacin/2=Gentamicin/3=Netilmicin/|
-|                   |                4=Sisomycin/5=Tobramycin|
-|Samp_sz      |           Sample size |
-|Side_eff   |             Number with side effects |
+|  Variable  |  Description/Code                                  |
+|------------|----------------------------------------------------|
+|  name      |  Study name                                        |
+|  id        |  Study number                                      |
+|  Endpnt    |  Endpoint  2=nephrotoxicity                        |
+|  Antibio   |  Antibiotic 1=Amikacin/2=Gentamicin/3=Netilmicin/  |
+|            |  4=Sisomycin/5=Tobramycin                          |
+|  Samp_sz   |  Sample size                                       |
+|  Side_eff  |  Number with side effects                          |
 
 
 
