@@ -313,7 +313,16 @@ Twin 2  Heavier Smoking Twin
 | Sex     |    Sex              |      0=female/1=male
 | Smoke   |    Smoking Status   |      0=non-current smoker/1=current smoker
 
+FEV - Forced Expiratory Volume er et index for lungefunktion, der måler
+det volumen luft (i liter) der kan udstødes af lungerne på et sekund. 
 
+Data indeholder data på 654 børn i alderen fra 3 til 19 år i "Childhood
+Respiratory Disease (CRD) Study", fra 1980 i Øst Boston, Massachusetts, USA.
+
+Kilde er den generelle reference i bunden af denne side. Yderligere reference:
+Tage, I.B., Weiss, S.T., Rosner, B. & Speizer, F.E. (1979),
+Effect of parental cigarette smoking on pulmonary function in children.
+American Journal of Epidemiology, 110, 15-26.
 
 ### FIELD
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/FIELD.csv)
@@ -905,6 +914,35 @@ number of minutes elapsed since the last cigarette smoked.
 |cal_ffq      |         Total calories-FFQ       | XXXXXX.XX
 
 
+### who
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/who.csv)
+
+
+
+### Generel reference for alle datasæt
+
+Bortset fra who-sættet, der er en modificeret udgave af datasættet who fra 
+tidyr-pakken.
+
+Den oprindelige kilde til det datasæt: https://www.who.int/teams/global-tuberculosis-programme/data
+
+
+
+@book{alma99122116675805763,
+year = {2011},
+booktitle = {Fundamentals of biostatistics},
+abstract = {"Fundamentals of Biostatistics, 7/e, International Edition" leads you through the methods, techniques, and computations necessary for success in the medical field. Every new concept is developed systematically through completely worked out examples from current medical research problems.},
+author = {Rosner, Bernard A.},
+address = {Boston},
+keywords = {Biometry},
+language = {eng},
+lccn = {2010922638},
+publisher = {Brooks/Cole, Cengage Learning},
+title = {Fundamentals of biostatistics },
+edition = {7. ed.},
+isbn = {9780538735896},
+}
 
 {% include links.md %}
 
