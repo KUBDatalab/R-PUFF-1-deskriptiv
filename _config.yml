@@ -13,7 +13,8 @@
 carpentry: "kd"
 
 # Overall title for pages.
-title: "R, Markdown og jonglering med data"
+title: "Statistik i R med Markdown - for PUFF"
+
 
 # Life cycle stage of the lesson
 # See this page for more details: https://cdh.carpentries.org/the-lesson-life-cycle.html
