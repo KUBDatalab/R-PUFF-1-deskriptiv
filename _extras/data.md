@@ -940,6 +940,25 @@ number of minutes elapsed since the last cigarette smoked.
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/who.csv)
 
+NB Semikolon-separeret
+
+|  Variable  |  Description  |  Format or Code  |
+|------------|---------------|------------------|
+|country     |  Landenavn    |                  | 
+|iso2        |  ISO2 landekode |                | 
+|iso3        |  ISO3 landekode |                | 
+|year        |  År | XXXX                       |         
+|new         |  Artefakt fra databehandling  | Alle felter er "new"  |
+|diag        |  Diagnostisk metode | * |
+|sex         |  Køn |  m for male, f for female |
+|age_low     |  Nedre aldersinterval |  XX  |
+|age_high    |  Øvre aldersinterval  |  XX  |
+|value       |  Antal observerede tilfælde af TB | |
+
+
+*) diagnostisk metode
+* sp
+* sn
 
 
 ### Generel reference for alle datasæt
