@@ -40,17 +40,17 @@ fire præparationer hver dag i 12 uger, og karoten blev målt i deres blod i uge
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BLOOD.csv)
 
-|Variable  |  Description                       |
-|----------|------------------------------------|
-|Id        |  ID                                |
-|matchid   |  Matched ID                        |
-|case      |  Case/control  1=case/ 0=control   |
-|curpmh    |  Current PMH use  1=yes / 0=no     |
-|ageblood  |  Age at blood draw                 |
-|estradol  |  Estradiol                         |
-|estrone   |  Estrone  missing=999              |
-|testost   |  Testosterone  missing=999         |
-|prolactn  |  Prolactin   xx.xx  missing=99.99  |
+|Variable  |  Description        |  Code                  |
+|----------|---------------------|------------------------|
+|Id        |  ID                 |                        |
+|matchid   |  Matched ID         |                        |
+|case      |  Case/control       |  1=case/ 0=control     |
+|curpmh    |  Current PMH use    |  1=yes / 0=no          |
+|ageblood  |  Age at blood draw  |                        |
+|estradol  |  Estradiol          |                        |
+|estrone   |  Estrone            |  missing=999           |
+|testost   |  Testosterone       |  missing=999           |
+|prolactn  |  Prolactin          |  xx.xx  missing=99.99  |
 
 
 ### BONEDEN
@@ -936,6 +936,35 @@ number of minutes elapsed since the last cigarette smoked.
 |  cal_ffq   |  Total calories-FFQ       |  XXXXXX.XX     |
 
 
+### spermatozoa
+
+[Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/spermatozoa.csv)
+
+|  Variable          |  Description                                      |  Format  |
+|--------------------|---------------------------------------------------|----------|
+|  dreng             |  ID                                               |          |
+|  foerste_positive  |  Alder ved første spermatozoa-positive urinprøve  |          |
+|  indgang           |  Alder ved start af studie                        |          |
+|  udgang            |  Alder ved slut af studie (evt deltagelse i)      |          |
+|  observationer     |  Spermatozoa-positive urinprøver                  | +/-      |
+
+Et 7-års longitudinalt studie startet foråret 1975 i Edinburgh. To klasser på
+en grundskole blev bedt om at deltage, og informeret samtykke blev indhentet 
+hos 40 af de 42 drenge i klasserne. Hver tredie måned blev en 24 timers urinprøve 
+indsamlet fra hver dreng, og disse prøver blev analyseret for tilstedeværelse
+af spermatozoer. I observationer er registreret resultatet for hver urinprøve.
++ indikerer tilstedeværelse af spermatozoer, - fravær.
+
+Særligt egnet til øvelse i rensning af data
+
+Estimation of Spermarche from Longitudinal Spermaturia Data
+Merete Jorgensen, Niels Keiding, Niels Erik Skakkebaek
+Biometrics, Vol. 47, No. 1 (Mar., 1991), pp. 177-193 (17 pages)
+https://doi.org/10.2307/2532505
+•
+
+https://www.jstor.org/stable/2532505
+
 ### who
 
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/who.csv)
@@ -972,7 +1001,16 @@ tidyr-pakken.
 
 Den oprindelige kilde til det datasæt: https://www.who.int/teams/global-tuberculosis-programme/data
 
+spermatozoa datasættet er fra 
+Estimation of Spermarche from Longitudinal Spermaturia Data
+Merete Jorgensen, Niels Keiding, Niels Erik Skakkebaek
+Biometrics, Vol. 47, No. 1 (Mar., 1991), pp. 177-193 (17 pages)
+https://doi.org/10.2307/2532505
 
+
+https://www.jstor.org/stable/2532505
+
+alle andre
 
 @book{alma99122116675805763,
 year = {2011},
