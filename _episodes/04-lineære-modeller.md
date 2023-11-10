@@ -58,6 +58,21 @@ fev %>% head()
 ~~~
 {: .output}
 
+Inden man bygger modeller, er det en god ide at lave et scatterplot:
+
+
+~~~
+plot(FEV ~ Hgt, dat = fev)
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-04-unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-5</p>
+</div>
+
+Det kunne godt se lineært ud.
+
 
 Når vi laver en lineær model, skal vi angive modellen på en særlig måde. 
 I R kaldes det for `formel-notation` og `FEV ~ Hgt` dækker over at vi godt vil
@@ -130,6 +145,64 @@ F-statistic:  1995 on 1 and 652 DF,  p-value: < 2.2e-16
 {: .output}
 
 Ikke meget lineær. men ret.
+
+
+Prøv selv!
+
+> ## Øvelse
+>
+> Download datasættet BONEDEN til din datamappe
+>
+> https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BONEDEN.csv
+>
+> Indlæs det derefter med read_csv til et objekt. Kald objektet boneden (med små bogstaver)
+>
+> Lav dernæst en lineær regression af `tea1` mod `cof1`
+>
+> > ## Løsning
+> > download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BONEDEN.csv", "data/BONEDEN.csv", mode = "wb")
+> > 
+> > boneden <- read_csv("data/BONEDEN.csv)
+> >
+> > lm(tea1 ~ cof1, data = boneden)
+> > 
+> >   select(-iso2, -iso3, -new)
+> {: .solution}
+{: .challenge}
+
+
+> ## Øvelse 2 - spredning og middelværdier på indtag af te.
+>
+> Fortsæt arbejdet med datasættet boneden
+>
+> Beregn middelværdi, median og standardafvigelser på indtaget af te (`tea1`)
+> og kaffe (`cof1`)
+>
+> Lav et scatterplot af `tea1` mod `cof1` 
+>
+> > ## Løsning
+> > 
+> > mean(boneden$tea1)
+> >
+> > mean(boneden$cof1)
+> > 
+> > median(boneden$tea1)
+> > 
+> > median(boneden$cof1)
+> > 
+> > plot(boneden$tea1, boneden$cof1)
+> >
+> > eller:
+> >
+> > boneden %>% 
+> >
+> >   ggplot(aes(x = cof1, y = tea1)) +
+> >
+> >   geom_point()
+> >
+> {: .solution}
+{: .challenge}
+
 
 Undertiden kan vi have behov for at få resultaterne ud i en tabel.
 
@@ -218,19 +291,7 @@ Note:               *p<0.1; **p<0.05; ***p<0.01
 ~~~
 {: .output}
 
-Modellen er lineær. Fordi vi har valgt at den skal være lineær. Inden du beslutter
-det, så tag et kig på data:
 
-
-~~~
-plot(FEV ~ Hgt, dat = fev)
-~~~
-{: .language-r}
-
-<div class="figure" style="text-align: center">
-<img src="../fig/rmd-04-unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-10</p>
-</div>
 
 Det kunne godt se lineært ud. Går vi over i `ggplot`-universet, kan vi relativt
 let lave det samme, nu med en lineær regressionslinie lagt ind også:
@@ -276,7 +337,47 @@ confint(model)
 Hgt          0.1261732  0.137778
 ~~~
 {: .output}
-Og hvis vi ikke vil nøjes med et 95% interval, kan vi specificere et andet:
+
+
+Vi har tidligere lært, at den nedre værdi for konfidensintervallet, finder vi
+ved at trække 1.96 ganget med standardfejlen fra estimatet. Og den øvre 
+ved at lægge til i stedet. Lad os lige tjekke efter:
+
+
+~~~
+0.131976 + c(-1, 1)* 1.96* 0.002955
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.1261842 0.1377678
+~~~
+{: .output}
+Det stemmer ikke helt. Det skyldes at 1.96 ikke er den _helt_ rigtige værdi.
+
+Hvis vi godt vil have den helt præcist kan vi få det:
+
+
+
+
+~~~
+qt(0.975, nrow(fev)-2)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 1.9636090861258468
+~~~
+{: .output}
+
+
+1.96 er nok til de fleste formål.
+
+Hvis vi ikke vil nøjes med et 95% interval, kan vi specificere et andet:
 
 
 ~~~
@@ -292,8 +393,7 @@ confint(model, level = 0.99)
 Hgt          0.1243418  0.1396094
 ~~~
 {: .output}
-Challenge: 
-Hvorfor bliver konfidensintervallet bredere?
+
 
 
 Dette kunne også være en øvelse:
