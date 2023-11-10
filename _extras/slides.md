@@ -1,6 +1,9 @@
 ---
 title: Slides
 ---
-Her vil der væres slides til moduler - efterhånden som de bliver færdige.
+
+
+[Slides modul 1](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/files/Modul_1_R_kursus.pptx)
+
 
 {% include links.md %}
