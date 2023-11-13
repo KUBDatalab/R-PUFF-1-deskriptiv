@@ -542,45 +542,14 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 > > 
 > > ~~~
 > > 21.4717 - 0.3578 * 10
-> > ~~~
-> > {: .language-r}
 > > 
-> > 
-> > 
-> > ~~~
-> > [1] 17.8937
-> > ~~~
-> > {: .output}
-> > 
-> > 
-> > 
-> > ~~~
 > > Alternativt:
 > > 
 > > nye_data <- tibble(tea1 = 10)
-> > ~~~
-> > {: .language-r}
 > > 
-> > 
-> > 
-> > ~~~
-> > Error in eval(ei, envir): object 'Alternativt' not found
-> > ~~~
-> > {: .error}
-> > 
-> > 
-> > 
-> > ~~~
 > > predict(kaffe_model, newdata = nye_data)  
 > > ~~~
 > > {: .language-r}
-> > 
-> > 
-> > 
-> > ~~~
-> > Error in eval(expr, envir, enclos): object 'kaffe_model' not found
-> > ~~~
-> > {: .error}
 > {: .solution}
 {: .challenge}
 
