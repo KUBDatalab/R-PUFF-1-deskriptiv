@@ -1,4 +1,4 @@
-'id','area','ageyrs','sex','iqv_inf','iqv_comp','iqv_ar','iqv_ds','iqv_raw','iqp_pc','iqp_bd','iqp_oa','iqp_cod','iqp_raw','hh_index','iqv','iqp','iqf','iq_type','lead_grp','Group','ld72','ld73','fst2yrs','totyrs','pica','colic','clumsi','irrit','convul','_2plat_r','_2plar_l','visrea_r','visrea_l','audrea_r','audrea_l','fwt_r','fwt_l','hyperact','maxfwt'
+id,area,ageyrs,sex,iqv_inf,iqv_comp,iqv_ar,iqv_ds,iqv_raw,iqp_pc,iqp_bd,iqp_oa,iqp_cod,iqp_raw,hh_index,iqv,iqp,iqf,iq_type,lead_grp,Group,ld72,ld73,fst2yrs,totyrs,pica,colic,clumsi,irrit,convul,_2plat_r,_2plar_l,visrea_r,visrea_l,audrea_r,audrea_l,fwt_r,fwt_l,hyperact,maxfwt
 101,3,11.08,1,3,4,3,5,15,10,8,8,5,31,77,61,85,70,1,1,1,25,18,2,11,2,2,2,2,2,16,16,36,38,27,25,72,52,99,72
 102,3,9.42,1,7,9,7,6,29,8,7,10,9,34,77,82,90,85,1,1,1,31,28,2,6,2,2,2,2,2,17,16,23,19,18,28,61,48,0,61
 103,3,11.08,1,4,9,5,3,21,10,7,7,20,44,30,70,107,86,1,1,1,30,29,2,5,2,2,2,2,2,16,17,20,24,16,17,46,49,99,49

@@ -1,4 +1,4 @@
-'ID','group','side','gender','age','pain0','pain05','pain1','pain2','pain3','pain4','pain5','pain6','pain7','pain8','pain9','pain10','pain11','pain12','pain13','pain14','pain15','pain16','pain17'
+ID,group,side,gender,age,pain0,pain05,pain1,pain2,pain3,pain4,pain5,pain6,pain7,pain8,pain9,pain10,pain11,pain12,pain13,pain14,pain15,pain16,pain17
 1,3,'L',1,48,0,40,65,90,90,999,999,999,999,999,999,999,999,999,100,999,999,999,999
 2,2,'M',9,99,0,0,10,15,10,999,999,999,999,999,999,999,999,999,999,999,999,999,999
 3,3,'M',1,62,0,999,999,65,999,999,999,999,999,999,999,999,999,999,999,999,999,999,999

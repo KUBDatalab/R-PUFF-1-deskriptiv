@@ -1,4 +1,4 @@
-'ID','Bilsecpr','Bilphpr','Pansecpr','Panphpr','Dose','Bilsecpt','Bilphpt','Pansecpt','Panphpt','Hormone'
+ID,Bilsecpr,Bilphpr,Pansecpr,Panphpr,Dose,Bilsecpt,Bilphpt,Pansecpt,Panphpt,Hormone
 1,0,0,25,7,0,3,0,10,7.4,1
 1,14.3,0,0.2,0,0,5,0,6,0,1
 1,0,0,6,7.6,0,0,0,0.1,7.2,1
