@@ -15,9 +15,8 @@ math: yes
 ---
 
 
-# NB - denne side er til dag 2 - og ikke helt færdig.
 
-## Hent data
+## Lineære modeller
 
 Vi genbesøger fev datasættet:
 
