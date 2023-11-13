@@ -1,4 +1,4 @@
-'id','group','age','gender','dtvisit','folowup','totfldod','totfldos'
+id,group,age,gender,dtvisit,folowup,totfldod,totfldos
 43,2,15.9,1,1/5/1981,0,11084,11740
 43,2,19.4,1,6/29/1984,3.48,10834,10522.8
 43,2,20.5,1,7/22/1985,4.542,10969.1,10353.7

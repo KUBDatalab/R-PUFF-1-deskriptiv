@@ -1,4 +1,4 @@
-'Id','case','age','agemenar','agemenop','afb','parity','bbd','famhx','bmi','hgt','alcohol','pmh','dur3','dur4','csmk','psmk','foluptm'
+Id,case,age,agemenar,agemenop,afb,parity,bbd,famhx,bmi,hgt,alcohol,pmh,dur3,dur4,csmk,psmk,foluptm
 100013,0,47,12,45,25,2,1,0,26,65,1,2,0,0,1,0,119
 100015,0,54,14,39,26,2,1,0,26,61,8,2,0,0,0,0,120
 100016,0,53,17,36,28,2,1,0,28,64,1,3,88,31,0,1,120
