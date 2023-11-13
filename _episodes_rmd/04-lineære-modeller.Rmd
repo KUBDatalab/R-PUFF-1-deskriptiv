@@ -19,43 +19,49 @@ library(tidyverse)
 ```
 # NB - denne side er til dag 2 - og ikke helt færdig.
 
+## Hent data
 
-Vi genbesøger lige fev datasættet:
+Vi genbesøger fev datasættet:
 
 ```{r eval = F}
+library(tidyverse)
 fev <- read_csv("data/FEV.csv")
 ```
 ```{r echo = F}
 fev <- read_csv("../data/FEV.csv")
 ```
+### Start med at inspicere data
 
 Det så således ud:
 ```{r}
 fev %>% head()
 ```
 
-Inden man bygger modeller, er det en god ide at lave et scatterplot:
+
+Inden man bygger modeller, er det en god ide at starte med et scatterplot:
 
 ```{r}
 plot(FEV ~ Hgt, dat = fev)
 ```
 
-Det kunne godt se lineært ud.
+Det kunne godt se lineært ud, så det nok ikke helt ved side af at bygge en 
+lineær model
 
+### Lav den lineære model
 
 Når vi laver en lineær model, skal vi angive modellen på en særlig måde. 
 I R kaldes det for `formel-notation` og `FEV ~ Hgt` dækker over at vi godt vil
 forklare FEV som funktion af Hgt. Altså en model hvor vi forestiller os at 
 Forced Expiratory Volume er en lineær funktion af børnenes højde.
 
-Funktionen der laver vores lineære model hedder `lm()` og skal også have at vide,
+Funktionen der laver vores lineære model hedder `lm()` og den skal også have at vide,
 at det data vi bruger, hedder fev:
 
 ```{r}
 model <- lm(FEV ~ Hgt, data = fev)
 ```
 
-Det output vi får direkte er ikke særligt nyttigt. Derfor gemmer vi resultatet i
+Det output vi får direkte er ikke meget nyttigt. Derfor gemmer vi resultatet i
 et objekt, her kalder vi det `model`. 
 
 Outputtet direkte ser således ud:
@@ -64,16 +70,25 @@ Outputtet direkte ser således ud:
 model
 ```
 
-Det giver os skæring og hældning. Men vi vil godt vide lidt mere:
+Det giver os skæring og hældning. Men vi vil godt vide lidt mere, og det kan
+vi få med funktionen `summary()`:
 
 ```{r}
 summary(model)
 ```
 
-Ikke meget lineær. men ret.
 
 
-Prøv selv!
+### Prøv selv på et andet datasæt
+
+BONEDEN datasættet indeholder oplysninger om knogletæthed hos kvindelige tvillinger,
+med forskellig rygehistorik. Men vi har også data på deres indtag af kaffe, te
+og alkohol.
+
+Vi nøjes her med at se på den af tvillingerne der ryger mindst - deres variable
+slutter alle på "1" - og antal kopper te hhv kaffe de drikker på en uge, finder
+vi derfor i variablene `tea1` og `cof1`.
+
 
 > ## Øvelse
 >
@@ -121,14 +136,14 @@ Prøv selv!
 > > eller:
 > >
 > > boneden %>% 
-> >
 > >   ggplot(aes(x = cof1, y = tea1)) +
-> >
 > >   geom_point()
 > >
 > {: .solution}
 {: .challenge}
 
+
+### Nyttigere output
 
 Undertiden kan vi have behov for at få resultaterne ud i en tabel.
 
@@ -148,10 +163,15 @@ library(stargazer)
 stargazer(model, type="text")
 ```
 
+Ja, den giver en lidt træls advarsel. Det forlyder at ham der har lavet pakken
+er ved at kigge på det. Resultaterne er dog stadig korrekte.
 
+### Alternativ til plot()
 
-Det kunne godt se lineært ud. Går vi over i `ggplot`-universet, kan vi relativt
-let lave det samme, nu med en lineær regressionslinie lagt ind også:
+Går vi over i `ggplot`-universet, kan vi relativt lave et plot. Fordelen er at 
+det bliver ret let - når først man har gennemskuet hvordan - at lægge en
+lineær regressionslinie ind i plottet:
+
 
 ```{r}
 fev %>% 
@@ -163,6 +183,8 @@ fev %>%
 Det er `method="lm"` der angiver at det skal være en lineær linie der skal
 ligges ind. 
 
+### Konfidensintervaller
+
 Hvis vi godt vil have konfidensintervaller på parametrene i vores model, er der 
 en funktion til det:
 
@@ -170,15 +192,22 @@ en funktion til det:
 confint(model)
 ```
 
-
 Vi har tidligere lært, at den nedre værdi for konfidensintervallet, finder vi
 ved at trække 1.96 ganget med standardfejlen fra estimatet. Og den øvre 
 ved at lægge til i stedet. Lad os lige tjekke efter:
 
+Nedre:
 ```{r}
-0.131976 + c(-1, 1)* 1.96* 0.002955
+0.131976 - 1.96* 0.002955
 ```
-Det stemmer ikke helt. Det skyldes at 1.96 ikke er den _helt_ rigtige værdi.
+Og øvre:
+```{r}
+0.131976 + 1.96* 0.002955
+```
+
+Ikke helt ved siden af - men heller ikke nøjagtig ens.
+
+Det skyldes at 1.96 ikke er den _helt_ rigtige værdi.
 
 Hvis vi godt vil have den helt præcist kan vi få det:
 
@@ -195,33 +224,151 @@ options(digits = 7)
 
 1.96 er nok til de fleste formål.
 
+#### Andre konfidensintervaller
+
 Hvis vi ikke vil nøjes med et 95% interval, kan vi specificere et andet:
 
 ```{r}
 confint(model, level = 0.99)
 ```
 
+### Forudsigelser
+
+Ideen i den lineære model er at vi har en beskrivelse af en sammenhæng mellem to
+variable. Hvis X er noget bestemt, har vi et udtryk der kan bruges til at beregne 
+hvad Y er.
+
+I dette tilfælde:
+
+$$FEV = 0.131976 * Hgt - 5.432679$$
 
 
-Dette kunne også være en øvelse:
-```{r}
-drenge <- fev %>% 
-  filter(Sex == 0)
+> ## Forudsig FEV
+>
+> Højde i datasættet, og derfor også modellen, er angivet i tommer. En tomme
+> er 2.54 cm.
+> Hvilket lungevolumen forudsiger modellen at et barn der er 1 meter og 34 cm højt har?
+>
+>
+> > ## Løsning
+> > 
+> > Højden er 134 cm / 2.54 cm pr tomme = 52.76 tommer
+> > 
+> > FEV = 0.131976 * Hgt - 5.432679 eller
+> > 
+> > FEV = 0.131976 * 52.76 - 5.432679 = 1.530375 liter
+> > 
+> {: .solution}
+{: .challenge}
 
-piger <- fev %>% 
-  filter(Sex == 1)
 
+> ## Det er der også en funktion til
+> 
+> I mere komplicerede modeller, eller hvis man har mange værdier man gerne 
+> vil forudsige, kan det være nyttigt at have en funktion der "predicter" 
+> værdier for en.
+>
+> Funktionen hedder predict(), og skal bruge en data frame som input.
+> 
+> nye_data <- data.frame(Hgt = 52.76)
+>
+> predict(model, newdata = nye_data)
+>
+> Vil give samme prediktion som vi før regnede i hånden.
+{: .callout}
 
-```
-
-```{r}
-lm(FEV ~ Hgt, data = drenge) %>% summary()
-```
-```{r}
-lm(FEV ~ Hgt, data = piger) %>% summary()
-```
 
 ## Et andet datasæt
+
+Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
+
+
+
+```{r}
+kaffe_model <- lm(tea1 ~ cof1, data = boneden)
+```
+
+> ## Byg en model
+>
+> Lav en lineær model af cof1 mod tea1 i boneden datasættet.
+> 
+> Gem modellen som et objekt, med navnet kaffe_model
+>
+> > ## Løsningsforslag
+> >
+> > kaffe_model <- lm(cof1 ~ tea1, data = boneden)
+> > 
+> {: .solution}
+{: .challenge}
+
+> ## Se på resultatet
+>
+> Tag et kig på resultatet. Er det en god model?
+>
+> > ## Løsningsforslag
+> >
+> > summary(kaffe_model)
+> >
+> {: .solution}
+{: .challenge}
+
+> ## Konfidensintervaller
+> 
+> Beregn konfidensintervallerne for modellens parametre.
+>
+> Passer det med 1.96*SE?
+>
+> > ## Løsningsforslag
+> >
+> > confint(kaffe_model)
+> > 
+> > tidy(kaffe_model) %>% 
+> >    mutate(nedre = estimate - 1.96*std.error,
+> >          øvre = estimate + 1.96*std.error)
+> > 
+> {: .solution}
+{: .challenge}
+
+
+> ## Lav en forudsigelse
+> 
+> Modellen viser en sammenhæng mellem hvor meget kaffe og hvor meget
+> te forsøgspersonerne drikker . 
+>
+> Hvis en person drikker 10 kopper te om ugen - hvor mange kopper 
+> kaffe forudsiger modellen at de drikker om ugen?
+>
+> > ## Løsningsforslag
+> > 
+> > 21.4717 - 0.3578 * 10
+> >
+> > Alternativt:
+> > 
+> > nye_data <- tibble(tea1 = 10)
+> > 
+> > predict(kaffe_model, newdata = nye_data)  
+> >
+> {: .solution}
+{: .challenge}
+
+
+
+> ## Scatterplot
+>
+> Lav et scatterplot af tea1 mod cof1
+> 
+> Gav det overhovedet mening at lave en lineær model?
+>
+> > ## Løsningsforslag
+> > plot(boneden$tea1, boneden$cof1)
+> > 
+> > Næppe. Der er ikke meget i plottet der antyder en lineær sammenhæng.
+> >
+> {: .solution}
+{: .challenge}
+
+
+
 
 
 {% include links.md %}
