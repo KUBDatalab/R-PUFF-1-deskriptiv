@@ -337,7 +337,7 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 >
 > > ## Løsningsforslag
 > > 
-> > ```{r}
+> > ```{r eval  = F}
 > > 21.4717 - 0.3578 * 10
 > >
 > > Alternativt:
