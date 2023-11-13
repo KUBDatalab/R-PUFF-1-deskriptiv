@@ -111,7 +111,7 @@ checked program was:
 have_func: checking for _lzcnt_u32() in x86intrin.h... -------------------- no
 
 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0/ruby/backward -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0 -I. -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include -DENABLE_PATH_CHECK=0   -g -O2 -fPIC conftest.c  -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -lruby  -lm   -lc"
-/usr/bin/ld: /tmp/cctFA9WS.o: in function `t':
+/usr/bin/ld: /tmp/ccrZaJWW.o: in function `t':
 /home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/2.7.0/gems/bigdecimal-3.1.4/ext/bigdecimal/conftest.c:16: undefined reference to `_lzcnt_u32'
 collect2: error: ld returned 1 exit status
 checked program was:
@@ -170,7 +170,7 @@ checked program was:
 have_func: checking for _lzcnt_u64() in x86intrin.h... -------------------- no
 
 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0/ruby/backward -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0 -I. -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include -DENABLE_PATH_CHECK=0   -g -O2 -fPIC conftest.c  -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -lruby  -lm   -lc"
-/usr/bin/ld: /tmp/ccMlqVbr.o: in function `t':
+/usr/bin/ld: /tmp/ccpaIUcv.o: in function `t':
 /home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/2.7.0/gems/bigdecimal-3.1.4/ext/bigdecimal/conftest.c:16: undefined reference to `_lzcnt_u64'
 collect2: error: ld returned 1 exit status
 checked program was:
@@ -567,7 +567,7 @@ checked program was:
 /* end */
 
 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0/ruby/backward -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0 -I. -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include -DENABLE_PATH_CHECK=0   -g -O2 -fPIC conftest.c  -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -lruby  -lm   -lc"
-/usr/bin/ld: /tmp/ccZqhOsE.o: in function `t':
+/usr/bin/ld: /tmp/ccQf0iXG.o: in function `t':
 /home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/2.7.0/gems/bigdecimal-3.1.4/ext/bigdecimal/conftest.c:17: undefined reference to `__builtin_isfinite'
 collect2: error: ld returned 1 exit status
 checked program was:
@@ -823,7 +823,7 @@ checked program was:
 /* end */
 
 "gcc -o conftest -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0/x86_64-linux -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0/ruby/backward -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include/ruby-2.7.0 -I. -I/opt/hostedtoolcache/Ruby/2.7.8/x64/include -DENABLE_PATH_CHECK=0   -g -O2 -fPIC conftest.c  -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -Wl,-rpath,/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -L. -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -L/opt/hostedtoolcache/Ruby/2.7.8/x64/lib -lruby  -lm   -lc"
-/usr/bin/ld: /tmp/cco8Bk5F.o: in function `t':
+/usr/bin/ld: /tmp/ccI9AzpT.o: in function `t':
 /home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/2.7.0/gems/bigdecimal-3.1.4/ext/bigdecimal/conftest.c:17: undefined reference to `rb_category_warn'
 collect2: error: ld returned 1 exit status
 checked program was:

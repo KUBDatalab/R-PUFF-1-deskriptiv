@@ -102,13 +102,14 @@ vi derfor i variablene `tea1` og `cof1`.
 > Lav dernæst en lineær regression af `tea1` mod `cof1`
 >
 > > ## Løsning
+> > ```{r eval  = F}
 > > download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BONEDEN.csv", "data/BONEDEN.csv", mode = "wb")
 > > 
 > > boneden <- read_csv("data/BONEDEN.csv)
 > >
 > > lm(tea1 ~ cof1, data = boneden)
 > > 
-> >   select(-iso2, -iso3, -new)
+> > ```
 > {: .solution}
 {: .challenge}
 
@@ -271,9 +272,11 @@ $$FEV = 0.131976 * Hgt - 5.432679$$
 >
 > Funktionen hedder predict(), og skal bruge en data frame som input.
 > 
+> ```{r eval  = F}
 > nye_data <- data.frame(Hgt = 52.76)
 >
 > predict(model, newdata = nye_data)
+> ```
 >
 > Vil give samme prediktion som vi før regnede i hånden.
 {: .callout}
@@ -293,7 +296,9 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 >
 > > ## Løsningsforslag
 > >
+> > ```{r eval  = F}
 > > kaffe_model <- lm(cof1 ~ tea1, data = boneden)
+> > ```
 > > 
 > {: .solution}
 {: .challenge}
@@ -304,8 +309,10 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 >
 > > ## Løsningsforslag
 > >
+> > ```{r eval  = F}
 > > summary(kaffe_model)
 > >
+> > ```
 > {: .solution}
 {: .challenge}
 
@@ -317,12 +324,14 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 >
 > > ## Løsningsforslag
 > >
+> > ```{r eval  = F}
 > > confint(kaffe_model)
 > > 
 > > tidy(kaffe_model) %>% 
 > >    mutate(nedre = estimate - 1.96*std.error,
 > >          øvre = estimate + 1.96*std.error)
 > > 
+> > ```
 > {: .solution}
 {: .challenge}
 
@@ -359,8 +368,10 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 > Gav det overhovedet mening at lave en lineær model?
 >
 > > ## Løsningsforslag
+> > ```{r eval  = F}
 > > plot(boneden$tea1, boneden$cof1)
 > > 
+> > ```
 > > Næppe. Der er ikke meget i plottet der antyder en lineær sammenhæng.
 > >
 > {: .solution}

@@ -176,13 +176,15 @@ vi derfor i variablene `tea1` og `cof1`.
 > Lav dernæst en lineær regression af `tea1` mod `cof1`
 >
 > > ## Løsning
+> > 
+> > ~~~
 > > download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BONEDEN.csv", "data/BONEDEN.csv", mode = "wb")
 > > 
 > > boneden <- read_csv("data/BONEDEN.csv)
-> >
-> > lm(tea1 ~ cof1, data = boneden)
 > > 
-> >   select(-iso2, -iso3, -new)
+> > lm(tea1 ~ cof1, data = boneden)
+> > ~~~
+> > {: .language-r}
 > {: .solution}
 {: .challenge}
 
@@ -334,8 +336,8 @@ fev %>%
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-04-unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-11</p>
+<img src="../fig/rmd-04-unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-12</p>
 </div>
 
 Det er `method="lm"` der angiver at det skal være en lineær linie der skal
@@ -473,9 +475,13 @@ $$FEV = 0.131976 * Hgt - 5.432679$$
 >
 > Funktionen hedder predict(), og skal bruge en data frame som input.
 > 
+> 
+> ~~~
 > nye_data <- data.frame(Hgt = 52.76)
->
+> 
 > predict(model, newdata = nye_data)
+> ~~~
+> {: .language-r}
 >
 > Vil give samme prediktion som vi før regnede i hånden.
 {: .callout}
@@ -495,7 +501,11 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 >
 > > ## Løsningsforslag
 > >
+> > 
+> > ~~~
 > > kaffe_model <- lm(cof1 ~ tea1, data = boneden)
+> > ~~~
+> > {: .language-r}
 > > 
 > {: .solution}
 {: .challenge}
@@ -506,8 +516,11 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 >
 > > ## Løsningsforslag
 > >
+> > 
+> > ~~~
 > > summary(kaffe_model)
-> >
+> > ~~~
+> > {: .language-r}
 > {: .solution}
 {: .challenge}
 
@@ -519,12 +532,15 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 >
 > > ## Løsningsforslag
 > >
+> > 
+> > ~~~
 > > confint(kaffe_model)
 > > 
 > > tidy(kaffe_model) %>% 
 > >    mutate(nedre = estimate - 1.96*std.error,
 > >          øvre = estimate + 1.96*std.error)
-> > 
+> > ~~~
+> > {: .language-r}
 > {: .solution}
 {: .challenge}
 
@@ -562,8 +578,11 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 > Gav det overhovedet mening at lave en lineær model?
 >
 > > ## Løsningsforslag
-> > plot(boneden$tea1, boneden$cof1)
 > > 
+> > ~~~
+> > plot(boneden$tea1, boneden$cof1)
+> > ~~~
+> > {: .language-r}
 > > Næppe. Der er ikke meget i plottet der antyder en lineær sammenhæng.
 > >
 > {: .solution}
