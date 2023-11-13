@@ -9,6 +9,7 @@ objectives:
 keypoints:
 - "FIXME"
 source: Rmd
+math: yes
 ---
 
 ```{r, include = FALSE}
@@ -283,10 +284,6 @@ $$FEV = 0.131976 * Hgt - 5.432679$$
 Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 
 
-
-```{r}
-kaffe_model <- lm(tea1 ~ cof1, data = boneden)
-```
 
 > ## Byg en model
 >
