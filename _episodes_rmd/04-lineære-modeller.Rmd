@@ -285,10 +285,6 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 
 
 
-```{r}
-kaffe_model <- lm(tea1 ~ cof1, data = boneden)
-```
-
 > ## Byg en model
 >
 > Lav en lineær model af cof1 mod tea1 i boneden datasættet.
