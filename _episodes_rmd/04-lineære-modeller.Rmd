@@ -337,6 +337,7 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 >
 > > ## Løsningsforslag
 > > 
+> > ```{r}
 > > 21.4717 - 0.3578 * 10
 > >
 > > Alternativt:
@@ -344,7 +345,8 @@ Nu skal du prøve selv. Vi arbejder videre med boneden datasættet.
 > > nye_data <- tibble(tea1 = 10)
 > > 
 > > predict(kaffe_model, newdata = nye_data)  
-> >
+> > 
+> > ```
 > {: .solution}
 {: .challenge}
 
