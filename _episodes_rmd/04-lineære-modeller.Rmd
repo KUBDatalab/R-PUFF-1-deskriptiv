@@ -18,9 +18,8 @@ knitr_fig_path("04-")
 # source("../bin/download_data.R")
 library(tidyverse)
 ```
-# NB - denne side er til dag 2 - og ikke helt færdig.
 
-## Hent data
+## Lineære modeller
 
 Vi genbesøger fev datasættet:
 
