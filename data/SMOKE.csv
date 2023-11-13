@@ -1,4 +1,4 @@
-'Id','Age','Gender','Cig_day','CO','Min_last','LogCOadj','Day_abs'
+Id,Age,Gender,Cig_day,CO,Min_last,LogCOadj,Day_abs
 1,61,1,30,270,60,1419,6
 3,54,1,30,220,160,1393,3
 4,67,1,30,270,50,1412,365

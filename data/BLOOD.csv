@@ -1,4 +1,4 @@
-'ID','matchid','case','curpmh','ageblood','estradol','estrone','testost','prolactn'
+ID,matchid,case,curpmh,ageblood,estradol,estrone,testost,prolactn
 100013,164594,0,1,46,57,65,25,11.12
 100241,107261,0,0,65,11,26,999,2.8
 100696,110294,0,1,66,3,999,8,38

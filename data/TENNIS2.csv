@@ -1,4 +1,4 @@
-'Id','age','sex','drg_ord','painmx_2','pain12_2','painav_2','painov_2','painmx_3','pain12_3','painav_3','painov_3','painmx_4','pain12_4','painav_4','painov_4'
+Id,age,sex,drg_ord,painmx_2,pain12_2,painav_2,painov_2,painmx_3,pain12_3,painav_3,painov_3,painmx_4,pain12_4,painav_4,painov_4
 701,42,2,1,5,5,5,5,2,1,2,1,3,3,3,3
 725,45,1,2,2,2,2,2,4,4,4,4,6,5,5,6
 729,43,1,1,4,3,4,3,3,2,3,2,2,2,2,2
