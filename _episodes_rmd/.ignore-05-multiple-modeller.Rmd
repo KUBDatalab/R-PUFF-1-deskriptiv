@@ -39,7 +39,8 @@ forklarende variable, der hver i sær tilføjes med et `+`:
 model <- lm(mpg ~ cyl + hp + wt, data = mtcars)
 ```
 
-Det direkte output af modellen er en smule mere kompliceret:
+Det direkte output af modellen er en smule mere kompliceret end vi har set før -
+der er flere variable, og derfor flere koefficienter:
 
 ```{r}
 model
@@ -68,13 +69,68 @@ parametre at estimere.
 ```{r}
 confint(model)
 ```
-Vi kan også plotte modellen:
+Er det en god model? Standard plotte funktionen giver os fire plots, der kan
+bruges til at vurdere hvor god den er.
 ```{r}
 plot(model)
 ```
+Vi får fire plots, der alle handler om residualerne. En vigtig forudsætning for
+den lineære regression er netop at residualerne er normalfordelte og tilfældige.
 
-Det giver os residualerne. De bør være tilfældige.
+*Residuals vs Fitted* giver os residualerne af de fittede værdier. Altså, hvis 
+cyl, hp og wt er hvad de nu er, hvor meget skulle mpg så være? Og hvad er mpg i
+virkeligheden? De bør ligge helt tilfældigt. Hvis det ser ud som om der er 
+mønstre, er der et eller andet vores model ikke har fanget.
+
+*Q-Q residuals* er en visuel test af om resdiualerne er normalfordelte. Punkterne
+bør ligge langs den lige linie. Det gør de sjældent helt.
+
+*Scale-Location* viser os om spredningen af residualerne ændrer sig systematisk
+med de fittede værdier. De skal helst ligge tilfældigt omkring en ret, horisontal
+linie med værdien 0.
+
+*Residuals vs Leverage* hjælper os til at identificere datapunkter, der har 
+uforholdsmæssig indflydelse, "leverage" på modellen. Man kan forstå det som "hvis
+dette punkt blev pillet ud af datasættet, ville parametrene i modellen så ændre sig
+markant". Cook's distance som man kan se i plottet, giver os et bud på om 
+et punkt ændrer parametrene markant.
+
+
 
 ## Polynomial regression
+
+Den regression vi forsøger at lave er:
+
+$$ y = a*x + b*x^2 + c$$
+
+Det er i en vis forstand nøjagtig det samme, som hvis vi i vores datasæt 
+beregnede en ny variabel, z, der var lig med $x^2$. I stedet for at gøre det,
+lægger vi det ind i formelnotationen vi giver `lm()` funktionen direkte:
+
+```{r}
+a <- 1:10
+b <- 1 + 2 * a + 3 * a^2 + rnorm(10)  # Simulerer responsvariable med støj
+data <- tibble(x = a, y = b)
+model <- lm(y ~ x + I(x^2), data = data)
+summary(model)
+```
+
+
+> ## I() funktionen
+> 
+> Hvis ikke vi pakker x^2 ind i en I() funktion, vil R forsøge at fortolke hvad
+> x^2 betyder. R vil prøve at fortolke ^2 som et interaktionsled. Og det kan 
+> føre til underlige resultater.
+> 
+> I() funktionen undertrykker Rs fortolkning af ting, og sender x^2 videre til
+> lm() funktionen, "as is", som det er, uden at R prøver at gøre ting ved det.
+> 
+{: .callout}
+
+
+
+```{r}
+confint(model)
+```
 
 {% include links.md %}
