@@ -318,9 +318,12 @@ who %>%
 > fjern både iso2, iso3 og new kolonnerne fra datasættet:
 >
 > > ## Løsning
-> > who %>% 
 > > 
+> > ~~~
+> > who %>% 
 > >   select(-iso2, -iso3, -new)
+> > ~~~
+> > {: .language-r}
 > {: .solution}
 {: .challenge}
 
@@ -370,9 +373,12 @@ og sætte et minus foran den.
 > Hint: Vi kan tilføje mere end et kriterium i samme filter funktion
 >
 > > ## Løsning
-> > who %>% 
 > > 
+> > ~~~
+> > who %>% 
 > > filter(country == "Afghanistan", sex == "m", age_low == "00")
+> > ~~~
+> > {: .language-r}
 > {: .solution}
 {: .challenge}
 
@@ -923,8 +929,8 @@ AF9606 %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-03-unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-25</p>
+<img src="../fig/rmd-03-unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-27</p>
 </div>
 
 `ggplot()` funktionen får sine data via pipen ` %>% `. I ggplot funktionen
@@ -945,8 +951,8 @@ AF9606 %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-03-unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-26</p>
+<img src="../fig/rmd-03-unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-28</p>
 </div>
 
 Ved blot at ændre `geom_col()` til `geom_point()` får vi et scatter plot i stedet
@@ -992,8 +998,8 @@ FEV %>%
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-03-unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-28</p>
+<img src="../fig/rmd-03-unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-30</p>
 </div>
 
 `facet_wrap(~Smoke)` fortæller `ggplot()` at vi godt vil have lavet et histogram
