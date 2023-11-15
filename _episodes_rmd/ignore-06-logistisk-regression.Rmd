@@ -1,0 +1,35 @@
+---
+title: "Kategoriske data og logistiske regressioner"
+teaching: 10
+exercises: 5
+questions:
+- "FIXME"
+objectives:
+- "FIXME"
+keypoints:
+- "FIXME"
+source: Rmd
+math: yes
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("06-")
+# source("../bin/download_data.R")
+library(tidyverse)
+```
+
+# NB R-eksempler til modul 4 - ikke færdig!
+
+
+
+## Antalstabeller
+
+## Odds ratio
+
+## Logistisk regression
+
+
+
+
+{% include links.md %}

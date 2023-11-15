@@ -18,7 +18,8 @@ math: yes
 
 ## Lineære modeller
 
-Vi genbesøger fev datasættet:
+Vi genbesøger fev datasættet som vi downloadede sidst. Vi indlæser også 
+tidyverse pakkerne_
 
 
 ~~~
@@ -39,7 +40,8 @@ dbl (6): Id, Age, FEV, Hgt, Sex, Smoke
 {: .output}
 ### Start med at inspicere data
 
-Det så således ud:
+Et godt sted at starte er med `head()` funktionen:
+
 
 ~~~
 fev %>% head()
@@ -62,7 +64,8 @@ fev %>% head()
 {: .output}
 
 
-Inden man bygger modeller, er det en god ide at starte med et scatterplot:
+Inden man bygger modeller, er det en god ide at starte med et scatterplot af de
+parametre man vil basere sig på. Et hurtigt plot:
 
 
 ~~~
@@ -75,13 +78,14 @@ plot(FEV ~ Hgt, dat = fev)
 <p class="caption">plot of chunk unnamed-chunk-5</p>
 </div>
 
-Det kunne godt se lineært ud, så det nok ikke helt ved side af at bygge en 
+Det kunne godt se nogenlunde lineært ud, så det nok ikke helt ved side af at bygge en 
 lineær model
 
 ### Lav den lineære model
 
 Når vi laver en lineær model, skal vi angive modellen på en særlig måde. 
-I R kaldes det for `formel-notation` og `FEV ~ Hgt` dækker over at vi godt vil
+
+I R kaldes det for "formel-notation" og `FEV ~ Hgt` dækker over at vi godt vil
 forklare FEV som funktion af Hgt. Altså en model hvor vi forestiller os at 
 Forced Expiratory Volume er en lineær funktion af børnenes højde.
 
@@ -199,8 +203,10 @@ vi derfor i variablene `tea1` og `cof1`.
 >
 > > ## Løsning
 > > 
+> > 
+> > ~~~
 > > mean(boneden$tea1)
-> >
+> > 
 > > mean(boneden$cof1)
 > > 
 > > median(boneden$tea1)
@@ -208,13 +214,14 @@ vi derfor i variablene `tea1` og `cof1`.
 > > median(boneden$cof1)
 > > 
 > > plot(boneden$tea1, boneden$cof1)
-> >
+> > 
 > > eller:
-> >
+> > 
 > > boneden %>% 
 > >   ggplot(aes(x = cof1, y = tea1)) +
 > >   geom_point()
-> >
+> > ~~~
+> > {: .language-r}
 > {: .solution}
 {: .challenge}
 
@@ -245,39 +252,13 @@ tidy(model)
 
 Og vil vi have et endnu mere lækkert format, kan vi installere pakken `stargazer`,
 der har en funktion der hedder - wait for it - `stargazer()` der kan formattere
-ting pænt for os. Her vælger vi `type="text"` der egner sig fint til dette 
+ting pænt for os. 
+
+Her vælger vi `type="text"` der egner sig fint til dette 
 output format, men andre muligheder findes:
 
 ~~~
 library(stargazer)
-~~~
-{: .language-r}
-
-
-
-~~~
-
-Please cite as: 
-~~~
-{: .output}
-
-
-
-~~~
- Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.
-~~~
-{: .output}
-
-
-
-~~~
- R package version 5.2.3. https://CRAN.R-project.org/package=stargazer 
-~~~
-{: .output}
-
-
-
-~~~
 stargazer(model, type="text")
 ~~~
 {: .language-r}
@@ -335,12 +316,12 @@ fev %>%
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-04-unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-12</p>
+<img src="../fig/rmd-04-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-13</p>
 </div>
 
 Det er `method="lm"` der angiver at det skal være en lineær linie der skal
-ligges ind. 
+lægges ind. 
 
 ### Konfidensintervaller
 

@@ -52,6 +52,19 @@ fire præparationer hver dag i 12 uger, og karoten blev målt i deres blod i uge
 |testost   |  Testosterone       |  missing=999           |
 |prolactn  |  Prolactin          |  xx.xx  missing=99.99  |
 
+Stammer fra et case-kontrol studie af risikofaktorer (i blodet) for brystcancer,
+hvor personerne er matchede på alder og curphm ("Postmenopausal hormone use" eller 
+"hormonbehandling efter overgangsalderen.)
+
+I hvert match er der en case, og en eller to kontroller. Som i:
+man har identificeret alder og curpmh for en brystcancerpatient, og matchet 
+med to kontroller, der ikke har brystcancer. Ideen er at se om der er forskelle
+på eksempelvis testosteron indholdet i deres blod.
+
+
+
+
+
 
 ### BONEDEN
 
@@ -139,6 +152,8 @@ kaffe dækker over. Dog:
 |  pain16    |  pain score month 16  missing=999   |
 |  pain17    |  pain score month 17  missing=999   |
 
+s 807 i bogen.
+
 ### BREAST
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BREAST.csv)
 
@@ -225,7 +240,20 @@ kaffe dækker over. Dog:
 |           |                        |  3=6+ yrs             |
 | Ear       |  Ear                   |  1=1st ear/2=2nd ear  |
 
+Data på 214 børn med akut otitis media (OME) der deltog i et randomiseret
+klinisk forsøg. De blev tilfældigt tildelt en 14 dages antibiotikabehandling med
+enten CEF (cefaclor) eller amoxicillin (AMO). I datasættet optræder de 203 
+børn hvor status for deres mellemørebetændelse blev afgjort ved en opfølgende 
+undersøgelse.
 
+Hvis Id optræder mere end en gang, havde de ørebetændelse i begge ører.
+
+Yderligere reference:
+
+Mandel, E., Bluestone, C.D., Rockette, H.E., Blatter, M.M., Reisinger, K.S.,
+Wucher, E.P. & Harper, J. 1982, Duration of effusion after antibiotic 
+treatment for acute otitis media: Comparison of cefaclor and amoxicillin.
+Pediatric Infections Diseases, 1, 310-316.
 
 ### EFF
 
