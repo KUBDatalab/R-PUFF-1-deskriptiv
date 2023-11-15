@@ -194,9 +194,10 @@ who %>%
 > fjern både iso2, iso3 og new kolonnerne fra datasættet:
 >
 > > ## Løsning
+> > ```{r eval = F }
 > > who %>% 
-> > 
 > >   select(-iso2, -iso3, -new)
+> > ```
 > {: .solution}
 {: .challenge}
 
@@ -229,9 +230,10 @@ og sætte et minus foran den.
 > Hint: Vi kan tilføje mere end et kriterium i samme filter funktion
 >
 > > ## Løsning
+> > ```{r eval = F }
 > > who %>% 
-> > 
 > > filter(country == "Afghanistan", sex == "m", age_low == "00")
+> > ```
 > {: .solution}
 {: .challenge}
 
