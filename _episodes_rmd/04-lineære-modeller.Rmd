@@ -21,7 +21,8 @@ library(tidyverse)
 
 ## Lineære modeller
 
-Vi genbesøger fev datasættet:
+Vi genbesøger fev datasættet som vi downloadede sidst. Vi indlæser også 
+tidyverse pakkerne_
 
 ```{r eval = F}
 library(tidyverse)
@@ -32,25 +33,28 @@ fev <- read_csv("../data/FEV.csv")
 ```
 ### Start med at inspicere data
 
-Det så således ud:
+Et godt sted at starte er med `head()` funktionen:
+
 ```{r}
 fev %>% head()
 ```
 
 
-Inden man bygger modeller, er det en god ide at starte med et scatterplot:
+Inden man bygger modeller, er det en god ide at starte med et scatterplot af de
+parametre man vil basere sig på. Et hurtigt plot:
 
 ```{r}
 plot(FEV ~ Hgt, dat = fev)
 ```
 
-Det kunne godt se lineært ud, så det nok ikke helt ved side af at bygge en 
+Det kunne godt se nogenlunde lineært ud, så det nok ikke helt ved side af at bygge en 
 lineær model
 
 ### Lav den lineære model
 
 Når vi laver en lineær model, skal vi angive modellen på en særlig måde. 
-I R kaldes det for `formel-notation` og `FEV ~ Hgt` dækker over at vi godt vil
+
+I R kaldes det for "formel-notation" og `FEV ~ Hgt` dækker over at vi godt vil
 forklare FEV som funktion af Hgt. Altså en model hvor vi forestiller os at 
 Forced Expiratory Volume er en lineær funktion af børnenes højde.
 
@@ -124,6 +128,7 @@ vi derfor i variablene `tea1` og `cof1`.
 >
 > > ## Løsning
 > > 
+> > ```{r eval = F}
 > > mean(boneden$tea1)
 > >
 > > mean(boneden$cof1)
@@ -140,6 +145,7 @@ vi derfor i variablene `tea1` og `cof1`.
 > >   ggplot(aes(x = cof1, y = tea1)) +
 > >   geom_point()
 > >
+> > ```
 > {: .solution}
 {: .challenge}
 
@@ -157,9 +163,11 @@ tidy(model)
 
 Og vil vi have et endnu mere lækkert format, kan vi installere pakken `stargazer`,
 der har en funktion der hedder - wait for it - `stargazer()` der kan formattere
-ting pænt for os. Her vælger vi `type="text"` der egner sig fint til dette 
+ting pænt for os. 
+
+Her vælger vi `type="text"` der egner sig fint til dette 
 output format, men andre muligheder findes:
-```{r}
+```{r message=F}
 library(stargazer)
 stargazer(model, type="text")
 ```
@@ -182,7 +190,7 @@ fev %>%
 ```
 
 Det er `method="lm"` der angiver at det skal være en lineær linie der skal
-ligges ind. 
+lægges ind. 
 
 ### Konfidensintervaller
 
