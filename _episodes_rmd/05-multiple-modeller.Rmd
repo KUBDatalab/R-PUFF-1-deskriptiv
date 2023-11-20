@@ -89,7 +89,7 @@ Nu skal I selv! Vi starter med model1:
 > > 
 > > Det giver denne model:
 > >
-> > $$FEV = -4.610466 + 0.054281*Age +  0.109712*Hgt$$
+> > FEV = -4.610466 + 0.054281*Age +  0.109712*Hgt
 > > 
 > > Højden beregner vi som 150/2.54 = 59.05512 i tommer.
 > > 
@@ -101,11 +101,10 @@ Nu skal I selv! Vi starter med model1:
 > >
 > > Alternativ løsning:
 > > 
-> > ```{r eval = F}
+> > ```{r eval = T}
 > > nye_data <- data.frame(Age = 10, Hgt = 59.05512)
 > > 
 > > predict(model1, newdata = nye_data)
-summary(model1)
 > > ```
 > >
 > {: .solution}
@@ -124,15 +123,23 @@ summary(model1)
 > > 
 > > Vi skal bruge konfidensintervallerne på vores parametre:
 > >
-> > ```{r eval = F}
+> > ```{r eval = T}
 > > confint(model1)
 > > ```
 > > 
+> > 
 > > Alternativ løsning:
 > > 
-> > predict(model1, newdata = nye_data, interval = "confidence")
+> > ```{r eval = T}
+> > nye_data <- data.frame(Age = 10, Hgt = 59.05512)
+> > predict(model1, newdata = nye_data, interval = "predict")
+> > ```
+> > 
 > {: .solution}
 {: .challenge}
+
+Og hvordan beregner vi konfidensintervallet i hånden?
+
 
 
 > ## Giver det mening?
@@ -143,6 +150,12 @@ summary(model1)
 > 
 > > ## Løsningsforslag
 > >
+> > FEV = -4.610466 + 0.054281*0 +  0.109712*59.05512
+> > 
+> > eller: 1.868589
+> > 
+> > Nej. Vores model giver ikke nødvendigvis mening når vi bevæger os
+> > udenfor de interval hvor vi har lavet vores model.
 > > 
 > {: .solution}
 {: .challenge}
@@ -228,96 +241,34 @@ Går det bedre med et andengradspolynomium?
 andenordens_model <- lm(FEV ~ Hgt + I(Hgt^2), data = fev)
 summary(andenordens_model)
 ```
+
 _Meget_ bedre!
 
-Hvordan ser det ud?
+En forudsætning for modellen er at residualerne er normalfordelte.
+Det kan vi teste ved at lave et QQ-plot:
 
 ```{r}
-fev %>% ggplot(aes(x = FEV, y = Hgt)) +
+plot(andenordens_model) 
+```
+
+
+### Lad os sammenligne modellerne
+
+Vi laver et scatter plot af vores data, og de tre modeller:
+
+```{r}
+fev %>% ggplot(aes(x = Hgt, y = FEV)) +
   geom_point() +
   geom_smooth(method = "lm", colour = "green", se = FALSE) +
   geom_smooth(method = "lm", formula = y ~ poly(x, 2), colour = "blue", se = FALSE) +
   geom_smooth(method = "lm", formula = y ~ poly(x, 3), colour = "red", se = FALSE)
 ```
 
+Vi kan her gøre det enkelt, har vi mere komplekse modeller, er vi nødt til at 
+lave forudsigelser for forskelligt input, og plotte resultaterne.
 
+Prøv nu selv med boneden datasættet.
 
-
-
-
-
-
-Vi har ikke taget stilling til hvilket datasæt der skal bruges som eksempel. 
-Men kommer nok til at køre ca. samme model som øvelserne i forrige modul:
-
-1. sådan gør du
-2. gør det selv med et andet datasæt
-
-Eksempelkode baserer sig aktuelt på mtcars datasættet.
-
-Den multiple lineære regression opbygges på samme måde som den simple 
-lineære regression. Formelnotationen er den samme. Nu er der blot flere
-forklarende variable, der hver i sær tilføjes med et `+`:
-
-```{r}
-model <- lm(mpg ~ cyl + hp + wt, data = mtcars)
-```
-
-Det direkte output af modellen er en smule mere kompliceret end vi har set før -
-der er flere variable, og derfor flere koefficienter:
-
-```{r}
-model
-```
-Dette kan vi tolke som, at `mpg`, miles pr gallon kan beskrives som:
-
-$$ mpg = 38.75179 - 0.94162 * cyl - 0.01804 * hp - 3.16697 * wt$$ 
-Jo flere hestekræfter, jo dårligere brændstoføkonomi. Jo tungere bil, jo dårligere
-brændstoføkonomi. Men også dårligere brændstoføkonomi når bilen har flere cylindre.
-
-Antallet af cylindre er teknisk set en kategorisk værdi. Bilmotorer kan have 
-4, 6 eller 8 cylindre. Der er langt mellem de forbrændingsmotorer der har 5 cylindre.
-Men der er ingen der har 4,3 cylindre. Der er også en sammenhæng mellem motorens
-størrelse og antallet af cylindre. Og derfor "blander" vi de to parametre, cyl og hp.
-
-Det er dårlig praksis...
-
-Det mere detaljerede output af modellen får vi med `summary()` funktionen:
-
-```{r}
-summary(model)
-```
-Det er også lidt længere end vi ellers har set - for der er flere 
-parametre at estimere.
-
-```{r}
-confint(model)
-```
-Er det en god model? Standard plotte funktionen giver os fire plots, der kan
-bruges til at vurdere hvor god den er.
-```{r}
-plot(model)
-```
-Vi får fire plots, der alle handler om residualerne. En vigtig forudsætning for
-den lineære regression er netop at residualerne er normalfordelte og tilfældige.
-
-*Residuals vs Fitted* giver os residualerne af de fittede værdier. Altså, hvis 
-cyl, hp og wt er hvad de nu er, hvor meget skulle mpg så være? Og hvad er mpg i
-virkeligheden? De bør ligge helt tilfældigt. Hvis det ser ud som om der er 
-mønstre, er der et eller andet vores model ikke har fanget.
-
-*Q-Q residuals* er en visuel test af om resdiualerne er normalfordelte. Punkterne
-bør ligge langs den lige linie. Det gør de sjældent helt.
-
-*Scale-Location* viser os om spredningen af residualerne ændrer sig systematisk
-med de fittede værdier. De skal helst ligge tilfældigt omkring en ret, horisontal
-linie med værdien 0.
-
-*Residuals vs Leverage* hjælper os til at identificere datapunkter, der har 
-uforholdsmæssig indflydelse, "leverage" på modellen. Man kan forstå det som "hvis
-dette punkt blev pillet ud af datasættet, ville parametrene i modellen så ændre sig
-markant". Cook's distance som man kan se i plottet, giver os et bud på om 
-et punkt ændrer parametrene markant.
 
 
 
