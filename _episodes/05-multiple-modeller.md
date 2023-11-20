@@ -141,7 +141,7 @@ Nu skal I selv! Vi starter med model1:
 > > 
 > > Det giver denne model:
 > >
-> > $$FEV = -4.610466 + 0.054281*Age +  0.109712*Hgt$$
+> > FEV = -4.610466 + 0.054281*Age +  0.109712*Hgt
 > > 
 > > Højden beregner vi som 150/2.54 = 59.05512 i tommer.
 > > 
@@ -158,9 +158,16 @@ Nu skal I selv! Vi starter med model1:
 > > nye_data <- data.frame(Age = 10, Hgt = 59.05512)
 > > 
 > > predict(model1, newdata = nye_data)
-> > summary(model1)
 > > ~~~
 > > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >        1 
+> > 2.411386 
+> > ~~~
+> > {: .output}
 > >
 > {: .solution}
 {: .challenge}
@@ -184,11 +191,39 @@ Nu skal I selv! Vi starter med model1:
 > > ~~~
 > > {: .language-r}
 > > 
+> > 
+> > 
+> > ~~~
+> >                   2.5 %      97.5 %
+> > (Intercept) -5.05084726 -4.17008507
+> > Age          0.03639976  0.07216159
+> > Hgt          0.10045104  0.11897263
+> > ~~~
+> > {: .output}
+> > 
+> > 
 > > Alternativ løsning:
 > > 
-> > predict(model1, newdata = nye_data, interval = "confidence")
+> > 
+> > ~~~
+> > nye_data <- data.frame(Age = 10, Hgt = 59.05512)
+> > predict(model1, newdata = nye_data, interval = "predict")
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >        fit      lwr      upr
+> > 1 2.411386 1.586368 3.236405
+> > ~~~
+> > {: .output}
+> > 
 > {: .solution}
 {: .challenge}
+
+Og hvordan beregner vi konfidensintervallet i hånden?
+
 
 
 > ## Giver det mening?
@@ -199,6 +234,12 @@ Nu skal I selv! Vi starter med model1:
 > 
 > > ## Løsningsforslag
 > >
+> > FEV = -4.610466 + 0.054281*0 +  0.109712*59.05512
+> > 
+> > eller: 1.868589
+> > 
+> > Nej. Vores model giver ikke nødvendigvis mening når vi bevæger os
+> > udenfor de interval hvor vi har lavet vores model.
 > > 
 > {: .solution}
 {: .challenge}
@@ -253,8 +294,8 @@ plot(fev$Hgt, fev$FEV)
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-13</p>
+<img src="../fig/rmd-05-unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-14</p>
 </div>
 Det kunne godt se ud som om FEV stiger lidt mere end bare lineært med højden.
 
@@ -370,13 +411,40 @@ Multiple R-squared:  0.7741,	Adjusted R-squared:  0.7734
 F-statistic:  1115 on 2 and 651 DF,  p-value: < 2.2e-16
 ~~~
 {: .output}
+
 _Meget_ bedre!
 
-Hvordan ser det ud?
+En forudsætning for modellen er at residualerne er normalfordelte.
+Det kan vi teste ved at lave et QQ-plot:
 
 
 ~~~
-fev %>% ggplot(aes(x = FEV, y = Hgt)) +
+plot(andenordens_model) 
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-18</p>
+</div><div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-18-2.png" alt="plot of chunk unnamed-chunk-18" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-18</p>
+</div><div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-18-3.png" alt="plot of chunk unnamed-chunk-18" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-18</p>
+</div><div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-18-4.png" alt="plot of chunk unnamed-chunk-18" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-18</p>
+</div>
+
+
+### Lad os sammenligne modellerne
+
+Vi laver et scatter plot af vores data, og de tre modeller:
+
+
+~~~
+fev %>% ggplot(aes(x = Hgt, y = FEV)) +
   geom_point() +
   geom_smooth(method = "lm", colour = "green", se = FALSE) +
   geom_smooth(method = "lm", formula = y ~ poly(x, 2), colour = "blue", se = FALSE) +
@@ -392,162 +460,15 @@ fev %>% ggplot(aes(x = FEV, y = Hgt)) +
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-17</p>
+<img src="../fig/rmd-05-unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-19</p>
 </div>
 
+Vi kan her gøre det enkelt, har vi mere komplekse modeller, er vi nødt til at 
+lave forudsigelser for forskelligt input, og plotte resultaterne.
 
+Prøv nu selv med boneden datasættet.
 
-
-
-
-
-
-Vi har ikke taget stilling til hvilket datasæt der skal bruges som eksempel. 
-Men kommer nok til at køre ca. samme model som øvelserne i forrige modul:
-
-1. sådan gør du
-2. gør det selv med et andet datasæt
-
-Eksempelkode baserer sig aktuelt på mtcars datasættet.
-
-Den multiple lineære regression opbygges på samme måde som den simple 
-lineære regression. Formelnotationen er den samme. Nu er der blot flere
-forklarende variable, der hver i sær tilføjes med et `+`:
-
-
-~~~
-model <- lm(mpg ~ cyl + hp + wt, data = mtcars)
-~~~
-{: .language-r}
-
-Det direkte output af modellen er en smule mere kompliceret end vi har set før -
-der er flere variable, og derfor flere koefficienter:
-
-
-~~~
-model
-~~~
-{: .language-r}
-
-
-
-~~~
-
-Call:
-lm(formula = mpg ~ cyl + hp + wt, data = mtcars)
-
-Coefficients:
-(Intercept)          cyl           hp           wt  
-   38.75179     -0.94162     -0.01804     -3.16697  
-~~~
-{: .output}
-Dette kan vi tolke som, at `mpg`, miles pr gallon kan beskrives som:
-
-$$ mpg = 38.75179 - 0.94162 * cyl - 0.01804 * hp - 3.16697 * wt$$ 
-Jo flere hestekræfter, jo dårligere brændstoføkonomi. Jo tungere bil, jo dårligere
-brændstoføkonomi. Men også dårligere brændstoføkonomi når bilen har flere cylindre.
-
-Antallet af cylindre er teknisk set en kategorisk værdi. Bilmotorer kan have 
-4, 6 eller 8 cylindre. Der er langt mellem de forbrændingsmotorer der har 5 cylindre.
-Men der er ingen der har 4,3 cylindre. Der er også en sammenhæng mellem motorens
-størrelse og antallet af cylindre. Og derfor "blander" vi de to parametre, cyl og hp.
-
-Det er dårlig praksis...
-
-Det mere detaljerede output af modellen får vi med `summary()` funktionen:
-
-
-~~~
-summary(model)
-~~~
-{: .language-r}
-
-
-
-~~~
-
-Call:
-lm(formula = mpg ~ cyl + hp + wt, data = mtcars)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.9290 -1.5598 -0.5311  1.1850  5.8986 
-
-Coefficients:
-            Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 38.75179    1.78686  21.687  < 2e-16 ***
-cyl         -0.94162    0.55092  -1.709 0.098480 .  
-hp          -0.01804    0.01188  -1.519 0.140015    
-wt          -3.16697    0.74058  -4.276 0.000199 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 2.512 on 28 degrees of freedom
-Multiple R-squared:  0.8431,	Adjusted R-squared:  0.8263 
-F-statistic: 50.17 on 3 and 28 DF,  p-value: 2.184e-11
-~~~
-{: .output}
-Det er også lidt længere end vi ellers har set - for der er flere 
-parametre at estimere.
-
-
-~~~
-confint(model)
-~~~
-{: .language-r}
-
-
-
-~~~
-                 2.5 %       97.5 %
-(Intercept) 35.0915623 42.412012412
-cyl         -2.0701179  0.186884238
-hp          -0.0423655  0.006289293
-wt          -4.6839740 -1.649972191
-~~~
-{: .output}
-Er det en god model? Standard plotte funktionen giver os fire plots, der kan
-bruges til at vurdere hvor god den er.
-
-~~~
-plot(model)
-~~~
-{: .language-r}
-
-<div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-22</p>
-</div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-22-2.png" alt="plot of chunk unnamed-chunk-22" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-22</p>
-</div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-22-3.png" alt="plot of chunk unnamed-chunk-22" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-22</p>
-</div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-22-4.png" alt="plot of chunk unnamed-chunk-22" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-22</p>
-</div>
-Vi får fire plots, der alle handler om residualerne. En vigtig forudsætning for
-den lineære regression er netop at residualerne er normalfordelte og tilfældige.
-
-*Residuals vs Fitted* giver os residualerne af de fittede værdier. Altså, hvis 
-cyl, hp og wt er hvad de nu er, hvor meget skulle mpg så være? Og hvad er mpg i
-virkeligheden? De bør ligge helt tilfældigt. Hvis det ser ud som om der er 
-mønstre, er der et eller andet vores model ikke har fanget.
-
-*Q-Q residuals* er en visuel test af om resdiualerne er normalfordelte. Punkterne
-bør ligge langs den lige linie. Det gør de sjældent helt.
-
-*Scale-Location* viser os om spredningen af residualerne ændrer sig systematisk
-med de fittede værdier. De skal helst ligge tilfældigt omkring en ret, horisontal
-linie med værdien 0.
-
-*Residuals vs Leverage* hjælper os til at identificere datapunkter, der har 
-uforholdsmæssig indflydelse, "leverage" på modellen. Man kan forstå det som "hvis
-dette punkt blev pillet ud af datasættet, ville parametrene i modellen så ændre sig
-markant". Cook's distance som man kan se i plottet, giver os et bud på om 
-et punkt ændrer parametrene markant.
 
 
 
