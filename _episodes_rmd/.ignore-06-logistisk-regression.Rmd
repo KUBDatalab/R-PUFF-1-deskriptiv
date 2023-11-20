@@ -25,6 +25,8 @@ library(tidyverse)
 
 ## Antalstabeller
 
+
+
 ## Odds ratio
 
 ## Logistisk regression
