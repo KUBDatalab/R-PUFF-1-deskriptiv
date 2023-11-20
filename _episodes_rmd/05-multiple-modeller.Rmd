@@ -82,10 +82,35 @@ Nu skal I selv! Vi starter med model1:
 >
 > > ## Løsningsforslag
 > > 
+> > Model1 fortæller os hvad koefficienterne er:
+> > ```{r}
+> > summary(model1)
+> > ```
+> > 
+> > Det giver denne model:
 > >
+> > $$FEV = -4.610466 + 0.054281*Age +  0.109712*Hgt$$
+> > 
+> > Højden beregner vi som 150/2.54 = 59.05512 i tommer.
+> > 
+> > Indsæt værdierne:
+> > 
+> > FEV = -4.610466 + 0.054281*10 +  0.109712*59.05512
+> > 
+> > eller: 2.411399
+> >
+> > Alternativ løsning:
+> > 
+> > ```{r eval = F}
+> > nye_data <- data.frame(Age = 10, Hgt = 59.05512)
+> > 
+> > predict(model1, newdata = nye_data)
+summary(model1)
+> > ```
 > >
 > {: .solution}
 {: .challenge}
+
 
 
 > ## Hvilket interval "stoler" vi på?
@@ -97,7 +122,15 @@ Nu skal I selv! Vi starter med model1:
 > 
 > > ## Løsningsforslag
 > > 
+> > Vi skal bruge konfidensintervallerne på vores parametre:
+> >
+> > ```{r eval = F}
+> > confint(model1)
+> > ```
 > > 
+> > Alternativ løsning:
+> > 
+> > predict(model1, newdata = nye_data, interval = "confidence")
 > {: .solution}
 {: .challenge}
 
@@ -115,14 +148,40 @@ Nu skal I selv! Vi starter med model1:
 {: .challenge}
 
 Og så fortsætter vi med model 2:
-model2
 
-bedste FEV for 10 årig pige, 150 cm hø'j
-i hvilket interval er vi 95% sikre på at FEV er for denne pige?
+> ## Forudsigelse fra model 2
+> 
+> Hvad er modellens bedste bud på FEV for en 10-årig pige, der er 
+> 150 cm høj?
+>
+> Hvad er modellens bedste bud på FEV for en 10-årig dreng, der
+> er 150 cm høj?
+>
+> Hvad er forskellen? Siger modellen at den skal være der?
+>
+> > ## Løsningsforslag
+> > 
+> > 
+> {: .solution}
+{: .challenge}
 
-bedste bud på fev for 10-årgi dreng 150 cm
 
-Hvad er forskellen? siger modellen at denne forskel bør være der?
+> ## Hvilket interval "stoler" vi på?
+>
+> I hvilket interval er vi 95% "sikre" på at FEV er for denne
+> pige?
+> 
+> 
+> 
+> > ## Løsningsforslag
+> >
+> >
+> {: .solution}
+{: .challenge}
+
+
+Og til slut øvelser til model 3:
+
 
 øvleser model 3
 
