@@ -1,0 +1,325 @@
+---
+title: "Multipel lineær regression - og polynomisk"
+teaching: 10
+exercises: 5
+questions:
+- "Hvordan fitter jeg lineære modeller af mere end en parameter?"
+- "Hvordan fitter jeg polynomiske modeller?"
+objectives:
+- "FIXME"
+keypoints:
+- "FIXME"
+source: Rmd
+math: yes
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("05-")
+# source("../bin/download_data.R")
+library(tidyverse)
+```
+
+# NB R-eksempler til modul 3 - ikke færdig!
+
+Vi arbejder videre med fev datasættet. Først indlæser vi biblioteker:
+
+```{r eval = F}
+library(tidyverse)
+```
+
+Og så indlæser vi datasættet:
+
+```{r echo=F}
+fev <- read_csv("../data/FEV.csv")
+```
+```{r eval = F}
+fev <- read_csv("data/FEV.csv")
+```
+
+Vi kommer i øvelser til at arbejde med BONEDEN datasættet. Det læser vi også ind:
+
+```{r echo=F}
+boneden <- read_csv("../data/BONEDEN.csv")
+```
+```{r eval = F}
+boneden <- read_csv("data/BONEDEN.csv")
+```
+
+
+## Multipel lineær regression
+
+Hvordan gør vi?
+
+```{r}
+model1 <- lm(FEV ~Age +Hgt, data = fev)
+```
+
+Hvad hvis vi vil have en kategorisk variabel i modellen?
+
+```{r}
+model2 <- lm(FEV ~Age + Hgt + factor(Sex), data = fev)
+```
+
+Hvis R skal kunne håndtere kategoriske variable korrekt, er vi nødt til at 
+fortælle R at det er en kategorisk variabel. Det gør vi ved at pakke
+variablen ind i `factor()`. 
+
+Og hvis vi vil have to kategoriske variable i modellen?
+
+```{r}
+model3 <- lm(FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
+```
+
+Nu skal I selv! Vi starter med model1:
+
+> ## Forudsigelse fra model 1
+> 
+> Forudsig det bedste bud på FEV for en 10-årig, der er 150 cm
+> høj.
+>
+> Husk - data er i tommer, så divider højden med 2.54.
+>
+> > ## Løsningsforslag
+> > 
+> > Model1 fortæller os hvad koefficienterne er:
+> > ```{r}
+> > summary(model1)
+> > ```
+> > 
+> > Det giver denne model:
+> >
+> > $$FEV = -4.610466 + 0.054281*Age +  0.109712*Hgt$$
+> > 
+> > Højden beregner vi som 150/2.54 = 59.05512 i tommer.
+> > 
+> > Indsæt værdierne:
+> > 
+> > FEV = -4.610466 + 0.054281*10 +  0.109712*59.05512
+> > 
+> > eller: 2.411399
+> >
+> > Alternativ løsning:
+> > 
+> > ```{r eval = F}
+> > nye_data <- data.frame(Age = 10, Hgt = 59.05512)
+> > 
+> > predict(model1, newdata = nye_data)
+summary(model1)
+> > ```
+> >
+> {: .solution}
+{: .challenge}
+
+
+
+> ## Hvilket interval "stoler" vi på?
+>
+> I hvilket interval er vi 95% "sikre" på at FEV vil ligge for en
+> 10-årig, 150 cm høj person?
+>
+> Hint: Konfidensintervaller
+> 
+> > ## Løsningsforslag
+> > 
+> > Vi skal bruge konfidensintervallerne på vores parametre:
+> >
+> > ```{r eval = F}
+> > confint(model1)
+> > ```
+> > 
+> > Alternativ løsning:
+> > 
+> > predict(model1, newdata = nye_data, interval = "confidence")
+> {: .solution}
+{: .challenge}
+
+
+> ## Giver det mening?
+> 
+> Hvad er vores bedste bud på FEV for en 0-årig, 150 cm høj person?
+>
+> Giver det mening?
+> 
+> > ## Løsningsforslag
+> >
+> > 
+> {: .solution}
+{: .challenge}
+
+Og så fortsætter vi med model 2:
+
+> ## Forudsigelse fra model 2
+> 
+> Hvad er modellens bedste bud på FEV for en 10-årig pige, der er 
+> 150 cm høj?
+>
+> Hvad er modellens bedste bud på FEV for en 10-årig dreng, der
+> er 150 cm høj?
+>
+> Hvad er forskellen? Siger modellen at den skal være der?
+>
+> > ## Løsningsforslag
+> > 
+> > 
+> {: .solution}
+{: .challenge}
+
+
+> ## Hvilket interval "stoler" vi på?
+>
+> I hvilket interval er vi 95% "sikre" på at FEV er for denne
+> pige?
+> 
+> 
+> 
+> > ## Løsningsforslag
+> >
+> >
+> {: .solution}
+{: .challenge}
+
+
+Og til slut øvelser til model 3:
+
+
+øvleser model 3
+
+## Polynomiske modeller
+
+
+Vi kommer til at lave en polynomisk model af FEV mod Hgt:
+
+```{r}
+plot(fev$Hgt, fev$FEV)
+```
+Det kunne godt se ud som om FEV stiger lidt mere end bare lineært med højden.
+
+Lineært fungerer OK:
+
+```{r}
+linear_model <- lm(FEV ~ Hgt, data = fev)
+summary(linear_model)
+```
+
+Vi laver en polynomisk model:
+
+```{r}
+tredieordens_model <- lm(FEV ~ Hgt + I(Hgt^2) + I(Hgt^3), data = fev)
+summary(tredieordens_model)
+```
+Det var _ikke_ imponerende...
+
+
+> ## I() funktionen
+> 
+> Hvis ikke vi pakker x^2 ind i en I() funktion, vil R forsøge at fortolke hvad
+> x^2 betyder. R vil prøve at fortolke ^2 som et interaktionsled. Og det kan 
+> føre til underlige resultater.
+> 
+> I() funktionen undertrykker Rs fortolkning af ting, og sender x^2 videre til
+> lm() funktionen, "as is", som det er, uden at R prøver at gøre ting ved det.
+> 
+{: .callout}
+
+Går det bedre med et andengradspolynomium?
+
+```{r}
+andenordens_model <- lm(FEV ~ Hgt + I(Hgt^2), data = fev)
+summary(andenordens_model)
+```
+_Meget_ bedre!
+
+Hvordan ser det ud?
+
+```{r}
+fev %>% ggplot(aes(x = FEV, y = Hgt)) +
+  geom_point() +
+  geom_smooth(method = "lm", colour = "green", se = FALSE) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), colour = "blue", se = FALSE) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 3), colour = "red", se = FALSE)
+```
+
+
+
+
+
+
+
+
+Vi har ikke taget stilling til hvilket datasæt der skal bruges som eksempel. 
+Men kommer nok til at køre ca. samme model som øvelserne i forrige modul:
+
+1. sådan gør du
+2. gør det selv med et andet datasæt
+
+Eksempelkode baserer sig aktuelt på mtcars datasættet.
+
+Den multiple lineære regression opbygges på samme måde som den simple 
+lineære regression. Formelnotationen er den samme. Nu er der blot flere
+forklarende variable, der hver i sær tilføjes med et `+`:
+
+```{r}
+model <- lm(mpg ~ cyl + hp + wt, data = mtcars)
+```
+
+Det direkte output af modellen er en smule mere kompliceret end vi har set før -
+der er flere variable, og derfor flere koefficienter:
+
+```{r}
+model
+```
+Dette kan vi tolke som, at `mpg`, miles pr gallon kan beskrives som:
+
+$$ mpg = 38.75179 - 0.94162 * cyl - 0.01804 * hp - 3.16697 * wt$$ 
+Jo flere hestekræfter, jo dårligere brændstoføkonomi. Jo tungere bil, jo dårligere
+brændstoføkonomi. Men også dårligere brændstoføkonomi når bilen har flere cylindre.
+
+Antallet af cylindre er teknisk set en kategorisk værdi. Bilmotorer kan have 
+4, 6 eller 8 cylindre. Der er langt mellem de forbrændingsmotorer der har 5 cylindre.
+Men der er ingen der har 4,3 cylindre. Der er også en sammenhæng mellem motorens
+størrelse og antallet af cylindre. Og derfor "blander" vi de to parametre, cyl og hp.
+
+Det er dårlig praksis...
+
+Det mere detaljerede output af modellen får vi med `summary()` funktionen:
+
+```{r}
+summary(model)
+```
+Det er også lidt længere end vi ellers har set - for der er flere 
+parametre at estimere.
+
+```{r}
+confint(model)
+```
+Er det en god model? Standard plotte funktionen giver os fire plots, der kan
+bruges til at vurdere hvor god den er.
+```{r}
+plot(model)
+```
+Vi får fire plots, der alle handler om residualerne. En vigtig forudsætning for
+den lineære regression er netop at residualerne er normalfordelte og tilfældige.
+
+*Residuals vs Fitted* giver os residualerne af de fittede værdier. Altså, hvis 
+cyl, hp og wt er hvad de nu er, hvor meget skulle mpg så være? Og hvad er mpg i
+virkeligheden? De bør ligge helt tilfældigt. Hvis det ser ud som om der er 
+mønstre, er der et eller andet vores model ikke har fanget.
+
+*Q-Q residuals* er en visuel test af om resdiualerne er normalfordelte. Punkterne
+bør ligge langs den lige linie. Det gør de sjældent helt.
+
+*Scale-Location* viser os om spredningen af residualerne ændrer sig systematisk
+med de fittede værdier. De skal helst ligge tilfældigt omkring en ret, horisontal
+linie med værdien 0.
+
+*Residuals vs Leverage* hjælper os til at identificere datapunkter, der har 
+uforholdsmæssig indflydelse, "leverage" på modellen. Man kan forstå det som "hvis
+dette punkt blev pillet ud af datasættet, ville parametrene i modellen så ændre sig
+markant". Cook's distance som man kan se i plottet, giver os et bud på om 
+et punkt ændrer parametrene markant.
+
+
+
+
+{% include links.md %}
