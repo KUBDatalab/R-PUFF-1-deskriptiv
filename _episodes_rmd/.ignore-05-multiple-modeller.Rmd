@@ -22,7 +22,172 @@ library(tidyverse)
 
 # NB R-eksempler til modul 3 - ikke færdig!
 
+Vi arbejder videre med fev datasættet. Først indlæser vi biblioteker:
+
+```{r eval = F}
+library(tidyverse)
+```
+
+Og så indlæser vi datasættet:
+
+```{r echo=F}
+fev <- read_csv("../data/FEV.csv")
+```
+```{r eval = F}
+fev <- read_csv("data/FEV.csv")
+```
+
+Vi kommer i øvelser til at arbejde med BONEDEN datasættet. Det læser vi også ind:
+
+```{r echo=F}
+boneden <- read_csv("../data/BONEDEN.csv")
+```
+```{r eval = F}
+boneden <- read_csv("data/BONEDEN.csv")
+```
+
+
 ## Multipel lineær regression
+
+Hvordan gør vi?
+
+```{r}
+model1 <- lm(FEV ~Age +Hgt, data = fev)
+```
+
+Hvad hvis vi vil have en kategorisk variabel i modellen?
+
+```{r}
+model2 <- lm(FEV ~Age + Hgt + factor(Sex), data = fev)
+```
+
+Hvis R skal kunne håndtere kategoriske variable korrekt, er vi nødt til at 
+fortælle R at det er en kategorisk variabel. Det gør vi ved at pakke
+variablen ind i `factor()`. 
+
+Og hvis vi vil have to kategoriske variable i modellen?
+
+```{r}
+model3 <- lm(FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
+```
+
+Nu skal I selv! Vi starter med model1:
+
+> ## Forudsigelse fra model 1
+> 
+> Forudsig det bedste bud på FEV for en 10-årig, der er 150 cm
+> høj.
+>
+> Husk - data er i tommer, så divider højden med 2.54.
+>
+> > ## Løsningsforslag
+> > 
+> >
+> >
+> {: .solution}
+{: .challenge}
+
+
+> ## Hvilket interval "stoler" vi på?
+>
+> I hvilket interval er vi 95% "sikre" på at FEV vil ligge for en
+> 10-årig, 150 cm høj person?
+>
+> Hint: Konfidensintervaller
+> 
+> > ## Løsningsforslag
+> > 
+> > 
+> {: .solution}
+{: .challenge}
+
+
+> ## Giver det mening?
+> 
+> Hvad er vores bedste bud på FEV for en 0-årig, 150 cm høj person?
+>
+> Giver det mening?
+> 
+> > ## Løsningsforslag
+> >
+> > 
+> {: .solution}
+{: .challenge}
+
+Og så fortsætter vi med model 2:
+model2
+
+bedste FEV for 10 årig pige, 150 cm hø'j
+i hvilket interval er vi 95% sikre på at FEV er for denne pige?
+
+bedste bud på fev for 10-årgi dreng 150 cm
+
+Hvad er forskellen? siger modellen at denne forskel bør være der?
+
+øvleser model 3
+
+## Polynomiske modeller
+
+
+Vi kommer til at lave en polynomisk model af FEV mod Hgt:
+
+```{r}
+plot(fev$Hgt, fev$FEV)
+```
+Det kunne godt se ud som om FEV stiger lidt mere end bare lineært med højden.
+
+Lineært fungerer OK:
+
+```{r}
+linear_model <- lm(FEV ~ Hgt, data = fev)
+summary(linear_model)
+```
+
+Vi laver en polynomisk model:
+
+```{r}
+tredieordens_model <- lm(FEV ~ Hgt + I(Hgt^2) + I(Hgt^3), data = fev)
+summary(tredieordens_model)
+```
+Det var _ikke_ imponerende...
+
+
+> ## I() funktionen
+> 
+> Hvis ikke vi pakker x^2 ind i en I() funktion, vil R forsøge at fortolke hvad
+> x^2 betyder. R vil prøve at fortolke ^2 som et interaktionsled. Og det kan 
+> føre til underlige resultater.
+> 
+> I() funktionen undertrykker Rs fortolkning af ting, og sender x^2 videre til
+> lm() funktionen, "as is", som det er, uden at R prøver at gøre ting ved det.
+> 
+{: .callout}
+
+Går det bedre med et andengradspolynomium?
+
+```{r}
+andenordens_model <- lm(FEV ~ Hgt + I(Hgt^2), data = fev)
+summary(andenordens_model)
+```
+_Meget_ bedre!
+
+Hvordan ser det ud?
+
+```{r}
+fev %>% ggplot(aes(x = FEV, y = Hgt)) +
+  geom_point() +
+  geom_smooth(method = "lm", colour = "green", se = FALSE) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), colour = "blue", se = FALSE) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 3), colour = "red", se = FALSE)
+```
+
+
+
+
+
+
+
+
 Vi har ikke taget stilling til hvilket datasæt der skal bruges som eksempel. 
 Men kommer nok til at køre ca. samme model som øvelserne i forrige modul:
 
@@ -97,40 +262,5 @@ et punkt ændrer parametrene markant.
 
 
 
-## Polynomial regression
-
-Den regression vi forsøger at lave er:
-
-$$ y = a*x + b*x^2 + c$$
-
-Det er i en vis forstand nøjagtig det samme, som hvis vi i vores datasæt 
-beregnede en ny variabel, z, der var lig med $x^2$. I stedet for at gøre det,
-lægger vi det ind i formelnotationen vi giver `lm()` funktionen direkte:
-
-```{r}
-a <- 1:10
-b <- 1 + 2 * a + 3 * a^2 + rnorm(10)  # Simulerer responsvariable med støj
-data <- tibble(x = a, y = b)
-model <- lm(y ~ x + I(x^2), data = data)
-summary(model)
-```
-
-
-> ## I() funktionen
-> 
-> Hvis ikke vi pakker x^2 ind i en I() funktion, vil R forsøge at fortolke hvad
-> x^2 betyder. R vil prøve at fortolke ^2 som et interaktionsled. Og det kan 
-> føre til underlige resultater.
-> 
-> I() funktionen undertrykker Rs fortolkning af ting, og sender x^2 videre til
-> lm() funktionen, "as is", som det er, uden at R prøver at gøre ting ved det.
-> 
-{: .callout}
-
-
-
-```{r}
-confint(model)
-```
 
 {% include links.md %}
