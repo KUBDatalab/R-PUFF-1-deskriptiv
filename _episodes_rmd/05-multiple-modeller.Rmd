@@ -159,7 +159,7 @@ Nu skal I selv! Vi starter med model1:
 > > eller: 1.868589
 > > 
 > > Nej. Vores model giver ikke nødvendigvis mening når vi bevæger os
-> > udenfor de interval hvor vi har lavet vores model.
+> > udenfor det interval hvor vi har lavet vores model.
 > >
 > > Alternativ til beregning i hånden:
 > > 
@@ -255,7 +255,7 @@ Og så fortsætter vi med model 2:
 > > lungevolumen er 0.16 liter større end pigers. Så forudsigelsen skal
 > > være højere. Det giver dog ikke nødvendigvis fysiologisk mening at 
 > > der skulle være forskel på præpubertære børn. Måske indfyldelsen skyldes
-> > at vi har betydeligt ældre børn i datasættet også.
+> > at vi har betydeligt ældre børn i datasættet også?
 > > 
 > {: .solution}
 {: .challenge}
@@ -297,8 +297,10 @@ Og til slut øvelser til model 3:
 >
 > > ## Løsningsforslag
 > > 
+> > ```{r}
 > > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
 > > predict(model3, newdata = nye_data, interval = "prediction")
+> > ```
 > >
 > {: .solution}
 {: .challenge}
@@ -338,8 +340,8 @@ Og til slut øvelser til model 3:
 ## Vekselvirkning
 
 
-
 Vi bygger to modeller, hvor FEV afhænger af alder og køn:
+
 ```{r}
 modela <- lm(FEV ~ Age + factor(Sex), data = fev)
 summary(modela)
@@ -351,30 +353,97 @@ summary(modelb)
 Skal vi plotte dem - er vi nødt til at beregne de forudsagte værdier for
 forskellige aldre og køn.
 
+Vi starter med at finde mulige værdier for alder og køn
+
 ```{r}
-cAge <- seq(min(fev$Age, max(fev$Age), by = 1))
+cAge <- unique(fev$Age)
 sexes <- levels(factor(fev$Sex))
 
 ```
+
+Så laver vi alle kombinationer af de to:
+
 ```{r}
-combine(cAge, sexes )
+pred_data <- crossing(Age = cAge, Sex = sexes)
+head(pred_data)
 ```
 
+Så tilføjer vi to kolonner, med forudsigelserne baseret på vores to modeller:
 
+```{r}
+pred_data <- pred_data %>% 
+  mutate(modela = predict(modela, newdata = .)) %>% 
+  mutate(modelb = predict(modelb, newdata = .))
+
+```
+
+Hvordan ser forudsigelserne ud for modela?
+
+Vi plotter alle data som et scatterplot. 
+
+Og så tilføjer vi to rette linier, baseret på vores forudsigelser. Hvis 
+vi farvelægger efter "Sex", får vi to linier:
+
+```{r}
+fev %>% 
+  ggplot(aes(Age, FEV, color = factor(Sex))) +
+  geom_point() +
+  geom_line(data = pred_data, aes(Age, modela, color = Sex)) +
+  scale_color_manual(values = c("red", "blue"),
+                     labels = c("Piger", "Drenge"),
+                     name = "Køn") +
+  ggtitle("Model a")
+```
+Og modelb - hvor vi har en vekselvirkning med:
+
+```{r}
+fev %>% 
+  ggplot(aes(Age, FEV, color = factor(Sex))) +
+  geom_point() +
+  geom_line(data = pred_data, aes(Age, modelb, color = Sex)) +
+  scale_color_manual(values = c("red", "blue"),
+                     labels = c("Piger", "Drenge"),
+                     name = "Køn") +
+  ggtitle("Model b")
+```
 
 ## Test af modeller
 
 ```{r}
 library(car)
 car::Anova(model1, model2)
+
 ```
+
+
 ```{r}
 anova(model1, model2)
 ```
 
+## Holder forudsætningerne?
 
+qqplots af residualerne er en oplagt test. Funktionen `plot` af modellen giver
+os netop det - men også tre andre plots, der er noget mere komplicerede at tolke.
 
+Så lad os lave bare qqplottet.
 
+Vi starter med at trække residualerne ud:
+
+```{r}
+residualer <- resid(modelb)
+```
+
+```{r}
+qqnorm(residualer)
+qqline(residualer, col = "red")
+```
+Eller, hvis vi gerne vil lave det i ggplot:
+```{r}
+data.frame(residualer) %>% 
+  ggplot(aes(sample = residualer)) +
+  geom_qq_line() +
+  geom_qq()
+```
 
 
 ## Polynomiske modeller
@@ -397,8 +466,8 @@ summary(linear_model)
 Vi laver en polynomisk model:
 
 ```{r}
-tredieordens_model <- lm(FEV ~ Hgt + I(Hgt^2) + I(Hgt^3), data = fev)
-summary(tredieordens_model)
+kubisk_model <- lm(FEV ~ Hgt + I(Hgt^2) + I(Hgt^3), data = fev)
+summary(kubisk_model)
 ```
 Det var _ikke_ imponerende...
 
@@ -417,8 +486,8 @@ Det var _ikke_ imponerende...
 Går det bedre med et andengradspolynomium?
 
 ```{r}
-andenordens_model <- lm(FEV ~ Hgt + I(Hgt^2), data = fev)
-summary(andenordens_model)
+kvadratisk_model <- lm(FEV ~ Hgt + I(Hgt^2), data = fev)
+summary(kvadratisk_model)
 ```
 
 _Meget_ bedre!
@@ -427,7 +496,7 @@ En forudsætning for modellen er at residualerne er normalfordelte.
 Det kan vi teste ved at lave et QQ-plot:
 
 ```{r}
-plot(andenordens_model) 
+plot(kvadratisk_model) 
 ```
 
 
