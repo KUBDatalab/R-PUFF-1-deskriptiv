@@ -29,22 +29,23 @@ library(tidyverse)
 ```
 
 Og så indlæser vi datasættet:
-
-```{r echo=F}
-fev <- read_csv("../data/FEV.csv")
-```
 ```{r eval = F}
 fev <- read_csv("data/FEV.csv")
 ```
+```{r echo=F}
+fev <- read_csv("../data/FEV.csv")
+```
+
 
 Vi kommer i øvelser til at arbejde med BONEDEN datasættet. Det læser vi også ind:
 
-```{r echo=F}
-boneden <- read_csv("../data/BONEDEN.csv")
-```
 ```{r eval = F}
 boneden <- read_csv("data/BONEDEN.csv")
 ```
+```{r echo=F}
+boneden <- read_csv("../data/BONEDEN.csv")
+```
+
 
 
 ## Multipel lineær regression
@@ -53,12 +54,14 @@ Hvordan gør vi?
 
 ```{r}
 model1 <- lm(FEV ~Age +Hgt, data = fev)
+summary(model1)
 ```
 
 Hvad hvis vi vil have en kategorisk variabel i modellen?
 
 ```{r}
 model2 <- lm(FEV ~Age + Hgt + factor(Sex), data = fev)
+summary(model2)
 ```
 
 Hvis R skal kunne håndtere kategoriske variable korrekt, er vi nødt til at 
@@ -69,7 +72,16 @@ Og hvis vi vil have to kategoriske variable i modellen?
 
 ```{r}
 model3 <- lm(FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
+summary(model3)
 ```
+### Husk også den deskreptive statistik!
+
+Hvor mange observationer har vi blandt de kategoriske variable:
+```{r}
+table(smoke = fev$Smoke, sex = fev$Sex)
+```
+
+
 
 Nu skal I selv! Vi starter med model1:
 
@@ -107,6 +119,9 @@ Nu skal I selv! Vi starter med model1:
 > > predict(model1, newdata = nye_data)
 > > ```
 > >
+> > Denne fremgangsmåde er særligt nyttig når vi skal lave flere
+> > forudsigelser.
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -114,21 +129,12 @@ Nu skal I selv! Vi starter med model1:
 
 > ## Hvilket interval "stoler" vi på?
 >
-> I hvilket interval er vi 95% "sikre" på at FEV vil ligge for en
-> 10-årig, 150 cm høj person?
->
-> Hint: Konfidensintervaller
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for en 10-årig 
+> 150 cm høj person? 
+> Hint: prædiktionsintervaller.
 > 
 > > ## Løsningsforslag
 > > 
-> > Vi skal bruge konfidensintervallerne på vores parametre:
-> >
-> > ```{r eval = T}
-> > confint(model1)
-> > ```
-> > 
-> > 
-> > Alternativ løsning:
 > > 
 > > ```{r eval = T}
 > > nye_data <- data.frame(Age = 10, Hgt = 59.05512)
@@ -137,8 +143,6 @@ Nu skal I selv! Vi starter med model1:
 > > 
 > {: .solution}
 {: .challenge}
-
-Og hvordan beregner vi konfidensintervallet i hånden?
 
 
 
@@ -156,24 +160,45 @@ Og hvordan beregner vi konfidensintervallet i hånden?
 > > 
 > > Nej. Vores model giver ikke nødvendigvis mening når vi bevæger os
 > > udenfor de interval hvor vi har lavet vores model.
+> >
+> > Alternativ til beregning i hånden:
 > > 
+> > ```{r}
+> > nye_data <- data.frame(Age = 0, Hgt = 150/2.54)
+> > predict(model1, newdata = nye_data)
+> > ```
+> >
 > {: .solution}
 {: .challenge}
 
 Og så fortsætter vi med model 2:
 
-> ## Forudsigelse fra model 2
+> ## Forudsigelse fra model 2 - piger
 > 
 > Hvad er modellens bedste bud på FEV for en 10-årig pige, der er 
 > 150 cm høj?
 >
-> Hvad er modellens bedste bud på FEV for en 10-årig dreng, der
-> er 150 cm høj?
->
-> Hvad er forskellen? Siger modellen at den skal være der?
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
+> 
 >
 > > ## Løsningsforslag
 > > 
+> > ```{r}
+> > summary(model2)
+> > ```
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > ```{r}
+> > -4.448560 + 10 * 0.061364 + 150/2.54 * 0.104560 + 0 * 0.161112
+> > ```
+> > 
+> > Eller, med predict funtionen:
+> >
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0))
+> > predict(model2, newdata = nye_data)
+> > ```
 > > 
 > {: .solution}
 {: .challenge}
@@ -181,14 +206,57 @@ Og så fortsætter vi med model 2:
 
 > ## Hvilket interval "stoler" vi på?
 >
-> I hvilket interval er vi 95% "sikre" på at FEV er for denne
-> pige?
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for denne pige? 
 > 
-> 
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
 > 
 > > ## Løsningsforslag
 > >
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0))
+> > predict(model2, newdata = nye_data, interval = "prediction")
+> > ```
 > >
+> {: .solution}
+{: .challenge}
+
+
+> ## Forudsigelse fra model 2 - hvad med drengene?
+> 
+> Hvad er modellens bedste bud på FEV for en 10-årig dreng, der er 
+> 150 cm høj?
+>
+> Sammenlign med forudsigelsen for en tilsvarende pige - giver forskellen 
+> mening?
+>
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
+> 
+>
+> > ## Løsningsforslag
+> > 
+> > ```{r}
+> > summary(model2)
+> > ```
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > ```{r}
+> > -4.448560 + 10 * 0.061364 + 150/2.54 * 0.104560 + 1 * 0.161112
+> > ```
+> > 
+> > Eller, med predict funtionen:
+> >
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(1))
+> > predict(model2, newdata = nye_data)
+> > ```
+> > 
+> > Om forskellen giver mening? Både og. Modellen forudsiger at drenges
+> > lungevolumen er 0.16 liter større end pigers. Så forudsigelsen skal
+> > være højere. Det giver dog ikke nødvendigvis fysiologisk mening at 
+> > der skulle være forskel på præpubertære børn. Måske indfyldelsen skyldes
+> > at vi har betydeligt ældre børn i datasættet også.
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -196,7 +264,118 @@ Og så fortsætter vi med model 2:
 Og til slut øvelser til model 3:
 
 
-øvleser model 3
+> ## Forudsigelser baseret på model 3
+> 
+> Forudsig bedste bud på FEV for en 10-årig pige med højde 150 cm, 
+> som desuden ryger.
+>
+> > ## Løsningsforslag
+> >
+> > ```{r}
+> > summary(model3)
+> > ```
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > ```{r}
+> > -4.456974 + 10 * 0.065509 + 150/2.54 * 0.104199 + 0 * 0.157103 + 1 * (-0.087246)
+> > ```
+> > 
+> > Eller, med predict funtionen:
+> >
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
+> > predict(model3, newdata = nye_data)
+> > ```
+> {: .solution}
+{: .challenge}
+
+
+> ## Hvilket interval "stoler" vi på?
+> 
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for denne pige? 
+>
+> > ## Løsningsforslag
+> > 
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
+> > predict(model3, newdata = nye_data, interval = "prediction")
+> >
+> {: .solution}
+{: .challenge}
+
+
+> ## Og for en ikke-rygende pige
+> 
+> Forudsig bedste bud på FEV for en 10-årig pige med højde 150 cm, som ikke ryger.
+> 
+> Sammenlign med resultatet for en rygende pige. Hvad er forskellen? Siger
+> modellen, at denne forskel bør være der?
+>
+> > ## Løsningsforslag
+> > ```{r}
+> > summary(model3)
+> > ```
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > ```{r}
+> > -4.456974 + 10 * 0.065509 + 150/2.54 * 0.104199 + 0 * 0.157103 + 0 * (-0.087246)
+> > ```
+> > 
+> > Og med predict funktionen:
+> > 
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(0))
+> > predict(model3, newdata = nye_data)
+> > ```
+> >
+> > 
+> {: .solution}
+{: .challenge}
+
+
+
+## Vekselvirkning
+
+
+
+Vi bygger to modeller, hvor FEV afhænger af alder og køn:
+```{r}
+modela <- lm(FEV ~ Age + factor(Sex), data = fev)
+summary(modela)
+```
+```{r}
+modelb <- lm(FEV ~ Age*factor(Sex), data = fev)
+summary(modelb)
+```
+Skal vi plotte dem - er vi nødt til at beregne de forudsagte værdier for
+forskellige aldre og køn.
+
+```{r}
+cAge <- seq(min(fev$Age, max(fev$Age), by = 1))
+sexes <- levels(factor(fev$Sex))
+
+```
+```{r}
+combine(cAge, sexes )
+```
+
+
+
+## Test af modeller
+
+```{r}
+library(car)
+car::Anova(model1, model2)
+```
+```{r}
+anova(model1, model2)
+```
+
+
+
+
+
 
 ## Polynomiske modeller
 

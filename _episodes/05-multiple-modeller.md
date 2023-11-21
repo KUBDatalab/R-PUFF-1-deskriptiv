@@ -29,6 +29,10 @@ library(tidyverse)
 
 Og så indlæser vi datasættet:
 
+~~~
+fev <- read_csv("data/FEV.csv")
+~~~
+{: .language-r}
 
 ~~~
 Rows: 654 Columns: 6
@@ -41,13 +45,14 @@ dbl (6): Id, Age, FEV, Hgt, Sex, Smoke
 ~~~
 {: .output}
 
-~~~
-fev <- read_csv("data/FEV.csv")
-~~~
-{: .language-r}
 
 Vi kommer i øvelser til at arbejde med BONEDEN datasættet. Det læser vi også ind:
 
+
+~~~
+boneden <- read_csv("data/BONEDEN.csv")
+~~~
+{: .language-r}
 
 ~~~
 Rows: 41 Columns: 25
@@ -60,10 +65,6 @@ dbl (25): ID, age, zyg, ht1, wt1, tea1, cof1, alc1, cur1, men1, pyr1, ls1, f...
 ~~~
 {: .output}
 
-~~~
-boneden <- read_csv("data/BONEDEN.csv")
-~~~
-{: .language-r}
 
 
 ## Multipel lineær regression
@@ -73,16 +74,69 @@ Hvordan gør vi?
 
 ~~~
 model1 <- lm(FEV ~Age +Hgt, data = fev)
+summary(model1)
 ~~~
 {: .language-r}
+
+
+
+~~~
+
+Call:
+lm(formula = FEV ~ Age + Hgt, data = fev)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.50533 -0.25657 -0.01184  0.24575  2.01914 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -4.610466   0.224271 -20.558  < 2e-16 ***
+Age          0.054281   0.009106   5.961 4.11e-09 ***
+Hgt          0.109712   0.004716  23.263  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4197 on 651 degrees of freedom
+Multiple R-squared:  0.7664,	Adjusted R-squared:  0.7657 
+F-statistic:  1068 on 2 and 651 DF,  p-value: < 2.2e-16
+~~~
+{: .output}
 
 Hvad hvis vi vil have en kategorisk variabel i modellen?
 
 
 ~~~
 model2 <- lm(FEV ~Age + Hgt + factor(Sex), data = fev)
+summary(model2)
 ~~~
 {: .language-r}
+
+
+
+~~~
+
+Call:
+lm(formula = FEV ~ Age + Hgt + factor(Sex), data = fev)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.37613 -0.24834  0.01051  0.25748  1.94538 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -4.448560   0.222966 -19.952  < 2e-16 ***
+Age           0.061364   0.009069   6.766 2.96e-11 ***
+Hgt           0.104560   0.004756  21.986  < 2e-16 ***
+factor(Sex)1  0.161112   0.033125   4.864 1.45e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4126 on 650 degrees of freedom
+Multiple R-squared:  0.7746,	Adjusted R-squared:  0.7736 
+F-statistic: 744.6 on 3 and 650 DF,  p-value: < 2.2e-16
+~~~
+{: .output}
 
 Hvis R skal kunne håndtere kategoriske variable korrekt, er vi nødt til at 
 fortælle R at det er en kategorisk variabel. Det gør vi ved at pakke
@@ -93,8 +147,56 @@ Og hvis vi vil have to kategoriske variable i modellen?
 
 ~~~
 model3 <- lm(FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
+summary(model3)
 ~~~
 {: .language-r}
+
+
+
+~~~
+
+Call:
+lm(formula = FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.37656 -0.25033  0.00894  0.25588  1.92047 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    -4.456974   0.222839 -20.001  < 2e-16 ***
+Age             0.065509   0.009489   6.904 1.21e-11 ***
+Hgt             0.104199   0.004758  21.901  < 2e-16 ***
+factor(Sex)1    0.157103   0.033207   4.731 2.74e-06 ***
+factor(Smoke)1 -0.087246   0.059254  -1.472    0.141    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4122 on 649 degrees of freedom
+Multiple R-squared:  0.7754,	Adjusted R-squared:  0.774 
+F-statistic:   560 on 4 and 649 DF,  p-value: < 2.2e-16
+~~~
+{: .output}
+### Husk også den deskreptive statistik!
+
+Hvor mange observationer har vi blandt de kategoriske variable:
+
+~~~
+table(smoke = fev$Smoke, sex = fev$Sex)
+~~~
+{: .language-r}
+
+
+
+~~~
+     sex
+smoke   0   1
+    0 279 310
+    1  39  26
+~~~
+{: .output}
+
+
 
 Nu skal I selv! Vi starter med model1:
 
@@ -169,6 +271,9 @@ Nu skal I selv! Vi starter med model1:
 > > ~~~
 > > {: .output}
 > >
+> > Denne fremgangsmåde er særligt nyttig når vi skal lave flere
+> > forudsigelser.
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -176,33 +281,12 @@ Nu skal I selv! Vi starter med model1:
 
 > ## Hvilket interval "stoler" vi på?
 >
-> I hvilket interval er vi 95% "sikre" på at FEV vil ligge for en
-> 10-årig, 150 cm høj person?
->
-> Hint: Konfidensintervaller
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for en 10-årig 
+> 150 cm høj person? 
+> Hint: prædiktionsintervaller.
 > 
 > > ## Løsningsforslag
 > > 
-> > Vi skal bruge konfidensintervallerne på vores parametre:
-> >
-> > 
-> > ~~~
-> > confint(model1)
-> > ~~~
-> > {: .language-r}
-> > 
-> > 
-> > 
-> > ~~~
-> >                   2.5 %      97.5 %
-> > (Intercept) -5.05084726 -4.17008507
-> > Age          0.03639976  0.07216159
-> > Hgt          0.10045104  0.11897263
-> > ~~~
-> > {: .output}
-> > 
-> > 
-> > Alternativ løsning:
 > > 
 > > 
 > > ~~~
@@ -222,8 +306,6 @@ Nu skal I selv! Vi starter med model1:
 > {: .solution}
 {: .challenge}
 
-Og hvordan beregner vi konfidensintervallet i hånden?
-
 
 
 > ## Giver det mening?
@@ -240,24 +322,102 @@ Og hvordan beregner vi konfidensintervallet i hånden?
 > > 
 > > Nej. Vores model giver ikke nødvendigvis mening når vi bevæger os
 > > udenfor de interval hvor vi har lavet vores model.
+> >
+> > Alternativ til beregning i hånden:
 > > 
+> > 
+> > ~~~
+> > nye_data <- data.frame(Age = 0, Hgt = 150/2.54)
+> > predict(model1, newdata = nye_data)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >        1 
+> > 1.868579 
+> > ~~~
+> > {: .output}
+> >
 > {: .solution}
 {: .challenge}
 
 Og så fortsætter vi med model 2:
 
-> ## Forudsigelse fra model 2
+> ## Forudsigelse fra model 2 - piger
 > 
 > Hvad er modellens bedste bud på FEV for en 10-årig pige, der er 
 > 150 cm høj?
 >
-> Hvad er modellens bedste bud på FEV for en 10-årig dreng, der
-> er 150 cm høj?
->
-> Hvad er forskellen? Siger modellen at den skal være der?
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
+> 
 >
 > > ## Løsningsforslag
 > > 
+> > 
+> > ~~~
+> > summary(model2)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > 
+> > Call:
+> > lm(formula = FEV ~ Age + Hgt + factor(Sex), data = fev)
+> > 
+> > Residuals:
+> >      Min       1Q   Median       3Q      Max 
+> > -1.37613 -0.24834  0.01051  0.25748  1.94538 
+> > 
+> > Coefficients:
+> >               Estimate Std. Error t value Pr(>|t|)    
+> > (Intercept)  -4.448560   0.222966 -19.952  < 2e-16 ***
+> > Age           0.061364   0.009069   6.766 2.96e-11 ***
+> > Hgt           0.104560   0.004756  21.986  < 2e-16 ***
+> > factor(Sex)1  0.161112   0.033125   4.864 1.45e-06 ***
+> > ---
+> > Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> > 
+> > Residual standard error: 0.4126 on 650 degrees of freedom
+> > Multiple R-squared:  0.7746,	Adjusted R-squared:  0.7736 
+> > F-statistic: 744.6 on 3 and 650 DF,  p-value: < 2.2e-16
+> > ~~~
+> > {: .output}
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > 
+> > ~~~
+> > -4.448560 + 10 * 0.061364 + 150/2.54 * 0.104560 + 0 * 0.161112
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 2.339883
+> > ~~~
+> > {: .output}
+> > 
+> > Eller, med predict funtionen:
+> >
+> > 
+> > ~~~
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0))
+> > predict(model2, newdata = nye_data)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >       1 
+> > 2.33986 
+> > ~~~
+> > {: .output}
 > > 
 > {: .solution}
 {: .challenge}
@@ -265,14 +425,114 @@ Og så fortsætter vi med model 2:
 
 > ## Hvilket interval "stoler" vi på?
 >
-> I hvilket interval er vi 95% "sikre" på at FEV er for denne
-> pige?
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for denne pige? 
 > 
-> 
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
 > 
 > > ## Løsningsforslag
 > >
+> > 
+> > ~~~
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0))
+> > predict(model2, newdata = nye_data, interval = "prediction")
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >       fit      lwr      upr
+> > 1 2.33986 1.528318 3.151403
+> > ~~~
+> > {: .output}
 > >
+> {: .solution}
+{: .challenge}
+
+
+> ## Forudsigelse fra model 2 - hvad med drengene?
+> 
+> Hvad er modellens bedste bud på FEV for en 10-årig dreng, der er 
+> 150 cm høj?
+>
+> Sammenlign med forudsigelsen for en tilsvarende pige - giver forskellen 
+> mening?
+>
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
+> 
+>
+> > ## Løsningsforslag
+> > 
+> > 
+> > ~~~
+> > summary(model2)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > 
+> > Call:
+> > lm(formula = FEV ~ Age + Hgt + factor(Sex), data = fev)
+> > 
+> > Residuals:
+> >      Min       1Q   Median       3Q      Max 
+> > -1.37613 -0.24834  0.01051  0.25748  1.94538 
+> > 
+> > Coefficients:
+> >               Estimate Std. Error t value Pr(>|t|)    
+> > (Intercept)  -4.448560   0.222966 -19.952  < 2e-16 ***
+> > Age           0.061364   0.009069   6.766 2.96e-11 ***
+> > Hgt           0.104560   0.004756  21.986  < 2e-16 ***
+> > factor(Sex)1  0.161112   0.033125   4.864 1.45e-06 ***
+> > ---
+> > Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> > 
+> > Residual standard error: 0.4126 on 650 degrees of freedom
+> > Multiple R-squared:  0.7746,	Adjusted R-squared:  0.7736 
+> > F-statistic: 744.6 on 3 and 650 DF,  p-value: < 2.2e-16
+> > ~~~
+> > {: .output}
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > 
+> > ~~~
+> > -4.448560 + 10 * 0.061364 + 150/2.54 * 0.104560 + 1 * 0.161112
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 2.500995
+> > ~~~
+> > {: .output}
+> > 
+> > Eller, med predict funtionen:
+> >
+> > 
+> > ~~~
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(1))
+> > predict(model2, newdata = nye_data)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >        1 
+> > 2.500972 
+> > ~~~
+> > {: .output}
+> > 
+> > Om forskellen giver mening? Både og. Modellen forudsiger at drenges
+> > lungevolumen er 0.16 liter større end pigers. Så forudsigelsen skal
+> > være højere. Det giver dog ikke nødvendigvis fysiologisk mening at 
+> > der skulle være forskel på præpubertære børn. Måske indfyldelsen skyldes
+> > at vi har betydeligt ældre børn i datasættet også.
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -280,7 +540,363 @@ Og så fortsætter vi med model 2:
 Og til slut øvelser til model 3:
 
 
-øvleser model 3
+> ## Forudsigelser baseret på model 3
+> 
+> Forudsig bedste bud på FEV for en 10-årig pige med højde 150 cm, 
+> som desuden ryger.
+>
+> > ## Løsningsforslag
+> >
+> > 
+> > ~~~
+> > summary(model3)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > 
+> > Call:
+> > lm(formula = FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
+> > 
+> > Residuals:
+> >      Min       1Q   Median       3Q      Max 
+> > -1.37656 -0.25033  0.00894  0.25588  1.92047 
+> > 
+> > Coefficients:
+> >                 Estimate Std. Error t value Pr(>|t|)    
+> > (Intercept)    -4.456974   0.222839 -20.001  < 2e-16 ***
+> > Age             0.065509   0.009489   6.904 1.21e-11 ***
+> > Hgt             0.104199   0.004758  21.901  < 2e-16 ***
+> > factor(Sex)1    0.157103   0.033207   4.731 2.74e-06 ***
+> > factor(Smoke)1 -0.087246   0.059254  -1.472    0.141    
+> > ---
+> > Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> > 
+> > Residual standard error: 0.4122 on 649 degrees of freedom
+> > Multiple R-squared:  0.7754,	Adjusted R-squared:  0.774 
+> > F-statistic:   560 on 4 and 649 DF,  p-value: < 2.2e-16
+> > ~~~
+> > {: .output}
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > 
+> > ~~~
+> > -4.456974 + 10 * 0.065509 + 150/2.54 * 0.104199 + 0 * 0.157103 + 1 * (-0.087246)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 2.264354
+> > ~~~
+> > {: .output}
+> > 
+> > Eller, med predict funtionen:
+> >
+> > 
+> > ~~~
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
+> > predict(model3, newdata = nye_data)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >        1 
+> > 2.264382 
+> > ~~~
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
+
+> ## Hvilket interval "stoler" vi på?
+> 
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for denne pige? 
+>
+> > ## Løsningsforslag
+> > 
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
+> > predict(model3, newdata = nye_data, interval = "prediction")
+> >
+> {: .solution}
+{: .challenge}
+
+
+> ## Og for en ikke-rygende pige
+> 
+> Forudsig bedste bud på FEV for en 10-årig pige med højde 150 cm, som ikke ryger.
+> 
+> Sammenlign med resultatet for en rygende pige. Hvad er forskellen? Siger
+> modellen, at denne forskel bør være der?
+>
+> > ## Løsningsforslag
+> > 
+> > ~~~
+> > summary(model3)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > 
+> > Call:
+> > lm(formula = FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
+> > 
+> > Residuals:
+> >      Min       1Q   Median       3Q      Max 
+> > -1.37656 -0.25033  0.00894  0.25588  1.92047 
+> > 
+> > Coefficients:
+> >                 Estimate Std. Error t value Pr(>|t|)    
+> > (Intercept)    -4.456974   0.222839 -20.001  < 2e-16 ***
+> > Age             0.065509   0.009489   6.904 1.21e-11 ***
+> > Hgt             0.104199   0.004758  21.901  < 2e-16 ***
+> > factor(Sex)1    0.157103   0.033207   4.731 2.74e-06 ***
+> > factor(Smoke)1 -0.087246   0.059254  -1.472    0.141    
+> > ---
+> > Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> > 
+> > Residual standard error: 0.4122 on 649 degrees of freedom
+> > Multiple R-squared:  0.7754,	Adjusted R-squared:  0.774 
+> > F-statistic:   560 on 4 and 649 DF,  p-value: < 2.2e-16
+> > ~~~
+> > {: .output}
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > 
+> > ~~~
+> > -4.456974 + 10 * 0.065509 + 150/2.54 * 0.104199 + 0 * 0.157103 + 0 * (-0.087246)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 2.3516
+> > ~~~
+> > {: .output}
+> > 
+> > Og med predict funktionen:
+> > 
+> > 
+> > ~~~
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(0))
+> > predict(model3, newdata = nye_data)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >        1 
+> > 2.351629 
+> > ~~~
+> > {: .output}
+> >
+> > 
+> {: .solution}
+{: .challenge}
+
+
+
+## Vekselvirkning
+
+
+
+Vi bygger to modeller, hvor FEV afhænger af alder og køn:
+
+~~~
+modela <- lm(FEV ~ Age + factor(Sex), data = fev)
+summary(modela)
+~~~
+{: .language-r}
+
+
+
+~~~
+
+Call:
+lm(formula = FEV ~ Age + factor(Sex), data = fev)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.41495 -0.35175 -0.03717  0.31756  1.97394 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.281378   0.077300   3.640 0.000294 ***
+Age          0.220445   0.007215  30.553  < 2e-16 ***
+factor(Sex)1 0.323335   0.042609   7.588 1.13e-13 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.5444 on 651 degrees of freedom
+Multiple R-squared:  0.607,	Adjusted R-squared:  0.6058 
+F-statistic: 502.7 on 2 and 651 DF,  p-value: < 2.2e-16
+~~~
+{: .output}
+
+~~~
+modelb <- lm(FEV ~ Age*factor(Sex), data = fev)
+summary(modelb)
+~~~
+{: .language-r}
+
+
+
+~~~
+
+Call:
+lm(formula = FEV ~ Age * factor(Sex), data = fev)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.64072 -0.34337 -0.04934  0.33206  1.86867 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       0.849467   0.102199   8.312 5.51e-16 ***
+Age               0.162729   0.009952  16.351  < 2e-16 ***
+factor(Sex)1     -0.775867   0.142745  -5.435 7.74e-08 ***
+Age:factor(Sex)1  0.110749   0.013786   8.033 4.47e-15 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.5196 on 650 degrees of freedom
+Multiple R-squared:  0.6425,	Adjusted R-squared:  0.6408 
+F-statistic: 389.4 on 3 and 650 DF,  p-value: < 2.2e-16
+~~~
+{: .output}
+Skal vi plotte dem - er vi nødt til at beregne de forudsagte værdier for
+forskellige aldre og køn.
+
+
+~~~
+cAge <- seq(min(fev$Age, max(fev$Age), by = 1))
+sexes <- levels(factor(fev$Sex))
+~~~
+{: .language-r}
+
+~~~
+combine(cAge, sexes )
+~~~
+{: .language-r}
+
+
+
+~~~
+Warning: `combine()` was deprecated in dplyr 1.0.0.
+ℹ Please use `vctrs::vec_c()` instead.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
+~~~
+{: .warning}
+
+
+
+~~~
+Error in `vec_c()`:
+! Can't combine `..1` <integer> and `..2` <character>.
+~~~
+{: .error}
+
+
+
+## Test af modeller
+
+
+~~~
+library(car)
+~~~
+{: .language-r}
+
+
+
+~~~
+Loading required package: carData
+~~~
+{: .output}
+
+
+
+~~~
+
+Attaching package: 'car'
+~~~
+{: .output}
+
+
+
+~~~
+The following object is masked from 'package:dplyr':
+
+    recode
+~~~
+{: .output}
+
+
+
+~~~
+The following object is masked from 'package:purrr':
+
+    some
+~~~
+{: .output}
+
+
+
+~~~
+car::Anova(model1, model2)
+~~~
+{: .language-r}
+
+
+
+~~~
+Anova Table (Type II tests)
+
+Response: FEV
+           Sum Sq  Df F value    Pr(>F)    
+Age         6.259   1  36.769 2.256e-09 ***
+Hgt        95.326   1 559.990 < 2.2e-16 ***
+Residuals 110.648 650                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+~~~
+{: .output}
+
+~~~
+anova(model1, model2)
+~~~
+{: .language-r}
+
+
+
+~~~
+Analysis of Variance Table
+
+Model 1: FEV ~ Age + Hgt
+Model 2: FEV ~ Age + Hgt + factor(Sex)
+  Res.Df    RSS Df Sum of Sq      F    Pr(>F)    
+1    651 114.67                                  
+2    650 110.65  1    4.0269 23.656 1.446e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+~~~
+{: .output}
+
+
+
+
+
 
 ## Polynomiske modeller
 
@@ -294,8 +910,8 @@ plot(fev$Hgt, fev$FEV)
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-14</p>
+<img src="../fig/rmd-05-unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-34</p>
 </div>
 Det kunne godt se ud som om FEV stiger lidt mere end bare lineært med højden.
 
@@ -424,17 +1040,17 @@ plot(andenordens_model)
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-18</p>
+<img src="../fig/rmd-05-unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-38</p>
 </div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-18-2.png" alt="plot of chunk unnamed-chunk-18" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-18</p>
+<img src="../fig/rmd-05-unnamed-chunk-38-2.png" alt="plot of chunk unnamed-chunk-38" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-38</p>
 </div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-18-3.png" alt="plot of chunk unnamed-chunk-18" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-18</p>
+<img src="../fig/rmd-05-unnamed-chunk-38-3.png" alt="plot of chunk unnamed-chunk-38" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-38</p>
 </div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-18-4.png" alt="plot of chunk unnamed-chunk-18" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-18</p>
+<img src="../fig/rmd-05-unnamed-chunk-38-4.png" alt="plot of chunk unnamed-chunk-38" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-38</p>
 </div>
 
 
@@ -460,8 +1076,8 @@ fev %>% ggplot(aes(x = Hgt, y = FEV)) +
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-19</p>
+<img src="../fig/rmd-05-unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-39</p>
 </div>
 
 Vi kan her gøre det enkelt, har vi mere komplekse modeller, er vi nødt til at 
