@@ -159,7 +159,7 @@ Nu skal I selv! Vi starter med model1:
 > > eller: 1.868589
 > > 
 > > Nej. Vores model giver ikke nødvendigvis mening når vi bevæger os
-> > udenfor de interval hvor vi har lavet vores model.
+> > udenfor det interval hvor vi har lavet vores model.
 > >
 > > Alternativ til beregning i hånden:
 > > 
@@ -255,7 +255,7 @@ Og så fortsætter vi med model 2:
 > > lungevolumen er 0.16 liter større end pigers. Så forudsigelsen skal
 > > være højere. Det giver dog ikke nødvendigvis fysiologisk mening at 
 > > der skulle være forskel på præpubertære børn. Måske indfyldelsen skyldes
-> > at vi har betydeligt ældre børn i datasættet også.
+> > at vi har betydeligt ældre børn i datasættet også?
 > > 
 > {: .solution}
 {: .challenge}
@@ -297,8 +297,10 @@ Og til slut øvelser til model 3:
 >
 > > ## Løsningsforslag
 > > 
+> > ```{r}
 > > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
 > > predict(model3, newdata = nye_data, interval = "prediction")
+> > ```
 > >
 > {: .solution}
 {: .challenge}
