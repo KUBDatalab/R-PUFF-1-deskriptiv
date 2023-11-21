@@ -29,22 +29,23 @@ library(tidyverse)
 ```
 
 Og så indlæser vi datasættet:
-
-```{r echo=F}
-fev <- read_csv("../data/FEV.csv")
-```
 ```{r eval = F}
 fev <- read_csv("data/FEV.csv")
 ```
+```{r echo=F}
+fev <- read_csv("../data/FEV.csv")
+```
+
 
 Vi kommer i øvelser til at arbejde med BONEDEN datasættet. Det læser vi også ind:
 
-```{r echo=F}
-boneden <- read_csv("../data/BONEDEN.csv")
-```
 ```{r eval = F}
 boneden <- read_csv("data/BONEDEN.csv")
 ```
+```{r echo=F}
+boneden <- read_csv("../data/BONEDEN.csv")
+```
+
 
 
 ## Multipel lineær regression
@@ -53,12 +54,14 @@ Hvordan gør vi?
 
 ```{r}
 model1 <- lm(FEV ~Age +Hgt, data = fev)
+summary(model1)
 ```
 
 Hvad hvis vi vil have en kategorisk variabel i modellen?
 
 ```{r}
 model2 <- lm(FEV ~Age + Hgt + factor(Sex), data = fev)
+summary(model2)
 ```
 
 Hvis R skal kunne håndtere kategoriske variable korrekt, er vi nødt til at 
@@ -69,6 +72,7 @@ Og hvis vi vil have to kategoriske variable i modellen?
 
 ```{r}
 model3 <- lm(FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
+summary(model3)
 ```
 
 Nu skal I selv! Vi starter med model1:
@@ -142,6 +146,7 @@ Og hvordan beregner vi konfidensintervallet i hånden?
 
 
 
+
 > ## Giver det mening?
 > 
 > Hvad er vores bedste bud på FEV for en 0-årig, 150 cm høj person?
@@ -197,6 +202,49 @@ Og til slut øvelser til model 3:
 
 
 øvleser model 3
+
+
+## Vekselvirkning
+
+
+
+Vi bygger to modeller, hvor FEV afhænger af alder og køn:
+```{r}
+modela <- lm(FEV ~ Age + factor(Sex), data = fev)
+summary(modela)
+```
+```{r}
+modelb <- lm(FEV ~ Age*factor(Sex), data = fev)
+summary(modelb)
+```
+Skal vi plotte dem - er vi nødt til at beregne de forudsagte værdier for
+forskellige aldre og køn.
+
+```{r}
+cAge <- seq(min(fev$Age, max(fev$Age), by = 1))
+sexes <- levels(factor(fev$Sex))
+
+```
+```{r}
+combine(cAge, sexes )
+```
+
+
+
+## Test af modeller
+
+```{r}
+library(car)
+car::Anova(model1, model2)
+```
+```{r}
+anova(model1, model2)
+```
+
+
+
+
+
 
 ## Polynomiske modeller
 
