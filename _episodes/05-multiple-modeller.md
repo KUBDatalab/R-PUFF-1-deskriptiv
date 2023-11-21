@@ -321,7 +321,7 @@ Nu skal I selv! Vi starter med model1:
 > > eller: 1.868589
 > > 
 > > Nej. Vores model giver ikke nødvendigvis mening når vi bevæger os
-> > udenfor de interval hvor vi har lavet vores model.
+> > udenfor det interval hvor vi har lavet vores model.
 > >
 > > Alternativ til beregning i hånden:
 > > 
@@ -531,7 +531,7 @@ Og så fortsætter vi med model 2:
 > > lungevolumen er 0.16 liter større end pigers. Så forudsigelsen skal
 > > være højere. Det giver dog ikke nødvendigvis fysiologisk mening at 
 > > der skulle være forskel på præpubertære børn. Måske indfyldelsen skyldes
-> > at vi har betydeligt ældre børn i datasættet også.
+> > at vi har betydeligt ældre børn i datasættet også?
 > > 
 > {: .solution}
 {: .challenge}
@@ -621,8 +621,20 @@ Og til slut øvelser til model 3:
 >
 > > ## Løsningsforslag
 > > 
+> > 
+> > ~~~
 > > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
 > > predict(model3, newdata = nye_data, interval = "prediction")
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> >        fit      lwr      upr
+> > 1 2.264382 1.447342 3.081423
+> > ~~~
+> > {: .output}
 > >
 > {: .solution}
 {: .challenge}
@@ -710,8 +722,8 @@ Og til slut øvelser til model 3:
 ## Vekselvirkning
 
 
-
 Vi bygger to modeller, hvor FEV afhænger af alder og køn:
+
 
 ~~~
 modela <- lm(FEV ~ Age + factor(Sex), data = fev)
@@ -778,37 +790,92 @@ F-statistic: 389.4 on 3 and 650 DF,  p-value: < 2.2e-16
 Skal vi plotte dem - er vi nødt til at beregne de forudsagte værdier for
 forskellige aldre og køn.
 
+Vi starter med at finde mulige værdier for alder og køn
+
 
 ~~~
-cAge <- seq(min(fev$Age, max(fev$Age), by = 1))
+cAge <- unique(fev$Age)
 sexes <- levels(factor(fev$Sex))
 ~~~
 {: .language-r}
 
+Så laver vi alle kombinationer af de to:
+
+
 ~~~
-combine(cAge, sexes )
+pred_data <- crossing(Age = cAge, Sex = sexes)
+head(pred_data)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-Warning: `combine()` was deprecated in dplyr 1.0.0.
-ℹ Please use `vctrs::vec_c()` instead.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-generated.
+# A tibble: 6 × 2
+    Age Sex  
+  <dbl> <chr>
+1     3 0    
+2     3 1    
+3     4 0    
+4     4 1    
+5     5 0    
+6     5 1    
 ~~~
-{: .warning}
+{: .output}
 
+Så tilføjer vi to kolonner, med forudsigelserne baseret på vores to modeller:
 
 
 ~~~
-Error in `vec_c()`:
-! Can't combine `..1` <integer> and `..2` <character>.
+pred_data <- pred_data %>% 
+  mutate(modela = predict(modela, newdata = .)) %>% 
+  mutate(modelb = predict(modelb, newdata = .))
 ~~~
-{: .error}
+{: .language-r}
+
+Hvordan ser forudsigelserne ud for modela?
+
+Vi plotter alle data som et scatterplot. 
+
+Og så tilføjer vi to rette linier, baseret på vores forudsigelser. Hvis 
+vi farvelægger efter "Sex", får vi to linier:
 
 
+~~~
+fev %>% 
+  ggplot(aes(Age, FEV, color = factor(Sex))) +
+  geom_point() +
+  geom_line(data = pred_data, aes(Age, modela, color = Sex)) +
+  scale_color_manual(values = c("red", "blue"),
+                     labels = c("Piger", "Drenge"),
+                     name = "Køn") +
+  ggtitle("Model a")
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-34</p>
+</div>
+Og modelb - hvor vi har en vekselvirkning med:
+
+
+~~~
+fev %>% 
+  ggplot(aes(Age, FEV, color = factor(Sex))) +
+  geom_point() +
+  geom_line(data = pred_data, aes(Age, modelb, color = Sex)) +
+  scale_color_manual(values = c("red", "blue"),
+                     labels = c("Piger", "Drenge"),
+                     name = "Køn") +
+  ggtitle("Model b")
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-35</p>
+</div>
 
 ## Test af modeller
 
@@ -873,6 +940,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ~~~
 {: .output}
 
+
+
 ~~~
 anova(model1, model2)
 ~~~
@@ -893,9 +962,46 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ~~~
 {: .output}
 
+## Holder forudsætningerne?
+
+qqplots af residualerne er en oplagt test. Funktionen `plot` af modellen giver
+os netop det - men også tre andre plots, der er noget mere komplicerede at tolke.
+
+Så lad os lave bare qqplottet.
+
+Vi starter med at trække residualerne ud:
 
 
+~~~
+residualer <- resid(modelb)
+~~~
+{: .language-r}
 
+
+~~~
+qqnorm(residualer)
+qqline(residualer, col = "red")
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-39</p>
+</div>
+Eller, hvis vi gerne vil lave det i ggplot:
+
+~~~
+data.frame(residualer) %>% 
+  ggplot(aes(sample = residualer)) +
+  geom_qq_line() +
+  geom_qq()
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-40-1.png" alt="plot of chunk unnamed-chunk-40" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-40</p>
+</div>
 
 
 ## Polynomiske modeller
@@ -910,8 +1016,8 @@ plot(fev$Hgt, fev$FEV)
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-34</p>
+<img src="../fig/rmd-05-unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-41</p>
 </div>
 Det kunne godt se ud som om FEV stiger lidt mere end bare lineært med højden.
 
@@ -952,8 +1058,8 @@ Vi laver en polynomisk model:
 
 
 ~~~
-tredieordens_model <- lm(FEV ~ Hgt + I(Hgt^2) + I(Hgt^3), data = fev)
-summary(tredieordens_model)
+kubisk_model <- lm(FEV ~ Hgt + I(Hgt^2) + I(Hgt^3), data = fev)
+summary(kubisk_model)
 ~~~
 {: .language-r}
 
@@ -998,8 +1104,8 @@ Går det bedre med et andengradspolynomium?
 
 
 ~~~
-andenordens_model <- lm(FEV ~ Hgt + I(Hgt^2), data = fev)
-summary(andenordens_model)
+kvadratisk_model <- lm(FEV ~ Hgt + I(Hgt^2), data = fev)
+summary(kvadratisk_model)
 ~~~
 {: .language-r}
 
@@ -1035,22 +1141,22 @@ Det kan vi teste ved at lave et QQ-plot:
 
 
 ~~~
-plot(andenordens_model) 
+plot(kvadratisk_model) 
 ~~~
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-38</p>
+<img src="../fig/rmd-05-unnamed-chunk-45-1.png" alt="plot of chunk unnamed-chunk-45" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-45</p>
 </div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-38-2.png" alt="plot of chunk unnamed-chunk-38" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-38</p>
+<img src="../fig/rmd-05-unnamed-chunk-45-2.png" alt="plot of chunk unnamed-chunk-45" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-45</p>
 </div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-38-3.png" alt="plot of chunk unnamed-chunk-38" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-38</p>
+<img src="../fig/rmd-05-unnamed-chunk-45-3.png" alt="plot of chunk unnamed-chunk-45" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-45</p>
 </div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-38-4.png" alt="plot of chunk unnamed-chunk-38" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-38</p>
+<img src="../fig/rmd-05-unnamed-chunk-45-4.png" alt="plot of chunk unnamed-chunk-45" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-45</p>
 </div>
 
 
@@ -1076,8 +1182,8 @@ fev %>% ggplot(aes(x = Hgt, y = FEV)) +
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-39</p>
+<img src="../fig/rmd-05-unnamed-chunk-46-1.png" alt="plot of chunk unnamed-chunk-46" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-46</p>
 </div>
 
 Vi kan her gøre det enkelt, har vi mere komplekse modeller, er vi nødt til at 
