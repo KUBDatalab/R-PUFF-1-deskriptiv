@@ -882,45 +882,6 @@ fev %>%
 
 ~~~
 library(car)
-~~~
-{: .language-r}
-
-
-
-~~~
-Loading required package: carData
-~~~
-{: .output}
-
-
-
-~~~
-
-Attaching package: 'car'
-~~~
-{: .output}
-
-
-
-~~~
-The following object is masked from 'package:dplyr':
-
-    recode
-~~~
-{: .output}
-
-
-
-~~~
-The following object is masked from 'package:purrr':
-
-    some
-~~~
-{: .output}
-
-
-
-~~~
 car::Anova(model1, model2)
 ~~~
 {: .language-r}
@@ -1054,7 +1015,8 @@ F-statistic:  1995 on 1 and 652 DF,  p-value: < 2.2e-16
 ~~~
 {: .output}
 
-Vi laver en polynomisk model:
+
+Vi prøver en polynomisk model - tredie orden, eller "kubisk":
 
 
 ~~~
@@ -1100,7 +1062,8 @@ Det var _ikke_ imponerende...
 > 
 {: .callout}
 
-Går det bedre med et andengradspolynomium?
+
+Går det bedre med et andengradspolynomium? 
 
 
 ~~~
@@ -1137,26 +1100,19 @@ F-statistic:  1115 on 2 and 651 DF,  p-value: < 2.2e-16
 _Meget_ bedre!
 
 En forudsætning for modellen er at residualerne er normalfordelte.
-Det kan vi teste ved at lave et QQ-plot:
+Det kan vi teste ved at lave et QQ-plot af dem:
 
 
 ~~~
-plot(kvadratisk_model) 
+residualer <- resid(kvadratisk_model) 
+qqnorm(residualer)
+qqline(residualer, col = "red")
 ~~~
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-45-1.png" alt="plot of chunk unnamed-chunk-45" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-45</p>
-</div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-45-2.png" alt="plot of chunk unnamed-chunk-45" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-45</p>
-</div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-45-3.png" alt="plot of chunk unnamed-chunk-45" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-45</p>
-</div><div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-45-4.png" alt="plot of chunk unnamed-chunk-45" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-45</p>
+<img src="../fig/rmd-05-qqplot-1.png" alt="plot of chunk qqplot" width="612" />
+<p class="caption">plot of chunk qqplot</p>
 </div>
 
 
@@ -1182,8 +1138,8 @@ fev %>% ggplot(aes(x = Hgt, y = FEV)) +
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-46-1.png" alt="plot of chunk unnamed-chunk-46" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-46</p>
+<img src="../fig/rmd-05-unnamed-chunk-45-1.png" alt="plot of chunk unnamed-chunk-45" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-45</p>
 </div>
 
 Vi kan her gøre det enkelt, har vi mere komplekse modeller, er vi nødt til at 

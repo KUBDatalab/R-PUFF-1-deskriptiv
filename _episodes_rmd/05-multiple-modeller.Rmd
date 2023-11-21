@@ -409,7 +409,7 @@ fev %>%
 
 ## Test af modeller
 
-```{r}
+```{r message=FALSE}
 library(car)
 car::Anova(model1, model2)
 
@@ -463,7 +463,8 @@ linear_model <- lm(FEV ~ Hgt, data = fev)
 summary(linear_model)
 ```
 
-Vi laver en polynomisk model:
+
+Vi prøver en polynomisk model - tredie orden, eller "kubisk":
 
 ```{r}
 kubisk_model <- lm(FEV ~ Hgt + I(Hgt^2) + I(Hgt^3), data = fev)
@@ -483,7 +484,8 @@ Det var _ikke_ imponerende...
 > 
 {: .callout}
 
-Går det bedre med et andengradspolynomium?
+
+Går det bedre med et andengradspolynomium? 
 
 ```{r}
 kvadratisk_model <- lm(FEV ~ Hgt + I(Hgt^2), data = fev)
@@ -493,10 +495,12 @@ summary(kvadratisk_model)
 _Meget_ bedre!
 
 En forudsætning for modellen er at residualerne er normalfordelte.
-Det kan vi teste ved at lave et QQ-plot:
+Det kan vi teste ved at lave et QQ-plot af dem:
 
-```{r}
-plot(kvadratisk_model) 
+```{r qqplot}
+residualer <- resid(kvadratisk_model) 
+qqnorm(residualer)
+qqline(residualer, col = "red")
 ```
 
 
