@@ -173,18 +173,32 @@ Nu skal I selv! Vi starter med model1:
 
 Og så fortsætter vi med model 2:
 
-> ## Forudsigelse fra model 2
+> ## Forudsigelse fra model 2 - piger
 > 
 > Hvad er modellens bedste bud på FEV for en 10-årig pige, der er 
 > 150 cm høj?
 >
-> Hvad er modellens bedste bud på FEV for en 10-årig dreng, der
-> er 150 cm høj?
->
-> Hvad er forskellen? Siger modellen at den skal være der?
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
+> 
 >
 > > ## Løsningsforslag
 > > 
+> > ```{r}
+> > summary(model2)
+> > ```
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > ```{r}
+> > -4.448560 + 10 * 0.061364 + 150/2.54 * 0.104560 + 0 * 0.161112
+> > ```
+> > 
+> > Eller, med predict funtionen:
+> >
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0))
+> > predict(model2, newdata = nye_data)
+> > ```
 > > 
 > {: .solution}
 {: .challenge}
@@ -192,14 +206,57 @@ Og så fortsætter vi med model 2:
 
 > ## Hvilket interval "stoler" vi på?
 >
-> I hvilket interval er vi 95% "sikre" på at FEV er for denne
-> pige?
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for denne pige? 
 > 
-> 
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
 > 
 > > ## Løsningsforslag
 > >
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0))
+> > predict(model2, newdata = nye_data, interval = "prediction")
+> > ```
 > >
+> {: .solution}
+{: .challenge}
+
+
+> ## Forudsigelse fra model 2 - hvad med drengene?
+> 
+> Hvad er modellens bedste bud på FEV for en 10-årig dreng, der er 
+> 150 cm høj?
+>
+> Sammenlign med forudsigelsen for en tilsvarende pige - giver forskellen 
+> mening?
+>
+> Husk, piger er kodet som "0", drenge som "1" i datasættet.
+> 
+>
+> > ## Løsningsforslag
+> > 
+> > ```{r}
+> > summary(model2)
+> > ```
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > ```{r}
+> > -4.448560 + 10 * 0.061364 + 150/2.54 * 0.104560 + 1 * 0.161112
+> > ```
+> > 
+> > Eller, med predict funtionen:
+> >
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(1))
+> > predict(model2, newdata = nye_data)
+> > ```
+> > 
+> > Om forskellen giver mening? Både og. Modellen forudsiger at drenges
+> > lungevolumen er 0.16 liter større end pigers. Så forudsigelsen skal
+> > være højere. Det giver dog ikke nødvendigvis fysiologisk mening at 
+> > der skulle være forskel på præpubertære børn. Måske indfyldelsen skyldes
+> > at vi har betydeligt ældre børn i datasættet også.
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -207,7 +264,75 @@ Og så fortsætter vi med model 2:
 Og til slut øvelser til model 3:
 
 
-øvleser model 3
+> ## Forudsigelser baseret på model 3
+> 
+> Forudsig bedste bud på FEV for en 10-årig pige med højde 150 cm, 
+> som desuden ryger.
+>
+> > ## Løsningsforslag
+> >
+> > ```{r}
+> > summary(model3)
+> > ```
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > ```{r}
+> > -4.456974 + 10 * 0.065509 + 150/2.54 * 0.104199 + 0 * 0.157103 + 1 * (-0.087246)
+> > ```
+> > 
+> > Eller, med predict funtionen:
+> >
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
+> > predict(model3, newdata = nye_data)
+> > ```
+> {: .solution}
+{: .challenge}
+
+
+> ## Hvilket interval "stoler" vi på?
+> 
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for denne pige? 
+>
+> > ## Løsningsforslag
+> > 
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(1))
+> > predict(model3, newdata = nye_data, interval = "prediction")
+> >
+> {: .solution}
+{: .challenge}
+
+
+> ## Og for en ikke-rygende pige
+> 
+> Forudsig bedste bud på FEV for en 10-årig pige med højde 150 cm, som ikke ryger.
+> 
+> Sammenlign med resultatet for en rygende pige. Hvad er forskellen? Siger
+> modellen, at denne forskel bør være der?
+>
+> > ## Løsningsforslag
+> > ```{r}
+> > summary(model3)
+> > ```
+> > 
+> > Her har vi koeeficienterne, og vi kan regne det ud i hånden:
+> >
+> > ```{r}
+> > -4.456974 + 10 * 0.065509 + 150/2.54 * 0.104199 + 0 * 0.157103 + 0 * (-0.087246)
+> > ```
+> > 
+> > Og med predict funktionen:
+> > 
+> > ```{r}
+> > nye_data <- data.frame(Age = 10, Hgt = 150/2.54, Sex = factor(0), Smoke = factor(0))
+> > predict(model3, newdata = nye_data)
+> > ```
+> >
+> > 
+> {: .solution}
+{: .challenge}
+
 
 
 ## Vekselvirkning
