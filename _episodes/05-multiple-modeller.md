@@ -17,7 +17,7 @@ math: yes
 
 
 
-# NB R-eksempler til modul 3 - ikke færdig!
+# R-eksempler til modul 3
 
 Vi arbejder videre med fev datasættet. Først indlæser vi biblioteker:
 
