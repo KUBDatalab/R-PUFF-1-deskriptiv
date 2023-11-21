@@ -74,6 +74,14 @@ Og hvis vi vil have to kategoriske variable i modellen?
 model3 <- lm(FEV ~ Age + Hgt + factor(Sex) + factor(Smoke), data = fev)
 summary(model3)
 ```
+### Husk også den deskreptive statistik!
+
+Hvor mange observationer har vi blandt de kategoriske variable:
+```{r}
+table(smoke = fev$Smoke, sex = fev$Sex)
+```
+
+
 
 Nu skal I selv! Vi starter med model1:
 
@@ -111,6 +119,9 @@ Nu skal I selv! Vi starter med model1:
 > > predict(model1, newdata = nye_data)
 > > ```
 > >
+> > Denne fremgangsmåde er særligt nyttig når vi skal lave flere
+> > forudsigelser.
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -118,21 +129,12 @@ Nu skal I selv! Vi starter med model1:
 
 > ## Hvilket interval "stoler" vi på?
 >
-> I hvilket interval er vi 95% "sikre" på at FEV vil ligge for en
-> 10-årig, 150 cm høj person?
->
-> Hint: Konfidensintervaller
+> I hvilket interval er vi “95% sikre” på, at FEV vil være for en 10-årig 
+> 150 cm høj person? 
+> Hint: prædiktionsintervaller.
 > 
 > > ## Løsningsforslag
 > > 
-> > Vi skal bruge konfidensintervallerne på vores parametre:
-> >
-> > ```{r eval = T}
-> > confint(model1)
-> > ```
-> > 
-> > 
-> > Alternativ løsning:
 > > 
 > > ```{r eval = T}
 > > nye_data <- data.frame(Age = 10, Hgt = 59.05512)
@@ -141,9 +143,6 @@ Nu skal I selv! Vi starter med model1:
 > > 
 > {: .solution}
 {: .challenge}
-
-Og hvordan beregner vi konfidensintervallet i hånden?
-
 
 
 
@@ -161,7 +160,14 @@ Og hvordan beregner vi konfidensintervallet i hånden?
 > > 
 > > Nej. Vores model giver ikke nødvendigvis mening når vi bevæger os
 > > udenfor de interval hvor vi har lavet vores model.
+> >
+> > Alternativ til beregning i hånden:
 > > 
+> > ```{r}
+> > nye_data <- data.frame(Age = 0, Hgt = 150/2.54)
+> > predict(model1, newdata = nye_data)
+> > ```
+> >
 > {: .solution}
 {: .challenge}
 
