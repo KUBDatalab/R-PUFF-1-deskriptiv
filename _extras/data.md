@@ -77,6 +77,10 @@ på eksempelvis testosteron indholdet i deres blod.
 |  Age       |  Age (yrs)  |
 |  zyg       |  1=mz 2=dz  |
 
+mz - monozygot - enæggede tvillinger
+
+dz - dizygot - tveæggede tvillinger
+
 Twin 1  Lighter Smoking Twin
 
 |  Variable  |  Code                                                    |

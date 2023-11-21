@@ -1147,7 +1147,87 @@ lave forudsigelser for forskelligt input, og plotte resultaterne.
 
 Prøv nu selv med boneden datasættet.
 
+Datasættet indeholder to sæt observationer - for det er et tvillingestudie.
 
+Nøjes med at se på denne del af datasættet, hvor vi kun har den  ene 
+tvilling med, og dropper ID.
+
+~~~
+boneden %>% 
+  select(age:fs1) 
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 41 × 13
+     age   zyg   ht1   wt1  tea1  cof1  alc1  cur1  men1  pyr1   ls1   fn1   fs1
+   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1    27     2   162    57    35     0     1     1     0   0    0.81  0.72  1   
+ 2    42     2   165    76    42     2     3     5     1   0    1.01  0.74  0.99
+ 3    59     2   150   114    12     0     0     0     1   0    0.75  0.63  1.05
+ 4    61     1   159    62    56     0     0     0     1   0    0.81  0.64  1.12
+ 5    47     2   159    58    28    14     0     0     0   0    0.78  0.7   1.14
+ 6    33     2   163    49    35     0     3     1     0   0    0.86  0.56  1.13
+ 7    45     1   169    78    42     0     1     1     0   0    0.95  0.83  1.16
+ 8    73     1   160    76    42    14    14     8     1  25    0.76  0.56  1.05
+ 9    43     2   162    64     7    28     8     3     0   0.5  0.83  0.65  1.07
+10    43     2   165    58     7    21     6     0     1   0    1.01  0.9   1.3 
+# ℹ 31 more rows
+~~~
+{: .output}
+
+> ## Hvor god en model kan du bygge?
+>
+> Hvor god en model kan du bygge på dette datasæt, der forklarer "fs1", 
+> knogletætheden i lårbensskaftet?
+>
+> > ## Løsningsforslag
+> >
+> > Denne model har vældig gode p-værdier
+> > 
+> > 
+> > ~~~
+> > lm(formula = fs1 ~ age+I(age^2) + fn1+ I(fn1^2) +I(fn1^3), data = boneden) %>% 
+> > summary()
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > 
+> > Call:
+> > lm(formula = fs1 ~ age + I(age^2) + fn1 + I(fn1^2) + I(fn1^3), 
+> >     data = boneden)
+> > 
+> > Residuals:
+> >       Min        1Q    Median        3Q       Max 
+> > -0.148934 -0.057466 -0.002528  0.033146  0.282620 
+> > 
+> > Coefficients:
+> >               Estimate Std. Error t value Pr(>|t|)   
+> > (Intercept) -5.166e+00  2.077e+00  -2.488  0.01776 * 
+> > age          2.773e-02  1.029e-02   2.694  0.01078 * 
+> > I(age^2)    -2.925e-04  1.011e-04  -2.892  0.00654 **
+> > fn1          2.620e+01  9.676e+00   2.708  0.01041 * 
+> > I(fn1^2)    -4.006e+01  1.491e+01  -2.686  0.01099 * 
+> > I(fn1^3)     2.018e+01  7.530e+00   2.680  0.01114 * 
+> > ---
+> > Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> > 
+> > Residual standard error: 0.09117 on 35 degrees of freedom
+> > Multiple R-squared:  0.5573,	Adjusted R-squared:  0.494 
+> > F-statistic: 8.811 on 5 and 35 DF,  p-value: 1.738e-05
+> > ~~~
+> > {: .output}
+> > Men er det en god model? Nej Den forklarer ikke ret meget af variationen.
+> >
+> > Og det er en ret kompliceret model, der overfitter vores data. 
+> >
+> {: .solution}
+{: .challenge}
 
 
 

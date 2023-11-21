@@ -521,7 +521,34 @@ lave forudsigelser for forskelligt input, og plotte resultaterne.
 
 Prøv nu selv med boneden datasættet.
 
+Datasættet indeholder to sæt observationer - for det er et tvillingestudie.
 
+Nøjes med at se på denne del af datasættet, hvor vi kun har den  ene 
+tvilling med, og dropper ID.
+```{r}
+boneden %>% 
+  select(age:fs1) 
+```
+
+> ## Hvor god en model kan du bygge?
+>
+> Hvor god en model kan du bygge på dette datasæt, der forklarer "fs1", 
+> knogletætheden i lårbensskaftet?
+>
+> > ## Løsningsforslag
+> >
+> > Denne model har vældig gode p-værdier
+> > 
+> > ```{r}
+> > lm(formula = fs1 ~ age+I(age^2) + fn1+ I(fn1^2) +I(fn1^3), data = boneden) %>% 
+> > summary()
+> > ```
+> > Men er det en god model? Nej Den forklarer ikke ret meget af variationen.
+> >
+> > Og det er en ret kompliceret model, der overfitter vores data. 
+> >
+> {: .solution}
+{: .challenge}
 
 
 
