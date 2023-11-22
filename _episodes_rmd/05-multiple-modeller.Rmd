@@ -411,7 +411,7 @@ fev %>%
 
 ```{r message=FALSE}
 library(car)
-car::Anova(model1, model2)
+car::Anova(model2, type = "III")
 
 ```
 
@@ -425,9 +425,25 @@ anova(model1, model2)
 qqplots af residualerne er en oplagt test. Funktionen `plot` af modellen giver
 os netop det - men også tre andre plots, der er noget mere komplicerede at tolke.
 
-Så lad os lave bare qqplottet.
+Så lad os lave bare qqplottet. Vi starter med at kigge på 
+kaffe_model fra sidst:
 
-Vi starter med at trække residualerne ud:
+Første trin er at trække residualerne ud:
+
+```{r}
+kaffe_model <- lm(cof1 ~ tea1, data = boneden)
+residualer <- resid(kaffe_model)
+```
+
+Dernæst plotter vi:
+```{r}
+qqnorm(residualer)
+qqline(residualer, col = "red")
+```
+
+Hvordan ser det ud for vores polynomiske model?
+
+Samme metodik - bare en anden model:
 
 ```{r}
 residualer <- resid(modelb)
@@ -444,6 +460,9 @@ data.frame(residualer) %>%
   geom_qq_line() +
   geom_qq()
 ```
+
+
+
 
 
 ## Polynomiske modeller

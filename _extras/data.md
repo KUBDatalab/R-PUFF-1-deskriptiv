@@ -158,6 +158,13 @@ kaffe dækker over. Dog:
 
 s 807 i bogen.
 
+Undersøgelse af patienter med "piriformis syndrome". Noget der
+ofte giver "lumbar" smerter og i piriformis musklen (ligger dybt i bagdelen). 
+sciatica også. Dobbeltblindt randomiseret studei, hvor tre grupper af patienter
+fik forskellig behandling. Gruppe 1 - injektion af en blanding af triamcinolone og
+lidokain (TL), gruppe 2 der som kodningen antyder fik en placebo. Og gruppe
+tre, der fik en injektion af botox
+
 ### BREAST
 [Download](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/BREAST.csv)
 
