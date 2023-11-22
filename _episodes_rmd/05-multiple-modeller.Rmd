@@ -411,7 +411,7 @@ fev %>%
 
 ```{r message=FALSE}
 library(car)
-car::Anova(model1, model2)
+car::Anova(model2, type = "III")
 
 ```
 
