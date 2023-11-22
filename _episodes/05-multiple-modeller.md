@@ -882,20 +882,22 @@ fev %>%
 
 ~~~
 library(car)
-car::Anova(model1, model2)
+car::Anova(model2, type = "III")
 ~~~
 {: .language-r}
 
 
 
 ~~~
-Anova Table (Type II tests)
+Anova Table (Type III tests)
 
 Response: FEV
-           Sum Sq  Df F value    Pr(>F)    
-Age         6.259   1  36.769 2.256e-09 ***
-Hgt        95.326   1 559.990 < 2.2e-16 ***
-Residuals 110.648 650                      
+             Sum Sq  Df F value    Pr(>F)    
+(Intercept)  67.763   1 398.072 < 2.2e-16 ***
+Age           7.793   1  45.779 2.957e-11 ***
+Hgt          82.287   1 483.394 < 2.2e-16 ***
+factor(Sex)   4.027   1  23.656 1.446e-06 ***
+Residuals   110.648 650                      
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ~~~
@@ -928,9 +930,34 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 qqplots af residualerne er en oplagt test. Funktionen `plot` af modellen giver
 os netop det - men også tre andre plots, der er noget mere komplicerede at tolke.
 
-Så lad os lave bare qqplottet.
+Så lad os lave bare qqplottet. Vi starter med at kigge på 
+kaffe_model fra sidst:
 
-Vi starter med at trække residualerne ud:
+Første trin er at trække residualerne ud:
+
+
+~~~
+kaffe_model <- lm(cof1 ~ tea1, data = boneden)
+residualer <- resid(kaffe_model)
+~~~
+{: .language-r}
+
+Dernæst plotter vi:
+
+~~~
+qqnorm(residualer)
+qqline(residualer, col = "red")
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-39</p>
+</div>
+
+Hvordan ser det ud for vores polynomiske model?
+
+Samme metodik - bare en anden model:
 
 
 ~~~
@@ -946,8 +973,8 @@ qqline(residualer, col = "red")
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-39</p>
+<img src="../fig/rmd-05-unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-41</p>
 </div>
 Eller, hvis vi gerne vil lave det i ggplot:
 
@@ -960,9 +987,12 @@ data.frame(residualer) %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-40-1.png" alt="plot of chunk unnamed-chunk-40" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-40</p>
+<img src="../fig/rmd-05-unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-42</p>
 </div>
+
+
+
 
 
 ## Polynomiske modeller
@@ -977,8 +1007,8 @@ plot(fev$Hgt, fev$FEV)
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-41</p>
+<img src="../fig/rmd-05-unnamed-chunk-43-1.png" alt="plot of chunk unnamed-chunk-43" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-43</p>
 </div>
 Det kunne godt se ud som om FEV stiger lidt mere end bare lineært med højden.
 
@@ -1138,8 +1168,8 @@ fev %>% ggplot(aes(x = Hgt, y = FEV)) +
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-45-1.png" alt="plot of chunk unnamed-chunk-45" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-45</p>
+<img src="../fig/rmd-05-unnamed-chunk-47-1.png" alt="plot of chunk unnamed-chunk-47" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-47</p>
 </div>
 
 Vi kan her gøre det enkelt, har vi mere komplekse modeller, er vi nødt til at 
