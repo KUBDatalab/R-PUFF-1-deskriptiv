@@ -16,12 +16,252 @@ math: yes
 
 
 
-# NB R-eksempler til modul 4 - ikke færdig!
+# NB R-eksempler til modul 4 - ikke færdig øh?!
 
+Vi fortsætter med FEV datasættet, men skal også bruge nogen andre
+
+
+~~~
+library(tidyverse)
+fev <- read_csv("data/FEV.csv")
+~~~
+{: .language-r}
+
+~~~
+Rows: 654 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): Id, Age, FEV, Hgt, Sex, Smoke
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+~~~
+{: .output}
+## Indlæs estradl datasættet:
+
+
+~~~
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv", 
+              "data/ESTRADL.csv", 
+              mode = "wb")
+estradl <- read_csv("data/ESTRADL.csv")
+~~~
+{: .language-r}
+
+~~~
+estradl <- read_csv("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv")
+~~~
+{: .language-r}
+
+
+
+~~~
+Rows: 211 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): Id, Estradl, Ethnic, Entage, Numchild, Agefbo, Anykids, Agemenar, ...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+~~~
+{: .output}
 
 
 ## Antalstabeller
 
+Vi har set hvordan man laver antalstabeller:
+
+~~~
+tabel <- table(Sex = fev$Sex, smoke = fev$Smoke)
+tabel
+~~~
+{: .language-r}
+
+
+
+~~~
+   smoke
+Sex   0   1
+  0 279  39
+  1 310  26
+~~~
+{: .output}
+Vi vil gerne have totaler tilføjet. Det kan vi gøre med funktionen `addmargins()`:
+
+~~~
+addmargins(tabel)
+~~~
+{: .language-r}
+
+
+
+~~~
+     smoke
+Sex     0   1 Sum
+  0   279  39 318
+  1   310  26 336
+  Sum 589  65 654
+~~~
+{: .output}
+Hvordan med sandsynlighederne?
+
+Vi kan regne det i hånden, det så vi på sliden:
+
+$$ \pi_i = P(X_i = 1)$$ 
+$$\pi_{female} = \frac{279}{318} = 0.8774 $$ 
+og
+$$\pi_{male} = \frac{310}{336} = 0.9226 $$ 
+Vi kan også bruge en funktion, `prop.table()` giver os tallene direkte, men vi 
+skal huske at fortælle om vi bruger summen fra kolonner, eller rækker. Her er det
+summen i rækkerne. Det angiver vi med `margin = 1`  i funktionen:
+
+
+~~~
+prop.table(tabel, margin = 1)
+~~~
+{: .language-r}
+
+
+
+~~~
+   smoke
+Sex          0          1
+  0 0.87735849 0.12264151
+  1 0.92261905 0.07738095
+~~~
+{: .output}
+
+## Spredning på estimaterne:
+Først for pigerne:
+
+~~~
+p_female <- 0.8774 
+sd_female <- sqrt(p_female*(1-p_female)/318)
+sd_female
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.01839206
+~~~
+{: .output}
+Og så for drengene:
+
+
+
+~~~
+p_male <- 0.9226
+sd_male <- sqrt(p_male*(1-p_male)/318)
+sd_male
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.01498524
+~~~
+{: .output}
+
+Konfidensintervallerne:
+
+
+~~~
+p_female + c(-1,1)*1.96*sd_female
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.8413516 0.9134484
+~~~
+{: .output}
+
+~~~
+p_male + c(-1,1)*1.96*sd_male
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.8932289 0.9519711
+~~~
+{: .output}
+
+
+Vi kan også beregne det eksakt:
+
+
+~~~
+binom.test(tabel[2,1], sum(tabel[2,]))
+~~~
+{: .language-r}
+
+
+
+~~~
+
+	Exact binomial test
+
+data:  tabel[2, 1] and sum(tabel[2, ])
+number of successes = 310, number of trials = 336, p-value < 2.2e-16
+alternative hypothesis: true probability of success is not equal to 0.5
+95 percent confidence interval:
+ 0.8886735 0.9488316
+sample estimates:
+probability of success 
+              0.922619 
+~~~
+{: .output}
+## Risikodifferensen
+
+
+~~~
+p_male - p_female
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.0452
+~~~
+{: .output}
+Og standardafvigelsen på det tal:
+
+
+~~~
+sqrt(sd_male^2 + sd_female^2)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.02372394
+~~~
+{: .output}
+
+Prøv selv!
+
+
+
+> ## Øvelse på estradl datasættet
+> 
+> Nøjagtig samme øvelse, nu er vi blot i et andet datasæt, så vi ser på
+> variablene "Anykids" og "Ethnic"
+> 
+> Anykids har manglende data. Det er kodet med et 9-tal. Start med at fjerne 
+> dem fra datasættet. Husk også at konvertere de to variable til faktorer!
+> 
+> > ## Løsningsforslag
+> > 
+> {: .solution}
+{: .challenge}
 
 
 ## Odds ratio

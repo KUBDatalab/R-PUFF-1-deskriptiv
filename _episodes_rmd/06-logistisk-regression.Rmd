@@ -19,12 +19,115 @@ knitr_fig_path("06-")
 library(tidyverse)
 ```
 
-# NB R-eksempler til modul 4 - ikke færdig!
+# NB R-eksempler til modul 4 - ikke færdig øh?!
 
+Vi fortsætter med FEV datasættet, men skal også bruge nogen andre
+
+```{r eval = F}
+library(tidyverse)
+fev <- read_csv("data/FEV.csv")
+```
+```{r echo = F}
+fev <- read_csv("../data/FEV.csv")
+```
+## Indlæs estradl datasættet:
+
+```{r eval  =F}
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv", 
+              "data/ESTRADL.csv", 
+              mode = "wb")
+estradl <- read_csv("data/ESTRADL.csv")
+```
+```{r}
+estradl <- read_csv("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv")
+```
 
 
 ## Antalstabeller
 
+Vi har set hvordan man laver antalstabeller:
+```{r}
+tabel <- table(Sex = fev$Sex, smoke = fev$Smoke)
+tabel
+```
+Vi vil gerne have totaler tilføjet. Det kan vi gøre med funktionen `addmargins()`:
+```{r}
+addmargins(tabel)
+```
+Hvordan med sandsynlighederne?
+
+Vi kan regne det i hånden, det så vi på sliden:
+
+$$ \pi_i = P(X_i = 1)$$ 
+$$\pi_{female} = \frac{279}{318} = 0.8774 $$ 
+og
+$$\pi_{male} = \frac{310}{336} = 0.9226 $$ 
+Vi kan også bruge en funktion, `prop.table()` giver os tallene direkte, men vi 
+skal huske at fortælle om vi bruger summen fra kolonner, eller rækker. Her er det
+summen i rækkerne. Det angiver vi med `margin = 1`  i funktionen:
+
+```{r}
+prop.table(tabel, margin = 1)
+```
+
+## Spredning på estimaterne:
+Først for pigerne:
+```{r}
+p_female <- 0.8774 
+sd_female <- sqrt(p_female*(1-p_female)/318)
+sd_female
+```
+Og så for drengene:
+
+
+```{r}
+p_male <- 0.9226
+sd_male <- sqrt(p_male*(1-p_male)/318)
+sd_male
+```
+
+Konfidensintervallerne:
+
+```{r}
+p_female + c(-1,1)*1.96*sd_female
+```
+```{r}
+p_male + c(-1,1)*1.96*sd_male
+```
+
+
+Vi kan også beregne det eksakt:
+
+```{r}
+binom.test(tabel[2,1], sum(tabel[2,]))
+```
+## Risikodifferensen
+
+```{r}
+p_male - p_female
+```
+Og standardafvigelsen på det tal:
+
+```{r}
+sqrt(sd_male^2 + sd_female^2)
+```
+
+Prøv selv!
+
+
+
+> ## Øvelse på estradl datasættet
+> 
+> Nøjagtig samme øvelse, nu er vi blot i et andet datasæt, så vi ser på
+> variablene "Anykids" og "Ethnic"
+> 
+> Anykids har manglende data. Det er kodet med et 9-tal. Start med at fjerne 
+> dem fra datasættet. Husk også at konvertere de to variable til faktorer!
+> 
+> > ## Løsningsforslag
+> > 
+> {: .solution}
+{: .challenge}
 
 
 ## Odds ratio
