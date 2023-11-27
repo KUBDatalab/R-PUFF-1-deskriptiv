@@ -49,13 +49,6 @@ estradl <- read_csv("data/ESTRADL.csv")
 {: .language-r}
 
 ~~~
-estradl <- read_csv("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv")
-~~~
-{: .language-r}
-
-
-
-~~~
 Rows: 211 Columns: 10
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
@@ -109,8 +102,11 @@ Vi kan regne det i hånden, det så vi på sliden:
 
 $$ \pi_i = P(X_i = 1)$$ 
 $$\pi_{female} = \frac{279}{318} = 0.8774 $$ 
+
 og
+
 $$\pi_{male} = \frac{310}{336} = 0.9226 $$ 
+
 Vi kan også bruge en funktion, `prop.table()` giver os tallene direkte, men vi 
 skal huske at fortælle om vi bruger summen fra kolonner, eller rækker. Her er det
 summen i rækkerne. Det angiver vi med `margin = 1`  i funktionen:
@@ -258,15 +254,631 @@ Prøv selv!
 > Anykids har manglende data. Det er kodet med et 9-tal. Start med at fjerne 
 > dem fra datasættet. Husk også at konvertere de to variable til faktorer!
 > 
+> Hvad er sandsynligheden for at have børn for afro-amerikanere (ethnic = 0),
+> kontra sandsynligheden for at have børn for caucasier
+>
 > > ## Løsningsforslag
 > > 
+> > Start med at sortere rækker hvor værdien i "Anykids" er lig 9. Og konverter til 
+> > kategoriske variable:
+> > 
+> > 
+> > ~~~
+> > estradl_renset <- estradl %>% 
+> >    filter(Anykids != 9) %>% 
+> >    mutate(Anykids = factor(Anykids),
+> >           Ethnic = factor(Ethnikc))
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > Error in `mutate()`:
+> > ℹ In argument: `Ethnic = factor(Ethnikc)`.
+> > Caused by error:
+> > ! object 'Ethnikc' not found
+> > ~~~
+> > {: .error}
+> >
+> > Lav tabellen, og brug addmargins til at give summerne:
+> > 
+> > 
+> > ~~~
+> > estra_tabel <- table( ethnic = estradl_renset$Ethnic, anykids = estradl_renset$Anykids)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > Error in eval(expr, envir, enclos): object 'estradl_renset' not found
+> > ~~~
+> > {: .error}
+> > 
+> > 
+> > 
+> > ~~~
+> > addmargins(estra_tabel)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > Error in eval(expr, envir, enclos): object 'estra_tabel' not found
+> > ~~~
+> > {: .error}
+> >
+> > Herefter kan vi beregne det direkte:
+> > 
+> > ~~~
+> > p_aa <- 7/59
+> > p_aa
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 0.1186441
+> > ~~~
+> > {: .output}
+> >
+> > 
+> > ~~~
+> > p_ca <- 51/147
+> > p_ca
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 0.3469388
+> > ~~~
+> > {: .output}
+> >
+> {: .solution}
+{: .challenge}
+
+> ## Hvad med spredningerne?
+> 
+> Beregn spredningen på de to estimater
+> 
+> > ## Løsningsforslag
+> >
+> > Tallene vi skal brug får vi fra tabellen:
+> > 
+> > ~~~
+> > addmargins(estra_tabel)
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > Error in eval(expr, envir, enclos): object 'estra_tabel' not found
+> > ~~~
+> > {: .error}
+> >
+> > Og så kan vi beregne for afro-amerikanere
+> > 
+> > ~~~
+> > sd_aa <- sqrt(p_aa*(1-p_aa)/59)
+> > sd_aa
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 0.04209909
+> > ~~~
+> > {: .output}
+> >
+> > Og for kaukaiser:
+> >
+> > 
+> > ~~~
+> > sd_ca <- sqrt(p_ca*(1-p_ca)/147)
+> > sd_ca
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 0.03925949
+> > ~~~
+> > {: .output}
+> >
+> {: .solution}
+{: .challenge}
+
+> ## Konfidensintervallerne
+>
+> Beregn til sidst konfidensintervallerne for de to estimater, baseret
+> på estimaterne og standardafvigelserne.
+>
+> > ## Løsningsforslag
+> >
+> > For afro-amerikanere:
+> > 
+> > ~~~
+> > p_aa + c(-1,1)*1.96*sd_aa
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 0.03612986 0.20115828
+> > ~~~
+> > {: .output}
+> >
+> > Og for kaukaser:
+> > 
+> > ~~~
+> > p_ca + c(-1,1)*1.96*sd_ca
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > [1] 0.2699902 0.4238874
+> > ~~~
+> > {: .output}
+> >
 > {: .solution}
 {: .challenge}
 
 
+## Relativ risiko
+
+Her kan jeg ikke umiddelbart få regnestykket til at give det samme resultat...
+
+
 ## Odds ratio
 
+### Odds ratio og konfidensintervaller for fev-datasættet
+
+Vi starter med at omkode iden, så vi ikke skal huske at Sex = 0 betyder 
+kvinder, og at Smoke = 0 betyder ikke-ryger.
+
+Dernæst mutater vi de to variable til at være faktorer, altså kategoriske
+variable. Endelig sætter vi "smoker" til at være den første værdi i den 
+kategoriske variabel Smoke.
+
+
+
+~~~
+fev_clean <- fev %>% 
+  mutate(Sex = case_when(
+    Sex == 0 ~ "female",
+    Sex == 1 ~ "male"
+  )) %>% 
+  mutate(Smoke = case_when(
+    Smoke == 0 ~ "non-smoker",
+    Smoke == 1 ~ "smoker"
+  )) %>% 
+  mutate(Sex = as.factor(Sex),
+         Smoke = as.factor(Smoke)) %>% 
+  mutate(Smoke = relevel(Smoke, ref = "smoker"))
+~~~
+{: .language-r}
+
+Det data skal vi bruge senere. For nu, laver vi endnu et datasæt, hvor vi
+kun ser på de to variable, Sex og Smoke:
+
+
+~~~
+fev_to_table <- fev_clean %>% 
+  select(Sex, Smoke)
+~~~
+{: .language-r}
+
+
+Så laver vi vores tabel med tælletallene:
+
+~~~
+cont_table_fev <- table(fev_to_table)
+cont_table_fev
+~~~
+{: .language-r}
+
+
+
+~~~
+        Smoke
+Sex      smoker non-smoker
+  female     39        279
+  male       26        310
+~~~
+{: .output}
+
+Chi-i-anden testen - først de forventede værdier:
+
+~~~
+chisq.test(cont_table_fev)$expected
+~~~
+{: .language-r}
+
+
+
+~~~
+        Smoke
+Sex       smoker non-smoker
+  female 31.6055   286.3945
+  male   33.3945   302.6055
+~~~
+{: .output}
+Og så selve testen:
+
+
+~~~
+chisq.test(cont_table_fev, correct = F)
+~~~
+{: .language-r}
+
+
+
+~~~
+
+	Pearson's Chi-squared test
+
+data:  cont_table_fev
+X-squared = 3.739, df = 1, p-value = 0.05316
+~~~
+{: .output}
+
+Og til sidst fisher testen:
+
+~~~
+fisher.test(cont_table_fev)
+~~~
+{: .language-r}
+
+
+
+~~~
+
+	Fisher's Exact Test for Count Data
+
+data:  cont_table_fev
+p-value = 0.06661
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.9603893 2.9289485
+sample estimates:
+odds ratio 
+   1.66535 
+~~~
+{: .output}
+
+
+
 ## Logistisk regression
+
+
+
+~~~
+glmfev <- glm(Smoke ~Sex, family = binomial, data = fev_clean)
+glmfev
+~~~
+{: .language-r}
+
+
+
+~~~
+
+Call:  glm(formula = Smoke ~ Sex, family = binomial, data = fev_clean)
+
+Coefficients:
+(Intercept)      Sexmale  
+     1.9677       0.5108  
+
+Degrees of Freedom: 653 Total (i.e. Null);  652 Residual
+Null Deviance:	    423.4 
+Residual Deviance: 419.7 	AIC: 423.7
+~~~
+{: .output}
+
+Når vi ser nærmere på den, bruger vi summary():
+
+~~~
+summary(glmfev)
+~~~
+{: .language-r}
+
+
+
+~~~
+
+Call:
+glm(formula = Smoke ~ Sex, family = binomial, data = fev_clean)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.9677     0.1710  11.510   <2e-16 ***
+Sexmale       0.5108     0.2663   1.918   0.0551 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 423.45  on 653  degrees of freedom
+Residual deviance: 419.69  on 652  degrees of freedom
+AIC: 423.69
+
+Number of Fisher Scoring iterations: 5
+~~~
+{: .output}
+
+### Konfidensintervaller
+
+Her kan vi bruge `confint()` funktionen. Vi skal huske at det er log-odds, så 
+vi skal exponentiere:
+
+
+~~~
+exp(confint(glmfev))
+~~~
+{: .language-r}
+
+
+
+~~~
+Waiting for profiling to be done...
+~~~
+{: .output}
+
+
+
+~~~
+                2.5 %    97.5 %
+(Intercept) 5.1852530 10.153411
+Sexmale     0.9941708  2.836364
+~~~
+{: .output}
+Hvis vi kun er interesserede i "hældningen" kan vi nøjes med at trække den ud:
+
+
+~~~
+exp(confint(glmfev))[2,]
+~~~
+{: .language-r}
+
+
+
+~~~
+Waiting for profiling to be done...
+~~~
+{: .output}
+
+
+
+~~~
+    2.5 %    97.5 % 
+0.9941708 2.8363636 
+~~~
+{: .output}
+Notationen med den kantede parantes bruger vi her. Vi beder om række 2 (foran
+kommaet), og alle kolonner (det får vi ved at lade være med at skrive noget 
+efter kommaet)
+
+## Konfidensinterval?
+
+Vi starter med at se på koefficienterne fra summary funktionen:
+
+~~~
+summary(glmfev)$coef
+~~~
+{: .language-r}
+
+
+
+~~~
+             Estimate Std. Error   z value     Pr(>|z|)
+(Intercept) 1.9676501  0.1709540 11.509825 1.177169e-30
+Sexmale     0.5108256  0.2662941  1.918276 5.507602e-02
+~~~
+{: .output}
+Vi skal bruge Estimate og Std.Error kolonnerne.
+
+Den første får vi med
+
+~~~
+summary(glmfev)$coef[2,1]
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.5108256
+~~~
+{: .output}
+
+Den anden med 
+
+~~~
+summary(glmfev)$coef[2,2]
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.2662941
+~~~
+{: .output}
+Og så kan vi hægte det hele sammen. I stedet for estimatet 1.96, bruger
+vi qnorm(0.975), der giver os det eksakte tal. Vi skal også huske at 
+exponentiere:
+
+~~~
+exp(summary(glmfev)$coef[2,1] + c(-1,1)*qnorm(0.975)*summary(glmfev)$coef[2,2])
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.9889601 2.8087864
+~~~
+{: .output}
+
+Sandsynligheden for ikke at ryge som kvinde
+
+ilogit-funktion skal vi lige overveje.
+
+men ellers ved hjælp af tabellen
+
+~~~
+tabel
+~~~
+{: .language-r}
+
+
+
+~~~
+   smoke
+Sex   0   1
+  0 279  39
+  1 310  26
+~~~
+{: .output}
+
+
+~~~
+278/318
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.8742138
+~~~
+{: .output}
+
+## Rygestatus forudsagt fra alder:
+
+Modellen bygger vi som ellers, nu forudsiger vi "bare" noget kategorisk:
+
+
+~~~
+glm(Smoke ~ Age, family=binomial, data = fev_clean) %>% summary()
+~~~
+{: .language-r}
+
+
+
+~~~
+
+Call:
+glm(formula = Smoke ~ Age, family = binomial, data = fev_clean)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  7.74391    0.70890  10.924   <2e-16 ***
+Age         -0.48364    0.05513  -8.773   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 423.45  on 653  degrees of freedom
+Residual deviance: 318.56  on 652  degrees of freedom
+AIC: 322.56
+
+Number of Fisher Scoring iterations: 6
+~~~
+{: .output}
+## Og med flere prediktorer!
+
+
+~~~
+glmfevmult <- glm(Smoke ~ Sex + Age, family = "binomial", data = fev_clean) 
+summary(glmfevmult)
+~~~
+{: .language-r}
+
+
+
+~~~
+
+Call:
+glm(formula = Smoke ~ Sex + Age, family = "binomial", data = fev_clean)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  7.58607    0.72054  10.528   <2e-16 ***
+Sexmale      0.79294    0.30819   2.573   0.0101 *  
+Age         -0.50087    0.05707  -8.776   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 423.45  on 653  degrees of freedom
+Residual deviance: 311.68  on 651  degrees of freedom
+AIC: 317.68
+
+Number of Fisher Scoring iterations: 6
+~~~
+{: .output}
+### Forudsigelser
+
+Nu har vi en model, og den kan vi bruge til at lave forudsigelser, 
+ganske som tidligere, her med en 18-årig mand:
+
+
+~~~
+predict(glmfevmult, data.frame(Sex = "male", Age = 18), type = "respons")
+~~~
+{: .language-r}
+
+
+
+~~~
+        1 
+0.3460051 
+~~~
+{: .output}
+
+Og en 18-årig kvinde:
+
+~~~
+predict(glmfevmult, data.frame(Sex = "female", Age = 18), type = "respons")
+~~~
+{: .language-r}
+
+
+
+~~~
+        1 
+0.1931638 
+~~~
+{: .output}
+
+Og en 10-årig pige:
+
+
+~~~
+predict(glmfevmult, data.frame(Sex = "female", Age = 10), type = "respons")
+~~~
+{: .language-r}
+
+
+
+~~~
+        1 
+0.9293912 
+~~~
+{: .output}
 
 
 
