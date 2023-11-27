@@ -38,7 +38,7 @@ download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/EST
               mode = "wb")
 estradl <- read_csv("data/ESTRADL.csv")
 ```
-```{r}
+```{r echo  =F}
 estradl <- read_csv("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv")
 ```
 
@@ -60,8 +60,11 @@ Vi kan regne det i hånden, det så vi på sliden:
 
 $$ \pi_i = P(X_i = 1)$$ 
 $$\pi_{female} = \frac{279}{318} = 0.8774 $$ 
+
 og
+
 $$\pi_{male} = \frac{310}{336} = 0.9226 $$ 
+
 Vi kan også bruge en funktion, `prop.table()` giver os tallene direkte, men vi 
 skal huske at fortælle om vi bruger summen fra kolonner, eller rækker. Her er det
 summen i rækkerne. Det angiver vi med `margin = 1`  i funktionen:
@@ -124,15 +127,255 @@ Prøv selv!
 > Anykids har manglende data. Det er kodet med et 9-tal. Start med at fjerne 
 > dem fra datasættet. Husk også at konvertere de to variable til faktorer!
 > 
+> Hvad er sandsynligheden for at have børn for afro-amerikanere (ethnic = 0),
+> kontra sandsynligheden for at have børn for caucasier
+>
 > > ## Løsningsforslag
 > > 
+> > Start med at sortere rækker hvor værdien i "Anykids" er lig 9. Og konverter til 
+> > kategoriske variable:
+> > 
+> > ```{r}
+> > estradl_renset <- estradl %>% 
+> >    filter(Anykids != 9) %>% 
+> >    mutate(Anykids = factor(Anykids),
+> >           Ethnic = factor(Ethnikc))
+> > ```
+> >
+> > Lav tabellen, og brug addmargins til at give summerne:
+> > 
+> > ```{r}
+> > estra_tabel <- table( ethnic = estradl_renset$Ethnic, anykids = estradl_renset$Anykids)
+> > addmargins(estra_tabel)
+> > ```
+> >
+> > Herefter kan vi beregne det direkte:
+> > ```{r}
+> > p_aa <- 7/59
+> > p_aa
+> > ```
+> >
+> > ```{r}
+> > p_ca <- 51/147
+> > p_ca
+> > ```
+> >
+> {: .solution}
+{: .challenge}
+
+> ## Hvad med spredningerne?
+> 
+> Beregn spredningen på de to estimater
+> 
+> > ## Løsningsforslag
+> >
+> > Tallene vi skal brug får vi fra tabellen:
+> > ```{r}
+> > addmargins(estra_tabel)
+> > ```
+> >
+> > Og så kan vi beregne for afro-amerikanere
+> > ```{r}
+> > sd_aa <- sqrt(p_aa*(1-p_aa)/59)
+> > sd_aa
+> > ```
+> >
+> > Og for kaukaiser:
+> >
+> > ```{r}
+> > sd_ca <- sqrt(p_ca*(1-p_ca)/147)
+> > sd_ca
+> > ```
+> >
+> {: .solution}
+{: .challenge}
+
+> ## Konfidensintervallerne
+>
+> Beregn til sidst konfidensintervallerne for de to estimater, baseret
+> på estimaterne og standardafvigelserne.
+>
+> > ## Løsningsforslag
+> >
+> > For afro-amerikanere:
+> > ```{r}
+> > p_aa + c(-1,1)*1.96*sd_aa
+> > ```
+> >
+> > Og for kaukaser:
+> > ```{r}
+> > p_ca + c(-1,1)*1.96*sd_ca
+> > ```
+> >
 > {: .solution}
 {: .challenge}
 
 
+## Relativ risiko
+
+Her kan jeg ikke umiddelbart få regnestykket til at give det samme resultat...
+
+
 ## Odds ratio
 
+### Odds ratio og konfidensintervaller for fev-datasættet
+
+Vi starter med at omkode iden, så vi ikke skal huske at Sex = 0 betyder 
+kvinder, og at Smoke = 0 betyder ikke-ryger.
+
+Dernæst mutater vi de to variable til at være faktorer, altså kategoriske
+variable. Endelig sætter vi "smoker" til at være den første værdi i den 
+kategoriske variabel Smoke.
+
+
+```{r}
+fev_clean <- fev %>% 
+  mutate(Sex = case_when(
+    Sex == 0 ~ "female",
+    Sex == 1 ~ "male"
+  )) %>% 
+  mutate(Smoke = case_when(
+    Smoke == 0 ~ "non-smoker",
+    Smoke == 1 ~ "smoker"
+  )) %>% 
+  mutate(Sex = as.factor(Sex),
+         Smoke = as.factor(Smoke)) %>% 
+  mutate(Smoke = relevel(Smoke, ref = "smoker"))
+```
+
+Det data skal vi bruge senere. For nu, laver vi endnu et datasæt, hvor vi
+kun ser på de to variable, Sex og Smoke:
+
+```{r}
+fev_to_table <- fev_clean %>% 
+  select(Sex, Smoke)
+
+```
+
+
+Så laver vi vores tabel med tælletallene:
+```{r}
+cont_table_fev <- table(fev_to_table)
+cont_table_fev
+```
+
+Chi-i-anden testen - først de forventede værdier:
+```{r}
+chisq.test(cont_table_fev)$expected
+```
+Og så selve testen:
+
+```{r}
+chisq.test(cont_table_fev, correct = F)
+```
+
+Og til sidst fisher testen:
+```{r}
+fisher.test(cont_table_fev)
+```
+
+
+
 ## Logistisk regression
+
+
+```{r}
+glmfev <- glm(Smoke ~Sex, family = binomial, data = fev_clean)
+glmfev
+```
+
+Når vi ser nærmere på den, bruger vi summary():
+```{r}
+summary(glmfev)
+```
+
+### Konfidensintervaller
+
+Her kan vi bruge `confint()` funktionen. Vi skal huske at det er log-odds, så 
+vi skal exponentiere:
+
+```{r}
+exp(confint(glmfev))
+```
+Hvis vi kun er interesserede i "hældningen" kan vi nøjes med at trække den ud:
+
+```{r}
+exp(confint(glmfev))[2,]
+```
+Notationen med den kantede parantes bruger vi her. Vi beder om række 2 (foran
+kommaet), og alle kolonner (det får vi ved at lade være med at skrive noget 
+efter kommaet)
+
+## Konfidensinterval?
+
+Vi starter med at se på koefficienterne fra summary funktionen:
+```{r}
+summary(glmfev)$coef
+```
+Vi skal bruge Estimate og Std.Error kolonnerne.
+
+Den første får vi med
+```{r}
+summary(glmfev)$coef[2,1]
+```
+
+Den anden med 
+```{r}
+summary(glmfev)$coef[2,2]
+```
+Og så kan vi hægte det hele sammen. I stedet for estimatet 1.96, bruger
+vi qnorm(0.975), der giver os det eksakte tal. Vi skal også huske at 
+exponentiere:
+```{r}
+exp(summary(glmfev)$coef[2,1] + c(-1,1)*qnorm(0.975)*summary(glmfev)$coef[2,2])
+```
+
+Sandsynligheden for ikke at ryge som kvinde
+
+ilogit-funktion skal vi lige overveje.
+
+men ellers ved hjælp af tabellen
+```{r}
+tabel
+```
+
+```{r}
+278/318
+```
+
+## Rygestatus forudsagt fra alder:
+
+Modellen bygger vi som ellers, nu forudsiger vi "bare" noget kategorisk:
+
+```{r}
+glm(Smoke ~ Age, family=binomial, data = fev_clean) %>% summary()
+```
+## Og med flere prediktorer!
+
+```{r}
+glmfevmult <- glm(Smoke ~ Sex + Age, family = "binomial", data = fev_clean) 
+summary(glmfevmult)
+
+```
+### Forudsigelser
+
+Nu har vi en model, og den kan vi bruge til at lave forudsigelser, 
+ganske som tidligere, her med en 18-årig mand:
+
+```{r}
+predict(glmfevmult, data.frame(Sex = "male", Age = 18), type = "respons")
+```
+
+Og en 18-årig kvinde:
+```{r}
+predict(glmfevmult, data.frame(Sex = "female", Age = 18), type = "respons")
+```
+
+Og en 10-årig pige:
+
+```{r}
+predict(glmfevmult, data.frame(Sex = "female", Age = 10), type = "respons")
+```
 
 
 
