@@ -1131,8 +1131,88 @@ predict(glmfevmult, data.frame(Sex = "female", Age = 10), type = "respons")
 
 Vi prøver at lave en multipel logistisk regression på ESTRADL datasættet.
 
-Byg en model der forudsiger sandsynligheden for at have børn, baseret på 
-etnicitet og alder (Entage)
+> ## Hvad er sandsynligheden for at have børn?
+>
+> Byg en model der forudsiger sandsynligheden for at have børn, baseret på 
+> etnicitet og alder (Entage) i datasættet estradl
+>
+> > ## Løsningsforslag
+> >
+> >
+> >~~~
+> > estradl_model <- glm(Anykids ~ Ethnic + Entage, family = "binomial", data = estradl)
+> >~~~
+> >{: .language-r}
+> >
+> >
+> >
+> >~~~
+> >Error in eval(family$initialize): y values must be 0 <= y <= 1
+> >~~~
+> >{: .error}
+> >
+> >
+> >
+> >~~~
+> > summary(estradl_model)
+> >~~~
+> >{: .language-r}
+> >
+> >
+> >
+> >~~~
+> >Error in eval(expr, envir, enclos): object 'estradl_model' not found
+> >~~~
+> >{: .error}
+> >
+> {: .solution}
+{: .challenge}
 
-glm(Anykids ~ Ethnic + Entage, family = "binomial", data = estradl)
+> ## Hvad er sandsynligheden for at have børn ved intercept?
+>
+> Brug ilogit funktionen på koefficienterne fra modellen
+>
+> > ## Løsningsforslag
+> >
+> > 
+> > ~~~
+> > ilogit(summary(estradl_model)$coef[1,1])
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > Error in eval(expr, envir, enclos): object 'estradl_model' not found
+> > ~~~
+> > {: .error}
+> >
+> > Det var heldigt - ved intercept er personerne 0 år gamle.
+> >
+> {: .solution}
+{: .challenge}
+
+> ## Hvor meget stiger sandsynligheden for at få børn med pr år?
+>
+> Exponentier hældingen/koefficienten for Entage
+>
+> > ## Løsningsforslag
+> >
+> > 
+> > ~~~
+> > exp(summary(estradl_model)$coef[3,1])
+> > ~~~
+> > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > Error in eval(expr, envir, enclos): object 'estradl_model' not found
+> > ~~~
+> > {: .error}
+> >
+>{: .solution}
+{: .challenge}
+
+
 {% include links.md %}
