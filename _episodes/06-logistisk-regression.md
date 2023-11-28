@@ -16,7 +16,7 @@ math: yes
 
 
 
-# NB R-eksempler til modul 4 - ikke færdig øh?!
+# R-eksempler til modul 4
 
 Vi fortsætter med FEV datasættet, men skal også bruge nogen andre
 
@@ -37,7 +37,9 @@ dbl (6): Id, Age, FEV, Hgt, Sex, Smoke
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ~~~
 {: .output}
-## Indlæs estradl datasættet:
+### Indlæs estradl datasættet:
+
+Vi kommer også til at arbejde med dette datasæt. Download og indlæs:
 
 
 ~~~
@@ -64,6 +66,7 @@ dbl (10): Id, Estradl, Ethnic, Entage, Numchild, Agefbo, Anykids, Agemenar, ...
 
 Vi har set hvordan man laver antalstabeller:
 
+
 ~~~
 tabel <- table(Sex = fev$Sex, smoke = fev$Smoke)
 tabel
@@ -79,7 +82,9 @@ Sex   0   1
   1 310  26
 ~~~
 {: .output}
+
 Vi vil gerne have totaler tilføjet. Det kan vi gøre med funktionen `addmargins()`:
+
 
 ~~~
 addmargins(tabel)
@@ -96,7 +101,8 @@ Sex     0   1 Sum
   Sum 589  65 654
 ~~~
 {: .output}
-Hvordan med sandsynlighederne?
+
+## Hvordan med sandsynlighederne?
 
 Vi kan regne det i hånden, det så vi på sliden:
 
@@ -106,6 +112,8 @@ $$\pi_{female} = \frac{279}{318} = 0.8774 $$
 og
 
 $$\pi_{male} = \frac{310}{336} = 0.9226 $$ 
+
+### Og hvis vi er dovne
 
 Vi kan også bruge en funktion, `prop.table()` giver os tallene direkte, men vi 
 skal huske at fortælle om vi bruger summen fra kolonner, eller rækker. Her er det
@@ -128,7 +136,9 @@ Sex          0          1
 {: .output}
 
 ## Spredning på estimaterne:
+
 Først for pigerne:
+
 
 ~~~
 p_female <- 0.8774 
@@ -146,7 +156,6 @@ sd_female
 Og så for drengene:
 
 
-
 ~~~
 p_male <- 0.9226
 sd_male <- sqrt(p_male*(1-p_male)/318)
@@ -161,7 +170,7 @@ sd_male
 ~~~
 {: .output}
 
-Konfidensintervallerne:
+## Konfidensintervallerne:
 
 
 ~~~
@@ -215,6 +224,8 @@ probability of success
 {: .output}
 ## Risikodifferensen
 
+Ret enkelt når først vi har sandsynlighederne:
+
 
 ~~~
 p_male - p_female
@@ -227,7 +238,7 @@ p_male - p_female
 [1] 0.0452
 ~~~
 {: .output}
-Og standardafvigelsen på det tal:
+Og standardafvigelsen på det tal finder vi ved
 
 
 ~~~
@@ -267,38 +278,15 @@ Prøv selv!
 > > estradl_renset <- estradl %>% 
 > >    filter(Anykids != 9) %>% 
 > >    mutate(Anykids = factor(Anykids),
-> >           Ethnic = factor(Ethnikc))
+> >           Ethnic = factor(Ethnic))
 > > ~~~
 > > {: .language-r}
-> > 
-> > 
-> > 
-> > ~~~
-> > Error in `mutate()`:
-> > ℹ In argument: `Ethnic = factor(Ethnikc)`.
-> > Caused by error:
-> > ! object 'Ethnikc' not found
-> > ~~~
-> > {: .error}
 > >
 > > Lav tabellen, og brug addmargins til at give summerne:
 > > 
 > > 
 > > ~~~
 > > estra_tabel <- table( ethnic = estradl_renset$Ethnic, anykids = estradl_renset$Anykids)
-> > ~~~
-> > {: .language-r}
-> > 
-> > 
-> > 
-> > ~~~
-> > Error in eval(expr, envir, enclos): object 'estradl_renset' not found
-> > ~~~
-> > {: .error}
-> > 
-> > 
-> > 
-> > ~~~
 > > addmargins(estra_tabel)
 > > ~~~
 > > {: .language-r}
@@ -306,9 +294,13 @@ Prøv selv!
 > > 
 > > 
 > > ~~~
-> > Error in eval(expr, envir, enclos): object 'estra_tabel' not found
+> >       anykids
+> > ethnic   0   1 Sum
+> >    0    52   7  59
+> >    1    96  51 147
+> >    Sum 148  58 206
 > > ~~~
-> > {: .error}
+> > {: .output}
 > >
 > > Herefter kan vi beregne det direkte:
 > > 
@@ -358,9 +350,13 @@ Prøv selv!
 > > 
 > > 
 > > ~~~
-> > Error in eval(expr, envir, enclos): object 'estra_tabel' not found
+> >       anykids
+> > ethnic   0   1 Sum
+> >    0    52   7  59
+> >    1    96  51 147
+> >    Sum 148  58 206
 > > ~~~
-> > {: .error}
+> > {: .output}
 > >
 > > Og så kan vi beregne for afro-amerikanere
 > > 
@@ -437,19 +433,90 @@ Prøv selv!
 
 ## Relativ risiko
 
-Her kan jeg ikke umiddelbart få regnestykket til at give det samme resultat...
+Den relative risiko finder vi ved at dividere den ene sandsynlighed med den anden:
+
+
+~~~
+RR <- p_female/p_male
+RR
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.951008
+~~~
+{: .output}
+### Standardafvigelsen
+
+Den logaritmerede vel at mærke!
+
+
+~~~
+sd_log_RR <- sqrt(1/279-1/318+1/310-1/336) 
+sd_log_RR
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.02625245
+~~~
+{: .output}
+### Konfidensintervallet
+
+Og med både estimatet på den relative risiko, og dens standardafvigelse, kan vi 
+beregne konfidensintervallet:
+
+
+~~~
+KI <- log(RR) + c(-1,1)*1.96*sd_log_RR
+KI
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] -0.101687590  0.001222025
+~~~
+{: .output}
+
+Husk! Det var det logaritmerede konfidensinterval. Hvis vi vil have det
+"rigtige" skal vi exponentiere:
+
+
+~~~
+exp(KI)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.9033117 1.0012228
+~~~
+{: .output}
+
 
 
 ## Odds ratio
 
 ### Odds ratio og konfidensintervaller for fev-datasættet
 
-Vi starter med at omkode iden, så vi ikke skal huske at Sex = 0 betyder 
+Nicolais slides var mere nice end vi har set det her datasæt før. I stedet
+for 0 og 1, er det oversat til "female" og "male". Lad os lige gøre det 
+også så vi selv få lækre tabeller
+
+Vi starter med at omkode fev, så vi ikke skal huske at Sex = 0 betyder 
 kvinder, og at Smoke = 0 betyder ikke-ryger.
 
 Dernæst mutater vi de to variable til at være faktorer, altså kategoriske
 variable. Endelig sætter vi "smoker" til at være den første værdi i den 
-kategoriske variabel Smoke.
+kategoriske variabel Smoke. Og så gemmer vi det hele i en ny dataframe
+som vi kalder fev_clean:
 
 
 
@@ -482,6 +549,7 @@ fev_to_table <- fev_clean %>%
 
 Så laver vi vores tabel med tælletallene:
 
+
 ~~~
 cont_table_fev <- table(fev_to_table)
 cont_table_fev
@@ -498,7 +566,12 @@ Sex      smoker non-smoker
 ~~~
 {: .output}
 
-Chi-i-anden testen - først de forventede værdier:
+Det ser mere lækkert ud!
+
+### Chi-i-anden testen 
+
+Først de forventede værdier:
+
 
 ~~~
 chisq.test(cont_table_fev)$expected
@@ -535,6 +608,7 @@ X-squared = 3.739, df = 1, p-value = 0.05316
 
 Og til sidst fisher testen:
 
+
 ~~~
 fisher.test(cont_table_fev)
 ~~~
@@ -556,15 +630,89 @@ odds ratio
    1.66535 
 ~~~
 {: .output}
-
+> ## Hvorfor logaritmerer vi?
+> 
+> Som der står i sliden, odds går mellem 0 og uendelig. Det er noget bøvl
+> Eksempelvis er odds 1:4 det samme forhold som 4:1. Men regner vi det ud
+> sammenligner vi 0.25 med 4. 
+> 
+> Tager vi logaritmen - så er tallene pludselig pæne og symmetriske:
+> 
+> ~~~
+> Error in library(patchwork): there is no package called 'patchwork'
+> ~~~
+> {: .error}
+> 
+> 
+> 
+> ~~~
+> Error in eval(expr, envir, enclos): object 'odds' not found
+> ~~~
+> {: .error}
+>
+{: .callout}
 
 
 ## Logistisk regression
 
+### En hjælpefunktion
+
+Allerførst - sliden nævner en `ilogit()` funktion - og det er praktisk at kunne
+gå fra log-odds til p uden selv at regne så meget. Så vi skriver en funktion.
+
+Det er ikke specielt kompliceret.
+
+Hvis vi har en sandsynlighed p, kan vi regne log-odds, her kalder vi den x, 
+ved denne formel:
+
+$$x = \log(\frac{p}{1-p})$$
+
+Når vi skriver udtrykket om for at isolere p, får vi:
+
+$$p = \frac{e^x}{1+ e^x} $$
+
+Kender vi x, kan vi regne det ud:
 
 
 ~~~
-glmfev <- glm(Smoke ~Sex, family = binomial, data = fev_clean)
+exp(x)/(1+exp(x))
+~~~
+{: .language-r}
+
+Det pakker vi ind i en særlig funktion, og giver den et navn:
+
+
+~~~
+ilogit <- function(x){
+  exp(x)/(1+exp(x))
+}
+~~~
+{: .language-r}
+
+Og så har vi en funktion vi kan bruge til at regne en sandsynlighed ud, når vi 
+har en log-odds ratio:
+
+
+~~~
+ilogit(0.9)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.7109495
+~~~
+{: .output}
+Fikst!
+
+## En generel lineær model
+
+Vi bruger glm, som kan håndtere andet end simple lineære modeller
+
+
+~~~
+glmfev <- glm(Smoke ~Sex, family = "binomial", data = fev_clean)
 glmfev
 ~~~
 {: .language-r}
@@ -573,7 +721,7 @@ glmfev
 
 ~~~
 
-Call:  glm(formula = Smoke ~ Sex, family = binomial, data = fev_clean)
+Call:  glm(formula = Smoke ~ Sex, family = "binomial", data = fev_clean)
 
 Coefficients:
 (Intercept)      Sexmale  
@@ -597,7 +745,7 @@ summary(glmfev)
 ~~~
 
 Call:
-glm(formula = Smoke ~ Sex, family = binomial, data = fev_clean)
+glm(formula = Smoke ~ Sex, family = "binomial", data = fev_clean)
 
 Coefficients:
             Estimate Std. Error z value Pr(>|z|)    
@@ -616,7 +764,7 @@ Number of Fisher Scoring iterations: 5
 ~~~
 {: .output}
 
-### Konfidensintervaller
+### Konfidensintervaller på estimaterne
 
 Her kan vi bruge `confint()` funktionen. Vi skal huske at det er log-odds, så 
 vi skal exponentiere:
@@ -642,6 +790,7 @@ Waiting for profiling to be done...
 Sexmale     0.9941708  2.836364
 ~~~
 {: .output}
+
 Hvis vi kun er interesserede i "hældningen" kan vi nøjes med at trække den ud:
 
 
@@ -664,13 +813,15 @@ Waiting for profiling to be done...
 0.9941708 2.8363636 
 ~~~
 {: .output}
-Notationen med den kantede parantes bruger vi her. Vi beder om række 2 (foran
+
+Her bruger vi en notation med kantede paranteser. Vi beder om række 2 (foran
 kommaet), og alle kolonner (det får vi ved at lade være med at skrive noget 
 efter kommaet)
 
 ## Konfidensinterval?
 
 Vi starter med at se på koefficienterne fra summary funktionen:
+
 
 ~~~
 summary(glmfev)$coef
@@ -685,6 +836,7 @@ summary(glmfev)$coef
 Sexmale     0.5108256  0.2662941  1.918276 5.507602e-02
 ~~~
 {: .output}
+
 Vi skal bruge Estimate og Std.Error kolonnerne.
 
 Den første får vi med
@@ -714,9 +866,11 @@ summary(glmfev)$coef[2,2]
 [1] 0.2662941
 ~~~
 {: .output}
+
 Og så kan vi hægte det hele sammen. I stedet for estimatet 1.96, bruger
 vi qnorm(0.975), der giver os det eksakte tal. Vi skal også huske at 
 exponentiere:
+
 
 ~~~
 exp(summary(glmfev)$coef[2,1] + c(-1,1)*qnorm(0.975)*summary(glmfev)$coef[2,2])
@@ -730,47 +884,101 @@ exp(summary(glmfev)$coef[2,1] + c(-1,1)*qnorm(0.975)*summary(glmfev)$coef[2,2])
 ~~~
 {: .output}
 
-Sandsynligheden for ikke at ryge som kvinde
+### Sandsynligheden for ikke at ryge som kvinde
 
-ilogit-funktion skal vi lige overveje.
-
-men ellers ved hjælp af tabellen
-
-~~~
-tabel
-~~~
-{: .language-r}
-
+Sandsynligheden for _ikke_ at ryge som kvinde kan vi trække ud af modellen. Den
+giver os odds-ratio logaritmeret, så vi bruger vores hjælpefunktion fra før, for 
+at få sandsynligheden:
 
 
 ~~~
-   smoke
-Sex   0   1
-  0 279  39
-  1 310  26
-~~~
-{: .output}
-
-
-~~~
-278/318
+ilogit(summary(glmfev)$coef[1,1])
 ~~~
 {: .language-r}
 
 
 
 ~~~
-[1] 0.8742138
+[1] 0.8773585
 ~~~
 {: .output}
+
+Vi kunne også få det fra tabellen:
+
+
+
+~~~
+cont_table_fev
+~~~
+{: .language-r}
+
+
+
+~~~
+        Smoke
+Sex      smoker non-smoker
+  female     39        279
+  male       26        310
+~~~
+{: .output}
+Og får resultatet:
+
+~~~
+279/318
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.8773585
+~~~
+{: .output}
+
+Det samme resultat!
+
+### Hvordan med odds-ratio?
+
+Vi trækker koefficienten ud, og exponentierer den:
+
+
+~~~
+exp(summary(glmfev)$coef[2,1])
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 1.666667
+~~~
+{: .output}
+
+Det kunne vi også gøre med tabellen:
+
+
+~~~
+(310*39)/(26*279)
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 1.666667
+~~~
+{: .output}
+
 
 ## Rygestatus forudsagt fra alder:
 
-Modellen bygger vi som ellers, nu forudsiger vi "bare" noget kategorisk:
+Modellen bygger vi som ellers, nu forudsiger vi "bare" noget kategorisk.
+
 
 
 ~~~
-glm(Smoke ~ Age, family=binomial, data = fev_clean) %>% summary()
+glmfevcont <- glm(Smoke ~ Age, family=binomial, data = fev_clean)
+summary(glmfevcont)
 ~~~
 {: .language-r}
 
@@ -797,6 +1005,44 @@ AIC: 322.56
 Number of Fisher Scoring iterations: 6
 ~~~
 {: .output}
+
+### Sandsynligheden for ikke at ryge ved intercept
+
+Vi trækker interceptet ud af summary. Det er en log-odds-ratio. Så kører vi 
+vores hjælpefunktion på det tal for at få sandsynligheden:
+
+
+
+~~~
+ilogit(summary(glmfevcont)$coef[1,1])
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.9995668
+~~~
+{: .output}
+
+### Og hvad stiger sandsynligheden med pr år?
+
+Samme metodik - men pas på med fortolkingen.
+
+
+~~~
+exp(summary(glmfevcont)$coef[2,1])
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.6165355
+~~~
+{: .output}
+
+
 ## Og med flere prediktorer!
 
 
@@ -830,6 +1076,7 @@ AIC: 317.68
 Number of Fisher Scoring iterations: 6
 ~~~
 {: .output}
+
 ### Forudsigelser
 
 Nu har vi en model, og den kan vi bruge til at lave forudsigelser, 
@@ -850,6 +1097,7 @@ predict(glmfevmult, data.frame(Sex = "male", Age = 18), type = "respons")
 {: .output}
 
 Og en 18-årig kvinde:
+
 
 ~~~
 predict(glmfevmult, data.frame(Sex = "female", Age = 18), type = "respons")
@@ -881,6 +1129,12 @@ predict(glmfevmult, data.frame(Sex = "female", Age = 10), type = "respons")
 {: .output}
 
 
+## Og en øvelse - ESTRADL
 
+Vi prøver at lave en multipel logistisk regression på ESTRADL datasættet.
 
+Byg en model der forudsiger sandsynligheden for at have børn, baseret på 
+etnicitet og alder (Entage)
+
+glm(Anykids ~ Ethnic + Entage, family = "binomial", data = estradl)
 {% include links.md %}
