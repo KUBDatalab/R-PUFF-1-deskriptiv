@@ -552,8 +552,48 @@ predict(glmfevmult, data.frame(Sex = "female", Age = 10), type = "respons")
 
 Vi prøver at lave en multipel logistisk regression på ESTRADL datasættet.
 
-Byg en model der forudsiger sandsynligheden for at have børn, baseret på 
-etnicitet og alder (Entage)
+> ## Hvad er sandsynligheden for at have børn?
+>
+> Byg en model der forudsiger sandsynligheden for at have børn, baseret på 
+> etnicitet og alder (Entage) i datasættet estradl
+>
+> > ## Løsningsforslag
+> >
+> >```{r}
+> > estradl_model <- glm(Anykids ~ Ethnic + Entage, family = "binomial", data = estradl)
+> > summary(estradl_model)
+> >```
+> >
+> {: .solution}
+{: .challenge}
 
-glm(Anykids ~ Ethnic + Entage, family = "binomial", data = estradl)
+> ## Hvad er sandsynligheden for at have børn ved intercept?
+>
+> Brug ilogit funktionen på koefficienterne fra modellen
+>
+> > ## Løsningsforslag
+> >
+> > ```{r}
+> > ilogit(summary(estradl_model)$coef[1,1])
+> >```
+> >
+> > Det var heldigt - ved intercept er personerne 0 år gamle.
+> >
+> {: .solution}
+{: .challenge}
+
+> ## Hvor meget stiger sandsynligheden for at få børn med pr år?
+>
+> Exponentier hældingen/koefficienten for Entage
+>
+> > ## Løsningsforslag
+> >
+> > ```{r}
+> > exp(summary(estradl_model)$coef[3,1])
+> > ```
+> >
+>{: .solution}
+{: .challenge}
+
+
 {% include links.md %}
