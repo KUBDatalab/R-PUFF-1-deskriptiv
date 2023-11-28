@@ -639,13 +639,6 @@ odds ratio
 > Tager vi logaritmen - så er tallene pludselig pæne og symmetriske:
 > 
 > ~~~
-> Error in library(patchwork): there is no package called 'patchwork'
-> ~~~
-> {: .error}
-> 
-> 
-> 
-> ~~~
 > Error in eval(expr, envir, enclos): object 'odds' not found
 > ~~~
 > {: .error}

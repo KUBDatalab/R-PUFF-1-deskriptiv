@@ -17,6 +17,7 @@ source("../bin/chunk-options.R")
 knitr_fig_path("06-")
 # source("../bin/download_data.R")
 library(tidyverse)
+library(patchwork)
 ```
 
 # R-eksempler til modul 4
