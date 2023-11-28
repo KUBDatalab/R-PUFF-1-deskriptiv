@@ -639,9 +639,14 @@ odds ratio
 > Tager vi logaritmen - så er tallene pludselig pæne og symmetriske:
 > 
 > ~~~
-> Error in eval(expr, envir, enclos): object 'odds' not found
+> Warning: Removed 1 rows containing non-finite values (`stat_density()`).
 > ~~~
-> {: .error}
+> {: .warning}
+> 
+> <div class="figure" style="text-align: center">
+> <img src="../fig/rmd-06-unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35" width="612" />
+> <p class="caption">plot of chunk unnamed-chunk-35</p>
+> </div>
 >
 {: .callout}
 

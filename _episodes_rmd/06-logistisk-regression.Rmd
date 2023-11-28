@@ -336,13 +336,13 @@ fisher.test(cont_table_fev)
 > Tager vi logaritmen - så er tallene pludselig pæne og symmetriske:
 > ```{r echo  = F}
 > p <- seq(0,1,0.001)
->p <- p[1:(length(p)-1)]
+> p <- p[1:(length(p)-1)]
 > library(patchwork)
 > data.frame(odds = p/(1-p)) %>% 
 >   mutate(logodds = log(odds)) %>% 
 >  ggplot() +
 >  geom_density(aes(odds)) +
-> data.frame(odds = odds) %>% 
+> data.frame(odds = p/(1-p)) %>% 
 >  mutate(logodds = log(odds)) %>% 
 >  ggplot() +
 >  geom_density(aes(logodds)) 
