@@ -19,7 +19,7 @@ knitr_fig_path("06-")
 library(tidyverse)
 ```
 
-# NB R-eksempler til modul 4 - ikke færdig øh?!
+# R-eksempler til modul 4
 
 Vi fortsætter med FEV datasættet, men skal også bruge nogen andre
 
@@ -30,7 +30,9 @@ fev <- read_csv("data/FEV.csv")
 ```{r echo = F}
 fev <- read_csv("../data/FEV.csv")
 ```
-## Indlæs estradl datasættet:
+### Indlæs estradl datasættet:
+
+Vi kommer også til at arbejde med dette datasæt. Download og indlæs:
 
 ```{r eval  =F}
 download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv", 
@@ -46,15 +48,19 @@ estradl <- read_csv("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/da
 ## Antalstabeller
 
 Vi har set hvordan man laver antalstabeller:
+
 ```{r}
 tabel <- table(Sex = fev$Sex, smoke = fev$Smoke)
 tabel
 ```
+
 Vi vil gerne have totaler tilføjet. Det kan vi gøre med funktionen `addmargins()`:
+
 ```{r}
 addmargins(tabel)
 ```
-Hvordan med sandsynlighederne?
+
+## Hvordan med sandsynlighederne?
 
 Vi kan regne det i hånden, det så vi på sliden:
 
@@ -65,6 +71,8 @@ og
 
 $$\pi_{male} = \frac{310}{336} = 0.9226 $$ 
 
+### Og hvis vi er dovne
+
 Vi kan også bruge en funktion, `prop.table()` giver os tallene direkte, men vi 
 skal huske at fortælle om vi bruger summen fra kolonner, eller rækker. Her er det
 summen i rækkerne. Det angiver vi med `margin = 1`  i funktionen:
@@ -74,7 +82,9 @@ prop.table(tabel, margin = 1)
 ```
 
 ## Spredning på estimaterne:
+
 Først for pigerne:
+
 ```{r}
 p_female <- 0.8774 
 sd_female <- sqrt(p_female*(1-p_female)/318)
@@ -82,14 +92,13 @@ sd_female
 ```
 Og så for drengene:
 
-
 ```{r}
 p_male <- 0.9226
 sd_male <- sqrt(p_male*(1-p_male)/318)
 sd_male
 ```
 
-Konfidensintervallerne:
+## Konfidensintervallerne:
 
 ```{r}
 p_female + c(-1,1)*1.96*sd_female
@@ -106,10 +115,12 @@ binom.test(tabel[2,1], sum(tabel[2,]))
 ```
 ## Risikodifferensen
 
+Ret enkelt når først vi har sandsynlighederne:
+
 ```{r}
 p_male - p_female
 ```
-Og standardafvigelsen på det tal:
+Og standardafvigelsen på det tal finder vi ved
 
 ```{r}
 sqrt(sd_male^2 + sd_female^2)
@@ -139,7 +150,7 @@ Prøv selv!
 > > estradl_renset <- estradl %>% 
 > >    filter(Anykids != 9) %>% 
 > >    mutate(Anykids = factor(Anykids),
-> >           Ethnic = factor(Ethnikc))
+> >           Ethnic = factor(Ethnic))
 > > ```
 > >
 > > Lav tabellen, og brug addmargins til at give summerne:
@@ -213,19 +224,54 @@ Prøv selv!
 
 ## Relativ risiko
 
-Her kan jeg ikke umiddelbart få regnestykket til at give det samme resultat...
+Den relative risiko finder vi ved at dividere den ene sandsynlighed med den anden:
+
+```{r}
+RR <- p_female/p_male
+RR
+```
+### Standardafvigelsen
+
+Den logaritmerede vel at mærke!
+
+```{r}
+sd_log_RR <- sqrt(1/279-1/318+1/310-1/336) 
+sd_log_RR
+```
+### Konfidensintervallet
+
+Og med både estimatet på den relative risiko, og dens standardafvigelse, kan vi 
+beregne konfidensintervallet:
+
+```{r}
+KI <- log(RR) + c(-1,1)*1.96*sd_log_RR
+KI
+```
+
+Husk! Det var det logaritmerede konfidensinterval. Hvis vi vil have det
+"rigtige" skal vi exponentiere:
+
+```{r}
+exp(KI)
+```
+
 
 
 ## Odds ratio
 
 ### Odds ratio og konfidensintervaller for fev-datasættet
 
-Vi starter med at omkode iden, så vi ikke skal huske at Sex = 0 betyder 
+Nicolais slides var mere nice end vi har set det her datasæt før. I stedet
+for 0 og 1, er det oversat til "female" og "male". Lad os lige gøre det 
+også så vi selv få lækre tabeller
+
+Vi starter med at omkode fev, så vi ikke skal huske at Sex = 0 betyder 
 kvinder, og at Smoke = 0 betyder ikke-ryger.
 
 Dernæst mutater vi de to variable til at være faktorer, altså kategoriske
 variable. Endelig sætter vi "smoker" til at være den første værdi i den 
-kategoriske variabel Smoke.
+kategoriske variabel Smoke. Og så gemmer vi det hele i en ny dataframe
+som vi kalder fev_clean:
 
 
 ```{r}
@@ -254,12 +300,18 @@ fev_to_table <- fev_clean %>%
 
 
 Så laver vi vores tabel med tælletallene:
+
 ```{r}
 cont_table_fev <- table(fev_to_table)
 cont_table_fev
 ```
 
-Chi-i-anden testen - først de forventede værdier:
+Det ser mere lækkert ud!
+
+### Chi-i-anden testen 
+
+Først de forventede værdier:
+
 ```{r}
 chisq.test(cont_table_fev)$expected
 ```
@@ -270,17 +322,80 @@ chisq.test(cont_table_fev, correct = F)
 ```
 
 Og til sidst fisher testen:
+
 ```{r}
 fisher.test(cont_table_fev)
 ```
-
+> ## Hvorfor logaritmerer vi?
+> 
+> Som der står i sliden, odds går mellem 0 og uendelig. Det er noget bøvl
+> Eksempelvis er odds 1:4 det samme forhold som 4:1. Men regner vi det ud
+> sammenligner vi 0.25 med 4. 
+> 
+> Tager vi logaritmen - så er tallene pludselig pæne og symmetriske:
+> ```{r echo  = F}
+> p <- seq(0,1,0.001)
+>p <- p[1:(length(p)-1)]
+> library(patchwork)
+> data.frame(odds = p/(1-p)) %>% 
+>   mutate(logodds = log(odds)) %>% 
+>  ggplot() +
+>  geom_density(aes(odds)) +
+> data.frame(odds = odds) %>% 
+>  mutate(logodds = log(odds)) %>% 
+>  ggplot() +
+>  geom_density(aes(logodds)) 
+> ```
+>
+{: .callout}
 
 
 ## Logistisk regression
 
+### En hjælpefunktion
+
+Allerførst - sliden nævner en `ilogit()` funktion - og det er praktisk at kunne
+gå fra log-odds til p uden selv at regne så meget. Så vi skriver en funktion.
+
+Det er ikke specielt kompliceret.
+
+Hvis vi har en sandsynlighed p, kan vi regne log-odds, her kalder vi den x, 
+ved denne formel:
+
+$$x = \log(\frac{p}{1-p})$$
+
+Når vi skriver udtrykket om for at isolere p, får vi:
+
+$$p = \frac{e^x}{1+ e^x} $$
+
+Kender vi x, kan vi regne det ud:
+
+```{r eval = F}
+exp(x)/(1+exp(x))
+```
+
+Det pakker vi ind i en særlig funktion, og giver den et navn:
 
 ```{r}
-glmfev <- glm(Smoke ~Sex, family = binomial, data = fev_clean)
+ilogit <- function(x){
+  exp(x)/(1+exp(x))
+}
+```
+
+Og så har vi en funktion vi kan bruge til at regne en sandsynlighed ud, når vi 
+har en log-odds ratio:
+
+```{r}
+ilogit(0.9)
+```
+Fikst!
+
+## En generel lineær model
+
+Vi bruger glm, som kan håndtere andet end simple lineære modeller
+
+```{r}
+glmfev <- glm(Smoke ~Sex, family = "binomial", data = fev_clean)
 glmfev
 ```
 
@@ -289,7 +404,7 @@ Når vi ser nærmere på den, bruger vi summary():
 summary(glmfev)
 ```
 
-### Konfidensintervaller
+### Konfidensintervaller på estimaterne
 
 Her kan vi bruge `confint()` funktionen. Vi skal huske at det er log-odds, så 
 vi skal exponentiere:
@@ -297,21 +412,25 @@ vi skal exponentiere:
 ```{r}
 exp(confint(glmfev))
 ```
+
 Hvis vi kun er interesserede i "hældningen" kan vi nøjes med at trække den ud:
 
 ```{r}
 exp(confint(glmfev))[2,]
 ```
-Notationen med den kantede parantes bruger vi her. Vi beder om række 2 (foran
+
+Her bruger vi en notation med kantede paranteser. Vi beder om række 2 (foran
 kommaet), og alle kolonner (det får vi ved at lade være med at skrive noget 
 efter kommaet)
 
 ## Konfidensinterval?
 
 Vi starter med at se på koefficienterne fra summary funktionen:
+
 ```{r}
 summary(glmfev)$coef
 ```
+
 Vi skal bruge Estimate og Std.Error kolonnerne.
 
 Den første får vi med
@@ -323,40 +442,89 @@ Den anden med
 ```{r}
 summary(glmfev)$coef[2,2]
 ```
+
 Og så kan vi hægte det hele sammen. I stedet for estimatet 1.96, bruger
 vi qnorm(0.975), der giver os det eksakte tal. Vi skal også huske at 
 exponentiere:
+
 ```{r}
 exp(summary(glmfev)$coef[2,1] + c(-1,1)*qnorm(0.975)*summary(glmfev)$coef[2,2])
 ```
 
-Sandsynligheden for ikke at ryge som kvinde
+### Sandsynligheden for ikke at ryge som kvinde
 
-ilogit-funktion skal vi lige overveje.
-
-men ellers ved hjælp af tabellen
-```{r}
-tabel
-```
+Sandsynligheden for _ikke_ at ryge som kvinde kan vi trække ud af modellen. Den
+giver os odds-ratio logaritmeret, så vi bruger vores hjælpefunktion fra før, for 
+at få sandsynligheden:
 
 ```{r}
-278/318
+ilogit(summary(glmfev)$coef[1,1])
 ```
+
+Vi kunne også få det fra tabellen:
+
+
+```{r}
+cont_table_fev
+```
+Og får resultatet:
+```{r}
+279/318
+```
+
+Det samme resultat!
+
+### Hvordan med odds-ratio?
+
+Vi trækker koefficienten ud, og exponentierer den:
+
+```{r}
+exp(summary(glmfev)$coef[2,1])
+```
+
+Det kunne vi også gøre med tabellen:
+
+```{r}
+(310*39)/(26*279)
+```
+
 
 ## Rygestatus forudsagt fra alder:
 
-Modellen bygger vi som ellers, nu forudsiger vi "bare" noget kategorisk:
+Modellen bygger vi som ellers, nu forudsiger vi "bare" noget kategorisk.
+
 
 ```{r}
-glm(Smoke ~ Age, family=binomial, data = fev_clean) %>% summary()
+glmfevcont <- glm(Smoke ~ Age, family=binomial, data = fev_clean)
+summary(glmfevcont)
 ```
+
+### Sandsynligheden for ikke at ryge ved intercept
+
+Vi trækker interceptet ud af summary. Det er en log-odds-ratio. Så kører vi 
+vores hjælpefunktion på det tal for at få sandsynligheden:
+
+
+```{r}
+ilogit(summary(glmfevcont)$coef[1,1])
+```
+
+### Og hvad stiger sandsynligheden med pr år?
+
+Samme metodik - men pas på med fortolkingen.
+
+```{r}
+exp(summary(glmfevcont)$coef[2,1])
+```
+
+
 ## Og med flere prediktorer!
 
 ```{r}
 glmfevmult <- glm(Smoke ~ Sex + Age, family = "binomial", data = fev_clean) 
 summary(glmfevmult)
-
 ```
+
 ### Forudsigelser
 
 Nu har vi en model, og den kan vi bruge til at lave forudsigelser, 
@@ -367,6 +535,7 @@ predict(glmfevmult, data.frame(Sex = "male", Age = 18), type = "respons")
 ```
 
 Og en 18-årig kvinde:
+
 ```{r}
 predict(glmfevmult, data.frame(Sex = "female", Age = 18), type = "respons")
 ```
@@ -378,6 +547,12 @@ predict(glmfevmult, data.frame(Sex = "female", Age = 10), type = "respons")
 ```
 
 
+## Og en øvelse - ESTRADL
 
+Vi prøver at lave en multipel logistisk regression på ESTRADL datasættet.
 
+Byg en model der forudsiger sandsynligheden for at have børn, baseret på 
+etnicitet og alder (Entage)
+
+glm(Anykids ~ Ethnic + Entage, family = "binomial", data = estradl)
 {% include links.md %}
