@@ -10,4 +10,8 @@ title: Slides
 
 [Slides modul 3](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/files/Modul_3_Multipel_lineær_regression.pptx)
 
+[Slides modul 4](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/files/Modul_4_Behandling_af_kategoriske_data.pptx)
+
+
+
 {% include links.md %}
