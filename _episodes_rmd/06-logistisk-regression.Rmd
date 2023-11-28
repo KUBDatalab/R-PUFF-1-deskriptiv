@@ -19,7 +19,7 @@ knitr_fig_path("06-")
 library(tidyverse)
 ```
 
-# NB R-eksempler til modul 4 - ikke færdig øh?!
+# R-eksempler til modul 4
 
 Vi fortsætter med FEV datasættet, men skal også bruge nogen andre
 
@@ -30,7 +30,9 @@ fev <- read_csv("data/FEV.csv")
 ```{r echo = F}
 fev <- read_csv("../data/FEV.csv")
 ```
-## Indlæs estradl datasættet:
+### Indlæs estradl datasættet:
+
+Vi kommer også til at arbejde med dette datasæt. Download og indlæs:
 
 ```{r eval  =F}
 download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/ESTRADL.csv", 
@@ -46,15 +48,19 @@ estradl <- read_csv("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/da
 ## Antalstabeller
 
 Vi har set hvordan man laver antalstabeller:
+
 ```{r}
 tabel <- table(Sex = fev$Sex, smoke = fev$Smoke)
 tabel
 ```
+
 Vi vil gerne have totaler tilføjet. Det kan vi gøre med funktionen `addmargins()`:
+
 ```{r}
 addmargins(tabel)
 ```
-Hvordan med sandsynlighederne?
+
+## Hvordan med sandsynlighederne?
 
 Vi kan regne det i hånden, det så vi på sliden:
 
@@ -65,6 +71,8 @@ og
 
 $$\pi_{male} = \frac{310}{336} = 0.9226 $$ 
 
+### Og hvis vi er dovne
+
 Vi kan også bruge en funktion, `prop.table()` giver os tallene direkte, men vi 
 skal huske at fortælle om vi bruger summen fra kolonner, eller rækker. Her er det
 summen i rækkerne. Det angiver vi med `margin = 1`  i funktionen:
@@ -74,7 +82,9 @@ prop.table(tabel, margin = 1)
 ```
 
 ## Spredning på estimaterne:
+
 Først for pigerne:
+
 ```{r}
 p_female <- 0.8774 
 sd_female <- sqrt(p_female*(1-p_female)/318)
@@ -89,7 +99,7 @@ sd_male <- sqrt(p_male*(1-p_male)/318)
 sd_male
 ```
 
-Konfidensintervallerne:
+## Konfidensintervallerne:
 
 ```{r}
 p_female + c(-1,1)*1.96*sd_female
@@ -106,10 +116,12 @@ binom.test(tabel[2,1], sum(tabel[2,]))
 ```
 ## Risikodifferensen
 
+Ret enkelt når først vi har sandsynlighederne:
+
 ```{r}
 p_male - p_female
 ```
-Og standardafvigelsen på det tal:
+Og standardafvigelsen på det tal finder vi ved
 
 ```{r}
 sqrt(sd_male^2 + sd_female^2)
@@ -213,7 +225,37 @@ Prøv selv!
 
 ## Relativ risiko
 
-Her kan jeg ikke umiddelbart få regnestykket til at give det samme resultat...
+Den relative risiko finder vi ved at dividere den ene sandsynlighed med den anden:
+
+```{r}
+RR <- p_female/p_male
+RR
+```
+### Standardafvigelsen
+
+Den logaritmerede vel at mærke!
+
+```{r}
+sd_log_RR <- sqrt(1/279-1/318+1/310-1/336) 
+sd_log_RR
+```
+### Konfidensintervallet
+
+Og med både estimatet på den relative risiko, og dens standardafvigelse, kan vi 
+beregne konfidensintervallet:
+
+```{r}
+KI <- log(RR) + c(-1,1)*1.96*sd_log_RR
+KI
+```
+
+Husk! Det var det logaritmerede konfidensinterval. Hvis vi vil have det
+"rigtige" skal vi exponentiere:
+
+```{r}
+exp(KI)
+```
+
 
 
 ## Odds ratio
