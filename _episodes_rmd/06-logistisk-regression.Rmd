@@ -175,6 +175,8 @@ Prøv selv!
 > {: .solution}
 {: .challenge}
 
+
+
 > ## Hvad med spredningerne?
 > 
 > Beregn spredningen på de to estimater
@@ -205,7 +207,7 @@ Prøv selv!
 > ## Konfidensintervallerne
 >
 > Beregn til sidst konfidensintervallerne for de to estimater, baseret
-> på estimaterne og standardafvigelserne.
+> på estimaterne og standardafvigelserne. Og på selve risikodifferensen
 >
 > > ## Løsningsforslag
 > >
@@ -218,6 +220,24 @@ Prøv selv!
 > > ```{r}
 > > p_ca + c(-1,1)*1.96*sd_ca
 > > ```
+> >
+> > Og så for risikodifferensen
+> >
+> >Først finder vi standardafvigelsen:
+> >```{r}
+> >sd_RR <- sqrt(sd_ca^2 + sd_aa^2)
+> >
+> >```
+> >
+> >Risikodifferensen var:
+> >```{r}
+> >RR <- p_ca - p_aa
+> >```
+> >
+> >Og konfidensintervallet finder vi så ved:
+> >```{r}
+> >RR + c(-1,1)*1.96*sd_RR
+> >```
 > >
 > {: .solution}
 {: .challenge}
@@ -308,6 +328,26 @@ cont_table_fev
 ```
 
 Det ser mere lækkert ud!
+
+Hvad er så odds for at være ryger hvis man er kvinde?
+```{r}
+odds_ryger_female <- 39/279
+odds_ryger_female
+```
+
+Og for mænd:
+
+```{r}
+odds_ryger_male <- 26/310
+odds_ryger_male
+```
+
+Og odds-ratio?
+
+```{r}
+odds_ryger_female / odds_ryger_male
+```
+
 
 ### Chi-i-anden testen 
 
