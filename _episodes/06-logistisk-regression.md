@@ -334,6 +334,8 @@ Prøv selv!
 > {: .solution}
 {: .challenge}
 
+
+
 > ## Hvad med spredningerne?
 > 
 > Beregn spredningen på de to estimater
@@ -395,7 +397,7 @@ Prøv selv!
 > ## Konfidensintervallerne
 >
 > Beregn til sidst konfidensintervallerne for de to estimater, baseret
-> på estimaterne og standardafvigelserne.
+> på estimaterne og standardafvigelserne. Og på selve risikodifferensen
 >
 > > ## Løsningsforslag
 > >
@@ -426,6 +428,36 @@ Prøv selv!
 > > [1] 0.2699902 0.4238874
 > > ~~~
 > > {: .output}
+> >
+> > Og så for risikodifferensen
+> >
+> >Først finder vi standardafvigelsen:
+> >
+> >~~~
+> >sd_RR <- sqrt(sd_ca^2 + sd_aa^2)
+> >~~~
+> >{: .language-r}
+> >
+> >Risikodifferensen var:
+> >
+> >~~~
+> >RR <- p_ca - p_aa
+> >~~~
+> >{: .language-r}
+> >
+> >Og konfidensintervallet finder vi så ved:
+> >
+> >~~~
+> >RR + c(-1,1)*1.96*sd_RR
+> >~~~
+> >{: .language-r}
+> >
+> >
+> >
+> >~~~
+> >[1] 0.1154688 0.3411206
+> >~~~
+> >{: .output}
 > >
 > {: .solution}
 {: .challenge}
@@ -568,6 +600,53 @@ Sex      smoker non-smoker
 
 Det ser mere lækkert ud!
 
+Hvad er så odds for at være ryger hvis man er kvinde?
+
+~~~
+odds_ryger_female <- 39/279
+odds_ryger_female
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.1397849
+~~~
+{: .output}
+
+Og for mænd:
+
+
+~~~
+odds_ryger_male <- 26/310
+odds_ryger_male
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 0.08387097
+~~~
+{: .output}
+
+Og odds-ratio?
+
+
+~~~
+odds_ryger_female / odds_ryger_male
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] 1.666667
+~~~
+{: .output}
+
+
 ### Chi-i-anden testen 
 
 Først de forventede værdier:
@@ -644,8 +723,8 @@ odds ratio
 > {: .warning}
 > 
 > <div class="figure" style="text-align: center">
-> <img src="../fig/rmd-06-unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35" width="612" />
-> <p class="caption">plot of chunk unnamed-chunk-35</p>
+> <img src="../fig/rmd-06-unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41" width="612" />
+> <p class="caption">plot of chunk unnamed-chunk-41</p>
 > </div>
 >
 {: .callout}
