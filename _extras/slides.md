@@ -12,6 +12,6 @@ title: Slides
 
 [Slides modul 4](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/files/Modul_4_Behandling_af_kategoriske_data.pptx)
 
-
+[Slides modul 5](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/files/Modul_5_spørgetime.pptx)
 
 {% include links.md %}
