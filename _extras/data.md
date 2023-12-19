@@ -457,6 +457,18 @@ American Journal of Epidemiology, 110, 15-26.
 |  Bact_cul  |  Received bacterial culture 1=yes/2=no  |
 |  Service   |  Service 1=med/2=surg.                  |
 
+Fra studie af antibiotikabrug på et hospital i Pennsylvania. Baseret på 
+journaler fra patienter der er udskrevet. WBC er "White Bloodcell Count".
+
+Det kan have klinisk interesse om længden af indlæggelse er afhængig af 
+om patienterne modtager antibiotika behandling.
+
+Yderligere reference: 
+
+Townsend, T.R., Shapiro, M., Rosner, B. & Kass, E.H. (1979) Journal of
+Infectious Diseases, 139(6) 688-697.
+
+
 
 
 ### INFANTBP
@@ -1049,7 +1061,8 @@ https://doi.org/10.2307/2532505
 
 https://www.jstor.org/stable/2532505
 
-alle andre
+https://www.cengage.com/cgi-wadsworth/course_products_wp.pl?fid=M20b&product_isbn_issn=9780538733496&token
+
 
 @book{alma99122116675805763,
 year = {2011},
