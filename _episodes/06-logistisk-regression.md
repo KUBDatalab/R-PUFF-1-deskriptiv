@@ -480,6 +480,7 @@ RR
 [1] 0.951008
 ~~~
 {: .output}
+
 ### Standardafvigelsen
 
 Den logaritmerede vel at mærke!
@@ -497,6 +498,7 @@ sd_log_RR
 [1] 0.02625245
 ~~~
 {: .output}
+
 ### Konfidensintervallet
 
 Og med både estimatet på den relative risiko, og dens standardafvigelse, kan vi 

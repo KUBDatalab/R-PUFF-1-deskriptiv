@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Dag 1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Christian Knudsen - KUB Datalab" />
+    <meta name="date" content="2023-12-13" />
+    <script src="dag1_files/header-attrs/header-attrs.js"></script>
+    <link href="dag1_files/remark-css/default.css" rel="stylesheet" />
+    <link href="dag1_files/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Dag 1
+]
+.subtitle[
+## Intro, R, RMarkdown, Hvad er statistik
+]
+.author[
+### Christian Knudsen - KUB Datalab
+]
+.date[
+### 2023-12-13
+]
+
+---
+
+
+
+
+
+# Hej!
+
+Christian Knudsen, cand.polyt. KUB Datalab
+
+cbk@kb.dk
+
+Vi har ikke mange forudsætninger på dette kursus.
+
+Men der er en!
+
+I *_skal_* have fulgt setup-vejledningen på kursushjemmesiden. R og RStudio
+*_skal_* være installeret på jeres computere, eller I skal have adgang via
+https://posit.cloud/
+
+???
+Det her er ikke til forhandling. Vi kommer til at bruge den første halve time
+af vores i forvejen meget begrænsede tid på at få det op at køre.
+
+
+---
+
+# Dagsorden for de fem dage
+
+1. R, RMarkdown, Hvad er statistik?, Deskriptiv statistik
+2. Lineære modeller
+3. Multipel lineær regression
+4. Kategoriske data
+5. Spørgetime
+
+---
+
+# Dagsorden for i dag
+
+1. Husregler
+2. Indgangsbøn
+3. Reproducerbar dataanalyse
+4. R og RMarkdown
+5. Hvad er statistik
+6. Deskriptiv statistik
+7. Tabel et
+
+---
+
+# Husregler
+
+&lt;div style="display: flex; align-items: center;"&gt;
+
+&lt;div style="flex: 1;"&gt;
+&lt;ul&gt;
+&lt;li&gt;SPØRG!
+
+&lt;li&gt;Eksperimenter!
+
+&lt;li&gt;Hjælp hinanden!
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div style="flex: 1;"&gt;
+&lt;img src="../fig/R-and.png" style="width: 100%;"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+
+???
+Jeg kan ikke altid se på jer når der er noget I ikke forstår.
+Hvis der er noget I ikke forstår, så skal jeg forklare det bedre.
+Vi kommer til at lave fejl. Vi kommer til at lave mange fejl. Og det er godt!
+Der hvor vi lærer, er når vi laver fejl.
+Brug hinanden som gummiænder.
+
+---
+
+# Gør følgende
+
+
+1. Lav et projekt &amp;#10071;
+2. Hav et browservindue åbent med kursushjemmesiden &amp;#10071;
+  - hvad adressen nu bliver
+
+--
+
+Der er ikke meget jeg vil tvinge jer til. Men når &amp;#10071; optræder, så
+er det altså fordi I _skal_ gøre det. 
+
+--
+
+&lt;img src="../fig/dekedersig.png" style="width: 50%;"&gt;
+
+
+
+???
+Alternativet til at I gør det er at vi over de 5 moduler skal bruge et par timer
+på at resten af flokken venter på at jeg fortæller dig at du skal oprette et 
+projekt.
+
+
+---
+# Fejlsøgning
+
+1. Har du oprettet et projekt, og åbnet det? ![](../fig/no-project.png) 
+
+--
+
+2. Er der forskel på "Data" og "data"?
+
+--
+  - Ja! Det er der.
+  
+--
+
+3. Er der forskel på "table" og "table1"?
+
+--
+  - Ja! Det er der.
+
+--
+
+4. Hvis R klager over ikke at kunne finde en funktion eller et objekt så:
+--
+  - Kan det være du ikke har indlæst det bibliotek der leverer funktionen
+--
+  - Kan det være du har lavet en tastefejl
+--
+  - Kan det være du ikke har oprettet objektet endnu.
+--
+
+Det er utroligt hyppige fejl. Det er helt i orden at lave dem. Men prøv lige
+at se om du kan finde tastefejlen inden du tilkalder hjælp.
+
+???
+Vi kommer til at begå fejl. Og dem hører jeg meget gerne om, for vi lærer
+utroligt meget af at finde ud af hvad fejlen handler om, og hvordan vi retter
+den. Men der er hyppigt forekommende fejl, hvor det vi skal lære er at finde
+tastefejlen.
+
+---
+# Reproducerbar dataanalyse
+
+Udfordring: Vores resultater skal kunne reproduceres.
+
+--
+
+Løsning: Et script!
+
+--
+
+I R!
+
+--
+
+Udfordring: Der er stadig faldgruber
+
+--
+
+Derfor: RMarkdown!
+
+
+???
+Det er fantastisk at finde en behandling der kurerer en sygdom. 
+Den skal så helst virke også på den næste patient...
+
+Scriptet er løsningen. En opskrift der fortæller computeren præcist hvad den skal
+gøre for os. Hverken mere eller mindre, og præcist det samme hver gang.
+
+Vi skal sikre os at den opskrift vi kører, er helt uafhængig af hvad vi gjorde
+lige før. Lige som når vi går i køkkenet. Ovnen skal forvarmes til 200 grader.
+Det gør vi ved at sætte termostaten på 200 og tænde for ovnen. Når den røde
+lampe holder op med at lyse, er temperaturen nået, og vi kan sætte kagen i ovnen.
+
+Hvis ovnen er 300 grader varm når vi starter, sætter vi termostaten til 200.
+Lampen holder straks op med at lyse. Og så sætter vi vores kage ind ved 300 grader.
+Vi skal have noget der sikrer at ovnen er ved samme temperatur hver gang vi 
+går i gang med at bage.
+
+
+---
+# R og RMarkdown
+
+Det gør vi live!
+
+
+
+
+---
+# Hvad er statistik
+
+---
+
+## Hvad gør vi?
+
+1. Identificer det emne, du vil undersøge.
+2. Indsaml data
+   a. Hvis data findes i forvejen, er det jo let.
+   b. Hvis data ikke findes i forvejen, skal man
+      i. Overveje hvilke data der er relevante.
+      ii. Lav forsøg, spørgeskemaer, mv.
+3. Deskriptiv statistik for at forstå sine data.
+4. Statistiske inferens for at udlede resultater 
+
+
+
+
+---
+# Deskriptiv statistik
+
+- Indblik i data
+- Undgå faldgruber
+- Skæve fordelinger
+- Outliers
+- Små datasæt
+- Variable, der “fortæller det samme”
+
+---
+
+# Eksempeldata
+
+
+```r
+library(tidyverse)
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/data/HOSPITAL.csv",
+              "data/HOSPITAL.csv", mode = "wb")
+hospital &lt;- read_csv("data/HOSPITAL.csv")
+```
+
+
+
+Kopier fra kursushjemmesiden.
+
+Og det her er: &amp;#10071;
+
+Længde af indlæggelse for patienter på et hospital. 
+Var det medicinsk eller kirurgisk behandling, hvad var tallet for hvide blodlegemer, blev der taget bakteriekultur
+på dem og fik de antibiotika. 
+
+
+Længde af indlæggelse for patienter på et hospital. Var det medicinsk eller kirurgisk 
+behandling, hvad var tallet for hvide blodlegemer, blev der taget bakteriekultur
+på dem og fik de antibiotika. Klinisk interesse: Er der sammenhæng mellem
+indlæggelsestid og antibiotikabehandling
+
+
+Klinisk interesse: Er der sammenhæng mellem
+indlæggelsestid og antibiotikabehandling
+
+
+???
+Det er en del lettere at forstå hvis vi har noget data at kigge på.
+
+---
+
+## Stikprøve vs. population
+
+I almindelighed har vi stikprøver.
+
+Helt principielt har vi faktisk kun stikprøver
+
+---
+
+
+# Start med at se på data
+
+
+```
+## # A tibble: 6 x 9
+##      Id Dur_stay   Age   Sex  Temp   WBC Antibio Bact_cul Service
+##   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+## 1     1        5    30     2  99       8       2        2       1
+## 2     2       10    73     2  98       5       2        1       1
+## 3     3        6    40     2  99      12       2        2       2
+## 4     4       11    47     2  98.2     4       2        2       2
+## 5     5        5    25     2  98.5    11       2        2       2
+## 6     6       14    82     1  96.8     6       1        2       2
+```
+
+Beskrivelse af hvad hvad er.
+
+---
+
+# Typer af data
+
+
+-  Kvantitative (kontinuerte, diskret, numerisk) data
+- højde, alder, vægt, blodtryk
+- Groft sagt: data der udtrykkes som sekvenser af tal
+- Kvalitative (kategoriske) data
+	- Ja/nej variable (gift/ugift, mand/kvinde, ryger/ikke-ryger)
+	- Terningekast, socialklasse, hårfarve
+
+???
+Hvad er gennemsnittet af en rødhåret, og 2 sorthårede personer?
+Det er forskellige ting vi kan gøre med forskellige typer data.
+
+
+
+
+
+
+
+---
+
+# Kvantitative variable - lokation
+
+Statistiske mål der fortæller _hvor_ observationerne ligger-
+
+*Middelværdi:*
+
+`$$\bar{x} = \frac{1}{n}\left(\sum_{i=1}^{n}x_i\right) = \frac{x_1 + x_2 + \ldots + x_n}{n}$$`
+Eller - summen af alle observationer, divideret med antallet af observationer.
+
+Vi bruger `\(\bar{x}\)` når vi taler om middelværdien af stikprøven. Og `\(\mu\)` hvis
+det er middelværdien af populationen.
+
+*Medianen*
+
+Den midterste værdi - alle observationer stilles op i rækkefølge efter størrelse.
+Den midterste værdi er medianen. 
+
+Den udmærker sig ved at halvdelen af observationerne er mindre end medianen.
+Den anden halvdel er større. 
+
+Medianen kan også kaldes 50%-kvantilen.
+
+
+---
+
+
+## I R
+
+
+```
+## [1] 7.84
+```
+
+```
+## [1] 7
+```
+
+Hvad kan vi udlede af at gennemsnittet er højere end medianen?
+
+???
+At tallene er skævt fordelt. Normalområdet er iøvrigt mellem 4.5 og 11.
+
+---
+
+
+# Kvantitative variable - spredning
+
+Statistiske mål der fortæller os hvor spredte observationerne er
+Spredning/standardafvigelsen (sd):
+
+$$ \sigma =\sqrt{\frac{1}{N}\sum_{i=1}^{N}(x_1 - \mu)^2}$$
+Eller - kvadratroden af summen af kvadraterne af forskellen på observationerne og 
+middelværdien. Bemærk at vi her skriver `\(\sigma\)`, `\(\mu\)` og N. Her er det altså data på 
+populationen. Havde vi set på stikprøven havde vi brugt "sd", "n" og "$\bar{x}$"
+
+Varians:
+
+$$ \sigma^2 =\frac{1}{N}\sum_{i=1}^{N}(x_1 - \mu)^2$$
+
+
+Eller - kvadratet af standardafvigelsen.  Her bruger vi også `\(\sigma\)`, `\(\mu\)` og "N".
+Det indikerer at vi taler om population. Havde vi betragtet stikprøven brugte vi 
+"var", "n" og "$\bar{x}$ i stedet.
+
+---
+
+## I R
+
+
+```
+## [1] 3.2104
+```
+
+Hvad fortæller det os?
+
+
+
+```
+## [1] 10.30667
+```
+
+???
+At standardafvigelsen er så relativt stor, fortæller os at der er ret stor 
+spredning omkring gennemsnittet. Måske ikke så overraskende.
+
+
+---
+
+### andre spredninger
+
+Den mindste værdi:
+
+
+```
+## [1] 3
+```
+
+Den største værdi:
+
+
+```
+## [1] 14
+```
+
+Begge værdier på en gang:
+
+
+```
+## [1]  3 14
+```
+
+
+???
+Dette er mine noter til Slide 1.
+
+---
+
+### reference interval
+
+Referenceinterval: de 95% midterste observationer.
+
+
+Hvis data er normalfordelt, kan vi finde det med formlen:
+
+$$ \mu \pm 1.96*\sigma$$
+
+I R:
+
+```
+## [1]  1.547616 14.132384
+```
+Det passer jo tydeligvis ikke. 
+
+
+???
+Og det passer ikke - fordi data ikke er normalfordelte. Vi vender tilbage til
+det med normalfordelingen.
+
+---
+
+## Visuelle metoder
+
+Det er ofte godt at se på data. Den menneskelige hjerne er godt til at se 
+mønstre, som det kan være vanskeligt at få øje på i de rene tal.
+
+### Pas på pareidolia
+
+Den menneskelige hjerne ser også mønstre hvor der ingen er:
+
+[By Massimo brizzi - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=64799710](../fig/Ascaris_male_200x_section.jpg)
+
+???
+Tværsnittet af en hanlig nematode, af arten Ascaris. En rundorm.
+
+---
+### Histogrammer
+
+![](dag1_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+???
+Vi tager værdierne af en variabel, deler værdierne ind i et antal "bins" og 
+tæller hvor mange observationer der er i hver bin. Det ser ud til at der er 
+to toppe, en nede omkring normalen, og en forhøjet. 
+
+---
+
+## Boxplot
+
+Boxplots samler en masse information i et plot
+
+![](dag1_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+???
+Den fede linie i midten er medianen. I den grå kasse har vi 50% af observationerne.
+Og de to "whiskers" i hver ende er minimum og maximum
+
+---
+
+## Boxplot2
+
+De bliver særligt nyttige hvis vi sammenligner to grupper:
+
+![](dag1_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+???
+1 er de der fik antibiotika. 2 de der ikke fik. Leukocytterne er højere blandt
+de første.
+
+
+## Scatterplot
+
+Vi kan blotte to værdier mod hinanden:
+
+![](dag1_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+Her har vi temperatur på x-aksen og WBC på y-aksen. Hvad kan vi se?
+
+???
+Der er måske en svag antydning af at de med høje temperaturer har højere 
+WBC. De er i Fahrenheit, og normalen er 98.6 svarende til 37 grader C. Men der 
+er ikke meget feber i det her datasæt.
+
+
+---
+
+
+## Normalfordelingen
+
+Hvorfor virkede det der med +/- 1.96 for referenceintervallet ikke?
+
+Vi skrev - hvis normalfordelt.
+
+Normalfordelingen beskriver en bestemt fordeling af data. Den er ikke specielt
+normal. Men den har dejlige egenskaber
+
+![](dag1_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+
+---
+### mer
+
+![](dag1_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+
+
+---
+### endnu mer
+![](dag1_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+R er udstyret med fire funktioner der relaterer sig til normalfordelignen.
+
+rnorm
+pnorm
+dnorm
+qnorm
+
+---
+
+
+# IQR
+
+---
+
+# Type tal
+
+---
+## CLT
+
+Der er ikke meget der er normalfordelt i virkeligheden. Men. Hvis vi tager en 
+stikprøve af noget der er helt tilfældigt. Og beregner gennemsnittet. Og gør det
+mange gange. Så vil disse gennemsnit være normalfordelte.
+
+
+Hvorfor? Det kræver sandsynlighedsteori, målteori og andet godt der ligger 
+langt ud over hvad vi kan komme i nærheden af.
+
+---
+# tælletal
+
+
+
+---
+# Den store tabel 1
+
+- En mediciner ting. Det er typisk den første tabel i en artikel, hvor man præsenterer
+udvalgte deskreptive statistiske mål på den stikprøve man arbejder med.
+- Ingen faste krav, angiv det der giver mening for jeres studie, og for læseren.
+- Lav den relativt kompakt, det er let at give læseren "information overload"
+
+## Indhold
+
+- For kvantitative varible, angiv typetal, middelværdi eller median for at vise 
+"typisk" måling.
+- Også variationsbredde, spredning eller interkvartil til at vise bredden i data
+- For kvalitative variable - antallet af observationer, evt. med relative frekvenser.
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
