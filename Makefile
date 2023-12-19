@@ -36,7 +36,7 @@ endif
 
 
 # Default target
-#.DEFAULT_GOAL := commands
+.DEFAULT_GOAL := commands
 
 
 ## I. Commands for both workshop and lesson websites
