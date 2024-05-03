@@ -720,7 +720,8 @@ odds ratio
 > Tager vi logaritmen - så er tallene pludselig pæne og symmetriske:
 > 
 > ~~~
-> Warning: Removed 1 rows containing non-finite values (`stat_density()`).
+> Warning: Removed 1 row containing non-finite outside the scale range
+> (`stat_density()`).
 > ~~~
 > {: .warning}
 > 
@@ -1255,18 +1256,18 @@ Vi prøver at lave en multipel logistisk regression på ESTRADL datasættet.
 >
 > > ## Løsningsforslag
 > >
-> > 
-> > ~~~
+> >
+> >~~~
 > > ilogit(summary(estradl_model)$coef[1,1])
-> > ~~~
-> > {: .language-r}
-> > 
-> > 
-> > 
-> > ~~~
-> > Error in eval(expr, envir, enclos): object 'estradl_model' not found
-> > ~~~
-> > {: .error}
+> >~~~
+> >{: .language-r}
+> >
+> >
+> >
+> >~~~
+> >Error in eval(expr, envir, enclos): object 'estradl_model' not found
+> >~~~
+> >{: .error}
 > >
 > > Det var heldigt - ved intercept er personerne 0 år gamle.
 > >

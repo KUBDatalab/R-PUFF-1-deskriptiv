@@ -516,7 +516,18 @@ Hvorfor virkede det der med +/- 1.96 for referenceintervallet ikke?
 Vi skrev - hvis normalfordelt.
 
 Normalfordelingen beskriver en bestemt fordeling af data. Den er ikke specielt
-normal. Men den har dejlige egenskaber
+normal. Men den har dejlige egenskaber.
+
+Matematisk beskrives den som:
+
+$$p(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2} $$ 
+
+p er sandsynlighedstætheden. 
+
+---
+
+## Hvordan ser den ud?
+
 
 ```{r echo = F, warning=F}
 library(ggplot2)
@@ -540,39 +551,9 @@ ggplot(data, aes(x, y)) +
 
 
 ---
-### mer
-
-```{r}
-library(ggplot2)
-
-# Definer middelværdi og standardafvigelse
-mu <- 0
-sigma <- 1
-
-# Opret en data frame indeholdende værdier fra normalfordelingen
-x <- seq(mu - 3*sigma, mu + 3*sigma, length.out=100)
-y <- dnorm(x, mean=mu, sd=sigma)
-data <- data.frame(x, y)
-
-# Definer et punkt for annotation
-annotate_x <- 1
-annotate_y <- dnorm(annotate_x, mean=mu, sd=sigma)
-
-# Plot normalfordelingen med annotation
-ggplot(data, aes(x, y)) +
-    geom_line(color="blue", size=1) +
-    geom_segment(aes(x = annotate_x, y = annotate_y, xend = annotate_x, yend = annotate_y + 0.05), 
-                 arrow = arrow(length = unit(0.5, "cm")), color = "red") +
-    annotate("text", x = annotate_x, y = annotate_y + 0.06, label = "dnorm", color = "red", size = 5) +
-    labs(title="Normal Distribution (μ=0, σ=1)", x="Value", y="Probability Density") +
-    theme_minimal()
-
-```
+### Hvad betyder det?
 
 
-
----
-### endnu mer
 ```{r}
 library(ggplot2)
 
@@ -647,6 +628,30 @@ udvalgte deskreptive statistiske mål på den stikprøve man arbejder med.
 - Også variationsbredde, spredning eller interkvartil til at vise bredden i data
 - For kvalitative variable - antallet af observationer, evt. med relative frekvenser.
 
+---
+# Chatbotten
+
+Den har læst al dokumentationen. Så den er ikke så dum endda.
+
+Men pas på. Den kan ikke for alvor hjælpe dig med ting du ikke selv kan. 
+
+Du skal give den en prompt der giver et fornuftigt svar. Det kan du kun hvis
+du ved hvad du spørger om.
+
+Du skal også kunne fange uklarheder i dens svar. Det kan du kun hvis du har en
+ide om ca. hvad svaret bør være. 
+
+Når du beder den om at svare på hvad 12*12 er - så skal du helst have 
+en ide om ca. hvilken størrelsesorden svaret skal være i.
+
+Den kan hjælpe dig med at nå den hylde på reolen du lige akkurat ikke ville
+kunne nå selv.
 
 
 
+![Botten kan hjælpe med at nå det du ellers ikke ville kunne nå](../fig/trying to reach.png)
+
+Jeg har forsøgt at få botten til at illustrere det ved at den kan hjælpe dig 
+svarende til at du står på en bog, og derfor lige akkurat kan nå lidt mere.
+Det er ikke helt let at få den til at acceptere at den kun hjælper svarende til
+en bog...

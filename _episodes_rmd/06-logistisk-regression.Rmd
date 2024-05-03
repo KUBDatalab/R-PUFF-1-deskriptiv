@@ -615,7 +615,7 @@ Vi prøver at lave en multipel logistisk regression på ESTRADL datasættet.
 >
 > > ## Løsningsforslag
 > >
-> > ```{r}
+> >```{r}
 > > ilogit(summary(estradl_model)$coef[1,1])
 > >```
 > >

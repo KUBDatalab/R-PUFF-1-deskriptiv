@@ -106,9 +106,6 @@ workshop-check : python
 
 .PHONY : lesson-check lesson-md lesson-files lesson-fixme install-rmd-deps
 
-test-wildcard:
-	@echo $(wildcard _episodes_rmd/*.Rmd)
-
 # RMarkdown files
 RMD_SRC = $(wildcard _episodes_rmd/*.Rmd)
 RMD_DST = $(patsubst _episodes_rmd/%.Rmd,_episodes/%.md,$(RMD_SRC))
