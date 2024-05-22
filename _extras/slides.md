@@ -11,6 +11,9 @@ title: Slides
 
 [Slides modul 3](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/files/Modul_3_ny_philip_delbar.pptx)
 
+[Slides modul 4](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/files/Modul_4_ny_philip_delbar.pptx)
+
+
 # Slides fra efteråret 2023
 [Slides modul 1](https://raw.githubusercontent.com/KUBDatalab/R-PUFF/main/files/Modul_1_R_kursus.pptx)
 
