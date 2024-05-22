@@ -32,169 +32,169 @@ checking for RB_WARN_CATEGORY_DEPRECATED in ruby.h... yes
 creating Makefile
 
 current directory: /home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20240516-11603-qfjl5z sitelibdir\=./.gem.20240516-11603-qfjl5z clean
+make DESTDIR\= sitearchdir\=./.gem.20240522-10517-5e5md3 sitelibdir\=./.gem.20240522-10517-5e5md3 clean
 make[1]: Entering directory '/home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal'
 Makefile:179: warning: overriding recipe for target 'clean'
-ÀªÅU:179: warning: ignoring old recipe for target 'clean'
+@[£¬U:179: warning: ignoring old recipe for target 'clean'
 Makefile:186: warning: overriding recipe for target 'distclean'
-ÀªÅU:186: warning: ignoring old recipe for target 'distclean'
+@[£¬U:186: warning: ignoring old recipe for target 'distclean'
 Makefile:194: warning: overriding recipe for target 'install-so'
-ÀªÅU:194: warning: ignoring old recipe for target 'install-so'
+@[£¬U:194: warning: ignoring old recipe for target 'install-so'
 Makefile:204: warning: overriding recipe for target 'pre-install-rb-default'
-ÀªÅU:204: warning: ignoring old recipe for target 'pre-install-rb-default'
+@[£¬U:204: warning: ignoring old recipe for target 'pre-install-rb-default'
 Makefile:206: warning: overriding recipe for target '.sitearchdir.time'
-ÀªÅU:206: warning: ignoring old recipe for target '.sitearchdir.time'
+@[£¬U:206: warning: ignoring old recipe for target '.sitearchdir.time'
 Makefile:216: warning: overriding recipe for target '.cc.o'
-ÀªÅU:216: warning: ignoring old recipe for target '.cc.o'
+@[£¬U:216: warning: ignoring old recipe for target '.cc.o'
 Makefile:220: warning: overriding recipe for target '.cc.S'
-ÀªÅU:220: warning: ignoring old recipe for target '.cc.S'
+@[£¬U:220: warning: ignoring old recipe for target '.cc.S'
 Makefile:224: warning: overriding recipe for target '.mm.o'
-ÀªÅU:224: warning: ignoring old recipe for target '.mm.o'
+@[£¬U:224: warning: ignoring old recipe for target '.mm.o'
 Makefile:228: warning: overriding recipe for target '.mm.S'
-ÀªÅU:228: warning: ignoring old recipe for target '.mm.S'
+@[£¬U:228: warning: ignoring old recipe for target '.mm.S'
 Makefile:232: warning: overriding recipe for target '.cxx.o'
-ÀªÅU:232: warning: ignoring old recipe for target '.cxx.o'
+@[£¬U:232: warning: ignoring old recipe for target '.cxx.o'
 Makefile:236: warning: overriding recipe for target '.cxx.S'
-ÀªÅU:236: warning: ignoring old recipe for target '.cxx.S'
+@[£¬U:236: warning: ignoring old recipe for target '.cxx.S'
 Makefile:240: warning: overriding recipe for target '.cpp.o'
-ÀªÅU:240: warning: ignoring old recipe for target '.cpp.o'
+@[£¬U:240: warning: ignoring old recipe for target '.cpp.o'
 Makefile:244: warning: overriding recipe for target '.cpp.S'
-ÀªÅU:244: warning: ignoring old recipe for target '.cpp.S'
+@[£¬U:244: warning: ignoring old recipe for target '.cpp.S'
 Makefile:248: warning: overriding recipe for target '.c.o'
-ÀªÅU:248: warning: ignoring old recipe for target '.c.o'
+@[£¬U:248: warning: ignoring old recipe for target '.c.o'
 Makefile:252: warning: overriding recipe for target '.c.S'
-ÀªÅU:252: warning: ignoring old recipe for target '.c.S'
+@[£¬U:252: warning: ignoring old recipe for target '.c.S'
 Makefile:256: warning: overriding recipe for target '.m.o'
-ÀªÅU:256: warning: ignoring old recipe for target '.m.o'
+@[£¬U:256: warning: ignoring old recipe for target '.m.o'
 Makefile:260: warning: overriding recipe for target '.m.S'
-ÀªÅU:260: warning: ignoring old recipe for target '.m.S'
+@[£¬U:260: warning: ignoring old recipe for target '.m.S'
 Makefile:264: warning: overriding recipe for target 'bigdecimal.so'
-ÀªÅU:264: warning: ignoring old recipe for target 'bigdecimal.so'
+@[£¬U:264: warning: ignoring old recipe for target 'bigdecimal.so'
 make[1]: Leaving directory '/home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal'
 
 current directory: /home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20240516-11603-qfjl5z sitelibdir\=./.gem.20240516-11603-qfjl5z
+make DESTDIR\= sitearchdir\=./.gem.20240522-10517-5e5md3 sitelibdir\=./.gem.20240522-10517-5e5md3
 make[1]: Entering directory '/home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal'
 Makefile:179: warning: overriding recipe for target 'clean'
-À*ŸGV:179: warning: ignoring old recipe for target 'clean'
+@;âGV:179: warning: ignoring old recipe for target 'clean'
 Makefile:186: warning: overriding recipe for target 'distclean'
-À*ŸGV:186: warning: ignoring old recipe for target 'distclean'
+@;âGV:186: warning: ignoring old recipe for target 'distclean'
 Makefile:194: warning: overriding recipe for target 'install-so'
-À*ŸGV:194: warning: ignoring old recipe for target 'install-so'
+@;âGV:194: warning: ignoring old recipe for target 'install-so'
 Makefile:204: warning: overriding recipe for target 'pre-install-rb-default'
-À*ŸGV:204: warning: ignoring old recipe for target 'pre-install-rb-default'
+@;âGV:204: warning: ignoring old recipe for target 'pre-install-rb-default'
 Makefile:206: warning: overriding recipe for target '.sitearchdir.time'
-À*ŸGV:206: warning: ignoring old recipe for target '.sitearchdir.time'
+@;âGV:206: warning: ignoring old recipe for target '.sitearchdir.time'
 Makefile:216: warning: overriding recipe for target '.cc.o'
-À*ŸGV:216: warning: ignoring old recipe for target '.cc.o'
+@;âGV:216: warning: ignoring old recipe for target '.cc.o'
 Makefile:220: warning: overriding recipe for target '.cc.S'
-À*ŸGV:220: warning: ignoring old recipe for target '.cc.S'
+@;âGV:220: warning: ignoring old recipe for target '.cc.S'
 Makefile:224: warning: overriding recipe for target '.mm.o'
-À*ŸGV:224: warning: ignoring old recipe for target '.mm.o'
+@;âGV:224: warning: ignoring old recipe for target '.mm.o'
 Makefile:228: warning: overriding recipe for target '.mm.S'
-À*ŸGV:228: warning: ignoring old recipe for target '.mm.S'
+@;âGV:228: warning: ignoring old recipe for target '.mm.S'
 Makefile:232: warning: overriding recipe for target '.cxx.o'
-À*ŸGV:232: warning: ignoring old recipe for target '.cxx.o'
+@;âGV:232: warning: ignoring old recipe for target '.cxx.o'
 Makefile:236: warning: overriding recipe for target '.cxx.S'
-À*ŸGV:236: warning: ignoring old recipe for target '.cxx.S'
+@;âGV:236: warning: ignoring old recipe for target '.cxx.S'
 Makefile:240: warning: overriding recipe for target '.cpp.o'
-À*ŸGV:240: warning: ignoring old recipe for target '.cpp.o'
+@;âGV:240: warning: ignoring old recipe for target '.cpp.o'
 Makefile:244: warning: overriding recipe for target '.cpp.S'
-À*ŸGV:244: warning: ignoring old recipe for target '.cpp.S'
+@;âGV:244: warning: ignoring old recipe for target '.cpp.S'
 Makefile:248: warning: overriding recipe for target '.c.o'
-À*ŸGV:248: warning: ignoring old recipe for target '.c.o'
+@;âGV:248: warning: ignoring old recipe for target '.c.o'
 Makefile:252: warning: overriding recipe for target '.c.S'
-À*ŸGV:252: warning: ignoring old recipe for target '.c.S'
+@;âGV:252: warning: ignoring old recipe for target '.c.S'
 Makefile:256: warning: overriding recipe for target '.m.o'
-À*ŸGV:256: warning: ignoring old recipe for target '.m.o'
+@;âGV:256: warning: ignoring old recipe for target '.m.o'
 Makefile:260: warning: overriding recipe for target '.m.S'
-À*ŸGV:260: warning: ignoring old recipe for target '.m.S'
+@;âGV:260: warning: ignoring old recipe for target '.m.S'
 Makefile:264: warning: overriding recipe for target 'bigdecimal.so'
-À*ŸGV:264: warning: ignoring old recipe for target 'bigdecimal.so'
+@;âGV:264: warning: ignoring old recipe for target 'bigdecimal.so'
 compiling bigdecimal.c
 compiling missing.c
 linking shared-object bigdecimal.so
 make[1]: Leaving directory '/home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal'
 
 current directory: /home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20240516-11603-qfjl5z sitelibdir\=./.gem.20240516-11603-qfjl5z install
+make DESTDIR\= sitearchdir\=./.gem.20240522-10517-5e5md3 sitelibdir\=./.gem.20240522-10517-5e5md3 install
 make[1]: Entering directory '/home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal'
 Makefile:179: warning: overriding recipe for target 'clean'
-ÀZV+;V:179: warning: ignoring old recipe for target 'clean'
+@kì£_U:179: warning: ignoring old recipe for target 'clean'
 Makefile:186: warning: overriding recipe for target 'distclean'
-ÀZV+;V:186: warning: ignoring old recipe for target 'distclean'
+@kì£_U:186: warning: ignoring old recipe for target 'distclean'
 Makefile:194: warning: overriding recipe for target 'install-so'
-ÀZV+;V:194: warning: ignoring old recipe for target 'install-so'
+@kì£_U:194: warning: ignoring old recipe for target 'install-so'
 Makefile:204: warning: overriding recipe for target 'pre-install-rb-default'
-ÀZV+;V:204: warning: ignoring old recipe for target 'pre-install-rb-default'
+@kì£_U:204: warning: ignoring old recipe for target 'pre-install-rb-default'
 Makefile:206: warning: overriding recipe for target '.sitearchdir.time'
-ÀZV+;V:206: warning: ignoring old recipe for target '.sitearchdir.time'
+@kì£_U:206: warning: ignoring old recipe for target '.sitearchdir.time'
 Makefile:216: warning: overriding recipe for target '.cc.o'
-ÀZV+;V:216: warning: ignoring old recipe for target '.cc.o'
+@kì£_U:216: warning: ignoring old recipe for target '.cc.o'
 Makefile:220: warning: overriding recipe for target '.cc.S'
-ÀZV+;V:220: warning: ignoring old recipe for target '.cc.S'
+@kì£_U:220: warning: ignoring old recipe for target '.cc.S'
 Makefile:224: warning: overriding recipe for target '.mm.o'
-ÀZV+;V:224: warning: ignoring old recipe for target '.mm.o'
+@kì£_U:224: warning: ignoring old recipe for target '.mm.o'
 Makefile:228: warning: overriding recipe for target '.mm.S'
-ÀZV+;V:228: warning: ignoring old recipe for target '.mm.S'
+@kì£_U:228: warning: ignoring old recipe for target '.mm.S'
 Makefile:232: warning: overriding recipe for target '.cxx.o'
-ÀZV+;V:232: warning: ignoring old recipe for target '.cxx.o'
+@kì£_U:232: warning: ignoring old recipe for target '.cxx.o'
 Makefile:236: warning: overriding recipe for target '.cxx.S'
-ÀZV+;V:236: warning: ignoring old recipe for target '.cxx.S'
+@kì£_U:236: warning: ignoring old recipe for target '.cxx.S'
 Makefile:240: warning: overriding recipe for target '.cpp.o'
-ÀZV+;V:240: warning: ignoring old recipe for target '.cpp.o'
+@kì£_U:240: warning: ignoring old recipe for target '.cpp.o'
 Makefile:244: warning: overriding recipe for target '.cpp.S'
-ÀZV+;V:244: warning: ignoring old recipe for target '.cpp.S'
+@kì£_U:244: warning: ignoring old recipe for target '.cpp.S'
 Makefile:248: warning: overriding recipe for target '.c.o'
-ÀZV+;V:248: warning: ignoring old recipe for target '.c.o'
+@kì£_U:248: warning: ignoring old recipe for target '.c.o'
 Makefile:252: warning: overriding recipe for target '.c.S'
-ÀZV+;V:252: warning: ignoring old recipe for target '.c.S'
+@kì£_U:252: warning: ignoring old recipe for target '.c.S'
 Makefile:256: warning: overriding recipe for target '.m.o'
-ÀZV+;V:256: warning: ignoring old recipe for target '.m.o'
+@kì£_U:256: warning: ignoring old recipe for target '.m.o'
 Makefile:260: warning: overriding recipe for target '.m.S'
-ÀZV+;V:260: warning: ignoring old recipe for target '.m.S'
+@kì£_U:260: warning: ignoring old recipe for target '.m.S'
 Makefile:264: warning: overriding recipe for target 'bigdecimal.so'
-ÀZV+;V:264: warning: ignoring old recipe for target 'bigdecimal.so'
-/usr/bin/install -c -m 0755 bigdecimal.so ./.gem.20240516-11603-qfjl5z
+@kì£_U:264: warning: ignoring old recipe for target 'bigdecimal.so'
+/usr/bin/install -c -m 0755 bigdecimal.so ./.gem.20240522-10517-5e5md3
 make[1]: Leaving directory '/home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal'
 
 current directory: /home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20240516-11603-qfjl5z sitelibdir\=./.gem.20240516-11603-qfjl5z clean
+make DESTDIR\= sitearchdir\=./.gem.20240522-10517-5e5md3 sitelibdir\=./.gem.20240522-10517-5e5md3 clean
 make[1]: Entering directory '/home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal'
 Makefile:179: warning: overriding recipe for target 'clean'
-ÀúBí”U:179: warning: ignoring old recipe for target 'clean'
+@+¹ñ3V:179: warning: ignoring old recipe for target 'clean'
 Makefile:186: warning: overriding recipe for target 'distclean'
-ÀúBí”U:186: warning: ignoring old recipe for target 'distclean'
+@+¹ñ3V:186: warning: ignoring old recipe for target 'distclean'
 Makefile:194: warning: overriding recipe for target 'install-so'
-ÀúBí”U:194: warning: ignoring old recipe for target 'install-so'
+@+¹ñ3V:194: warning: ignoring old recipe for target 'install-so'
 Makefile:204: warning: overriding recipe for target 'pre-install-rb-default'
-ÀúBí”U:204: warning: ignoring old recipe for target 'pre-install-rb-default'
+@+¹ñ3V:204: warning: ignoring old recipe for target 'pre-install-rb-default'
 Makefile:206: warning: overriding recipe for target '.sitearchdir.time'
-ÀúBí”U:206: warning: ignoring old recipe for target '.sitearchdir.time'
+@+¹ñ3V:206: warning: ignoring old recipe for target '.sitearchdir.time'
 Makefile:216: warning: overriding recipe for target '.cc.o'
-ÀúBí”U:216: warning: ignoring old recipe for target '.cc.o'
+@+¹ñ3V:216: warning: ignoring old recipe for target '.cc.o'
 Makefile:220: warning: overriding recipe for target '.cc.S'
-ÀúBí”U:220: warning: ignoring old recipe for target '.cc.S'
+@+¹ñ3V:220: warning: ignoring old recipe for target '.cc.S'
 Makefile:224: warning: overriding recipe for target '.mm.o'
-ÀúBí”U:224: warning: ignoring old recipe for target '.mm.o'
+@+¹ñ3V:224: warning: ignoring old recipe for target '.mm.o'
 Makefile:228: warning: overriding recipe for target '.mm.S'
-ÀúBí”U:228: warning: ignoring old recipe for target '.mm.S'
+@+¹ñ3V:228: warning: ignoring old recipe for target '.mm.S'
 Makefile:232: warning: overriding recipe for target '.cxx.o'
-ÀúBí”U:232: warning: ignoring old recipe for target '.cxx.o'
+@+¹ñ3V:232: warning: ignoring old recipe for target '.cxx.o'
 Makefile:236: warning: overriding recipe for target '.cxx.S'
-ÀúBí”U:236: warning: ignoring old recipe for target '.cxx.S'
+@+¹ñ3V:236: warning: ignoring old recipe for target '.cxx.S'
 Makefile:240: warning: overriding recipe for target '.cpp.o'
-ÀúBí”U:240: warning: ignoring old recipe for target '.cpp.o'
+@+¹ñ3V:240: warning: ignoring old recipe for target '.cpp.o'
 Makefile:244: warning: overriding recipe for target '.cpp.S'
-ÀúBí”U:244: warning: ignoring old recipe for target '.cpp.S'
+@+¹ñ3V:244: warning: ignoring old recipe for target '.cpp.S'
 Makefile:248: warning: overriding recipe for target '.c.o'
-ÀúBí”U:248: warning: ignoring old recipe for target '.c.o'
+@+¹ñ3V:248: warning: ignoring old recipe for target '.c.o'
 Makefile:252: warning: overriding recipe for target '.c.S'
-ÀúBí”U:252: warning: ignoring old recipe for target '.c.S'
+@+¹ñ3V:252: warning: ignoring old recipe for target '.c.S'
 Makefile:256: warning: overriding recipe for target '.m.o'
-ÀúBí”U:256: warning: ignoring old recipe for target '.m.o'
+@+¹ñ3V:256: warning: ignoring old recipe for target '.m.o'
 Makefile:260: warning: overriding recipe for target '.m.S'
-ÀúBí”U:260: warning: ignoring old recipe for target '.m.S'
+@+¹ñ3V:260: warning: ignoring old recipe for target '.m.S'
 Makefile:264: warning: overriding recipe for target 'bigdecimal.so'
-ÀúBí”U:264: warning: ignoring old recipe for target 'bigdecimal.so'
+@+¹ñ3V:264: warning: ignoring old recipe for target 'bigdecimal.so'
 make[1]: Leaving directory '/home/runner/work/R-PUFF/R-PUFF/.vendor/bundle/ruby/3.3.0/gems/bigdecimal-3.1.8/ext/bigdecimal'
